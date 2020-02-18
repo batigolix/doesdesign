@@ -1,0 +1,23 @@
+uuid: 7960f1a6-6973-47f6-a7dd-d57a6f8d64c6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_price
+    - node.type.object
+id: node.object.field_price
+field_name: field_price
+entity_type: node
+bundle: object
+label: Prijs
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: float

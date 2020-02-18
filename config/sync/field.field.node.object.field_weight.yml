@@ -1,0 +1,23 @@
+uuid: 3884c9b9-dafa-4525-ab62-b63d8341d4b5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_weight
+    - node.type.object
+id: node.object.field_weight
+field_name: field_weight
+entity_type: node
+bundle: object
+label: Gewicht
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: float
