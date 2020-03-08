@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Contains doesdesign_tools.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function doesdesign_tools_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the doesdesign_tools module.
+    case 'help.page.doesdesign_tools':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('My Awesome Module') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function doesdesign_tools_theme() {
+  return [
+    'doesdesign_tools' => [
+      'render element' => 'children',
+    ],
+  ];
+}
