@@ -10,5 +10,6 @@ base theme: stable
 
 regions:
   header: Header
+  nav: Navigation
   content: Content
   footer: Footer

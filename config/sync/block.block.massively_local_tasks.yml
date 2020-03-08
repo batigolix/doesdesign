@@ -1,0 +1,22 @@
+uuid: b7f3c602-ec56-4147-a83b-ab8957474aad
+langcode: en
+status: true
+dependencies:
+  theme:
+    - massively
+_core:
+  default_config_hash: X9I1OB0W3WlWtrK-CNcg6hNWwa8wficanpH8pYnDZDE
+id: massively_local_tasks
+theme: massively
+region: content
+weight: -5
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility: {  }

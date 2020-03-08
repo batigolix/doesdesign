@@ -1,0 +1,22 @@
+uuid: fdb5c2a3-6c07-4a6d-9797-a30540e3cfc2
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - massively
+_core:
+  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
+id: massively_messages
+theme: massively
+region: content
+weight: 2
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

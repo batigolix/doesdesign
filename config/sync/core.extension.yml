@@ -8,10 +8,16 @@ module:
   color: 0
   comment: 0
   config: 0
+  config_filter: 0
+  config_ignore: 0
+  config_split: 0
   contact: 0
   contextual: 0
   datetime: 0
   dblog: 0
+  devel: 0
+  devel_generate: 0
+  doesdesign_tools: 0
   dynamic_page_cache: 0
   editor: 0
   field: 0
@@ -21,6 +27,7 @@ module:
   help: 0
   history: 0
   image: 0
+  kint: 0
   link: 0
   menu_link_content: 0
   menu_ui: 0
@@ -48,6 +55,7 @@ theme:
   bartik: 0
   seven: 0
   claro: 0
+  massively: 0
 profile: standard
 _core:
   default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc
