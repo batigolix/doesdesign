@@ -28,6 +28,12 @@ function doesdesign_tools_help($route_name, RouteMatchInterface $route_match) {
  */
 function doesdesign_tools_theme() {
   return [
+    'social_block' => [
+      'variables' => [
+        'content' => NULL
+      ],
+      'render element' => 'children',
+    ],
     'doesdesign_tools' => [
       'render element' => 'children',
     ],
