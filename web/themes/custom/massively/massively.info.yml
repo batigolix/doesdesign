@@ -1,0 +1,14 @@
+name: massively
+type: theme
+description: 'My Awesome theme'
+package: Other
+core: 8.x
+libraries:
+  - massively/global-styling
+
+base theme: stable
+
+regions:
+  header: Header
+  content: Content
+  footer: Footer

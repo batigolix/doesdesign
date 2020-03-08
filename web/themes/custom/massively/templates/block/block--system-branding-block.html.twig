@@ -1,0 +1,42 @@
+{#
+/**
+ * @file
+ * Theme override for a branding block.
+ *
+ * Each branding element variable (logo, name, slogan) is only available if
+ * enabled in the block configuration.
+ *
+ * Available variables:
+ * - site_logo: Logo for site as defined in Appearance or theme settings.
+ * - site_name: Name for site as defined in Site information settings.
+ * - site_slogan: Slogan for site as defined in Site information settings.
+ */
+#}
+
+<div{{ attributes.setAttribute('id', 'intro') }}>
+
+{#  {{ kint(content) }}#}
+  {#    {{ dump(content) }}#}
+{#  {{ dpm(content) }}#}
+
+
+  {% if site_logo %}
+    <a href="{{ path('<front>') }}" rel="home">
+      <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" />
+    </a>
+  {% endif %}
+  {% if site_name %}
+    <h1><a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">{{ site_name }}</a></h1>
+  {% endif %}
+
+  {% if site_slogan %}
+    <p>{{ site_slogan }}</p>
+    <p>A free, fully responsive HTML5 + CSS3 site template designed by <a href="https://twitter.com/ajlkn">@ajlkn</a> for <a href="https://html5up.net">HTML5 UP</a><br />
+      and released for free under the <a href="https://html5up.net/license">Creative Commons license</a>.</p>
+  {% endif %}
+
+  <ul class="actions">
+    <li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
+  </ul>
+
+</div>

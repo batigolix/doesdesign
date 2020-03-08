@@ -153,24 +153,3 @@ $settings['skip_permissions_hardening'] = TRUE;
  * the language or field module.
  */
 # $settings['config_exclude_modules'] = ['devel', 'stage_file_proxy'];
-
-$config['system.logging']['error_level'] = 'verbose';               // hide|some|all|verbose
-$config['system.performance']['cache']['page']['max_age'] = 0;  // Time in seconds, 0 = no caching
-$config['dblog.settings']['row_limit'] = 1000;                  // Max. entries in log, 0 = all entries
-$config['system.performance']['css']['preprocess'] = false;      // true|false
-$config['system.performance']['js']['preprocess'] = false;       // true|false
-$config['system.performance']['css']['gzip'] = false;            // true|false
-$config['system.performance']['js']['gzip'] = false;             // true|false
-$config['system.performance']['response']['gzip'] = false;       // true|false
-$config['system.cron']['threshold']['autorun'] = 0;             // Time in seconds, 0 = never run
-
-$databases['default']['default'] = array (
-  'database' => 'default',
-  'username' => 'root',
-  'password' => 'root',
-  'prefix' => '',
-  'host' => 'db',
-  'port' => '3306',
-  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
-  'driver' => 'mysql',
-);
