@@ -1,0 +1,16 @@
+{#
+/**
+* @file
+* Default theme implementation to display a block.
+*
+* @see template_preprocess_block()
+*
+* @ingroup themeable
+*/
+#}
+{% set classes = [
+    'clear-both',
+] %}
+<div{{ attributes.setAttribute('id', 'copyright') }}>
+  <ul><li>&copy; doesdesign.nl</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+</div>

@@ -37,5 +37,23 @@ function doesdesign_tools_theme() {
     'doesdesign_tools' => [
       'render element' => 'children',
     ],
+    'copyright_block' => [
+      'variables' => [
+        'content' => NULL
+      ],
+      'render element' => 'children',
+    ],
+    'contact_block' => [
+      'variables' => [
+        'content' => NULL
+      ],
+      'render element' => 'children',
+    ],
+    'contact_form_block' => [
+      'variables' => [
+        'content' => NULL
+      ],
+      'render element' => 'children',
+    ],
   ];
 }

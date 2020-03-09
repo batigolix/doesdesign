@@ -1,0 +1,20 @@
+uuid: 80defdc4-e679-4acb-8520-2aa85870d8dc
+langcode: en
+status: true
+dependencies:
+  module:
+    - doesdesign_tools
+  theme:
+    - massively
+id: socialblock
+theme: massively
+region: nav
+weight: 0
+provider: null
+plugin: social_block
+settings:
+  id: social_block
+  label: 'Social block'
+  provider: doesdesign_tools
+  label_display: '0'
+visibility: {  }
