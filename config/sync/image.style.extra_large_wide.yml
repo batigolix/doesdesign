@@ -1,0 +1,15 @@
+uuid: 3f6b4070-1ac8-4fca-8c08-32c049b84606
+langcode: en
+status: true
+dependencies: {  }
+name: extra_large_wide
+label: 'Extra large wide (1008 x 491)'
+effects:
+  c010828c-b7ee-4c1d-9eee-bc39a0ac264e:
+    uuid: c010828c-b7ee-4c1d-9eee-bc39a0ac264e
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1008
+      height: 491
+      anchor: center-center
