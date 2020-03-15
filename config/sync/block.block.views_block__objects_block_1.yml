@@ -1,0 +1,24 @@
+uuid: 4b5bbb2e-8365-475b-be58-f65ae344219d
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.objects
+  module:
+    - views
+  theme:
+    - massively
+id: views_block__objects_block_1
+theme: massively
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:objects-block_1'
+settings:
+  id: 'views_block:objects-block_1'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility: {  }

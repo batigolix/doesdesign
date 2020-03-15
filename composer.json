@@ -25,7 +25,9 @@
         "drupal/core-recommended": "^8.8",
         "drupal/devel": "^2.1",
         "drupal/environment_indicator": "^3.7",
+        "drupal/paragraphs": "^1.11",
         "drupal/redirect": "^1.5",
+        "drupal/single_image_formatter": "^1.5",
         "drush/drush": "^8.0"
     },
     "require-dev": {
@@ -44,6 +46,9 @@
         "drupal-scaffold": {
             "locations": {
                 "web-root": "web/"
+            },
+            "file-mapping": {
+                "[web-root]/sites/development.services.yml": false
             }
         },
         "installer-paths": {

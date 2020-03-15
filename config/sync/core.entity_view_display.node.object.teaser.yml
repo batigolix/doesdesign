@@ -8,8 +8,10 @@ dependencies:
     - field.field.node.object.field_image
     - field.field.node.object.field_price
     - field.field.node.object.field_weight
+    - image.style.medium_wide_508_x_310_
     - node.type.object
   module:
+    - single_image_formatter
     - text
     - user
 id: node.object.teaser
@@ -20,17 +22,21 @@ content:
   body:
     label: hidden
     type: text_summary_or_trimmed
-    weight: 101
+    weight: 1
     settings:
       trim_length: 600
     third_party_settings: {  }
     region: content
-  links:
-    weight: 100
-    settings: {  }
-    third_party_settings: {  }
+  field_image:
+    type: single_image_formatter
+    weight: 0
     region: content
+    label: above
+    settings:
+      image_style: medium_wide_508_x_310_
+      image_link: ''
+    third_party_settings: {  }
 hidden:
-  field_image: true
   field_price: true
   field_weight: true
+  links: true

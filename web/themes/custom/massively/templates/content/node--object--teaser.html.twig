@@ -70,24 +70,37 @@
  *   in different view modes.
  */
 #}
-<section {{ attributes.addClass('post') }}>
-  {{ title_prefix }}
-  {% if not page %}
-    <h2{{ title_attributes }}>
-      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-    </h2>
-  {% endif %}
-  {{ title_suffix }}
-  {% if page %}
-    <header class="major">
-      <span class="date">{{ date }}</span>
-      <h1>{{ label }}</h1>
-      <p>{{ node.body.summary }}</p>
-    </header>
-  {% endif %}
 
-  <div class="image main">{{ content.field_image }}</div>
-  <div{{ content_attributes }}>
-    {{ content|without('field_image') }}
-  </div>
-</section>
+<article>
+  <header>
+    <span class="date">{{ date }}</span>
+    <h2><a href="{{ url }}">{{ label }}</a></h2>
+  </header>
+  <a href="{{ url }}" class="image fit">{{ content.field_image }}</a>
+  {{ node.body.summary }}
+  <ul class="actions special">
+    <li><a href="{{ url }}" class="button">{{ 'View object'|t }}</a></li>
+  </ul>
+</article>
+
+{#<section {{ attributes.addClass('post') }}>#}
+{#  {{ title_prefix }}#}
+{#  {% if not page %}#}
+{#    <h2{{ title_attributes }}>#}
+{#      <a href="{{ url }}" rel="bookmark">{{ label }}</a>#}
+{#    </h2>#}
+{#  {% endif %}#}
+{#  {{ title_suffix }}#}
+{#  {% if page %}#}
+{#    <header class="major">#}
+{#      <span class="date">{{ date }}</span>#}
+{#      <h1>{{ label }}</h1>#}
+{#      <p>{{ node.body.summary }}</p>#}
+{#    </header>#}
+{#  {% endif %}#}
+
+{#  <div class="image main">{{ content.field_image }}</div>#}
+{#  <div{{ content_attributes }}>#}
+{#    {{ content|without('field_image') }}#}
+{#  </div>#}
+{#</section>#}

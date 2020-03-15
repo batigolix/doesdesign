@@ -1,0 +1,15 @@
+uuid: 69633f20-280d-4c28-8891-425f168b4fe5
+langcode: en
+status: true
+dependencies: {  }
+name: medium_wide_508_x_310_
+label: 'Medium wide (508 x 310)'
+effects:
+  dced9709-1d58-43d2-af5a-a882065e0422:
+    uuid: dced9709-1d58-43d2-af5a-a882065e0422
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 508
+      height: 310
+      anchor: center-center

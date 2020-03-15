@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.object.field_image
     - field.field.node.object.field_price
     - field.field.node.object.field_weight
+    - image.style.extra_large_wide
     - node.type.object
   module:
     - image
@@ -28,7 +29,7 @@ content:
     weight: 102
     label: above
     settings:
-      image_style: ''
+      image_style: extra_large_wide
       image_link: ''
     third_party_settings: {  }
     type: image
@@ -57,7 +58,7 @@ content:
     region: content
   links:
     weight: 100
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden: {  }
