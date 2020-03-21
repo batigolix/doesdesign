@@ -1,0 +1,7 @@
+doesdesign_tools.contact_form:
+  path: '/doesdesign_tools/form/contact'
+  defaults:
+    _form: '\Drupal\doesdesign_tools\Form\ContactForm'
+    _title: 'ContactForm'
+  requirements:
+    _access: 'TRUE'
