@@ -69,7 +69,8 @@ function massively_page_attachments_alter(array &$page) {
  * Implements hook_preprocess_page() for page.html.twig.
  */
 function massively_preprocess_page(array &$variables) {
-
+  $myform = \Drupal::formBuilder()->getForm('Drupal\doesdesign_tools\Form\ContactForm');
+  $variables['contact_form'] = $myform;
 }
 
 /**
