@@ -25,15 +25,15 @@ function massively_preprocess_html(array &$variables) {
  */
 function massively_page_attachments_alter(array &$page) {
   // Tell IE to use latest rendering engine (not to use compatibility mode).
-//  $ie_edge = [
-//    '#type' => 'html_tag',
-//    '#tag' => 'meta',
-//    '#attributes' => [
-//    'http-equiv' => 'X-UA-Compatible',
-//    'content' => 'IE=edge',
-//    ],
-//  ];
-//  $page['#attached']['html_head'][] = [$ie_edge, 'ie_edge'];
+  //  $ie_edge = [
+  //    '#type' => 'html_tag',
+  //    '#tag' => 'meta',
+  //    '#attributes' => [
+  //    'http-equiv' => 'X-UA-Compatible',
+  //    'content' => 'IE=edge',
+  //    ],
+  //  ];
+  //  $page['#attached']['html_head'][] = [$ie_edge, 'ie_edge'];
 
   $viewport = [
     '#type' => 'html_tag',
@@ -46,23 +46,21 @@ function massively_page_attachments_alter(array &$page) {
   $page['#attached']['html_head'][] = [$viewport, 'viewport'];
 
   $fallback = '<link href="/themes/custom/massively/assets/css/noscript.css" rel="stylesheet" />';
-  $noscript = array(
+  $noscript = [
     '#tag' => 'noscript',
     '#value' => Markup::create($fallback),
-  );
+  ];
   $page['#attached']['html_head'][] = [$noscript, 'fallback'];
 
 
-
-//  $page['#attached']['html_head'][] = [
-//    '#type' => 'html_tag',
-//    '#tag' => 'meta',
-//    '#attributes' => [
-//      'charset' => 'utf-9',
-//      'content' => 'IE=edge',
-//      ],
-//  ];
-
+  //  $page['#attached']['html_head'][] = [
+  //    '#type' => 'html_tag',
+  //    '#tag' => 'meta',
+  //    '#attributes' => [
+  //      'charset' => 'utf-9',
+  //      'content' => 'IE=edge',
+  //      ],
+  //  ];
 
 
 }
@@ -174,15 +172,20 @@ function massively_theme_suggestions_details_alter(array &$suggestions, array $v
  * Implements hook_preprocess_menu_local_task().
  */
 function massively_preprocess_menu_local_task(array &$variables) {
-  //$variables['element']['#link']['url']->setOption('attributes', ['class'=>'rounded']);
+  $variables['element']['#link']['url']->setOption('attributes', ['class' => 'button']);
+  if ($variables['element']['#active']) {
+    $variables['element']['#link']['url']->setOption('attributes', ['class' => 'button primary']);
+  }
+
 }
 
 
 function massively_page_attachments(array &$page) {
   $fallback = '<link href="fallback.css" rel="stylesheet" />';
-  $noscript = array(
+  $noscript = [
     '#tag' => 'noscript',
     '#value' => Markup::create($fallback),
-  );
+  ];
   $page['#attached']['html_head'][] = [$noscript, 'mymodule'];
 }
+
