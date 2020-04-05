@@ -2,12 +2,22 @@ global-styling:
   version: 1.x
   css:
     base:
-      assets/css/main.css: {}
+      assets/css/main.css: { weight: 555 }
   js:
-    assets/js/jquery.min.js: {}
     assets/js/jquery.scrollex.min.js: {}
     assets/js/jquery.scrolly.min.js: {}
     assets/js/browser.min.js: {}
     assets/js/breakpoints.min.js: {}
     assets/js/util.js: {}
     assets/js/main.js: {}
+  dependencies:
+    - core/jquery
+custom:
+  version: 0.0.0.1
+  #  js:
+  #    styles/plain/colorbox_style.js: {}
+  css:
+    theme:
+      custom.css: { weight:2000 }
+  dependencies:
+    - colorbox/init

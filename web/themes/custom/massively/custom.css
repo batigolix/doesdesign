@@ -1,0 +1,14 @@
+#colorbox input[type="submit"],
+#colorbox input[type="reset"],
+#colorbox input[type="button"],
+#colorbox button,
+#colorbox .button {
+  box-shadow: none;
+}
+
+body #colorbox #cboxTitle,
+body #colorbox #cboxCurrent
+{
+ font-size: 80%;
+ line-height: 100%;
+}

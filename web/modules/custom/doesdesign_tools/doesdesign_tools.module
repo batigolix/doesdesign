@@ -57,3 +57,8 @@ function doesdesign_tools_theme() {
     ],
   ];
 }
+
+//// From core/modules/contextual/contextual.module.
+//function doesdesign_tools_page_attachments(array &$page) {
+//  $page['#attached']['library'][] = 'doesdesign_tools/custom';
+//}

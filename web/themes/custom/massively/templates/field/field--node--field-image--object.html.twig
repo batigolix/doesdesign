@@ -36,25 +36,22 @@
  * @see template_preprocess_field()
  */
 #}
-{%
-  set title_classes = [
-    label_display == 'visually_hidden' ? 'visually-hidden',
-  ]
-%}
 
-{% if label_hidden %}
-  {% if multiple %}
-      {% for item in items %}
-        <p{{ item.attributes }}>{{ item.content }}</p>
-      {% endfor %}
-  {% else %}
-    {% for item in items %}
-      <p{{ attributes }}>{{ item.content }}</p>
+<span class="image fit">
+{{ items|first.content }}
+</span>
+
+
+<div class="box alt">
+  <div class="row gtr-50 gtr-uniform">
+    {% for item in items|slice(1) %}
+
+      <div class="col-4"><span class="image fit">
+
+
+                {{ item.content }}
+
+          <img src="images/pic02.jpg" alt="" /></span></div>
     {% endfor %}
-  {% endif %}
-{% else %}
-    <h3{{ title_attributes.addClass(title_classes) }}>{{ label }}</h3>
-    {% for item in items %}
-      <p{{ item.attributes }}>{{ item.content }}</p>
-    {% endfor %}
-{% endif %}
+  </div>
+</div>

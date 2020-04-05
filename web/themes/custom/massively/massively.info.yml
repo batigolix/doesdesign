@@ -5,6 +5,7 @@ package: Other
 core: 8.x
 libraries:
   - massively/global-styling
+  - massively/custom
 
 base theme: stable
 

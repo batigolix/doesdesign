@@ -1,0 +1,9 @@
+custom:
+  version: 0.0.0.1
+#  js:
+#    styles/plain/colorbox_style.js: {}
+  css:
+    theme:
+      custom.css: { weight:2000 }
+  dependencies:
+    - colorbox/init
