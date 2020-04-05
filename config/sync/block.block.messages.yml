@@ -1,0 +1,20 @@
+uuid: d9512bfb-8241-4f42-847c-257a3f433907
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - massively
+id: messages
+theme: massively
+region: content
+weight: -2
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: Messages
+  provider: system
+  label_display: '0'
+visibility: {  }

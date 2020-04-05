@@ -1,0 +1,18 @@
+uuid: b5a45bbb-ad25-467a-b961-443ba50a52b1
+langcode: en
+status: true
+dependencies:
+  theme:
+    - massively
+id: primaryadminactions
+theme: massively
+region: content
+weight: -1
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }
