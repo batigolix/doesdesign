@@ -16,6 +16,18 @@
         {
             "type": "package",
             "package": {
+                "name": "harvesthq/chosen",
+                "version": "1.8.7",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://github.com/harvesthq/chosen/releases/download/v1.8.7/chosen_v1.8.7.zip",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
                 "name": "jackmoore/colorbox",
                 "version": "1.6.4",
                 "type": "drupal-library",
@@ -28,7 +40,9 @@
     ],
     "require": {
         "composer/installers": "^1.2",
+        "cweagans/composer-patches": "^1.6",
         "drupal/admin_toolbar": "^2.0",
+        "drupal/chosen": "^2.9",
         "drupal/colorbox": "^1.4",
         "drupal/config_ignore": "^2.2",
         "drupal/config_split": "^1.4",
@@ -43,6 +57,7 @@
         "drupal/redirect": "^1.5",
         "drupal/single_image_formatter": "^1.5",
         "drush/drush": "^8.0",
+        "harvesthq/chosen": "^1.8",
         "jackmoore/colorbox": "^1.6"
     },
     "require-dev": {
@@ -68,13 +83,18 @@
         },
         "installer-paths": {
             "web/core": ["type:drupal-core"],
-            "web/libraries/{$name}": ["type:drupal-library"],
+            "web/libraries/{$name}": ["type:drupal-library", "harvesthq/chosen"],
             "web/modules/contrib/{$name}": ["type:drupal-module"],
             "web/profiles/contrib/{$name}": ["type:drupal-profile"],
             "web/themes/contrib/{$name}": ["type:drupal-theme"],
             "drush/Commands/contrib/{$name}": ["type:drupal-drush"],
             "web/modules/custom/{$name}": ["type:drupal-custom-module"],
             "web/themes/custom/{$name}": ["type:drupal-custom-theme"]
+        },
+        "patches": {
+            "drupal/chosen": {
+                "library folder": "https://www.drupal.org/files/issues/2019-12-19/3102250-composer-package-info-2.patch"
+            }
         },
         "drupal-core-project-message": {
             "include-keys": ["homepage", "support"],

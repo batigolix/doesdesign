@@ -15,14 +15,11 @@ module:
   contextual: 0
   datetime: 0
   dblog: 0
-  devel: 0
-  devel_generate: 0
   doesdesign_tools: 0
   dynamic_page_cache: 0
   editor: 0
   environment_indicator: 0
   field: 0
-  field_ui: 0
   file: 0
   file_mdm: 0
   file_mdm_exif: 0
@@ -32,7 +29,6 @@ module:
   history: 0
   image: 0
   image_effects: 0
-  kint: 0
   link: 0
   menu_link_content: 0
   menu_ui: 0
@@ -50,7 +46,6 @@ module:
   toolbar: 0
   update: 0
   user: 0
-  views_ui: 0
   views: 10
   standard: 1000
 theme:
