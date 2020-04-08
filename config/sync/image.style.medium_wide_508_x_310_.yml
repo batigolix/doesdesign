@@ -1,7 +1,9 @@
 uuid: 69633f20-280d-4c28-8891-425f168b4fe5
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - image_effects
 name: medium_wide_508_x_310_
 label: 'Medium wide (508 x 310)'
 effects:
@@ -13,3 +15,9 @@ effects:
       width: 508
       height: 310
       anchor: center-center
+  9abae693-8407-40af-bd34-dd9f4dce76fd:
+    uuid: 9abae693-8407-40af-bd34-dd9f4dce76fd
+    id: image_effects_auto_orient
+    weight: 4
+    data:
+      scan_exif: true

@@ -8,9 +8,10 @@ dependencies:
     - field.field.node.object.field_price
     - field.field.node.object.field_weight
     - image.style.extra_large_wide
+    - image.style.medium_wide_508_x_310_
     - node.type.object
   module:
-    - image
+    - colorbox
     - text
     - user
 id: node.object.default
@@ -26,13 +27,18 @@ content:
     third_party_settings: {  }
     region: content
   field_image:
-    weight: 102
+    weight: 106
     label: above
     settings:
-      image_style: extra_large_wide
-      image_link: ''
+      colorbox_node_style: medium_wide_508_x_310_
+      colorbox_node_style_first: extra_large_wide
+      colorbox_image_style: ''
+      colorbox_gallery: page
+      colorbox_gallery_custom: ''
+      colorbox_caption: auto
+      colorbox_caption_custom: ''
     third_party_settings: {  }
-    type: image
+    type: colorbox
     region: content
   field_price:
     weight: 104
