@@ -15,7 +15,7 @@ provider: null
 plugin: flickr
 settings:
   id: flickr
-  label: 'Doesdesign tools: Flickr'
+  label: 'Doesdesign op Flickr'
   provider: doesdesign_tools
   label_display: visible
   flickr_items: '16'
