@@ -7,3 +7,12 @@ custom:
       custom.css: { weight:2000 }
   dependencies:
     - colorbox/init
+flickr:
+  version: 1.x
+  js:
+    flickr.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/drupal
+    - core/drupalSettings

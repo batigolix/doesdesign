@@ -34,7 +34,6 @@ function massively_page_attachments_alter(array &$page) {
   //    ],
   //  ];
   //  $page['#attached']['html_head'][] = [$ie_edge, 'ie_edge'];
-
   $viewport = [
     '#type' => 'html_tag',
     '#tag' => 'meta',
@@ -44,15 +43,12 @@ function massively_page_attachments_alter(array &$page) {
     ],
   ];
   $page['#attached']['html_head'][] = [$viewport, 'viewport'];
-
   $fallback = '<link href="/themes/custom/massively/assets/css/noscript.css" rel="stylesheet" />';
   $noscript = [
     '#tag' => 'noscript',
     '#value' => Markup::create($fallback),
   ];
   $page['#attached']['html_head'][] = [$noscript, 'fallback'];
-
-
   //  $page['#attached']['html_head'][] = [
   //    '#type' => 'html_tag',
   //    '#tag' => 'meta',
@@ -61,16 +57,15 @@ function massively_page_attachments_alter(array &$page) {
   //      'content' => 'IE=edge',
   //      ],
   //  ];
-
-
 }
 
 /**
  * Implements hook_preprocess_page() for page.html.twig.
  */
 function massively_preprocess_page(array &$variables) {
-  $myform = \Drupal::formBuilder()->getForm('Drupal\doesdesign_tools\Form\ContactForm');
-  $variables['contact_form'] = $myform;
+  $form = \Drupal::formBuilder()
+    ->getForm('Drupal\doesdesign_tools\Form\ContactForm');
+  $variables['contact_form'] = $form;
 }
 
 /**
@@ -177,9 +172,7 @@ function massively_preprocess_menu_local_task(array &$variables) {
   if ($variables['element']['#active']) {
     $variables['element']['#link']['url']->setOption('attributes', ['class' => 'button primary']);
   }
-
 }
-
 
 function massively_page_attachments(array &$page) {
   $fallback = '<link href="fallback.css" rel="stylesheet" />';

@@ -55,6 +55,7 @@
         "drupal/environment_indicator": "^3.7",
         "drupal/focal_point": "^1.4",
         "drupal/image_effects": "^3.0",
+        "drupal/pathauto": "^1.6",
         "drupal/redirect": "^1.5",
         "drupal/single_image_formatter": "^1.5",
         "drush/drush": "^8.0",
