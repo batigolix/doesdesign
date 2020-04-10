@@ -3,21 +3,22 @@ langcode: en
 status: true
 dependencies:
   module:
+    - focal_point
     - image_effects
 name: medium_wide_508_x_310_
 label: 'Medium wide (508 x 310)'
 effects:
-  dced9709-1d58-43d2-af5a-a882065e0422:
-    uuid: dced9709-1d58-43d2-af5a-a882065e0422
-    id: image_scale_and_crop
-    weight: 1
-    data:
-      width: 508
-      height: 310
-      anchor: center-center
   9abae693-8407-40af-bd34-dd9f4dce76fd:
     uuid: 9abae693-8407-40af-bd34-dd9f4dce76fd
     id: image_effects_auto_orient
     weight: 4
     data:
       scan_exif: true
+  b8046b86-ce07-4b6c-938b-9a0d72dde23b:
+    uuid: b8046b86-ce07-4b6c-938b-9a0d72dde23b
+    id: focal_point_scale_and_crop
+    weight: 3
+    data:
+      width: 508
+      height: 310
+      crop_type: focal_point
