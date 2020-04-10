@@ -8,22 +8,6 @@
 use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
- * Implements hook_help().
- */
-function doesdesign_tools_help($route_name, RouteMatchInterface $route_match) {
-  switch ($route_name) {
-    // Main module help for the doesdesign_tools module.
-    case 'help.page.doesdesign_tools':
-      $output = '';
-      $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('My Awesome Module') . '</p>';
-      return $output;
-
-    default:
-  }
-}
-
-/**
  * Implements hook_theme().
  */
 function doesdesign_tools_theme() {
@@ -58,7 +42,15 @@ function doesdesign_tools_theme() {
   ];
 }
 
-//// From core/modules/contextual/contextual.module.
-//function doesdesign_tools_page_attachments(array &$page) {
-//  $page['#attached']['library'][] = 'doesdesign_tools/custom';
-//}
+function doesdesign_tools_mail($key, &$message, $params) {
+  $options = array(
+    'langcode' => $message['langcode'],
+  );
+  switch ($key) {
+    case 'doesdesign_tools_mail':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = t('E-mail van doesdesign.nl: @subject', ['@subject' => $params['subject']], $options);
+      $message['body'][] = $params['message'];
+      break;
+  }
+}

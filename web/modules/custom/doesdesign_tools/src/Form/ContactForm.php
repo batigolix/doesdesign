@@ -5,7 +5,9 @@ namespace Drupal\doesdesign_tools\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-
+use Drupal\Core\Mail\MailManagerInterface;
+use Drupal\Component\Utility\SafeMarkup;
+use Drupal\Component\Utility\Html;
 /**
  * Class ContactForm.
  */
@@ -54,31 +56,69 @@ class ContactForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+    $form['contact'] = [
+      '#markup' => $this->t('Gebruik het onderstaande contactformulier voor vragen of opmerkingen'),
+      '#prefix' => '<div class="fields"><div class="field">',
+      '#suffix' => '</div>',
+    ];
     $form['name'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('name'),
+      '#title' => $this->t('Naam'),
       '#maxlength' => 64,
       '#size' => 64,
       '#weight' => '0',
-      '#prefix' => '<div class="fields">',
+      '#required'=>true,
 
     ];
     $form['email'] = [
       '#type' => 'email',
-      '#title' => $this->t('Email'),
+      '#title' => $this->t('E-mailadres'),
       '#weight' => '0',
+      '#required'=>true,
+    ];
+    $form['telephone'] = [
+      '#type' => 'tel',
+      '#title' => $this->t('Telefoonnummer'),
+      '#weight' => '0',
+      '#required'=>true,
+    ];
+    $form['subject'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Onderwerp'),
+      '#weight' => '0',
+      '#required'=>true,
     ];
     $form['message'] = [
       '#type' => 'textarea',
-      '#title' => $this->t('message'),
+      '#title' => $this->t('Vraag of opmerking'),
       '#weight' => '0',
-      '#suffix'=>'</div>'
+      '#suffix' => '</div>',
+      '#required'=>true,
+    ];
+
+//    // Adds an image field that is used to do a simple spammer check.
+//    $image_variables = [
+//      '#theme' => 'image',
+//      '#uri' => $path = drupal_get_path('module', 'doesdesign_tools') . '/gereedschap.jpg',
+//      '#alt' => 'asdsadsa',
+//      '#title' => 'sadsadsda',
+//      '#width' => '200',
+//    ];
+//    //  $thumb =
+//    $form['image'] = [
+//      '#markup' => \Drupal::service('renderer')->render($image_variables),
+//    ];
+
+    $form['tools'] = [
+      '#type' => 'textfield',
+      '#title'=> t('Noem drie letters uit de naam van de site'),
+      '#size'=> 24,
+      '#description' => t('Ik stel deze vraag om te controleren dat dit formulier niet door een robot wordt ingevuld'),
     ];
     $form['submit'] = [
       '#type' => 'submit',
-      '#value' => $this->t('Submit'),
+      '#value' => $this->t('Versturen'),
     ];
-
     return $form;
   }
 
@@ -86,8 +126,12 @@ class ContactForm extends FormBase {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
-    foreach ($form_state->getValues() as $key => $value) {
-      // @TODO: Validate fields.
+    $tools_string = strtolower($form_state->getValue('tools'));
+    $letters = str_split($tools_string);
+    $doesdesign_letters =str_split('doesdesign.nl');
+    $result = count(array_intersect($letters, $doesdesign_letters));
+    if ($result < 3) {
+      $form_state->setError($form, t('Het antwoord is niet juist. Om te controleren of u geen spam robot bent, vraag ik om 3 letters uit de naam van de site in te voeren. Als het niet lukt, stuur dan een email naar birgit@doesdesign.nl'));
     }
     parent::validateForm($form, $form_state);
   }
@@ -97,9 +141,38 @@ class ContactForm extends FormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     // Display result.
-    foreach ($form_state->getValues() as $key => $value) {
-      \Drupal::messenger()->addMessage($key . ': ' . ($key === 'text_format'?$value['value']:$value));
+//    foreach ($form_state->getValues() as $key => $value) {
+//      \Drupal::messenger()
+//        ->addMessage($key . ': ' . ($key === 'text_format' ? $value['value'] : $value));
+//    }
+
+    $telephone = $form_state->getValue('telephone');
+    $name = $form_state->getValue('name');
+    $message = $form_state->getValue('message');
+    $subject = $form_state->getValue('subject');
+
+    $mailManager = \Drupal::service('plugin.manager.mail');
+    $module = 'doesdesign_tools';
+    $key = 'doesdesign_tools_mail';
+    $to = "coxdoes@gmail.com";
+    $params['message'] = "Onderwerp: $subject \n\nNaam: $name \n\nTelefoon: $telephone\n\nBericht: $message";
+    $params['subject'] = $subject;
+    $langcode = \Drupal::currentUser()->getPreferredLangcode();
+    $send = true;
+    $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+    if ($result['result'] !== true) {
+      drupal_set_message(t('There was a problem sending your message and it was not sent.'), 'error');
     }
+    else {
+      drupal_set_message(t('Your message has been sent.'));
+    }
+
+
+
   }
+
+
+
+
 
 }
