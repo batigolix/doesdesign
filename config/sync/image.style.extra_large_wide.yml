@@ -1,15 +1,25 @@
 uuid: 3f6b4070-1ac8-4fca-8c08-32c049b84606
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - focal_point
 name: extra_large_wide
 label: 'Extra large wide (1008 x 491)'
 effects:
   c010828c-b7ee-4c1d-9eee-bc39a0ac264e:
     uuid: c010828c-b7ee-4c1d-9eee-bc39a0ac264e
     id: image_scale_and_crop
-    weight: 1
+    weight: -9
     data:
       width: 1008
       height: 491
       anchor: center-center
+  cbe4c6c7-7309-49d6-a42c-0f2f1b2eeb8b:
+    uuid: cbe4c6c7-7309-49d6-a42c-0f2f1b2eeb8b
+    id: focal_point_scale_and_crop
+    weight: -10
+    data:
+      width: 1008
+      height: 491
+      crop_type: focal_point

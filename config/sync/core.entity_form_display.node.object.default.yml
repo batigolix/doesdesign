@@ -11,7 +11,7 @@ dependencies:
     - image.style.thumbnail
     - node.type.object
   module:
-    - image
+    - focal_point
     - path
     - text
 id: node.object.default
@@ -40,8 +40,10 @@ content:
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
+      preview_link: true
+      offsets: '50,50'
     third_party_settings: {  }
-    type: image_image
+    type: image_focal_point
     region: content
   field_price:
     weight: 4
