@@ -1,5 +1,5 @@
 uuid: f7b5697b-ee7e-486f-b3db-f7367f799f27
-langcode: en
+langcode: nl
 status: true
 dependencies:
   config:
@@ -31,5 +31,12 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
     third_party_settings: {  }
 hidden: {  }

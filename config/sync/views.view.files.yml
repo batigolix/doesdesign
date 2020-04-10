@@ -1,5 +1,5 @@
 uuid: 85f5f7f1-7188-4c77-9f53-1f78a8e798c7
-langcode: en
+langcode: nl
 status: true
 dependencies:
   module:
@@ -8,9 +8,9 @@ dependencies:
 _core:
   default_config_hash: gLmoA0yjvlXfMRp9ihOhRKSSQQlbdLdvpDkbVwkYPrg
 id: files
-label: Files
+label: Bestanden
 module: file
-description: 'Find and manage files.'
+description: 'Bestanden vinden en beheren.'
 tag: default
 base_table: file_managed
 base_field: fid
@@ -18,7 +18,7 @@ display:
   default:
     display_plugin: default
     id: default
-    display_title: Master
+    display_title: Hoofd
     position: 0
     display_options:
       access:
@@ -42,10 +42,10 @@ display:
           submit_button: Filter
           reset_button: false
           reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
+          exposed_sorts_label: 'Sorteren op'
           expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          sort_asc_label: Oplopend
+          sort_desc_label: Aflopend
       pager:
         type: mini
         options:
@@ -54,16 +54,16 @@ display:
           id: 0
           total_pages: 0
           tags:
-            previous: '‹ Previous'
-            next: 'Next ›'
+            previous: '‹ Vorige'
+            next: 'Volgende ›'
           expose:
             items_per_page: false
-            items_per_page_label: 'Items per page'
+            items_per_page_label: 'Items per pagina'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
+            items_per_page_options_all_label: '- Alle -'
             offset: false
-            offset_label: Offset
+            offset_label: Startpunt
       style:
         type: table
         options:
@@ -186,7 +186,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Name
+          label: Naam
           exclude: false
           alter:
             alter_text: false
@@ -249,7 +249,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'MIME type'
+          label: MIME-type
           exclude: false
           alter:
             alter_text: false
@@ -301,7 +301,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Size
+          label: Grootte
           exclude: false
           alter:
             alter_text: false
@@ -397,7 +397,7 @@ display:
           type: boolean
           settings:
             format: custom
-            format_custom_false: Temporary
+            format_custom_false: Tijdelijk
             format_custom_true: Permanent
           plugin_id: field
           entity_type: file
@@ -409,7 +409,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Upload date'
+          label: Uploaddatum
           exclude: false
           alter:
             alter_text: false
@@ -465,7 +465,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Changed date'
+          label: Aanpassingsdatum
           exclude: false
           alter:
             alter_text: false
@@ -521,7 +521,7 @@ display:
           relationship: fid
           group_type: sum
           admin_label: ''
-          label: 'Used in'
+          label: 'Gebruikt in'
           exclude: false
           alter:
             alter_text: false
@@ -585,7 +585,7 @@ display:
           exposed: true
           expose:
             operator_id: filemime_op
-            label: Filename
+            label: Bestandsnaam
             description: ''
             use_operator: false
             operator: filename_op
@@ -627,7 +627,7 @@ display:
           exposed: true
           expose:
             operator_id: filemime_op
-            label: 'MIME type'
+            label: MIME-type
             description: ''
             use_operator: false
             operator: filemime_op
@@ -700,7 +700,7 @@ display:
           entity_type: file
           entity_field: status
       sorts: {  }
-      title: Files
+      title: Bestanden
       header: {  }
       footer: {  }
       empty:
@@ -709,7 +709,7 @@ display:
           table: views
           field: area_text_custom
           empty: true
-          content: 'No files available.'
+          content: 'Geen bestanden beschikbaar.'
           plugin_id: text_custom
       relationships:
         fid:
@@ -736,13 +736,13 @@ display:
   page_1:
     display_plugin: page
     id: page_1
-    display_title: 'Files overview'
+    display_title: Bestandenoverzicht
     position: 1
     display_options:
       path: admin/content/files
       menu:
         type: tab
-        title: Files
+        title: Bestanden
         description: ''
         menu_name: admin
         weight: 0
@@ -773,7 +773,7 @@ display:
   page_2:
     display_plugin: page
     id: page_2
-    display_title: 'File usage'
+    display_title: Bestandsgebruik
     position: 2
     display_options:
       display_description: ''
@@ -799,16 +799,16 @@ display:
           id: 0
           total_pages: 0
           tags:
-            previous: '‹ Previous'
-            next: 'Next ›'
+            previous: '‹ Vorige'
+            next: 'Volgende ›'
           expose:
             items_per_page: false
-            items_per_page_label: 'Items per page'
+            items_per_page_label: 'Items per pagina'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
+            items_per_page_options_all_label: '- Alle -'
             offset: false
-            offset_label: Offset
+            offset_label: Startpunt
       filters: {  }
       filter_groups:
         operator: AND
@@ -821,7 +821,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Entity
+          label: Entiteit
           exclude: false
           alter:
             alter_text: false
@@ -871,7 +871,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Entity type'
+          label: Entiteitstype
           exclude: false
           alter:
             alter_text: false
@@ -920,7 +920,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Registering module'
+          label: 'Module registreren'
           exclude: false
           alter:
             alter_text: false
@@ -969,7 +969,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Use count'
+          label: Gebruiksfrequentie
           exclude: false
           alter:
             alter_text: false
@@ -1020,7 +1020,7 @@ display:
           suffix: ''
           plugin_id: numeric
       group_by: false
-      title: 'File usage'
+      title: Bestandsgebruik
       arguments:
         fid:
           id: fid
@@ -1033,9 +1033,9 @@ display:
           exception:
             value: all
             title_enable: false
-            title: All
+            title: Alle
           title_enable: true
-          title: 'File usage information for {{ arguments.fid }}'
+          title: 'Bestandsgebruikinformatie voor {{ arguments.fid }}'
           default_argument_type: fixed
           default_argument_options:
             argument: ''

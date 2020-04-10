@@ -1,0 +1,8 @@
+uuid: c78a8146-de96-4fdf-bd0b-26e8c115c68a
+langcode: nl
+status: true
+dependencies: {  }
+name: Type
+vid: type
+description: ''
+weight: 0

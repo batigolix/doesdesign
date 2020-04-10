@@ -1,5 +1,5 @@
 uuid: 245c0d92-7463-4352-b7bc-033517090075
-langcode: en
+langcode: nl
 status: true
 dependencies:
   config:
@@ -30,3 +30,4 @@ content:
     region: content
 hidden:
   field_image: true
+  langcode: true

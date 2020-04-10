@@ -1,12 +1,12 @@
 uuid: 0145136d-dbb8-4208-bc08-4dd430c905d1
-langcode: en
+langcode: nl
 status: true
 dependencies:
   module:
     - editor
 _core:
   default_config_hash: P8ddpAIKtawJDi5SzOwCzVnnNYqONewSTJ6Xn0dW_aQ
-name: 'Basic HTML'
+name: 'Eenvoudige HTML'
 format: basic_html
 weight: 0
 filters:

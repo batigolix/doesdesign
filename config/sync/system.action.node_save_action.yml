@@ -1,5 +1,5 @@
 uuid: ef6b56d1-0ba6-4ac0-90de-2f9a9d160a38
-langcode: en
+langcode: nl
 status: true
 dependencies:
   module:
@@ -7,7 +7,7 @@ dependencies:
 _core:
   default_config_hash: LhdsoZPL_pFas2fjaAWue4zvrQ_tEVofLYtcNec-JGM
 id: node_save_action
-label: 'Save content'
+label: 'Inhoud opslaan'
 type: node
 plugin: 'entity:save_action:node'
 configuration: {  }

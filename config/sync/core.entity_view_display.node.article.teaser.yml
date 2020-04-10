@@ -1,5 +1,5 @@
 uuid: cfd87e76-d336-461d-a885-df22dac8a001
-langcode: en
+langcode: nl
 status: true
 dependencies:
   config:
@@ -51,3 +51,4 @@ content:
 hidden:
   field_image: true
   field_tags: true
+  langcode: true

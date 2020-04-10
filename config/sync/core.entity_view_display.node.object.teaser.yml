@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.object.body
     - field.field.node.object.field_image
     - field.field.node.object.field_price
+    - field.field.node.object.field_type
     - field.field.node.object.field_weight
     - image.style.medium_wide_508_x_310_
     - node.type.object
@@ -38,5 +39,7 @@ content:
     third_party_settings: {  }
 hidden:
   field_price: true
+  field_type: true
   field_weight: true
+  langcode: true
   links: true

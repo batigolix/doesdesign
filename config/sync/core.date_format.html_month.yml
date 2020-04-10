@@ -1,10 +1,10 @@
 uuid: ac2449dd-963c-4a6d-bba4-24de84d7b855
-langcode: en
+langcode: nl
 status: true
 dependencies: {  }
 _core:
   default_config_hash: Z7KuCUwM_WdTNvLcoltuX3_8d-s-8FZkTN6KgNwF0eM
 id: html_month
-label: 'HTML Month'
+label: 'HTML maand'
 locked: true
 pattern: Y-m

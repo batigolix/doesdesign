@@ -1,5 +1,5 @@
 uuid: 9dff9cc9-a4d6-439d-b85a-b656a9c4d91c
-langcode: en
+langcode: nl
 status: true
 dependencies:
   config:
@@ -18,7 +18,7 @@ provider: null
 plugin: 'system_menu_block:footer'
 settings:
   id: 'system_menu_block:footer'
-  label: 'Footer menu'
+  label: Footer-menu
   provider: system
   label_display: '0'
   level: 1

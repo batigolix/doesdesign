@@ -1,5 +1,5 @@
 uuid: ff062a63-b3ee-42ea-893e-90629fdc8a49
-langcode: en
+langcode: nl
 status: true
 dependencies:
   config:
@@ -26,4 +26,5 @@ content:
     third_party_settings: {  }
     label: hidden
 hidden:
+  langcode: true
   member_for: true
