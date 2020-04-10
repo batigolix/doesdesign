@@ -1,0 +1,26 @@
+uuid: da8a7519-16db-4a56-86f5-2b47ce3daa6f
+langcode: nl
+status: true
+dependencies:
+  module:
+    - language
+    - node
+id: sieraden
+label: sieraden
+type: 'canonical_entities:node'
+pattern: 'sieraden/[current-page:title]'
+selection_criteria:
+  497c5522-c6a8-48c8-a861-a245bf9aac71:
+    id: language
+    langcodes:
+      nl: nl
+      en: en
+    negate: false
+    context_mapping:
+      language: 'node:langcode:language'
+    uuid: 497c5522-c6a8-48c8-a861-a245bf9aac71
+selection_logic: and
+weight: -5
+relationships:
+  'node:langcode:language':
+    label: Taal

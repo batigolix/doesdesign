@@ -1,0 +1,27 @@
+uuid: 1ac8f491-a886-43d3-9682-eeb98a78e7eb
+langcode: nl
+status: true
+dependencies:
+  module:
+    - doesdesign_tools
+    - system
+  theme:
+    - massively
+id: doesdesigntoolsflickr
+theme: massively
+region: content
+weight: 1
+provider: null
+plugin: flickr
+settings:
+  id: flickr
+  label: 'Doesdesign tools: Flickr'
+  provider: doesdesign_tools
+  label_display: visible
+  flickr_items: '16'
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }
