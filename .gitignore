@@ -39,3 +39,6 @@ web/update.php
 web/web.config
 web/.ht.router.php
 web/INSTALL.txt
+build-and-deploy-stage.sh
+deploy-production.sh
+drush/a2h.aliases.drushrc.php
