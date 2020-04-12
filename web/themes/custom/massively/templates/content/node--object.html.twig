@@ -1,0 +1,21 @@
+<section {{ attributes.addClass('post') }}>
+  {{ title_prefix }}
+  {% if not page %}
+    <h2{{ title_attributes }}>
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h2>
+  {% endif %}
+  {{ title_suffix }}
+  {% if page %}
+    <header class="major">
+      <span class="date">{{ content.field_type.0 }}</span>
+      <h1>{{ label }}</h1>
+      <p>{{ node.body.summary }}</p>
+    </header>
+  {% endif %}
+  <div class="image main">{{ content.field_image }}</div>
+  <div{{ content_attributes }}>
+    {{ content|without('field_image', 'field_type') }}
+    {{ date }}
+  </div>
+</section>

@@ -130,9 +130,11 @@ class ContactForm extends FormBase {
     $tools_string = strtolower($form_state->getValue('tools'));
     $letters = str_split($tools_string);
     $doesdesign_letters = str_split('doesdesign.nl');
-    $result = count(array_intersect($letters, $doesdesign_letters));
+    $result = array_intersect($letters, $doesdesign_letters);
+    $result = count($result);
+
     if ($result < 3) {
-      $form_state->setError($form, t('Het antwoord is niet juist. Om te controleren of u geen spam robot bent, vraag ik om 3 letters uit de naam van de site in te voeren. Als het niet lukt, stuur dan een email naar birgit@doesdesign.nl'));
+      $form_state->setError($form, t('Het antwoord is niet juist. Om te controleren of u geen spamrobot bent, vraag ik om 3 letters uit de naam van de site in te voeren. Als het niet lukt, stuur dan een email naar birgit@doesdesign.nl'));
     }
     parent::validateForm($form, $form_state);
   }

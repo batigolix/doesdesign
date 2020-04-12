@@ -8,12 +8,6 @@ dependencies:
 name: medium_wide_508_x_310_
 label: 'Medium wide (508 x 310)'
 effects:
-  9abae693-8407-40af-bd34-dd9f4dce76fd:
-    uuid: 9abae693-8407-40af-bd34-dd9f4dce76fd
-    id: image_effects_auto_orient
-    weight: 4
-    data:
-      scan_exif: true
   b8046b86-ce07-4b6c-938b-9a0d72dde23b:
     uuid: b8046b86-ce07-4b6c-938b-9a0d72dde23b
     id: focal_point_scale_and_crop
@@ -22,3 +16,15 @@ effects:
       width: 508
       height: 310
       crop_type: focal_point
+  19b7d16f-4cc9-4898-92b2-c7cd67569ea4:
+    uuid: 19b7d16f-4cc9-4898-92b2-c7cd67569ea4
+    id: image_effects_watermark
+    weight: 3
+    data:
+      watermark_image: themes/custom/massively/images/watermark.png
+      watermark_width: ''
+      watermark_height: ''
+      placement: right-bottom
+      x_offset: '-20'
+      y_offset: '-20'
+      opacity: 10
