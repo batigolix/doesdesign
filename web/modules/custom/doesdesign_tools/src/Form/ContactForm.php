@@ -8,6 +8,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Mail\MailManagerInterface;
 use Drupal\Component\Utility\SafeMarkup;
 use Drupal\Component\Utility\Html;
+
 /**
  * Class ContactForm.
  */
@@ -67,52 +68,52 @@ class ContactForm extends FormBase {
       '#maxlength' => 64,
       '#size' => 64,
       '#weight' => '0',
-      '#required'=>true,
+      '#required' => TRUE,
 
     ];
     $form['email'] = [
       '#type' => 'email',
       '#title' => $this->t('E-mailadres'),
       '#weight' => '0',
-      '#required'=>true,
+      '#required' => TRUE,
     ];
     $form['telephone'] = [
       '#type' => 'tel',
       '#title' => $this->t('Telefoonnummer'),
       '#weight' => '0',
-      '#required'=>true,
+      '#required' => TRUE,
     ];
     $form['subject'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Onderwerp'),
       '#weight' => '0',
-      '#required'=>true,
+      '#required' => TRUE,
     ];
     $form['message'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Vraag of opmerking'),
       '#weight' => '0',
       '#suffix' => '</div>',
-      '#required'=>true,
+      '#required' => TRUE,
     ];
 
-//    // Adds an image field that is used to do a simple spammer check.
-//    $image_variables = [
-//      '#theme' => 'image',
-//      '#uri' => $path = drupal_get_path('module', 'doesdesign_tools') . '/gereedschap.jpg',
-//      '#alt' => 'asdsadsa',
-//      '#title' => 'sadsadsda',
-//      '#width' => '200',
-//    ];
-//    //  $thumb =
-//    $form['image'] = [
-//      '#markup' => \Drupal::service('renderer')->render($image_variables),
-//    ];
+    //    // Adds an image field that is used to do a simple spammer check.
+    //    $image_variables = [
+    //      '#theme' => 'image',
+    //      '#uri' => $path = drupal_get_path('module', 'doesdesign_tools') . '/gereedschap.jpg',
+    //      '#alt' => 'asdsadsa',
+    //      '#title' => 'sadsadsda',
+    //      '#width' => '200',
+    //    ];
+    //    //  $thumb =
+    //    $form['image'] = [
+    //      '#markup' => \Drupal::service('renderer')->render($image_variables),
+    //    ];
 
     $form['tools'] = [
       '#type' => 'textfield',
-      '#title'=> t('Noem drie letters uit de naam van de site'),
-      '#size'=> 24,
+      '#title' => t('Noem drie letters uit de naam van de site'),
+      '#size' => 24,
       '#description' => t('Ik stel deze vraag om te controleren dat dit formulier niet door een robot wordt ingevuld'),
     ];
     $form['submit'] = [
@@ -128,7 +129,7 @@ class ContactForm extends FormBase {
   public function validateForm(array &$form, FormStateInterface $form_state) {
     $tools_string = strtolower($form_state->getValue('tools'));
     $letters = str_split($tools_string);
-    $doesdesign_letters =str_split('doesdesign.nl');
+    $doesdesign_letters = str_split('doesdesign.nl');
     $result = count(array_intersect($letters, $doesdesign_letters));
     if ($result < 3) {
       $form_state->setError($form, t('Het antwoord is niet juist. Om te controleren of u geen spam robot bent, vraag ik om 3 letters uit de naam van de site in te voeren. Als het niet lukt, stuur dan een email naar birgit@doesdesign.nl'));
@@ -140,17 +141,10 @@ class ContactForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    // Display result.
-//    foreach ($form_state->getValues() as $key => $value) {
-//      \Drupal::messenger()
-//        ->addMessage($key . ': ' . ($key === 'text_format' ? $value['value'] : $value));
-//    }
-
     $telephone = $form_state->getValue('telephone');
     $name = $form_state->getValue('name');
     $message = $form_state->getValue('message');
     $subject = $form_state->getValue('subject');
-
     $mailManager = \Drupal::service('plugin.manager.mail');
     $module = 'doesdesign_tools';
     $key = 'doesdesign_tools_mail';
@@ -158,21 +152,13 @@ class ContactForm extends FormBase {
     $params['message'] = "Onderwerp: $subject \n\nNaam: $name \n\nTelefoon: $telephone\n\nBericht: $message";
     $params['subject'] = $subject;
     $langcode = \Drupal::currentUser()->getPreferredLangcode();
-    $send = true;
+    $send = TRUE;
     $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
-    if ($result['result'] !== true) {
+    if ($result['result'] !== TRUE) {
       drupal_set_message(t('There was a problem sending your message and it was not sent.'), 'error');
     }
     else {
       drupal_set_message(t('Your message has been sent.'));
     }
-
-
-
   }
-
-
-
-
-
 }
