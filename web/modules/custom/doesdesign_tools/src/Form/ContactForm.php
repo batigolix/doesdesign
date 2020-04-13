@@ -57,6 +57,7 @@ class ContactForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+//    honeypot_add_form_protection($form, $form_state, array('honeypot', 'time_restriction'));
     $form['contact'] = [
       '#markup' => $this->t('Gebruik het onderstaande contactformulier voor vragen of opmerkingen'),
       '#prefix' => '<div class="fields"><div class="field">',
@@ -69,7 +70,6 @@ class ContactForm extends FormBase {
       '#size' => 64,
       '#weight' => '0',
       '#required' => TRUE,
-
     ];
     $form['email'] = [
       '#type' => 'email',
@@ -96,20 +96,6 @@ class ContactForm extends FormBase {
       '#suffix' => '</div>',
       '#required' => TRUE,
     ];
-
-    //    // Adds an image field that is used to do a simple spammer check.
-    //    $image_variables = [
-    //      '#theme' => 'image',
-    //      '#uri' => $path = drupal_get_path('module', 'doesdesign_tools') . '/gereedschap.jpg',
-    //      '#alt' => 'asdsadsa',
-    //      '#title' => 'sadsadsda',
-    //      '#width' => '200',
-    //    ];
-    //    //  $thumb =
-    //    $form['image'] = [
-    //      '#markup' => \Drupal::service('renderer')->render($image_variables),
-    //    ];
-
     $form['tools'] = [
       '#type' => 'textfield',
       '#title' => t('Noem drie letters uit de naam van de site'),
@@ -132,7 +118,6 @@ class ContactForm extends FormBase {
     $doesdesign_letters = str_split('doesdesign.nl');
     $result = array_intersect($letters, $doesdesign_letters);
     $result = count($result);
-
     if ($result < 3) {
       $form_state->setError($form, t('Het antwoord is niet juist. Om te controleren of u geen spamrobot bent, vraag ik om 3 letters uit de naam van de site in te voeren. Als het niet lukt, stuur dan een email naar birgit@doesdesign.nl'));
     }
