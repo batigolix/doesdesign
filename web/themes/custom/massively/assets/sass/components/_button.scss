@@ -6,7 +6,6 @@
 
 /* Button */
 
-#wrapper {
   input[type="submit"],
   input[type="reset"],
   input[type="button"],
@@ -102,11 +101,10 @@
       opacity: 0.25;
     }
   }
-}
+
 	@mixin color-button($p: null) {
     $highlight: _palette($p, highlight);
 
-    #wrapper {
       input[type="submit"],
       input[type="reset"],
       input[type="button"],
@@ -132,7 +130,6 @@
         }
       }
     }
-  }
     @include color-button;
 
 
