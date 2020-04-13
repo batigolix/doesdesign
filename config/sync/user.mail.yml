@@ -14,7 +14,7 @@ register_pending_approval:
   body: "[user:display-name],\r\n\r\nDank u voor het registreren op [site:name]. Uw registratie wacht op goedkeuring. Na goedkeuring ontvangt u een nieuwe e-mail met informatie hoe u kunt inloggen, uw wachtwoord kunt instellen en andere gegevens.\r\n\r\n--  [site:name] team"
   subject: 'Accountgegevens voor [user:display-name] op [site:name] (wachtend op de goedkeuring van de beheerder)'
 register_pending_approval_admin:
-  body: "[user:display-name] has applied for an account.\n\n[user:edit-url]"
+  body: "[user:display-name] has applied for an account.\r\n\r\n[user:edit-url]"
   subject: 'Accountgegevens voor [user:display-name] op [site:name] (wachtend op de goedkeuring van de beheerder)'
 status_activated:
   body: "[user:display-name],\r\n\r\nUw account op [site:name] is geactiveerd.\r\n\r\nU kunt nu inloggen door op de onderstaande link te klikken of deze in uw browser te kopiëren:\r\n\r\n[user:one-time-login-url]\r\n\r\nDit is een eenmalige login en u wordt doorgestuurd naar een pagina waar u uw wachtwoord kunt instellen.\r\n\r\nNadat u uw wachtwoord heeft gewijzigd, kunt u in de toekomst inloggen op [site:login-url] met:\r\n\r\ngebruikersnaam: [user:account-name]\r\nwachtwoord: Uw wachtwoord\r\n\r\n--  [site:name] team"

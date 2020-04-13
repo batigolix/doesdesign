@@ -83,6 +83,10 @@
 		}
 	}
 
+  div.form-item-url {
+    display: none !important;
+  }
+
 	input[type="text"],
 	input[type="password"],
   input[type="email"],

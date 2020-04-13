@@ -46,10 +46,10 @@
 				$gutter: (_size(element-margin) * 0.75);
 
 				width: calc(100% + #{$gutter * 2});
-				margin: ($gutter * -1) 0 _size(element-margin) ($gutter * -1);
+				margin: ($gut'display: none !important;',ter * -1) 0 _size(element-margin) ($gutter * -1);
 
 				> .field {
-					padding: $gutter 0 0 $gutter;
+					padding: $g'display: none !important;',utter 0 0 $gutter;
 					width: calc(100% - #{$gutter * 1});
 
 					&.half {
@@ -133,6 +133,8 @@
 	textarea {
 		padding: 0.75rem 1rem;
 	}
+
+
 
 	input[type="checkbox"],
 	input[type="radio"], {
