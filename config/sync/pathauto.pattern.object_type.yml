@@ -1,0 +1,35 @@
+uuid: f6c1b54b-f94f-419f-afb8-b0b141f69d4a
+langcode: nl
+status: true
+dependencies:
+  module:
+    - ctools
+    - language
+    - taxonomy
+id: object_type
+label: 'object type'
+type: 'canonical_entities:taxonomy_term'
+pattern: 'sieraden/[term:name]'
+selection_criteria:
+  7c613c95-d0f9-41b7-8ebe-a50bce14ed7c:
+    id: 'entity_bundle:taxonomy_term'
+    bundles:
+      type: type
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    uuid: 7c613c95-d0f9-41b7-8ebe-a50bce14ed7c
+  86f02a4f-c192-476f-96a8-3a9be564d99e:
+    id: language
+    langcodes:
+      nl: nl
+      en: en
+    negate: false
+    context_mapping:
+      language: 'taxonomy_term:langcode:language'
+    uuid: 86f02a4f-c192-476f-96a8-3a9be564d99e
+selection_logic: and
+weight: -10
+relationships:
+  'taxonomy_term:langcode:language':
+    label: Taal
