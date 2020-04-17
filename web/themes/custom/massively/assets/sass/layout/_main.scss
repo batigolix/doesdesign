@@ -73,7 +73,7 @@
 			}
 		}
 
-		> .posts {
+		.posts {
 			@include fixed-grid((
 				columns:			2,
 				gutters:			(_size(padding) * 4),
