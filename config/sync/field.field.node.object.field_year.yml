@@ -1,0 +1,23 @@
+uuid: 81d9abd5-66b6-4604-8399-38b0c7dd20bd
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_year
+    - node.type.object
+id: node.object.field_year
+field_name: field_year
+entity_type: node
+bundle: object
+label: Jaar
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

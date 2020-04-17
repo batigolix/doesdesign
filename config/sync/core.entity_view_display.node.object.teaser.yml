@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.object.field_price
     - field.field.node.object.field_type
     - field.field.node.object.field_weight
+    - field.field.node.object.field_year
     - image.style.medium_wide_508_x_310_
     - node.type.object
   module:
@@ -43,5 +44,6 @@ hidden:
   field_price: true
   field_type: true
   field_weight: true
+  field_year: true
   langcode: true
   links: true

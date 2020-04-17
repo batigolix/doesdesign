@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.object.field_price
     - field.field.node.object.field_type
     - field.field.node.object.field_weight
+    - field.field.node.object.field_year
     - image.style.extra_large_wide
     - image.style.medium_wide_508_x_310_
     - node.type.object
@@ -86,4 +87,5 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_year: true
   langcode: true
