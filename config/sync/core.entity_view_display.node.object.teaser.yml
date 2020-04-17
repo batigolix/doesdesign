@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.object.body
     - field.field.node.object.field_image
+    - field.field.node.object.field_material
     - field.field.node.object.field_price
     - field.field.node.object.field_type
     - field.field.node.object.field_weight
@@ -38,6 +39,7 @@ content:
       image_link: ''
     third_party_settings: {  }
 hidden:
+  field_material: true
   field_price: true
   field_type: true
   field_weight: true

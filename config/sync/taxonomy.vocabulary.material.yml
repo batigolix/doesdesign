@@ -1,0 +1,8 @@
+uuid: 260fe3dc-a9b7-4d84-9c07-058c88382eda
+langcode: nl
+status: true
+dependencies: {  }
+name: Materiaal
+vid: material
+description: ''
+weight: 0

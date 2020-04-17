@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.object.body
     - field.field.node.object.field_image
+    - field.field.node.object.field_material
     - field.field.node.object.field_price
     - field.field.node.object.field_type
     - field.field.node.object.field_weight
@@ -23,12 +24,12 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 101
+    weight: 1
     settings: {  }
     third_party_settings: {  }
     region: content
   field_image:
-    weight: 106
+    weight: 4
     label: above
     settings:
       colorbox_node_style: medium_wide_508_x_310_
@@ -41,8 +42,16 @@ content:
     third_party_settings: {  }
     type: colorbox
     region: content
+  field_material:
+    weight: 5
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
   field_price:
-    weight: 104
+    weight: 2
     label: above
     settings:
       thousand_separator: ''
@@ -53,7 +62,7 @@ content:
     type: number_decimal
     region: content
   field_type:
-    weight: 107
+    weight: 6
     label: hidden
     settings:
       link: false
@@ -61,7 +70,7 @@ content:
     type: entity_reference_label
     region: content
   field_weight:
-    weight: 105
+    weight: 3
     label: above
     settings:
       thousand_separator: ''
@@ -72,7 +81,7 @@ content:
     type: number_decimal
     region: content
   links:
-    weight: 100
+    weight: 0
     region: content
     settings: {  }
     third_party_settings: {  }

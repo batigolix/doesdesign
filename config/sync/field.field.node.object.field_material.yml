@@ -1,0 +1,29 @@
+uuid: 6eecf811-b847-4ab9-ac2b-9560760a242e
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_material
+    - node.type.object
+    - taxonomy.vocabulary.material
+id: node.object.field_material
+field_name: field_material
+entity_type: node
+bundle: object
+label: Materiaal
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      material: material
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
