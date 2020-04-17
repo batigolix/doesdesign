@@ -1,0 +1,24 @@
+uuid: 2f540d6b-4195-41a5-8562-86bb0fccc355
+langcode: nl
+status: true
+dependencies:
+  config:
+    - views.view.object_types
+  module:
+    - views
+  theme:
+    - massively
+id: views_block__object_types_block_1
+theme: massively
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:object_types-block_1'
+settings:
+  id: 'views_block:object_types-block_1'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+visibility: {  }
