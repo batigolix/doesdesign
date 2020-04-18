@@ -91,6 +91,7 @@
 	input[type="password"],
   input[type="email"],
   input[type="tel"],
+  input[type="search"],
 	select,
 	textarea {
 		@include vendor('appearance', 'none');
@@ -132,6 +133,7 @@
 	input[type="password"],
   input[type="email"],
   input[type="tel"],
+  input[type="search"],
 	select {
 		height: _size(element-height);
 	}
@@ -227,6 +229,7 @@
 		input[type="password"],
     input[type="email"],
     input[type="tel"],
+    input[type="search"],
 		select,
 		textarea {
 			border-color: _palette($p, border);
@@ -297,4 +300,9 @@
 		}
 	}
 
-	@include color-form;
+  input[type="search"] {
+    background: green;
+  }
+
+
+@include color-form;

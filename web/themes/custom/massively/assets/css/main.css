@@ -1864,6 +1864,7 @@ input[type=text],
 input[type=password],
 input[type=email],
 input[type=tel],
+input[type=search],
 select,
 textarea {
   -moz-appearance: none;
@@ -1884,6 +1885,7 @@ input[type=text]:invalid,
 input[type=password]:invalid,
 input[type=email]:invalid,
 input[type=tel]:invalid,
+input[type=search]:invalid,
 select:invalid,
 textarea:invalid {
   box-shadow: none;
@@ -1908,6 +1910,7 @@ input[type=text],
 input[type=password],
 input[type=email],
 input[type=tel],
+input[type=search],
 select {
   height: 3rem;
 }
@@ -2000,6 +2003,10 @@ input[type=radio] + label:before {
   opacity: 1;
 }
 
+input[type=search] {
+  background: green;
+}
+
 label {
   color: #212931;
 }
@@ -2008,6 +2015,7 @@ input[type=text],
 input[type=password],
 input[type=email],
 input[type=tel],
+input[type=search],
 select,
 textarea {
   border-color: #eeeeee;
@@ -2016,6 +2024,7 @@ input[type=text]:focus,
 input[type=password]:focus,
 input[type=email]:focus,
 input[type=tel]:focus,
+input[type=search]:focus,
 select:focus,
 textarea:focus {
   border-color: #18bfef;
@@ -3366,6 +3375,7 @@ body.is-preload #intro:not(.hidden) + #header + #nav {
 #footer input[type=password],
 #footer input[type=email],
 #footer input[type=tel],
+#footer input[type=search],
 #footer select,
 #footer textarea {
   border-color: #e2e2e2;
@@ -3374,6 +3384,7 @@ body.is-preload #intro:not(.hidden) + #header + #nav {
 #footer input[type=password]:focus,
 #footer input[type=email]:focus,
 #footer input[type=tel]:focus,
+#footer input[type=search]:focus,
 #footer select:focus,
 #footer textarea:focus {
   border-color: #18bfef;
