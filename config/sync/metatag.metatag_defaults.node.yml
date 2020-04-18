@@ -9,4 +9,5 @@ label: Content
 tags:
   canonical_url: '[node:url]'
   title: '[node:title] | [site:name]'
+  image_src: '[node:field_image:0:thumbnail]'
   description: '[node:summary]'
