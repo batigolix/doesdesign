@@ -7,6 +7,9 @@
 
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+use Drupal\Core\Link;
+
 
 /**
  * Implements hook_theme().
@@ -15,7 +18,7 @@ function doesdesign_tools_theme() {
   return [
     'social_block' => [
       'variables' => [
-        'content' => NULL
+        'content' => NULL,
       ],
       'render element' => 'children',
     ],
@@ -24,19 +27,19 @@ function doesdesign_tools_theme() {
     ],
     'copyright_block' => [
       'variables' => [
-        'content' => NULL
+        'content' => NULL,
       ],
       'render element' => 'children',
     ],
     'contact_block' => [
       'variables' => [
-        'content' => NULL
+        'content' => NULL,
       ],
       'render element' => 'children',
     ],
     'contact_form_block' => [
       'variables' => [
-        'content' => NULL
+        'content' => NULL,
       ],
       'render element' => 'children',
     ],
@@ -44,9 +47,9 @@ function doesdesign_tools_theme() {
 }
 
 function doesdesign_tools_mail($key, &$message, $params) {
-  $options = array(
+  $options = [
     'langcode' => $message['langcode'],
-  );
+  ];
   switch ($key) {
     case 'doesdesign_tools_mail':
       $message['from'] = \Drupal::config('system.site')->get('mail');
@@ -60,7 +63,27 @@ function doesdesign_tools_mail($key, &$message, $params) {
  * Implements hook_form_FORM_ID_alter().
  */
 function doesdesign_tools_form_contact_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  echo 9;
-      honeypot_add_form_protection($form, $form_state, array('honeypot', 'time_restriction'));
+  honeypot_add_form_protection($form, $form_state, [
+    'honeypot',
+    'time_restriction',
+  ]);
 
+}
+
+function doesdesign_tools_preprocess_node(&$variables) {
+  $type = $variables['node']->getType();
+  if ($type == "object") {
+    $url = Url::fromUserInput('#contact-form');
+    $link = Link::fromTextAndUrl(t('Stel een vraag over dit sieraad'), $url)
+      ->toString();
+    $variables['content']['ask'] = [
+      '#markup' => $link,
+      '#weight' => 666,
+      '#prefix' => '<p id="dam_return">',
+      '#suffix' => '</p>',
+    ];
+    $label = $variables['node']->label();
+    $variables['#attached']['library'][] = 'doesdesign_tools/object';
+    $variables['#attached']['drupalSettings']['ask'] = "Vraag over sieraad $label";
+  }
 }

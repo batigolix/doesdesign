@@ -16,3 +16,12 @@ flickr:
     - core/jquery.once
     - core/drupal
     - core/drupalSettings
+object:
+  version: 1.x
+  js:
+    object.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/drupal
+    - core/drupalSettings
