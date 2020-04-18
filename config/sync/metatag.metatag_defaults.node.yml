@@ -11,3 +11,5 @@ tags:
   title: '[node:title] | [site:name]'
   image_src: '[node:field_image:0:thumbnail]'
   description: '[node:summary]'
+  twitter_cards_type: photo
+  twitter_cards_image: '[node:field_image:0:extra_large_wide]'
