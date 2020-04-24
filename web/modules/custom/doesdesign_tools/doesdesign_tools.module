@@ -67,7 +67,13 @@ function doesdesign_tools_form_contact_form_alter(&$form, FormStateInterface $fo
     'honeypot',
     'time_restriction',
   ]);
+}
 
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function doesdesign_tools_form_search_form_alter(&$form, $form_state, $form_id) {
+  unset($form['help_link']);
 }
 
 function doesdesign_tools_preprocess_node(&$variables) {
@@ -87,3 +93,4 @@ function doesdesign_tools_preprocess_node(&$variables) {
     $variables['#attached']['drupalSettings']['ask'] = "Vraag over sieraad $label";
   }
 }
+
