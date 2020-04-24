@@ -52,7 +52,6 @@ permissions:
   - 'revert article revisions'
   - 'revert object revisions'
   - 'revert page revisions'
-  - 'use text format restricted_html'
   - 'view all revisions'
   - 'view article revisions'
   - 'view object revisions'
