@@ -2004,7 +2004,8 @@ input[type=radio] + label:before {
 }
 
 input[type=search] {
-  background: green;
+  width: 60%;
+  float: left;
 }
 
 label {
