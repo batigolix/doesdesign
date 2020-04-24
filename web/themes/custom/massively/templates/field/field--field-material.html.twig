@@ -1,0 +1,23 @@
+{% set title_classes = [
+  label_display == 'visually_hidden' ? 'visually-hidden',
+] %}
+{% if label_hidden %}
+  {% if multiple %}
+    {% for item in items %}
+      <p{{ item.attributes }}>{{ item.content }}</p>
+    {% endfor %}
+  {% else %}
+    <p>
+      {% for item in items %}
+        <span{{ attributes }}>{{ item.content }}{% if not loop.last %}, {% endif %}</span>
+      {% endfor %}
+    </p>
+  {% endif %}
+{% else %}
+  <h3{{ title_attributes.addClass(title_classes) }}>{{ label }}</h3>
+  <p>
+    {% for item in items %}
+      <span{{ item.attributes }}>{{ item.content }}{% if not loop.last %}, {% endif %}</span>
+    {% endfor %}
+  </p>
+{% endif %}
