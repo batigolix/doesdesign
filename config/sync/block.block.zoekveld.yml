@@ -1,0 +1,21 @@
+uuid: fd6848e2-3528-453a-9e0b-e003dedd5a55
+langcode: nl
+status: true
+dependencies:
+  module:
+    - search
+  theme:
+    - massively
+id: zoekveld
+theme: massively
+region: content
+weight: 0
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: Zoeken
+  provider: search
+  label_display: visible
+  page_id: ''
+visibility: {  }
