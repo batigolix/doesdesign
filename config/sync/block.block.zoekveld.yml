@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - search
+    - system
   theme:
     - massively
 id: zoekveld
@@ -18,4 +19,9 @@ settings:
   provider: search
   label_display: visible
   page_id: ''
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    pages: "/search\r\n/search/*"
+    negate: true
+    context_mapping: {  }
