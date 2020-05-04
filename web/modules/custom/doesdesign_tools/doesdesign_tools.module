@@ -80,6 +80,14 @@ function doesdesign_tools_preprocess_node(&$variables) {
   $type = $variables['node']->getType();
   if ($type == "object") {
     $url = Url::fromUserInput('#contact-form');
+    $link_options = array(
+      'attributes' => array(
+        'class' => array(
+          'button',
+        ),
+      ),
+    );
+    $url->setOptions($link_options);
     $link = Link::fromTextAndUrl(t('Stel een vraag over dit sieraad'), $url)
       ->toString();
     $variables['content']['ask'] = [
