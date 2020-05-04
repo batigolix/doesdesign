@@ -1,0 +1,21 @@
+uuid: b0e7a9f5-4d1c-49c2-8ca9-11494e785174
+langcode: nl
+status: true
+dependencies:
+  module:
+    - image_effects
+name: original_with_watermark
+label: 'Original with watermark'
+effects:
+  97a3387b-d820-463f-8f3c-302d490549b0:
+    uuid: 97a3387b-d820-463f-8f3c-302d490549b0
+    id: image_effects_watermark
+    weight: 1
+    data:
+      watermark_image: themes/custom/massively/images/watermark.png
+      watermark_width: ''
+      watermark_height: ''
+      placement: right-bottom
+      x_offset: '-20'
+      y_offset: '-20'
+      opacity: 10

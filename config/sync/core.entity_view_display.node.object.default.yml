@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.object.field_year
     - image.style.extra_large_wide
     - image.style.medium_wide_508_x_310_
+    - image.style.original_with_watermark
     - node.type.object
   module:
     - colorbox
@@ -35,7 +36,7 @@ content:
     settings:
       colorbox_node_style: medium_wide_508_x_310_
       colorbox_node_style_first: extra_large_wide
-      colorbox_image_style: ''
+      colorbox_image_style: original_with_watermark
       colorbox_gallery: page
       colorbox_gallery_custom: ''
       colorbox_caption: auto
