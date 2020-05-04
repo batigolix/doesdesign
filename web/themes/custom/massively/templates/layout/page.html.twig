@@ -1,13 +1,16 @@
 <!-- Wrapper -->
 <div id="wrapper" class="fade-in">
-  <!-- Intro -->
-  <div id="intro">
-    <h1>Welkom bij<br/ >doesdesign.nl</h1>
-    <p><a href="/mokume">Mokume-gane sieraden</a>, vakkundig en met passie vervaardigd<br /> door meester goud- en zilversmid <a href="/birgit">Birgit Doesborg</a> uit 's-Hertogenbosch.</p>
-    <ul class="actions">
-      <li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Lees verder</a></li>
-    </ul>
-  </div>
+  {% if is_front %}
+    <!-- Intro -->
+    <div id="intro">
+      <h1>Welkom bij<br/ >doesdesign.nl</h1>
+      <p><a href="/mokume">Mokume-gane sieraden</a>, vakkundig en met passie vervaardigd<br/> door meester goud- en
+        zilversmid <a href="/birgit">Birgit Doesborg</a> uit 's-Hertogenbosch.</p>
+      <ul class="actions">
+        <li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Lees verder</a></li>
+      </ul>
+    </div>
+  {% endif %}
   <!-- Header -->
   <header id="header">
     <a href="/" class="logo">Doesdesign.nl</a>
@@ -16,7 +19,7 @@
   <!-- Main -->
   <div id="main">
     {{ page.content }}
- </div>
+  </div>
   <!-- Footer -->
   <footer id="footer">
     <section id="contact-form">
@@ -58,10 +61,13 @@
   <div id="copyright">
     <ul>
       <li>
-        © 2000 - 2012 Birgit Doesborg. De sieraden en objecten op deze website zijn gemaakt door Birgit Doesborg en zijn geregistreerd. Elke poging tot imitatie of namaak van deze artikelen is wettelijk strafbaar. Alle rechten op de teksten, ontwerpen en afbeeldingen op deze website zijn voorbehouden aan Birgit Doesborg. Om teksten, ontwerpen en afbeeldingen over te nemen dient men eerst toestemming te vragen.</li>
+        © 2000 - 2012 Birgit Doesborg. De sieraden en objecten op deze website zijn gemaakt door Birgit Doesborg en zijn
+        geregistreerd. Elke poging tot imitatie of namaak van deze artikelen is wettelijk strafbaar. Alle rechten op de
+        teksten, ontwerpen en afbeeldingen op deze website zijn voorbehouden aan Birgit Doesborg. Om teksten, ontwerpen
+        en afbeeldingen over te nemen dient men eerst toestemming te vragen.
+      </li>
       <li>Birgit Doesborg, 's-Hertogenbosch</li>
       <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
     </ul>
-
   </div>
 </div>
