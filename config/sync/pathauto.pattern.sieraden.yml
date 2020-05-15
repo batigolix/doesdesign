@@ -8,9 +8,17 @@ dependencies:
 id: sieraden
 label: sieraden
 type: 'canonical_entities:node'
-pattern: 'sieraden/[current-page:title]'
+pattern: 'sieraden/[node:title]'
 selection_criteria:
-  497c5522-c6a8-48c8-a861-a245bf9aac71:
+  1b4b1b23-f231-4c92-9097-2475384569ea:
+    id: node_type
+    bundles:
+      object: object
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 1b4b1b23-f231-4c92-9097-2475384569ea
+  713cde29-4761-4eb0-b61a-a2132e36cbb9:
     id: language
     langcodes:
       nl: nl
@@ -18,7 +26,7 @@ selection_criteria:
     negate: false
     context_mapping:
       language: 'node:langcode:language'
-    uuid: 497c5522-c6a8-48c8-a861-a245bf9aac71
+    uuid: 713cde29-4761-4eb0-b61a-a2132e36cbb9
 selection_logic: and
 weight: -5
 relationships:

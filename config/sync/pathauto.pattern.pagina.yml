@@ -8,17 +8,17 @@ dependencies:
 id: pagina
 label: pagina
 type: 'canonical_entities:node'
-pattern: '[current-page:title]'
+pattern: '[node:title]'
 selection_criteria:
-  663a59fc-3c2b-4409-9ce2-978bb279aba1:
+  09278579-1436-4b6e-97dd-b054a986896e:
     id: node_type
     bundles:
       page: page
     negate: false
     context_mapping:
       node: node
-    uuid: 663a59fc-3c2b-4409-9ce2-978bb279aba1
-  7dde9521-7ce7-422b-bbb1-192939daa7a5:
+    uuid: 09278579-1436-4b6e-97dd-b054a986896e
+  b2a706a0-62db-4a77-b001-f4246acd4820:
     id: language
     langcodes:
       nl: nl
@@ -26,7 +26,7 @@ selection_criteria:
     negate: false
     context_mapping:
       language: 'node:langcode:language'
-    uuid: 7dde9521-7ce7-422b-bbb1-192939daa7a5
+    uuid: b2a706a0-62db-4a77-b001-f4246acd4820
 selection_logic: and
 weight: -10
 relationships:
