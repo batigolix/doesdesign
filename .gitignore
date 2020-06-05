@@ -18,7 +18,7 @@ web/themes/*/.sass-cache
 web/modules/README.txt
 web/profiles/README.txt
 web/sites/README.txt
-web/sites/example.sites.php
+web/sites/example.*
 web/themes/README.txt
 web/vendor
 web/.csslintrc
