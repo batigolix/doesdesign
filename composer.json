@@ -75,7 +75,8 @@
     "prefer-stable": true,
     "config": {
         "sort-packages": true,
-        "bin-dir": "bin"
+        "bin-dir": "bin",
+        "discard-changes": true
     },
     "extra": {
         "drupal-scaffold": {
