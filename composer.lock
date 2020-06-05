@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b8a2dbfea5b9955ba80ede189e4d832b",
+    "content-hash": "64b5855cc9ece82f876ebfdac7f69501",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1038,6 +1038,88 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/admin_toolbar",
                 "issues": "https://www.drupal.org/project/issues/admin_toolbar"
+            }
+        },
+        {
+            "name": "drupal/advagg",
+            "version": "4.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/advagg.git",
+                "reference": "8.x-4.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/advagg-8.x-4.0.zip",
+                "reference": "8.x-4.0",
+                "shasum": "2987efa3922fd9fc4931cf853de3104092ff236e"
+            },
+            "require": {
+                "drupal/core": "^8.6"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-4.0",
+                    "datestamp": "1560358534",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^9"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Mike Carper (mikeytown2)",
+                    "homepage": "https://www.drupal.org/u/mikeytown2",
+                    "role": "Creator, Maintainer"
+                },
+                {
+                    "name": "Nick Wilde (nickwilde)",
+                    "homepage": "https://www.drupal.org/u/nickwilde",
+                    "email": "design@briarmoon.ca",
+                    "role": "Drupal 8 Port/maintainer"
+                },
+                {
+                    "name": "doublejosh",
+                    "homepage": "https://www.drupal.org/user/199720"
+                },
+                {
+                    "name": "iamcarrico",
+                    "homepage": "https://www.drupal.org/user/1300542"
+                },
+                {
+                    "name": "markcarver",
+                    "homepage": "https://www.drupal.org/user/501638"
+                },
+                {
+                    "name": "mikeytown2",
+                    "homepage": "https://www.drupal.org/user/282446"
+                },
+                {
+                    "name": "rupl",
+                    "homepage": "https://www.drupal.org/user/411999"
+                },
+                {
+                    "name": "thalles",
+                    "homepage": "https://www.drupal.org/user/3589086"
+                }
+            ],
+            "description": "Improved aggregation of CSS/JS files to speed up page load times.",
+            "homepage": "https://drupal.org/project/advagg",
+            "support": {
+                "source": "https://cgit.drupalcode.org/advagg",
+                "issues": "https://drupal.org/project/issues/advagg",
+                "irc": "irc://irc.freenode.org/drupal-contribute"
             }
         },
         {
@@ -2946,6 +3028,78 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/single_image_formatter",
                 "issues": "https://www.drupal.org/project/issues/single_image_formatter"
+            }
+        },
+        {
+            "name": "drupal/stage_file_proxy",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/stage_file_proxy.git",
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/stage_file_proxy-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "f101a07e0096f476c91cf23137469a5c5c18e2df"
+            },
+            "require": {
+                "drupal/core": ">=8.7.7"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.0",
+                    "datestamp": "1580492032",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "BarisW",
+                    "homepage": "https://www.drupal.org/user/107229"
+                },
+                {
+                    "name": "geek-merlin",
+                    "homepage": "https://www.drupal.org/user/229048"
+                },
+                {
+                    "name": "greggles",
+                    "homepage": "https://www.drupal.org/user/36762"
+                },
+                {
+                    "name": "markdorison",
+                    "homepage": "https://www.drupal.org/user/346106"
+                },
+                {
+                    "name": "moshe weitzman",
+                    "homepage": "https://www.drupal.org/user/23"
+                },
+                {
+                    "name": "msonnabaum",
+                    "homepage": "https://www.drupal.org/user/75278"
+                },
+                {
+                    "name": "netaustin",
+                    "homepage": "https://www.drupal.org/user/199298"
+                },
+                {
+                    "name": "robwilmshurst",
+                    "homepage": "https://www.drupal.org/user/144488"
+                }
+            ],
+            "description": "Provides stage_file_proxy module.",
+            "homepage": "https://www.drupal.org/project/stage_file_proxy",
+            "support": {
+                "source": "https://git.drupalcode.org/project/stage_file_proxy"
             }
         },
         {
