@@ -44,14 +44,14 @@
         "drupal/admin_toolbar": "^2.0",
         "drupal/advagg": "^4.0",
         "drupal/colorbox": "^1.4",
-        "drupal/config_ignore": "^2.2",
+        "drupal/config_ignore": "^3.0",
         "drupal/config_split": "^1.4",
         "drupal/core-composer-scaffold": "^8.8",
         "drupal/core-project-message": "^8.8",
         "drupal/core-recommended": "^8.0",
         "drupal/environment_indicator": "^3.7",
         "drupal/focal_point": "^1.4",
-        "drupal/honeypot": "^1.30",
+        "drupal/honeypot": "^2.0",
         "drupal/image_effects": "^3.0",
         "drupal/metatag": "^1.13",
         "drupal/pathauto": "^1.6",
@@ -66,8 +66,10 @@
         "drupal/core-dev": "^8.8",
         "drupal/devel": "^4.0",
         "drupal/stage_file_proxy": "^1.0",
+        "drupal/upgrade_status": "^2.11",
         "drush/drush": "^10.2",
-        "harvesthq/chosen": "^1.8"
+        "harvesthq/chosen": "^1.8",
+        "palantirnet/drupal-rector": "^0.5.6"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -101,6 +103,9 @@
         "patches": {
             "drupal/chosen": {
                 "library folder": "https://www.drupal.org/files/issues/2019-12-19/3102250-composer-package-info-2.patch"
+            },
+            "drupal/config_ignore": {
+                "d9": "https://www.drupal.org/files/issues/2020-06-10/3150462-2.patch"
             }
         },
         "drupal-core-project-message": {
