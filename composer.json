@@ -64,7 +64,7 @@
     "require-dev": {
         "drupal/chosen": "^2.9",
         "drupal/core-dev": "^8.8",
-        "drupal/devel": "^2.1",
+        "drupal/devel": "^4.0",
         "drupal/stage_file_proxy": "^1.0",
         "drush/drush": "^10.2",
         "harvesthq/chosen": "^1.8"
