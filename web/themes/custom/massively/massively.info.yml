@@ -12,3 +12,4 @@ base theme: stable
 regions:
   nav: Navigation
   content: Content
+core_version_requirement: ^8 || ^9

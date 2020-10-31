@@ -82,7 +82,7 @@ class Dd_toolsNews extends BlockBase {
 
     $items = array();
     foreach ($nids as $nid) {
-      $node = entity_load('node', $nid);
+      $node = \Drupal::service('entity_type.manager')->getStorage('node')->load($nid);
 
 // @todo figure out fetchign values from node object
 //kint($node);

@@ -50,10 +50,15 @@ class Dd_toolsSlideshow extends BlockBase {
     $nids = $query->execute();
     $items = array();
     foreach ($nids as $nid) {
-      $node = entity_load('node', $nid);
-      $node_view = entity_view($node, 'hero_teaser');
+
+      $node = \Drupal::service('entity_type.manager')->getStorage('node')->load($nid);
+
+      $view_builder = \Drupal::entityTypeManager()->getViewBuilder($node->getEntityTypeId());
+      $node_view = $view_builder->view($node, 'hero_teaser');
+
+//      $node_view = entity_view($node, 'hero_teaser');
       $items[] = array(
-        '#markup' => drupal_render($node_view),
+        '#markup' => \Drupal::service('renderer')->render($node_view),
         '#wrapper_attributes' => array('class' => array('slide')),
       );
     }

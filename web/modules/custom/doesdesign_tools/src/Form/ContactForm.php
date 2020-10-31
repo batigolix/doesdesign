@@ -142,10 +142,10 @@ class ContactForm extends FormBase {
     $send = TRUE;
     $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
     if ($result['result'] !== TRUE) {
-      drupal_set_message(t('There was a problem sending your message and it was not sent.'), 'error');
+      $this->messenger()->addError(t('There was a problem sending your message and it was not sent.'));
     }
     else {
-      drupal_set_message(t('Your message has been sent.'));
+      $this->messenger()->addStatus(t('Your message has been sent.'));
     }
   }
 }

@@ -7,6 +7,7 @@
 
 namespace Drupal\dd8_tools\Plugin\Block;
 
+use Drupal\Core\Link;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Url;
 
@@ -75,7 +76,7 @@ class Dd_toolsContact extends BlockBase {
           'class' => array($social['class']),
         ),
       ));
-      $items[] = \Drupal::l($img, $url);
+      $items[] = Link::fromTextAndUrl($img, $url);
     }
     $doespic = array(
       '#prefix' => '<div class="doespic">',
@@ -100,9 +101,9 @@ class Dd_toolsContact extends BlockBase {
 
 
     $url = Url::fromUserInput('/about');
-    $build['doestxt']['about']['#markup'] = '<div class="about"><strong>' . \Drupal::l('Birgit Doesborg', $url) . '</strong>, Goud- en zilversmid.</div>';
+    $build['doestxt']['about']['#markup'] = '<div class="about"><strong>' . Link::fromTextAndUrl('Birgit Doesborg', $url) . '</strong>, Goud- en zilversmid.</div>';
     $url = Url::fromUserInput('/contact');
-    $build['doestxt']['contact_link']['#markup'] = '<div class="contact"><strong>' . \Drupal::l('Contact', $url) . '</strong></div>';
+    $build['doestxt']['contact_link']['#markup'] = '<div class="contact"><strong>' . Link::fromTextAndUrl('Contact', $url) . '</strong></div>';
     $build['doestxt']['social'] = array(
       '#theme' => 'item_list',
       '#items' => $items,
