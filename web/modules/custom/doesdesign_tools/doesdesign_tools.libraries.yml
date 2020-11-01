@@ -4,7 +4,7 @@ custom:
 #    styles/plain/colorbox_style.js: {}
   css:
     theme:
-      custom.css: { weight:2000 }
+      custom.css: { weight: 2000 }
   dependencies:
     - colorbox/init
 flickr:
