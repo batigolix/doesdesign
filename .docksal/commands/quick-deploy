@@ -1,0 +1,61 @@
+
+#!/usr/bin/env bash
+
+# provides actions to reset the the website to the state of the development
+# branch.
+# also to be used after the production db has been imported
+
+#-------------------------- Settings --------------------------------
+
+# PROJECT_ROOT and DOCROOT are set as env variables in cli
+SITE_DIRECTORY="default"
+DOCROOT_PATH="${PROJECT_ROOT}/${DOCROOT}"
+SITEDIR_PATH="${DOCROOT_PATH}/sites/${SITE_DIRECTORY}"
+DOW=$(date +%u)
+DRUSH="fin drush"
+COMPOSER="fin composer"
+DT=`date '+%Y%m%d-%H%M%S'`
+
+#-------------------------- END: Settings --------------------------------
+
+function show_help {
+  echo "$0 -t <tag>"
+  echo " options:"
+  echo " -t provide a tag e.g. fin quick-deploy -t 0.1.13"
+  RECENT=$(git describe --tags)
+  echo "The most recent tag is: $RECENT"
+}
+
+while getopts "h?t:" opt; do
+  case "$opt" in
+  h|\?)
+    show_help
+    exit 1
+    ;;
+  t)  TAG=$OPTARG
+    ;;
+  esac
+done
+
+if [ "$TAG" = '' ] ; then
+	show_help
+	exit 1
+fi
+
+$DRUSH cex -y
+git add config
+git add composer.*
+git commit -m "Exports config and/or updates composer on $DT"
+git push origin master
+
+if [ "$TAG" != "$RECENT" ] ; then
+  echo "Create new git tag $TAG"
+  git tag $TAG
+  echo "Push tags to remote"
+  git push --tags
+fi
+
+echo "Build and deploy the stage environment"
+fin build-and-deploy-stage -t $TAG
+
+fin drush @stage st

@@ -1,0 +1,58 @@
+#!/bin/bash
+
+DATE=`date '+%Y-%m-%d'`
+REASON="Deployment stopped because"
+dt=`date '+%Y%m%d-%H%M%S'`
+
+function show_help {
+  echo "$0 -s <site> [-fd]"
+  echo " options:"
+  echo " -t provide a tag e.g. ./deploy.sh -t v1.2"
+}
+
+while getopts "h?t:" opt; do
+  case "$opt" in
+  h|\?)
+    show_help
+    exit 1
+    ;;
+  t)  TAG=$OPTARG
+    ;;
+  esac
+done
+
+if [ "$TAG" = '' ] ; then
+	show_help
+	exit 1
+fi
+
+echo $TAG
+
+#echo "Write tag to file"
+#$SERVER_CONNECTION "echo $TAG > $REMOTE_STAGE_DIR/web/.deployed_tag"
+
+echo "Back up the basic auth file"
+$SERVER_CONNECTION "cp -rf $REMOTE_STAGE_DIR/.htaccess /tmp"
+
+echo "Easing files & folder permissions"
+$SERVER_CONNECTION "chmod a+w $REMOTE_STAGE_DIR/web/sites/default"
+$SERVER_CONNECTION "chmod a+w $REMOTE_STAGE_DIR/web/sites/default/settings.php"
+
+echo "Building"
+$SERVER_CONNECTION "cd $REMOTE_STAGE_DIR && git fetch --tags && git checkout -f $TAG"
+$SERVER_CONNECTION "cd $REMOTE_STAGE_DIR && $REMOTE_COMPOSER clearcache"
+$SERVER_CONNECTION "cd $REMOTE_STAGE_DIR && $REMOTE_COMPOSER install --no-dev --ignore-platform-reqs"
+
+echo "Symlink settings and files"
+$SERVER_CONNECTION "ln -sf $REMOTE_SETTINGS_DIR/stage.php $REMOTE_STAGE_DIR/web/sites/default/settings.local.php"
+$SERVER_CONNECTION "ln -sf $REMOTE_PROJECT_DIR/files $REMOTE_STAGE_DIR/web/sites/default/files"
+
+echo "Deploying, running db & config updates"
+$SERVER_CONNECTION "cd $REMOTE_STAGE_DIR && $REMDRUSH updb -y && $REMDRUSH cr && $REMDRUSH cim -y && $REMDRUSH locale-check && $REMDRUSH locale-update && $REMDRUSH image-flush --all && $REMDRUSH cr && $REMDRUSH cron"
+
+echo "Restrict folder & file permissions"
+$SERVER_CONNECTION "chmod a-w $REMOTE_STAGE_DIR/web/sites/default"
+$SERVER_CONNECTION "chmod a-w $REMOTE_STAGE_DIR/web/sites/default/settings.php"
+
+echo "Copy back the basic auth file"
+$SERVER_CONNECTION "cp -rf /tmp/.htaccess $REMOTE_STAGE_DIR"
