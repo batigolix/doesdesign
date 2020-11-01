@@ -4,6 +4,7 @@ bin
 .idea
 web/sites/*/files
 web/sites/*/settings.local.php
+web/sites/*/default.settings.php
 web/modules/contrib
 web/themes/contrib
 web/profiles/contrib
