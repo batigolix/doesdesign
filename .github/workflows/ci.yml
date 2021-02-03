@@ -25,4 +25,4 @@ jobs:
       - name: Install composer dependencies
         run: composer install --prefer-dist --no-progress -vvv
       - name: Run PHPCS with DrupalPractice on modules
-        run: vendor/bin/phpcs
+        run: bin/phpcs
