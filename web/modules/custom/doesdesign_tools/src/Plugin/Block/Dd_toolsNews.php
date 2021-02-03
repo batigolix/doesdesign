@@ -1,15 +1,9 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\dd8_tools\Plugin\Block\Dd_toolsNews .
- */
-
 namespace Drupal\dd8_tools\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormStateInterface;
-
 
 /**
  * Provides a 'Example: configurable text string' block.
@@ -26,16 +20,16 @@ class Dd_toolsNews extends BlockBase {
    * Overrides \Drupal\Core\Block\BlockBase::defaultConfiguration().
    */
   public function defaultConfiguration() {
-    return array(
+    return [
       'label' => t("DD tools: News"),
       'content' => t('Default news content'),
-      'cache' => array(
+      'cache' => [
         'max_age' => 3600,
-        'contexts' => array(
+        'contexts' => [
           'cache_context.user.roles',
-        ),
-      ),
-    );
+        ],
+      ],
+    ];
   }
 
   /**
@@ -46,13 +40,13 @@ class Dd_toolsNews extends BlockBase {
     // Retrieve existing configuration for this block.
     $config = $this->getConfiguration();
     $nr_items = isset($config['nr_items']) ? $config['nr_items'] : 3;
-    $form['nr_items'] = array(
+    $form['nr_items'] = [
       '#type' => 'select',
-      '#options' => array(2 => 2, 5 => 5, 10 => 10),
+      '#options' => [2 => 2, 5 => 5, 10 => 10],
       '#description' => t('This number of items will be shown in the news block'),
       '#title' => t('Number of items'),
       '#default_value' => $nr_items,
-    );
+    ];
     return $form;
   }
 
@@ -80,33 +74,32 @@ class Dd_toolsNews extends BlockBase {
       ->range(0, $nr_items);
     $nids = $query->execute();
 
-    $items = array();
+    $items = [];
     foreach ($nids as $nid) {
       $node = \Drupal::service('entity_type.manager')->getStorage('node')->load($nid);
 
-// @todo figure out fetchign values from node object
-//kint($node);
-//      $node_view = entity_view($node, 'hero_teaser');
-//      kint($node_view);
-
-      $items[] = array(
-//        '#markup' => drupal_render($node_view),
+      // @todo figure out fetchign values from node object
+      // kint($node);
+      //      $node_view = entity_view($node, 'hero_teaser');
+      //      kint($node_view);
+      $items[] = [
+      // '#markup' => drupal_render($node_view),
         '#markup' => 'sfdsdf',
-        '#wrapper_attributes' => array('class' => array('slide')),
-      );
+        '#wrapper_attributes' => ['class' => ['slide']],
+      ];
     }
 
-    $elements = array();
-//    if ($node_title_list = node_title_list($result)) {
-//      $elements['forum_list'] = $node_title_list;
-////      $elements['forum_more'] = array(
-////        '#type' => 'more_link',
-////        '#url' => Url::fromRoute('forum.index'),
-////        '#attributes' => array('title' => $this->t('Read the latest forum topics.')),
-////      );
-//    }
-    $build = array();
-//    $build['elements']['#markup'] = $elements;
+    $elements = [];
+    // If ($node_title_list = node_title_list($result)) {
+    //      $elements['forum_list'] = $node_title_list;
+    // $elements['forum_more'] = array(
+    // '#type' => 'more_link',
+    // '#url' => Url::fromRoute('forum.index'),
+    // '#attributes' => array('title' => $this->t('Read the latest forum topics.')),
+    // );
+    //    }.
+    $build = [];
+    // $build['elements']['#markup'] = $elements;
     $build['items']['#markup'] = $nr_items;
     $build['elements']['#markup'] = 'placeholder';
     return $build;

@@ -5,9 +5,6 @@ namespace Drupal\doesdesign_tools\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Mail\MailManagerInterface;
-use Drupal\Component\Utility\SafeMarkup;
-use Drupal\Component\Utility\Html;
 
 /**
  * Class ContactForm.
@@ -57,7 +54,7 @@ class ContactForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-//    honeypot_add_form_protection($form, $form_state, array('honeypot', 'time_restriction'));
+    // honeypot_add_form_protection($form, $form_state, array('honeypot', 'time_restriction'));.
     $form['contact'] = [
       '#markup' => $this->t('Gebruik het onderstaande contactformulier voor vragen of opmerkingen'),
       '#prefix' => '<div class="fields"><div class="field">',
@@ -148,4 +145,5 @@ class ContactForm extends FormBase {
       $this->messenger()->addStatus(t('Your message has been sent.'));
     }
   }
+
 }

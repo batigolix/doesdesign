@@ -5,11 +5,9 @@
  * Contains doesdesign_tools.module.
  */
 
-use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Link;
-
 
 /**
  * Implements hook_theme().
@@ -46,6 +44,9 @@ function doesdesign_tools_theme() {
   ];
 }
 
+/**
+ *
+ */
 function doesdesign_tools_mail($key, &$message, $params) {
   $options = [
     'langcode' => $message['langcode'],
@@ -76,17 +77,20 @@ function doesdesign_tools_form_search_form_alter(&$form, $form_state, $form_id) 
   unset($form['help_link']);
 }
 
+/**
+ *
+ */
 function doesdesign_tools_preprocess_node(&$variables) {
   $type = $variables['node']->getType();
   if ($type == "object") {
     $url = Url::fromUserInput('#contact-form');
-    $link_options = array(
-      'attributes' => array(
-        'class' => array(
+    $link_options = [
+      'attributes' => [
+        'class' => [
           'button',
-        ),
-      ),
-    );
+        ],
+      ],
+    ];
     $url->setOptions($link_options);
     $link = Link::fromTextAndUrl(t('Stel een vraag over dit sieraad'), $url)
       ->toString();
@@ -101,4 +105,3 @@ function doesdesign_tools_preprocess_node(&$variables) {
     $variables['#attached']['drupalSettings']['ask'] = "Vraag over sieraad $label";
   }
 }
-

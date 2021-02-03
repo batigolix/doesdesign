@@ -1,24 +1,14 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\dd8_tools\Plugin\Block\Dd_toolsSlideshow .
- */
-
 namespace Drupal\dd8_tools\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
-use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\Core\Form\FormStateInterface;
 
-//use Drupal\Core\Cache\Cache;
-//use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Entity\EntityViewBuilder;
-use Drupal\Core\Entity\Entity;
-use Drupal\Core\Entity\Annotation\EntityType;
-
-//use Drupal\Core\Annotation\Translation;
-//use Drupal\my_module\MyEntityInterface;
+// Use Drupal\Core\Cache\Cache;
+// use Drupal\Core\Form\FormStateInterface;.
+// Use Drupal\Core\Annotation\Translation;
+// use Drupal\my_module\MyEntityInterface;.
 
 /**
  * Provides a 'Example: configurable text string' block.
@@ -31,7 +21,6 @@ use Drupal\Core\Entity\Annotation\EntityType;
  */
 class Dd_toolsSlideshow extends BlockBase {
 
-
   /**
    * {@inheritdoc}
    */
@@ -39,16 +28,15 @@ class Dd_toolsSlideshow extends BlockBase {
 
     $config = $this->getConfiguration();
     $nr_items = isset($config['slideshow_items']) ? $config['slideshow_items'] : 3;
-//    $order = isset($config['slideshow_order']) ? $config['slideshow_order'] : 'created';
-
+    // $order = isset($config['slideshow_order']) ? $config['slideshow_order'] : 'created';
     // Fetches the slideshow nodes.
     $query = \Drupal::entityQuery('node')
       ->condition('status', 1)
       ->condition('type', 'object')
- //     ->sort($order)
+    // ->sort($order)
       ->range(0, $nr_items);
     $nids = $query->execute();
-    $items = array();
+    $items = [];
     foreach ($nids as $nid) {
 
       $node = \Drupal::service('entity_type.manager')->getStorage('node')->load($nid);
@@ -56,24 +44,22 @@ class Dd_toolsSlideshow extends BlockBase {
       $view_builder = \Drupal::entityTypeManager()->getViewBuilder($node->getEntityTypeId());
       $node_view = $view_builder->view($node, 'hero_teaser');
 
-//      $node_view = entity_view($node, 'hero_teaser');
-      $items[] = array(
+      // $node_view = entity_view($node, 'hero_teaser');
+      $items[] = [
         '#markup' => \Drupal::service('renderer')->render($node_view),
-        '#wrapper_attributes' => array('class' => array('slide')),
-      );
+        '#wrapper_attributes' => ['class' => ['slide']],
+      ];
     }
-    $build['show'] = array(
+    $build['show'] = [
       '#theme' => 'item_list',
       '#items' => $items,
-      '#attributes' => array('class' => array('slideshow', 'rslides')),
-    );
+      '#attributes' => ['class' => ['slideshow', 'rslides']],
+    ];
     $build['#attributes']['class'][] = 'slideshow-block';
     $build['#attached']['library'][] = 'dd8_tools/slideshow';
     $build['#attached']['library'][] = 'dd8_tools/responsiveslides';
 
-
-//    $build['asfasf']['#markup'] = 'efkjqekjfkjah aekjkjwevkj HSHAJHDJAH';
-
+    // $build['asfasf']['#markup'] = 'efkjqekjfkjah aekjkjwevkj HSHAJHDJAH';
     return $build;
 
   }
@@ -88,10 +74,10 @@ class Dd_toolsSlideshow extends BlockBase {
     $config = $this->getConfiguration();
 
     // Add a form field to the existing block configuration form.
-    $form['slideshow_items'] = array(
+    $form['slideshow_items'] = [
       '#type' => 'select',
       '#title' => t('Number of items'),
-      '#options' => array(
+      '#options' => [
         3 => 3,
         5 => 5,
         7 => 7,
@@ -100,20 +86,20 @@ class Dd_toolsSlideshow extends BlockBase {
         13 => 13,
         15 => 15,
         17 => 17,
-      ),
+      ],
       '#description' => t('Number of items that will be shown in the slideshow.'),
       '#default_value' => isset($config['slideshow_items']) ? $config['slideshow_items'] : '',
-    );
-    $form['slideshow_order'] = array(
+    ];
+    $form['slideshow_order'] = [
       '#type' => 'select',
       '#title' => t('Order by'),
-      '#options' => array(
+      '#options' => [
         'created ' => t('Creation date'),
-        'changed' => t('Date of last change')
-      ),
+        'changed' => t('Date of last change'),
+      ],
       '#description' => t('By which date the items will be ordered in the slideshow block'),
       '#default_value' => isset($config['slideshow_order']) ? $config['slideshow_order'] : '',
-    );
+    ];
     return $form;
   }
 
@@ -139,32 +125,26 @@ class Dd_toolsSlideshow extends BlockBase {
 
   //
   // $nodes = \Drupal::entityManager()->getStorage('node')->loadMultiple($nids);
-// Or a use the static loadMultiple method on the entity class:
-//    $nodes = \Drupal\node\Entity\Node::loadMultiple($nids);
-//dd($nodes);
-// And then you can view/build them all together:
-//    $build['sdcsdcs'] = \Drupal::entityManager()->viewMultiple($nodes, 'teaser');
-
-
-//    $render_controller = \Drupal::entityManager()->getViewBuilder($entity->getEntityTypeId());
-//    $render_output = $render_controller->view($entity, $view_mode, $langcode);
-
-
-//dsm('asadsa');
-//    $nodes = \Drupal::entityManager()->getStorage('node')->loadMultiple($nids);
-//// Or a use the static loadMultiple method on the entity class:
-////    $nodes = \Drupal\node\Entity\Node::loadMultiple($nids);
-////dd($nodes);
-//    // And then you can view/build them all together:
-//    $build['sdvsdv']['#markup'] = '<span>' . $this->t('Powered by <a href=":poweredby">Drupal</a>', array(':poweredby' => 'https://www.drupal.org')) . '</span>';
-//
-//    $build['nodes'] = \Drupal::entityManager()->viewMultiple($nodes, 'hero_teaser');
-
-//
-
+  // Or a use the static loadMultiple method on the entity class:
+  //    $nodes = \Drupal\node\Entity\Node::loadMultiple($nids);
+  // dd($nodes);
+  // And then you can view/build them all together:
+  //    $build['sdcsdcs'] = \Drupal::entityManager()->viewMultiple($nodes, 'teaser');
+  //    $render_controller = \Drupal::entityManager()->getViewBuilder($entity->getEntityTypeId());
+  //    $render_output = $render_controller->view($entity, $view_mode, $langcode);
+  // dsm('asadsa');
+  //    $nodes = \Drupal::entityManager()->getStorage('node')->loadMultiple($nids);
+  // Or a use the static loadMultiple method on the entity class:
+  // $nodes = \Drupal\node\Entity\Node::loadMultiple($nids);
+  // dd($nodes);
+  //    // And then you can view/build them all together:
+  //    $build['sdvsdv']['#markup'] = '<span>' . $this->t('Powered by <a href=":poweredby">Drupal</a>', array(':poweredby' => 'https://www.drupal.org')) . '</span>';
+  //
+  //    $build['nodes'] = \Drupal::entityManager()->viewMultiple($nodes, 'hero_teaser');
+  //
 }
 //
-///**
+// **
 //   * Overrides \Drupal\Core\Block\BlockBase::defaultConfiguration().
 //   */
 //  public function defaultConfiguration() {
@@ -180,25 +160,25 @@ class Dd_toolsSlideshow extends BlockBase {
 //    );
 //  }
 //
-////    $form['slideshow_order'] = array(
-////      '#type' => 'select',
-////      '#title' => t('Order'),
-////      '#options' => array('ASC ' => t('Ascending'), 'DESC' => t('Descending')),
-////      '#description' => t('In what order the items will be shown in the slideshow block'),
-////      '#default_value' => $config['slideshow_order'],
-////    );
-////    $form['slideshow_order_prop'] = array(
-////      '#type' => 'select',
-////      '#title' => t('Order by'),
-////      '#options' => array(
-////        'created ' => t('Creation date'),
-////        'changed' => t('Date of last change')
-////      ),
-////      '#description' => t('By which date the items will be ordered in the slideshow block'),
-////      '#default_value' => $config['slideshow_order_prop'],
-////    );
-////
-////    return $form;
+// $form['slideshow_order'] = array(
+// '#type' => 'select',
+// '#title' => t('Order'),
+// '#options' => array('ASC ' => t('Ascending'), 'DESC' => t('Descending')),
+// '#description' => t('In what order the items will be shown in the slideshow block'),
+// '#default_value' => $config['slideshow_order'],
+// );
+// $form['slideshow_order_prop'] = array(
+// '#type' => 'select',
+// '#title' => t('Order by'),
+// '#options' => array(
+// 'created ' => t('Creation date'),
+// 'changed' => t('Date of last change')
+// ),
+// '#description' => t('By which date the items will be ordered in the slideshow block'),
+// '#default_value' => $config['slideshow_order_prop'],
+// );
+//
+// return $form;
 //  }
 //
 //
@@ -206,7 +186,7 @@ class Dd_toolsSlideshow extends BlockBase {
 //   * {@inheritdoc}
 //   */
 //  public function blockSubmit($form, FormStateInterface $form_state) {
-////    $this->configuration['slideshow_items'] = $form_state->getValue('slideshow_items');
+// $this->configuration['slideshow_items'] = $form_state->getValue('slideshow_items');
 //  }
 //
 //
@@ -214,70 +194,70 @@ class Dd_toolsSlideshow extends BlockBase {
 //   * Implements \Drupal\Core\Block\BlockBase::blockBuild().
 //   */
 //  public function build() {
-////    $slideshow_items = $this->configuration['slideshow_items'];
-////
-////
-////    $query = \Drupal::entityQuery('node')
-////      ->condition('status', 1)
-////      ->condition('type', 'object');
-//////      ->condition('changed', REQUEST_TIME, '<')
-//////      ->condition('title', 'cat', 'CONTAINS')
-//////      ->condition('field_tags.entity.name', 'cats');
-////
-////    $nids = $query->execute();
-////dd('hola');
-////    dd($nids);
-////dsm('asadsa');
-////    $nodes = \Drupal::entityManager()->getStorage('node')->loadMultiple($nids);
-////// Or a use the static loadMultiple method on the entity class:
-////    $nodes = \Drupal\node\Entity\Node::loadMultiple($nids);
-////
-////// And then you can view/build them all together:
-////    $build = \Drupal::entityManager()->viewMultiple($nodes, 'teaser');
-////
-//////
-//////    $nodes = entity_load_multiple('node', $nids);
-//////
-//////    foreach ($nodes as $node) {
-//////      $entity_view = entity_view($node, 'teaser');
-//////      $items[] = array(
-//////        'data' => drupal_render($entity_view),
-//////        'class' => array('slide')
-//////      );
-//////    }
-//////
-//////    $view_builder = \Drupal::entityManager()->getViewBuilder('node');
-//////
-//////    $full_output = $view_builder->view($entity);
-//////
-//////    $rss_output = $view_builder->view($entity, 'rss');
-//////
-//////    $build = array();
-//////
-//////
-//////    $build['list'] = [
-//////      '#theme' => 'item_list',
-//////      '#items' => $items,
-//////    ];
-//////
-////
-//////    $build = array(
-//////      '#markup' => theme('item_list', array(
-//////        'items' => $items,
-//////        'title' => NULL,
-//////        'type' => 'ul',
-//////        'attributes' => array('class' => array('rslides')),
-//////      ))
-//////    );
-////dd($build);
-////
-//////    $build['container']['#markup'] = '<div id="flickr_images">sdfsdf </div>';
-////
-////    $build['#attached']['library'][] = 'dd8_tools/slideshow';
-////    $build['#attached']['library'][] = 'dd8_tools/responsiveslides';
-////    $build['#attached']['drupalSettings']['dd8_tools']['slideshow']['slideshow_items'] = $slideshow_items;
-////
-////    return $build;
+// $slideshow_items = $this->configuration['slideshow_items'];
+//
+//
+// $query = \Drupal::entityQuery('node')
+// ->condition('status', 1)
+// ->condition('type', 'object');
+// ->condition('changed', REQUEST_TIME, '<')
+// ->condition('title', 'cat', 'CONTAINS')
+// ->condition('field_tags.entity.name', 'cats');
+//
+// $nids = $query->execute();
+// dd('hola');
+// dd($nids);
+// dsm('asadsa');
+// $nodes = \Drupal::entityManager()->getStorage('node')->loadMultiple($nids);
+// Or a use the static loadMultiple method on the entity class:
+// $nodes = \Drupal\node\Entity\Node::loadMultiple($nids);
+//
+// And then you can view/build them all together:
+// $build = \Drupal::entityManager()->viewMultiple($nodes, 'teaser');
+//
+//
+// $nodes = entity_load_multiple('node', $nids);
+//
+// foreach ($nodes as $node) {
+// $entity_view = entity_view($node, 'teaser');
+// $items[] = array(
+// 'data' => drupal_render($entity_view),
+// 'class' => array('slide')
+// );
+// }
+//
+// $view_builder = \Drupal::entityManager()->getViewBuilder('node');
+//
+// $full_output = $view_builder->view($entity);
+//
+// $rss_output = $view_builder->view($entity, 'rss');
+//
+// $build = array();
+//
+//
+// $build['list'] = [
+// '#theme' => 'item_list',
+// '#items' => $items,
+// ];
+//
+//
+// $build = array(
+// '#markup' => theme('item_list', array(
+// 'items' => $items,
+// 'title' => NULL,
+// 'type' => 'ul',
+// 'attributes' => array('class' => array('rslides')),
+// ))
+// );
+// dd($build);
+//
+// $build['container']['#markup'] = '<div id="flickr_images">sdfsdf </div>';
+//
+// $build['#attached']['library'][] = 'dd8_tools/slideshow';
+// $build['#attached']['library'][] = 'dd8_tools/responsiveslides';
+// $build['#attached']['drupalSettings']['dd8_tools']['slideshow']['slideshow_items'] = $slideshow_items;
+//
+// return $build;
 //  }
 //
-//}
+// }

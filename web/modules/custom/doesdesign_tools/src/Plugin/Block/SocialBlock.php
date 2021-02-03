@@ -46,8 +46,7 @@ class SocialBlock extends BlockBase implements ContainerFactoryPluginInterface {
   public function build() {
     $build = [];
     $build['#theme'] = 'social_block';
-//     $build['social_block']['#markup'] = 'Implement SocialBlock.';
-
+    // $build['social_block']['#markup'] = 'Implement SocialBlock.';
     return $build;
   }
 

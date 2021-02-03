@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\dd8_tools\Plugin\Block\Dd_toolsGtranslate.
- */
-
 namespace Drupal\dd8_tools\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
@@ -24,10 +19,11 @@ class Dd_toolsGtranslate extends BlockBase {
    * Implements \Drupal\Core\Block\BlockBase::blockBuild().
    */
   public function build() {
-    $build = array();
+    $build = [];
     $build['container']['#markup'] = '<div id="google_translate_element"></div>';
     $build['#attached']['library'][] = 'dd8_tools/gtranslate';
     $build['#attached']['library'][] = 'dd8_tools/gtranslate_external';
     return $build;
   }
+
 }
