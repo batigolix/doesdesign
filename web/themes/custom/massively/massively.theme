@@ -8,32 +8,9 @@
 use Drupal\Core\Render\Markup;
 
 /**
- * Implements hook_preprocess_HOOK() for html.html.twig.
- */
-function massively_preprocess_html(array &$variables) {
-  /* Add class to html tag */
-  //$variables['html_attributes']->addClass('no-js');
-
-  // Don't display the site name twice on the front page (and potentially others)
-  /*if (isset($variables['head_title_array']['title']) && isset($variables['head_title_array']['name']) && ($variables['head_title_array']['title'] == $variables['head_title_array']['name'])) {
-    $variables['head_title'] = $variables['head_title_array']['name'];
-  }*/
-}
-
-/**
  * Implements hook_page_attachments_alter().
  */
 function massively_page_attachments_alter(array &$page) {
-  // Tell IE to use latest rendering engine (not to use compatibility mode).
-  //  $ie_edge = [
-  //    '#type' => 'html_tag',
-  //    '#tag' => 'meta',
-  //    '#attributes' => [
-  //    'http-equiv' => 'X-UA-Compatible',
-  //    'content' => 'IE=edge',
-  //    ],
-  //  ];
-  //  $page['#attached']['html_head'][] = [$ie_edge, 'ie_edge'];
   $viewport = [
     '#type' => 'html_tag',
     '#tag' => 'meta',
@@ -49,14 +26,6 @@ function massively_page_attachments_alter(array &$page) {
     '#value' => Markup::create($fallback),
   ];
   $page['#attached']['html_head'][] = [$noscript, 'fallback'];
-  //  $page['#attached']['html_head'][] = [
-  //    '#type' => 'html_tag',
-  //    '#tag' => 'meta',
-  //    '#attributes' => [
-  //      'charset' => 'utf-9',
-  //      'content' => 'IE=edge',
-  //      ],
-  //  ];
 }
 
 /**
@@ -76,95 +45,6 @@ function massively_theme_suggestions_page_alter(array &$suggestions, array $vari
 }
 
 /**
- * Implements hook_theme_suggestions_node_alter().
- */
-function massively_theme_suggestions_node_alter(array &$suggestions, array $variables) {
-  /*$node = $variables['elements']['#node'];
-
-  if ($variables['elements']['#view_mode'] == "full") {
-
-  }*/
-}
-
-/**
- * Implements hook_preprocess_HOOK() for Block document templates.
- */
-function massively_preprocess_block(array &$variables) {
-
-}
-
-/**
- * Implements hook_theme_suggestions_field_alter().
- */
-function massively_theme_suggestions_field_alter(array &$suggestions, array $variables) {
-  /*$element = $variables['element'];
-  $suggestions[] = 'field__' . $element['#view_mode'];
-  $suggestions[] = 'field__' . $element['#view_mode'] . '__' . $element['#field_name'];*/
-}
-
-/**
- * Implements hook_theme_suggestions_field_alter().
- */
-function massively_theme_suggestions_fieldset_alter(array &$suggestions, array $variables) {
-  /*$element = $variables['element'];
-  if (isset($element['#attributes']['class']) && in_array('form-composite', $element['#attributes']['class'])) {
-    $suggestions[] = 'fieldset__form_composite';
-  }*/
-}
-
-/**
- * Implements hook_preprocess_node().
- */
-function massively_preprocess_node(array &$variables) {
-  // Default to turning off byline/submitted.
-  //$variables['display_submitted'] = FALSE;
-}
-
-/**
- * Implements hook_theme_suggestions_views_view_alter().
- */
-function massively_theme_suggestions_views_view_alter(array &$suggestions, array $variables) {
-
-}
-
-/**
- * Implements hook_preprocess_form().
- */
-function massively_preprocess_form(array &$variables) {
-  //$variables['attributes']['novalidate'] = 'novalidate';
-}
-
-/**
- * Implements hook_preprocess_select().
- */
-function massively_preprocess_select(array &$variables) {
-  //$variables['attributes']['class'][] = 'select-chosen';
-}
-
-/**
- * Implements hook_preprocess_field().
- */
-function massively_preprocess_field(array &$variables, $hook) {
-  /*switch ($variables['element']['#field_name']) {
-  }*/
-}
-
-/**
- * Implements hook_preprocess_details().
- */
-function massively_preprocess_details(array &$variables) {
-  /*$variables['attributes']['class'][] = 'details';
-  $variables['summary_attributes']['class'] = 'summary';*/
-}
-
-/**
- * Implements hook_theme_suggestions_details_alter().
- */
-function massively_theme_suggestions_details_alter(array &$suggestions, array $variables) {
-
-}
-
-/**
  * Implements hook_preprocess_menu_local_task().
  */
 function massively_preprocess_menu_local_task(array &$variables) {
@@ -174,6 +54,9 @@ function massively_preprocess_menu_local_task(array &$variables) {
   }
 }
 
+/**
+ * Adds tag to all pages.
+ */
 function massively_page_attachments(array &$page) {
   $fallback = '<link href="fallback.css" rel="stylesheet" />';
   $noscript = [
@@ -182,4 +65,3 @@ function massively_page_attachments(array &$page) {
   ];
   $page['#attached']['html_head'][] = [$noscript, 'mymodule'];
 }
-
