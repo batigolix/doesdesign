@@ -17,22 +17,6 @@ use Drupal\Core\Form\FormStateInterface;
 class Flickr extends BlockBase {
 
   /**
-   * Overrides \Drupal\Core\Block\BlockBase::defaultConfiguration().
-   */
-  // Public function defaultConfiguration() {
-  //    return array(
-  //      'label' => t("Photo's on Flickr"),
-  //      'content' => t('Default demo content'),
-  //      'cache' => array(
-  //        'max_age' => 3600,
-  //        'contexts' => array(
-  //          'cache_context.user.roles',
-  //        ),
-  //      ),
-  //    );
-  //  }.
-
-  /**
    * Overrides \Drupal\Core\Block\BlockBase::blockForm().
    */
   public function blockForm($form, FormStateInterface $form_state) {

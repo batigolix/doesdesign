@@ -13,7 +13,7 @@ use Drupal\Core\Block\BlockBase;
  *   admin_label = @Translation("DD 8 tools: Google translate")
  * )
  */
-class Dd_toolsGtranslate extends BlockBase {
+class DdToolsGtranslate extends BlockBase {
 
   /**
    * Implements \Drupal\Core\Block\BlockBase::blockBuild().

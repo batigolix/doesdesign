@@ -17,7 +17,7 @@ use Drupal\Core\Url;
  *   admin_label = @Translation("DD 8 tools: Contact"),
  * )
  */
-class Dd_toolsContact extends BlockBase {
+class DdToolsContact extends BlockBase {
 
   /**
    * {@inheritdoc}
@@ -72,22 +72,6 @@ class Dd_toolsContact extends BlockBase {
       ]);
       $items[] = Link::fromTextAndUrl($img, $url);
     }
-    $doespic = [
-      '#prefix' => '<div class="doespic">',
-      '#suffix' => '</div>',
-      '#theme' => 'image',
-      '#uri' => $img_path . 'does.jpg',
-      '#width' => '75',
-      '#height' => '100',
-      '#attributes' => [
-    // 'class' => array(
-    //          'doespic'
-    //        ),
-        'title' => 'Birgit Doesborg',
-        'alt' => 'Foto Birgit Doesborg',
-      ],
-    ];
-    // $build['doespic'] = $doespic;
     $build['doestxt'] = [
       '#prefix' => '<div class="doestxt">',
       '#suffix' => '</div>',

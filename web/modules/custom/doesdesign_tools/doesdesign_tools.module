@@ -45,7 +45,7 @@ function doesdesign_tools_theme() {
 }
 
 /**
- *
+ * Sends mail.
  */
 function doesdesign_tools_mail($key, &$message, $params) {
   $options = [
@@ -78,7 +78,7 @@ function doesdesign_tools_form_search_form_alter(&$form, $form_state, $form_id) 
 }
 
 /**
- *
+ * Preprocesses node.
  */
 function doesdesign_tools_preprocess_node(&$variables) {
   $type = $variables['node']->getType();

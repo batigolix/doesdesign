@@ -7,7 +7,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Class ContactForm.
+ * Provides a contact form.
  */
 class ContactForm extends FormBase {
 
@@ -54,7 +54,6 @@ class ContactForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    // honeypot_add_form_protection($form, $form_state, array('honeypot', 'time_restriction'));.
     $form['contact'] = [
       '#markup' => $this->t('Gebruik het onderstaande contactformulier voor vragen of opmerkingen'),
       '#prefix' => '<div class="fields"><div class="field">',
