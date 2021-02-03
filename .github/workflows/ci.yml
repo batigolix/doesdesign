@@ -17,7 +17,6 @@ jobs:
 #      - name: Install frontend dependencies
 #        run: cd web/themes/imalabya && yarn install
   lint:
-    needs: build
     runs-on: ubuntu-latest
     container:
       image: juampynr/drupal8ci:latest
@@ -26,6 +25,4 @@ jobs:
       - name: Install composer dependencies
         run: composer install --prefer-dist --no-progress -vvv
       - name: Run PHPCS with DrupalPractice on modules
-        uses: docker://hussainweb/drupalqa:php7.4
-        with:
-          args: vendor/bin/phpcs
+        run: vendor/bin/phpcs
