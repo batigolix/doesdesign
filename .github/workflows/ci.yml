@@ -18,6 +18,8 @@ jobs:
 #        run: cd web/themes/imalabya && yarn install
   lint:
     runs-on: ubuntu-latest
+    container:
+      image: juampynr/drupal8ci:latest
     steps:
       - uses: actions/checkout@v2
       - name: Install composer dependencies
