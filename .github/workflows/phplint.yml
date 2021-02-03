@@ -10,6 +10,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    container:
+      image: juampynr/drupal8ci:latest
 
     steps:
     - uses: actions/checkout@v2
