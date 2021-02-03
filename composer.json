@@ -46,9 +46,7 @@
         "drupal/colorbox": "^1.4",
         "drupal/config_ignore": "^3.0",
         "drupal/config_split": "^1.4",
-        "drupal/core-composer-scaffold": "^8.8",
-        "drupal/core-project-message": "^8.8",
-        "drupal/core-recommended": "^9.0",
+        "drupal/core-recommended": "^9.1",
         "drupal/environment_indicator": "^4.0",
         "drupal/focal_point": "^1.4",
         "drupal/honeypot": "^2.0",
@@ -58,12 +56,11 @@
         "drupal/redirect": "^1.5",
         "drupal/single_image_formatter": "^1.5",
         "drush/drush": "^10.3",
-        "hirak/prestissimo": "^0.3.10",
-        "jackmoore/colorbox": "^1.6",
-        "zaporylie/composer-drupal-optimizations": "^1.1"
+        "jackmoore/colorbox": "^1.6"
     },
     "require-dev": {
         "drupal/chosen": "^3.0",
+        "drupal/coder": "^8.3",
         "drupal/devel": "^4.0",
         "drupal/stage_file_proxy": "^1.1",
         "harvesthq/chosen": "^1.8"
