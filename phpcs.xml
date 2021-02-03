@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="finalist_default">
+  <description>Default PHP CodeSniffer configuration for finalist sites.</description>
+  <rule ref="phpcs-ruleset.xml"/>
+    <file>web/modules/custom</file>
+    <file>web/themes/custom</file>
+  <arg name="extensions" value="php,inc,module,install,info,test,profile,theme,js,twig,theme"/>
+  <arg name="report" value="full"/>
+  <arg value="p"/>
+</ruleset>

@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!-- See http://pear.php.net/manual/en/package.php.php-codesniffer.annotated-ruleset.php -->
+<ruleset name="Finalist">
+    <description>Drupal coding standard for Finalist sites</description>
+
+    <rule ref="./vendor/drupal/coder/coder_sniffer/Drupal" />
+
+    <!-- Minified files don't have to comply with coding standards. -->
+    <exclude-pattern>*\.min\.css</exclude-pattern>
+    <exclude-pattern>*\.min\.js</exclude-pattern>
+
+    <!-- Exclude files that do not contain PHP, Javascript or CSS code. -->
+    <exclude-pattern>*\.json</exclude-pattern>
+    <exclude-pattern>*\.sh</exclude-pattern>
+    <exclude-pattern>*\.xml</exclude-pattern>
+    <exclude-pattern>*\.yml</exclude-pattern>
+    <exclude-pattern>*\.css</exclude-pattern>
+    <exclude-pattern>composer.lock</exclude-pattern>
+\
+    <!-- Exclude non drupal folders. -->
+    <exclude-pattern>/vendor</exclude-pattern>
+
+    <!-- Exclude contrib folders. -->
+    <exclude-pattern>contrib</exclude-pattern>
+    <exclude-pattern>contributed</exclude-pattern>
+    <!-- <exclude-pattern>themes/custom/*/js/vendor</exclude-pattern>
+    <exclude-pattern>themes/custom/*/js/inherited</exclude-pattern>-->
+    <exclude-pattern>themes/custom/*/node_modules</exclude-pattern>
+    <exclude-pattern>modules/custom/doesdesign_tools/responsiveslides/demo/demo.css</exclude-pattern>
+  <exclude-pattern>themes/custom/massively/assets</exclude-pattern>
+  <exclude-pattern>themes/custom/massively/html5up-massively</exclude-pattern>
+
+    <!-- Exclude bootstrap 3rd party code included in custom theme. -->
+    <exclude-pattern>sass/assets</exclude-pattern>
+
+    <!-- Phing tasks require to use CamelCaps for argument names. -->
+    <rule ref="Drupal.NamingConventions.ValidVariableName">
+        <exclude-pattern>src/Phing</exclude-pattern>
+    </rule>
+
+    <rule ref="Generic.PHP.ForbiddenFunctions">
+        <properties>
+            <property name="forbiddenFunctions" type="array" value="var_dump=>NULL,sizeof=>count,delete=>unset,print=>echo,is_null=>NULL,create_function=>NULL,dsm=>NULL,ksm=>NULL,kint=>NULL,dpm=>NULL"/>
+        </properties>
+    </rule>
+
+</ruleset>

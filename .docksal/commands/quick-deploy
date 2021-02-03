@@ -44,6 +44,7 @@ fi
 
 $DRUSH cex -y
 git add config
+git add .github
 git add composer.*
 git commit -m "Exports config and/or updates composer on $DT"
 git push origin master
@@ -58,4 +59,4 @@ fi
 echo "Build and deploy the stage environment"
 fin build-and-deploy-stage -t $TAG
 
-fin drush @stage st
+fin drush @doesdesign.stage st
