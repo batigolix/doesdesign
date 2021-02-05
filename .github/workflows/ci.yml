@@ -147,12 +147,14 @@ jobs:
           #sudo chmod 777 ./web/sites/default/files/report
           #cat ./web/sites/default/settings.php
           #drush cr -vvv
-          bin/drush st
+          bin/drush st -vvv
+          bin/drush uli -vvv
           cd web
-          ../bin/drush st
+          ../bin/drush st -vvv
+          cd ../
           #drush config-import sync -y -vvv
           #drush en simpletest -vvv
-          #drush cr -vvv
+          drush cr -vvv
       - name: Run the code coverage and unit testing
         run: |
           sudo mkdir -p coverage
