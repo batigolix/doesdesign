@@ -138,7 +138,7 @@ jobs:
 
       - name: Site Setup
         run: |
-          #ls -l ./web/sites/default/
+          ls -l ./web/sites/default/
           #sudo rm -rf ./web/sites/default/settings.php
           #sudo cp ./.github/config/settings.php ./web/sites/default/
           #sudo mkdir ./web/sites/default/simpletest
@@ -148,6 +148,8 @@ jobs:
           #cat ./web/sites/default/settings.php
           #drush cr -vvv
           bin/drush st
+          cd web
+          ../bin/drush st
           #drush config-import sync -y -vvv
           #drush en simpletest -vvv
           #drush cr -vvv
