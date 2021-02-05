@@ -116,9 +116,9 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y mysql-client
-          mysql --port ${{ job.services.mysql.ports['3306'] }} -uroot -proot --protocol=tcp -e "CREATE DATABASE IF NOT EXISTS drupal8;"
-          mysql --port ${{ job.services.mysql.ports['3306'] }} -uroot -proot --protocol=tcp -e "SHOW DATABASES;USE drupal8; source ./scripts/database/dumps/drupal8.sql;"
-          mysql --host 172.18.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uroot -proot --protocol=tcp -e "USE drupal8; select user();"
+          mysql --port ${{ job.services.mysql.ports['3306'] }} -uroot -proot --protocol=tcp -e "CREATE DATABASE IF NOT EXISTS doesdesign;"
+          mysql --port ${{ job.services.mysql.ports['3306'] }} -uroot -proot --protocol=tcp -e "SHOW DATABASES;USE doesdesign; source doesdesign.sql;"
+          mysql --host 172.18.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uroot -proot --protocol=tcp -e "USE doesdesign; select user();"
 
       - name: Site Setup
         run: |
