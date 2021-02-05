@@ -34,6 +34,7 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-suggest
 
   test:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Check out the code
