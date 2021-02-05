@@ -57,7 +57,8 @@
         "drupal/redirect": "^1.5",
         "drupal/single_image_formatter": "^1.5",
         "drush/drush": "^10.3",
-        "jackmoore/colorbox": "^1.6"
+        "jackmoore/colorbox": "^1.6",
+        "overtrue/phplint": "^2.3"
     },
     "require-dev": {
         "drupal/chosen": "^3.0",
