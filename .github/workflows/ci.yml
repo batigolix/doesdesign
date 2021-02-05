@@ -1,0 +1,51 @@
+name: Build project
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - name: Set up PHP 7.3
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.3'
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate
+
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+
+      - name: Install dependencies
+        if: steps.composer-cache.outputs.cache-hit != 'true'
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Install composer dependencies
+        run: composer install --prefer-dist --no-progress -vvv
+  #      - uses: actions/setup-node@v1
+  #        with:
+  #          node-version: "14"
+  #      - name: Install frontend dependencies
+  #        run: cd web/themes/imalabya && yarn install
+
+
+
+  lint:
+    runs-on: ubuntu-latest
+    container:
+      image: juampynr/drupal8ci:latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install composer dependencies
+        run: composer install --prefer-dist --no-progress -vvv
+      - name: Run PHPCS with DrupalPractice on modules
+        run: bin/phpcs

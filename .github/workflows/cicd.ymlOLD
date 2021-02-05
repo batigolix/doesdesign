@@ -36,6 +36,7 @@ jobs:
         run: |
           sudo apt-get install -y mysql-client
           mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uroot -proot -e "select @@hostname;show variables where Variable_name like '%host%';"
+
       - name: Check out the code
         uses: actions/checkout@v2
         with:
@@ -108,4 +109,4 @@ jobs:
         with:
           name: coverage
           path: coverage
-    
+
