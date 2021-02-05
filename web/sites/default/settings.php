@@ -90,7 +90,7 @@
  */
 
 $databases['default']['default'] = [
-  'database' => 'drupal8',
+  'database' => 'doesdesign',
   'username' => 'root',
   'password' => 'root',
   'prefix' => '',
