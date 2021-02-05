@@ -12,6 +12,10 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '7.3'
+          tools: composer:v2
+
+      - name: Show composer version
+        run: composer --version
 
       - name: Validate composer.json and composer.lock
         run: composer validate
@@ -28,16 +32,6 @@ jobs:
       - name: Install dependencies
         if: steps.composer-cache.outputs.cache-hit != 'true'
         run: composer install --prefer-dist --no-progress --no-suggest
-
-      - name: Install composer dependencies
-        run: composer install --prefer-dist --no-progress -vvv
-  #      - uses: actions/setup-node@v1
-  #        with:
-  #          node-version: "14"
-  #      - name: Install frontend dependencies
-  #        run: cd web/themes/imalabya && yarn install
-
-
 
   lint:
     runs-on: ubuntu-latest
