@@ -35,11 +35,21 @@ jobs:
 
   lint:
     runs-on: ubuntu-latest
-    container:
-      image: juampynr/drupal8ci:latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Install composer dependencies
-        run: composer install --prefer-dist --no-progress -vvv
+      - name: Check out the code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Set up PHP 7.3
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.3'
+          tools: composer:v2
+
+      - name: Install dependencies
+        if: steps.composer-cache.outputs.cache-hit != 'true'
+        run: composer install --prefer-dist --no-progress --no-suggest
+
       - name: Run PHPCS with DrupalPractice on modules
         run: bin/phpcs
