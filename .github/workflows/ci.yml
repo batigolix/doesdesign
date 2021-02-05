@@ -114,7 +114,7 @@ jobs:
 
       - name: Create and fill database
         run: |
-          sudo apt-get update
+          sudo apt-get -qq update
           sudo apt-get install -y mysql-client
           gunzip doesdesign.sql.gz
           mysql --port ${{ job.services.mysql.ports['3306'] }} -uroot -proot --protocol=tcp -e "CREATE DATABASE IF NOT EXISTS doesdesign;"
