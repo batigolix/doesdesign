@@ -26,7 +26,7 @@ git add config
 git add composer.*
 git add .github
 git add .docksal
-git commit -m "Add config, composer, tugboat, docksal changes"
+git commit -m "Add config, composer, github actions, docksal changes"
 git push origin $BRANCH
 
 #echo "Build and deploy the stage environment"
