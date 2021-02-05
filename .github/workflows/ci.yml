@@ -3,7 +3,20 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
+      - name: Verify MySQL connection from host
+          run: |
+            sudo apt-get install -y mysql-client
+            mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uroot -proot -e "select @@hostname;show variables where Variable_name like '%host%';"
+
       - name: Check out the code
         uses: actions/checkout@v2
         with:
@@ -38,7 +51,7 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-suggest
 
-  test:
+  static-testing:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the code
@@ -74,3 +87,65 @@ jobs:
 
       - name: Run phplint
         run: bin/phplint web/modules/custom web/themes/custom
+
+  unit-testing:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=5
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Set up PHP 7.3
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.3'
+          tools: composer:v2
+          extensions: mbstring
+          coverage: none
+
+      - name: Create and fill database
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y mysql-client
+          mysql --port ${{ job.services.mysql.ports['3306'] }} -uroot -proot --protocol=tcp -e "CREATE DATABASE IF NOT EXISTS drupal8;"
+          mysql --port ${{ job.services.mysql.ports['3306'] }} -uroot -proot --protocol=tcp -e "SHOW DATABASES;USE drupal8; source ./scripts/database/dumps/drupal8.sql;"
+          mysql --host 172.18.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uroot -proot --protocol=tcp -e "USE drupal8; select user();"
+
+      - name: Site Setup
+        run: |
+          composer --version
+          composer validate
+          composer install -n
+          #ls -l ./web/sites/default/
+          #sudo rm -rf ./web/sites/default/settings.php
+          #sudo cp ./.github/config/settings.php ./web/sites/default/
+          #sudo mkdir ./web/sites/default/simpletest
+          #sudo chmod 777 ./web/sites/default/simpletest
+          #sudo mkdir ./web/sites/default/files/report
+          #sudo chmod 777 ./web/sites/default/files/report
+          #cat ./web/sites/default/settings.php
+          #drush cr -vvv
+          bin/drush st
+          #drush config-import sync -y -vvv
+          #drush en simpletest -vvv
+          #drush cr -vvv
+      - name: Run the code coverage and unit testing
+        run: |
+          sudo mkdir -p coverage
+          sudo chmod 777 coverage
+          php vendor/phpunit/phpunit/phpunit --coverage-html ./web/sites/default/files/reports
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: coverage
+          path: coverage
