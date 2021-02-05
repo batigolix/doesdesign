@@ -70,4 +70,7 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-suggest
 
       - name: Run PHPCS with DrupalPractice on modules
-        run: bin/phpcs
+        run: bin/
+
+      - name: say hi
+        run: echo "hi"
