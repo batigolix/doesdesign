@@ -139,30 +139,27 @@ jobs:
       - name: Site Setup
         run: |
           ls -l ./web/sites/default/
+          ls -l ./web/core
+          ls -l ./web/modules/custom
           #sudo rm -rf ./web/sites/default/settings.php
           #sudo cp ./.github/config/settings.php ./web/sites/default/
           #sudo mkdir ./web/sites/default/simpletest
           #sudo chmod 777 ./web/sites/default/simpletest
           #sudo mkdir ./web/sites/default/files/report
           #sudo chmod 777 ./web/sites/default/files/report
-          #cat ./web/sites/default/settings.php
+          cat ./web/sites/default/settings.php
+          bin/drush st
           #drush cr -vvv
-          bin/drush st -vvv
-          bin/drush uli -vvv
-          cd web
-          ../bin/drush st -vvv
-          cd ../
           #drush config-import sync -y -vvv
           #drush en simpletest -vvv
-          drush cr -vvv
-      - name: Run the code coverage and unit testing
-        run: |
-          sudo mkdir -p coverage
-          sudo chmod 777 coverage
-          php vendor/phpunit/phpunit/phpunit --coverage-html ./web/sites/default/files/reports
-      - name: Archive code coverage results
-        uses: actions/upload-artifact@v1
-        if: failure()
-        with:
-          name: coverage
-          path: coverage
+#      - name: Run the code coverage and unit testing
+#        run: |
+#          sudo mkdir -p coverage
+#          sudo chmod 777 coverage
+#          php vendor/phpunit/phpunit/phpunit --coverage-html ./web/sites/default/files/reports
+#      - name: Archive code coverage results
+#        uses: actions/upload-artifact@v1
+#        if: failure()
+#        with:
+#          name: coverage
+#          path: coverage
