@@ -147,7 +147,8 @@ jobs:
           #sudo chmod 777 ./web/sites/default/simpletest
           #sudo mkdir ./web/sites/default/files/report
           #sudo chmod 777 ./web/sites/default/files/report
-          cat ./web/sites/default/settings.php
+          # cat ./web/sites/default/settings.php
+          ls -l /home/runner/work/doesdesign/doesdesign/web
           bin/drush st
           #drush cr -vvv
           #drush config-import sync -y -vvv
