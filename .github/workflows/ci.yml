@@ -138,6 +138,8 @@ jobs:
 
       - name: Site Setup
         run: |
+          echo "export PATH=$PATH:$GITHUB_WORKSPACE/vendor/bin" >> ~/.bash_profile
+          source ~/.bash_profile
           ls -l ./web/sites/default/
           ls -l ./web/core
           ls -l ./web/modules/custom
