@@ -148,6 +148,7 @@ jobs:
           #sudo mkdir ./web/sites/default/files/report
           #sudo chmod 777 ./web/sites/default/files/report
           # cat ./web/sites/default/settings.php
+          curl http://localhost
           pwd
           bin/drush st -vvv
           bin/drush cr -vvv
