@@ -140,9 +140,7 @@ jobs:
         run: |
           echo "export PATH=$PATH:$GITHUB_WORKSPACE/vendor/bin" >> ~/.bash_profile
           source ~/.bash_profile
-          ls -l ./web/sites/default/
-          ls -l ./web/core
-          ls -l ./web/modules/custom
+          #ls -l ./web/sites/default/
           #sudo rm -rf ./web/sites/default/settings.php
           #sudo cp ./.github/config/settings.php ./web/sites/default/
           #sudo mkdir ./web/sites/default/simpletest
@@ -150,9 +148,10 @@ jobs:
           #sudo mkdir ./web/sites/default/files/report
           #sudo chmod 777 ./web/sites/default/files/report
           # cat ./web/sites/default/settings.php
-          ls -l /home/runner/work/doesdesign/doesdesign/web
-          bin/drush st
-          #drush cr -vvv
+          pwd
+          bin/drush st -vvv
+          bin/drush cr -vvv
+          bin/drush uli -vvv
           #drush config-import sync -y -vvv
           #drush en simpletest -vvv
 #      - name: Run the code coverage and unit testing
