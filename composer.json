@@ -122,9 +122,6 @@
         "patches": {
             "drupal/chosen": {
                 "library folder": "https://www.drupal.org/files/issues/2019-12-19/3102250-composer-package-info-2.patch"
-            },
-            "drupal/config_ignore": {
-                "d9": "https://www.drupal.org/files/issues/2020-06-10/3150462-2.patch"
             }
         },
         "drupal-core-project-message": {
