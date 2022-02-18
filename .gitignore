@@ -41,3 +41,4 @@ web/web.config
 web/.ht.router.php
 web/INSTALL.txt
 drush/a2h.aliases.drushrc.php
+tests/backstop/backstop_data
