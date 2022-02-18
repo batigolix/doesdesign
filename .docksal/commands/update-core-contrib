@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+fin up
+git stash clear
+git stash
+git checkout master
+git pull origin master
+fin composer --version
+fin composer validate
+fin composer install
+fin composer update
+git add composer.lock
+git commit -m "updating composer packages"
+git push origin master
+
+echo "printing dev login link"
+fin drush @self uli
+echo "printing stage login link"
+fin drush @doesdesign.stage uli
+
+git stash pop
