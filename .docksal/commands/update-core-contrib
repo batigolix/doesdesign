@@ -9,7 +9,10 @@ fin composer --version
 fin composer validate
 fin composer install
 fin composer update
+fin drush @self updb -y
+fin drush @self cex -y
 git add composer.lock
+git add config/sync
 git commit -m "updating composer packages"
 git push origin master
 
