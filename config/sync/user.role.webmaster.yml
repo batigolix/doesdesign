@@ -1,7 +1,22 @@
 uuid: 97b2bc28-b1c4-4564-844e-98d32dee18cd
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - node.type.object
+    - node.type.page
+    - taxonomy.vocabulary.material
+    - taxonomy.vocabulary.type
+  module:
+    - contextual
+    - environment_indicator
+    - file
+    - node
+    - path
+    - shortcut
+    - system
+    - taxonomy
+    - toolbar
 id: webmaster
 label: Webmaster
 weight: 3
@@ -22,38 +37,30 @@ permissions:
   - 'administer menu'
   - 'administer nodes'
   - 'bypass node access'
-  - 'create article content'
   - 'create object content'
   - 'create page content'
   - 'create terms in material'
   - 'create terms in type'
   - 'create url aliases'
   - 'delete all revisions'
-  - 'delete any article content'
   - 'delete any object content'
   - 'delete any page content'
-  - 'delete article revisions'
   - 'delete object revisions'
-  - 'delete own article content'
   - 'delete own object content'
   - 'delete own page content'
   - 'delete page revisions'
   - 'delete terms in material'
   - 'delete terms in type'
-  - 'edit any article content'
   - 'edit any object content'
   - 'edit any page content'
-  - 'edit own article content'
   - 'edit own object content'
   - 'edit own page content'
   - 'edit terms in material'
   - 'edit terms in type'
   - 'revert all revisions'
-  - 'revert article revisions'
   - 'revert object revisions'
   - 'revert page revisions'
   - 'view all revisions'
-  - 'view article revisions'
   - 'view object revisions'
   - 'view own unpublished content'
   - 'view page revisions'

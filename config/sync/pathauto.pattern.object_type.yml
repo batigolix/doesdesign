@@ -13,21 +13,21 @@ pattern: 'sieraden/[term:name]'
 selection_criteria:
   7c613c95-d0f9-41b7-8ebe-a50bce14ed7c:
     id: 'entity_bundle:taxonomy_term'
-    bundles:
-      type: type
     negate: false
+    uuid: 7c613c95-d0f9-41b7-8ebe-a50bce14ed7c
     context_mapping:
       taxonomy_term: taxonomy_term
-    uuid: 7c613c95-d0f9-41b7-8ebe-a50bce14ed7c
+    bundles:
+      type: type
   86f02a4f-c192-476f-96a8-3a9be564d99e:
     id: language
+    negate: false
+    uuid: 86f02a4f-c192-476f-96a8-3a9be564d99e
+    context_mapping:
+      language: 'taxonomy_term:langcode:language'
     langcodes:
       nl: nl
       en: en
-    negate: false
-    context_mapping:
-      language: 'taxonomy_term:langcode:language'
-    uuid: 86f02a4f-c192-476f-96a8-3a9be564d99e
 selection_logic: and
 weight: -10
 relationships:

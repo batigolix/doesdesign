@@ -1,5 +1,5 @@
-admin: claro
-default: massively
 _core:
   default_config_hash: fOjer9hADYYnbCJVZMFZIIM1azTFWyg84ZkFDHfAbUg
 langcode: nl
+admin: claro
+default: massively

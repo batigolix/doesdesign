@@ -16,12 +16,12 @@ plugin: search_form_block
 settings:
   id: search_form_block
   label: Zoeken
-  provider: search
   label_display: visible
+  provider: search
   page_id: ''
 visibility:
   request_path:
     id: request_path
-    pages: "/search\r\n/search/*"
     negate: true
     context_mapping: {  }
+    pages: "/search\r\n/search/*"

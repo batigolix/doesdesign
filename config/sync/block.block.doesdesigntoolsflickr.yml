@@ -16,12 +16,12 @@ plugin: flickr
 settings:
   id: flickr
   label: 'Doesdesign op Flickr'
-  provider: doesdesign_tools
   label_display: visible
+  provider: doesdesign_tools
   flickr_items: '16'
 visibility:
   request_path:
     id: request_path
-    pages: '<front>'
     negate: false
     context_mapping: {  }
+    pages: '<front>'

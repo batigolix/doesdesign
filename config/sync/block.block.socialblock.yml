@@ -15,6 +15,6 @@ plugin: social_block
 settings:
   id: social_block
   label: 'Social block'
-  provider: doesdesign_tools
   label_display: '0'
+  provider: doesdesign_tools
 visibility: {  }
