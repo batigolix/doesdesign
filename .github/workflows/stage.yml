@@ -38,7 +38,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest --quiet
+        run: composer install --prefer-dist --no-progress --no-suggest --quiet --ignore-platform-reqs
 
   deploy:
     runs-on: ubuntu-latest
