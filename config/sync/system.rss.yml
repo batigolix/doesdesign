@@ -3,6 +3,3 @@ _core:
 langcode: nl
 items:
   view_mode: rss
-  limit: 10
-channel:
-  description: ''
