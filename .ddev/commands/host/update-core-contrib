@@ -1,0 +1,30 @@
+#!/bin/bash
+
+## Description: Update core contrib
+## Usage: update-core-contrib
+## Example: "ddev update-core-contrib"
+
+#ddev start
+
+git stash clear
+git stash
+git checkout master
+git pull origin master
+#ddev composer --version -n
+ddev composer validate -n
+ddev composer update -n
+ddev drush @ddev updb -y
+ddev drush @ddev config:export -y
+git add composer.lock
+git add config/sync
+git commit -m "updating composer packages"
+git push origin master
+
+echo "printing dev login link"
+ddev drush @ddev uli
+#echo "printing stage login link"
+#ddev drush @stage uli
+echo "printing live login link"
+ddev drush @live uli
+
+#git stash pop

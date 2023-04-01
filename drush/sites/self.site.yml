@@ -1,0 +1,27 @@
+# drush site aliases
+
+ddev:
+  root: /var/www/html/web
+  uri: http://doesdesign.ddev.site
+  paths:
+    config-sync: '/var/www/html/config/sync'
+
+live:
+  host: ${env.REMOTE_HOST}
+  user: ${env.REMOTE_USER}
+  ssh:
+    options: ${env.SSH_OPTIONS}
+  root: ${env.REMOTE_PROJECT_DIR}/production/web
+  uri: ${env.LIVE_URI}
+  paths:
+    drush-script: ${env.REMOTE_PROJECT_DIR}/production/bin/drush
+
+stage:
+  host: ${env.REMOTE_HOST}
+  user: ${env.REMOTE_USER}
+  ssh:
+    options: ${env.SSH_OPTIONS}
+  root: ${env.REMOTE_PROJECT_DIR}/stage/web
+  uri: ${env.STAGE_URI}
+  paths:
+    drush-script: ${env.REMOTE_PROJECT_DIR}/stage/bin/drush
