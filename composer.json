@@ -55,6 +55,8 @@
         "drupal/honeypot": "^2.0",
         "drupal/image_effects": "^3.0",
         "drupal/metatag": "^1.13",
+        "drupal/migrate_plus": "^6.0",
+        "drupal/migrate_tools": "^6.0",
         "drupal/pathauto": "^1.6",
         "drupal/redirect": "^1.5",
         "drupal/single_image_formatter": "^1.5",
@@ -66,6 +68,7 @@
         "drupal/chosen": "^3.0",
         "drupal/coder": "^8.3",
         "drupal/devel": "^4.0",
+        "drupal/migrate_devel": "^2.0@alpha",
         "drupal/stage_file_proxy": "^1.1",
         "harvesthq/chosen": "^1.8"
     },
