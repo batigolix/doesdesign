@@ -1,0 +1,4 @@
+administer doesdesign_import configuration:
+  title: 'Administer doesdesign_import configuration'
+  description: 'Optional description.'
+  restrict access: true
