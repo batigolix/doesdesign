@@ -15,6 +15,14 @@ process:
   default_langcode:
     plugin: default_value
     default_value: 1
+  'body/value': body/0/value
+  'body/format':
+    plugin: default_value
+    default_value: basic_html
+  field_weight: field_gewicht/0/value
+  field_year: field_jaar/0/value
+  field_price: field_prijs/0/value
+
 #  field_academia_url:
 #    - plugin: skip_on_empty
 #      method: process

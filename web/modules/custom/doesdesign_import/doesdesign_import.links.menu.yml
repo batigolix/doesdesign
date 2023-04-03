@@ -1,6 +1,0 @@
-doesdesign_import.settings_form:
-  title: doesdesign_import
-  description: Configure doesdesign_import.
-  parent: system.admin_config_system
-  route_name: doesdesign_import.settings_form
-  weight: 10
