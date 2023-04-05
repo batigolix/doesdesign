@@ -1,0 +1,10 @@
+uuid: 838f5af6-2672-4b53-9926-d1166fe1d172
+langcode: nl
+status: true
+dependencies:
+  module:
+    - node
+id: node.thumb
+label: Thumb
+targetEntityType: node
+cache: true

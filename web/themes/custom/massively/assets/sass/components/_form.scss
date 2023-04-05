@@ -83,6 +83,10 @@
 		}
 	}
 
+  .description {
+    font-size: 0.9rem;
+  }
+
   div.form-item-url {
     display: none !important;
   }
@@ -233,7 +237,7 @@
     input[type="search"],
 		select,
 		textarea {
-			border-color: _palette($p, border);
+			border-color: #999;
 
 		}
 

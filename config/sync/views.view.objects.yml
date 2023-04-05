@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - core.entity_view_mode.node.thumb
     - node.type.object
   module:
     - node
@@ -291,6 +292,39 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
+  block_2:
+    id: block_2
+    display_title: Thumbs
+    display_plugin: block
+    position: 3
+    display_options:
+      pager:
+        type: some
+        options:
+          offset: 0
+          items_per_page: 12
+      style:
+        type: default
+        options: {  }
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: thumb
+      defaults:
+        pager: false
+        style: false
+        row: false
+      display_description: ''
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }

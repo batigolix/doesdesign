@@ -7,10 +7,10 @@
 /* Footer */
 
 	#footer {
-		@include color(alt);
+		//@include color(alt);
 		@include vendor('display', 'flex');
 		background-color: _palette(alt, bg);
-		color: _palette(fg-light);
+		//color: _palette(fg-light);
 		cursor: default;
 		position: relative;
 		margin: 0 auto;
@@ -183,7 +183,7 @@
 	#copyright {
 		@include color-typography(invert);
 		position: relative;
-		color: transparentize(_palette(invert, fg), 0.75);
+		color: #d0d0d0;
 		cursor: default;
 		font-family: _font(family-heading);
 		font-size: 0.8rem;

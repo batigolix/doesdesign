@@ -1,0 +1,43 @@
+uuid: f599f246-cece-404d-92b2-50232d006868
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.thumb
+    - field.field.node.object.body
+    - field.field.node.object.field_image
+    - field.field.node.object.field_material
+    - field.field.node.object.field_price
+    - field.field.node.object.field_type
+    - field.field.node.object.field_weight
+    - field.field.node.object.field_year
+    - image.style.thumbnail
+    - node.type.object
+  module:
+    - image
+    - user
+id: node.object.thumb
+targetEntityType: node
+bundle: object
+mode: thumb
+content:
+  field_image:
+    type: image
+    label: above
+    settings:
+      image_link: content
+      image_style: thumbnail
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  body: true
+  field_material: true
+  field_price: true
+  field_type: true
+  field_weight: true
+  field_year: true
+  langcode: true
+  links: true

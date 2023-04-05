@@ -14,10 +14,6 @@ function massively_page_attachments_alter(array &$page) {
   $viewport = [
     '#type' => 'html_tag',
     '#tag' => 'meta',
-    '#attributes' => [
-      'name' => 'viewport',
-      'content' => 'width=device-width, initial-scale=1, user-scalable=no',
-    ],
   ];
   $page['#attached']['html_head'][] = [$viewport, 'viewport'];
   $fallback = '<link href="/themes/custom/massively/assets/css/noscript.css" rel="stylesheet" />';
