@@ -49,10 +49,9 @@
 						));
 						display: block;
 						font-size: 0.8rem;
-						outline: none;
 						padding: 0 2rem;
 
-						&:hover {
+						&:hover, &:focus, &:focus-visible {
 							color: inherit !important;
 							background-color: transparentize(_palette(invert, fg), 0.9);
 						}

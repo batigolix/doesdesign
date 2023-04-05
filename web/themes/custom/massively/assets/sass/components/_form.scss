@@ -100,7 +100,6 @@
 		border: solid 2px;
 		color: inherit;
 		display: block;
-		outline: 0;
 		padding: 0 1rem;
 		text-decoration: none;
 		width: 100%;
@@ -108,7 +107,15 @@
 		&:invalid {
 			box-shadow: none;
 		}
-	}
+
+    &:focus, &:focus-visible {
+      outline: 4px solid deeppink;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+
+  }
 
 	select {
 		background-size: 1.25rem;
@@ -117,12 +124,6 @@
 		height: _size(element-height);
 		padding-right: _size(element-height);
 		text-overflow: ellipsis;
-
-		&:focus {
-			&::-ms-value {
-				background-color: transparent;
-			}
-		}
 
 		&::-ms-expand {
 			display: none;
@@ -234,9 +235,6 @@
 		textarea {
 			border-color: _palette($p, border);
 
-			&:focus {
-				border-color: _palette($p, accent);
-			}
 		}
 
 		select {
@@ -272,11 +270,6 @@
 				}
 			}
 
-			&:focus + label {
-				&:before {
-					border-color: _palette($p, accent);
-				}
-			}
 		}
 
 		::-webkit-input-placeholder {

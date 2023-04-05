@@ -83,6 +83,14 @@
       padding: 0 2.75rem;
     }
 
+
+    &:focus, &:focus-visible {
+      outline: 4px solid deeppink;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+
     @include breakpoint('<=medium') {
       font-size: 0.9rem;
       height: 3.25rem;
