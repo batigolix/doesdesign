@@ -1,0 +1,10 @@
+{
+  "name": "massively",
+  "scripts": {
+    "build": "sass scss css",
+    "watch": "sass scss:css -w"
+  },
+  "dependencies": {
+    "sass": "^1.49.8"
+  }
+}

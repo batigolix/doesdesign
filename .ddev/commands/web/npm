@@ -1,0 +1,5 @@
+#!/bin/bash
+## Description: Install or use node.
+## Usage: npm [flags] [args]
+## Example: "npm use or npm install or npm run watch"
+source /etc/profile && cd /var/www/html/web/themes/custom/massively && npm $@
