@@ -46,6 +46,12 @@
 		&:hover {
 			border-bottom-color: transparent;
 		}
+
+    &:focus, &:focus-visible {
+      outline: 4px solid deeppink;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
 	}
 
 	strong, b {
