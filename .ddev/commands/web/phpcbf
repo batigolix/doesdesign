@@ -1,0 +1,10 @@
+#!/bin/bash
+
+## Description: Run phpcbf on code to automatically fix code style issues.
+## Usage: phpcbf
+## Example: "ddev phpcbf path/to/module/folder"
+
+cd /var/www/html
+# bin/phpcbf --standard=Drupal --ignore=vendor $@
+
+/var/www/html/bin/phpcbf --standard=vendor/drupal/coder/coder_sniffer/Drupal --extensions=inc,module,install,info,test,profile,theme,php --report=full --ignore=backstop,react,adminer,featureContext $@

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+## Description: Run phpmd checks on code
+## Usage: phpmd
+## Example: "ddev phpmd path/to/module/folder" or "ddev phpmd /path/to/module/folder -a"
+
+bin/phpmd web/modules/custom text phpmd-ruleset.xml
+
+#> vendor/bin/phpmd --standard=Drupal,DrupalPractice --extensions=php,module,inc,install,test,profile,theme,scss,yml,twig web/modules/custom web/themes/custom tests/behat -a --ignore='*/node_modules/*' 'web/themes/custom/um_base'

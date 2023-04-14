@@ -1,0 +1,8 @@
+#!/bin/bash
+
+## Description: Run vendor/bin/drush inside the ddev web container
+## Usage: ddrush <command>
+## Example: "ddev ddrush st"
+
+#cd tests/behat
+vendor/bin/drush $@

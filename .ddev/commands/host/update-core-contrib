@@ -22,9 +22,9 @@ git push origin master
 
 echo "printing dev login link"
 ddev drush @ddev uli
-#echo "printing stage login link"
-#ddev drush @stage uli
-echo "printing live login link"
-ddev drush @live uli
+echo "printing stage login link"
+ddev drush @stage uli
+#echo "printing live login link"
+#ddev drush @live uli
 
 #git stash pop

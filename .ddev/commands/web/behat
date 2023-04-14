@@ -1,0 +1,8 @@
+#!/bin/bash
+
+## Description: Run behat inside the ddev web container
+## Usage: behat <feature-file>
+## Example: "ddev behat features/homepage.feature"
+
+cd /var/www/html/tests/behat
+../../bin/behat -p ddev $@

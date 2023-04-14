@@ -1,0 +1,19 @@
+#!/bin/bash
+
+## Description: Run phpcs checks on code
+## Usage: phpcs
+## Example: "ddev phpcs" for a complete scan or "ddev phpcs path/to/module/folder" and "ddev phpcs /path/to/module/folder -a" for limited scans.
+
+cd /var/www/html/
+if [ -z "$@" ]
+then
+      echo "phpcs scanning all files listed in phpcs.xml"
+      bin/phpcs
+else
+      echo "phpcs scanning all files in $@"
+      bin/phpcs --colors $@
+fi
+
+# Examples of running phpcs.
+# bin/phpcs --standard=Drupal --ignore=vendor --ignore='*/node_modules/*' --colors $@
+# vendor/bin/phpcs --standard=Drupal,DrupalPractice --extensions=php,module,inc,install,test,profile,theme,scss,yml,twig web/modules/custom web/themes/custom tests/behat -a --ignore='*/node_modules/*' 'web/themes/custom/um_base'
