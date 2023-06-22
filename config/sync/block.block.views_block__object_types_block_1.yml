@@ -1,6 +1,6 @@
 uuid: 2f540d6b-4195-41a5-8562-86bb0fccc355
 langcode: nl
-status: true
+status: false
 dependencies:
   config:
     - views.view.object_types
