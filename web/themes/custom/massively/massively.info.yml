@@ -1,6 +1,6 @@
-name: massively
+name: Massively
 type: theme
-description: 'My Awesome theme'
+description: 'Massively HTML5 Up theme'
 package: Other
 core: 8.x
 libraries:
