@@ -22,6 +22,15 @@ process:
   field_weight: field_gewicht/0/value
   field_year: field_jaar/0/value
   field_price: field_prijs/0/value
+  field_type:
+    plugin: sub_process
+    source: taxonomy_vocabulary_7
+    process:
+      target_id:
+        plugin: migration_lookup
+        migration:
+          - term
+        source: tid
 
 #  field_academia_url:
 #    - plugin: skip_on_empty

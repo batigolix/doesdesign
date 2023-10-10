@@ -47,7 +47,6 @@ module:
   metatag_facebook: 0
   metatag_twitter_cards: 0
   migrate: 0
-  migrate_devel: 0
   migrate_drupal: 0
   migrate_plus: 0
   migrate_tools: 0

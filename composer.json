@@ -68,7 +68,7 @@
         "drupal/chosen": "^3.0",
         "drupal/coder": "^8.3",
         "drupal/devel": "^4.0",
-        "drupal/migrate_devel": "^2.0@alpha",
+        "drupal/migrate_devel": "2.1",
         "drupal/stage_file_proxy": "^1.1",
         "harvesthq/chosen": "^1.8"
     },

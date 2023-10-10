@@ -17,12 +17,13 @@ process:
   - plugin: skip_on_value
     source: vid
     method: process
-    value: 7
+    value: 8
   - plugin: static_map
     source: vid
     map:
       '6': 'material'
-      '8': 'type'
+      '7': 'type'
+
   name: name
   'description/value': description
   'description/format': format
