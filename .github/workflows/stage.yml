@@ -60,7 +60,7 @@ jobs:
             git reset --hard
             git checkout master
             git pull origin master
-            ${{ secrets.COMPOSER }} install --no-dev --ignore-platform-reqs
+            ${{ secrets.COMPOSER }} install --prefer-dist --no-progress --no-suggest --quiet --ignore-platform-reqs
             chmod a-w web/sites/default
             chmod a-w web/sites/default/settings.php
             bin/drush deploy
