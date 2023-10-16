@@ -1,0 +1,10 @@
+uuid: 7aa259c9-484d-4143-863d-6344ee52ef6a
+langcode: nl
+status: true
+dependencies:
+  module:
+    - media
+id: media.large
+label: Large
+targetEntityType: media
+cache: true

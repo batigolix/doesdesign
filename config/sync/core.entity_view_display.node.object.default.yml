@@ -4,18 +4,14 @@ status: true
 dependencies:
   config:
     - field.field.node.object.body
-    - field.field.node.object.field_image
     - field.field.node.object.field_material
+    - field.field.node.object.field_media_image
     - field.field.node.object.field_price
     - field.field.node.object.field_type
     - field.field.node.object.field_weight
     - field.field.node.object.field_year
-    - image.style.extra_large_wide
-    - image.style.medium_wide_508_x_310_
-    - image.style.original_with_watermark
     - node.type.object
   module:
-    - colorbox
     - text
     - user
 id: node.object.default
@@ -28,21 +24,7 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 1
-    region: content
-  field_image:
-    type: colorbox
-    label: above
-    settings:
-      colorbox_node_style: medium_wide_508_x_310_
-      colorbox_node_style_first: extra_large_wide
-      colorbox_image_style: original_with_watermark
-      colorbox_gallery: page
-      colorbox_gallery_custom: ''
-      colorbox_caption: auto
-      colorbox_caption_custom: ''
-    third_party_settings: {  }
-    weight: 4
+    weight: 2
     region: content
   field_material:
     type: entity_reference_label
@@ -51,6 +33,15 @@ content:
       link: false
     third_party_settings: {  }
     weight: 5
+    region: content
+  field_media_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 1
     region: content
   field_price:
     type: number_decimal
@@ -61,7 +52,7 @@ content:
       scale: 2
       prefix_suffix: true
     third_party_settings: {  }
-    weight: 2
+    weight: 3
     region: content
   field_type:
     type: entity_reference_label
@@ -80,7 +71,7 @@ content:
       scale: 2
       prefix_suffix: true
     third_party_settings: {  }
-    weight: 3
+    weight: 4
     region: content
   links:
     settings: {  }

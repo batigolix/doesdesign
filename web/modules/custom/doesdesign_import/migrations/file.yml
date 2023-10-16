@@ -1,0 +1,49 @@
+id: file
+label: File
+audit: true
+migration_tags:
+  - file
+  - doesdesign
+source:
+  plugin: d7_files_in_use
+  fields:
+    - field_image
+  parent_entity_type: node
+  # provides the d7 public and private file paths otherwise they need to be looked up in the db during the migration.
+  constants:
+    d7_private_path: 'sites/default/files/private'
+    d7_public_path: 'sites/doesdesign.nl/files'
+    # needed for source plugin, but not in use?
+    source_base_path: 'tmp'
+process:
+  filename: filename
+  source_base_path:
+    plugin: get_state_value
+    state_name: doesdesign_import.d7_files_folder
+  source_full_path:
+    -
+      plugin: concat
+      delimiter: /
+      source:
+        - '@source_base_path'
+        - filepath
+  uri:
+    plugin: file_copy
+    source:
+      - '@source_full_path'
+      - uri
+  filemime: filemime
+  status: status
+  created: timestamp
+  changed: timestamp
+  uid_lookup:
+    plugin: migration_lookup
+    source: uid
+    no_stub: true
+    migration: user
+  uid:
+    plugin: default_value
+    source: '@uid_lookup'
+    default_value: 1
+destination:
+  plugin: entity:file

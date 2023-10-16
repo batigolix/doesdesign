@@ -1,0 +1,12 @@
+uuid: b22a3758-46cc-4564-83fb-ef8469cd307c
+langcode: nl
+status: false
+dependencies:
+  module:
+    - media
+_core:
+  default_config_hash: 6NBUEuGmlkClK8Fb76tSMMpO2eZ4LWCBdbUk4z7CuP0
+id: media.full
+label: 'Volledige inhoud'
+targetEntityType: media
+cache: true

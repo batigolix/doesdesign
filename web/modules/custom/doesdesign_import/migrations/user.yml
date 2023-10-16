@@ -1,0 +1,33 @@
+id: user
+label: User
+migration_tags:
+  - doesdesign
+  - user
+source:
+  plugin: d7_user
+  roles_name:
+    - editor
+    - author
+    - webmaster
+    - administrator
+    - 'widget editor'
+destination:
+  plugin: entity:user
+process:
+  access: access
+  created: created
+  login: login
+  mail: mail
+  name: name
+  pass: pass
+  status: status
+  field_user_first_name: field_firstname
+  roles:
+    plugin: static_map
+    bypass: true
+    source: roles
+    map:
+      3: "webmaster"
+migration_dependencies:
+  required: {}
+  optional: {}

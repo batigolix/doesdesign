@@ -1,0 +1,10 @@
+uuid: 29d7192e-dbcf-486e-b042-64a8f1de076e
+langcode: nl
+status: true
+dependencies:
+  module:
+    - media
+id: media.medium
+label: Medium
+targetEntityType: media
+cache: true

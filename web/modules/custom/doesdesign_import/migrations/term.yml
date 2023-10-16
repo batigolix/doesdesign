@@ -17,7 +17,6 @@ process:
   - plugin: skip_on_value
     source: vid
     method: process
-    value: 8
   - plugin: static_map
     source: vid
     map:

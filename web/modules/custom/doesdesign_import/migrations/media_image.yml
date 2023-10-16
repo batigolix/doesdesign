@@ -1,0 +1,35 @@
+id: media_image
+migration_tags:
+  - media
+  - doesdesign
+label: "Media: Image"
+source:
+  plugin: d7_image
+  fields:
+    - field_image
+process:
+  name: filename
+  field_media_image/target_id:
+      plugin: migration_lookup
+      migration:
+        - file
+      source: id
+      no_stub: true
+  field_media_image/alt: filename
+  created: timestamp
+  changed: timestamp
+  uid_lookup:
+    plugin: migration_lookup
+    source: uid
+    no_stub: true
+    migration: user
+  uid:
+    plugin: default_value
+    source: '@uid_lookup'
+    default_value: 1
+destination:
+  plugin: 'entity:media'
+  default_bundle: image
+migration_dependencies:
+  required: {}
+#    - file

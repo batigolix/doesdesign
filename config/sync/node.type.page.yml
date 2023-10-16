@@ -1,7 +1,14 @@
 uuid: ea706bd7-b1b6-4538-8488-fab35f3a40eb
 langcode: nl
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
 _core:
   default_config_hash: KuyA4NHPXcmKAjRtwa0vQc2ZcyrUJy6IlS2TAyMNRbc
 name: 'Eenvoudige pagina'

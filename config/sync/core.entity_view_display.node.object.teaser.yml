@@ -5,16 +5,14 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.object.body
-    - field.field.node.object.field_image
     - field.field.node.object.field_material
+    - field.field.node.object.field_media_image
     - field.field.node.object.field_price
     - field.field.node.object.field_type
     - field.field.node.object.field_weight
     - field.field.node.object.field_year
-    - image.style.medium_wide_508_x_310_
     - node.type.object
   module:
-    - single_image_formatter
     - text
     - user
 id: node.object.teaser
@@ -28,15 +26,6 @@ content:
     settings:
       trim_length: 600
     third_party_settings: {  }
-    weight: 1
-    region: content
-  field_image:
-    type: single_image_formatter
-    label: above
-    settings:
-      image_style: medium_wide_508_x_310_
-      image_link: ''
-    third_party_settings: {  }
     weight: 0
     region: content
   field_material:
@@ -46,6 +35,15 @@ content:
       link: true
     third_party_settings: {  }
     weight: 3
+    region: content
+  field_media_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: medium
+      link: false
+    third_party_settings: {  }
+    weight: 1
     region: content
   field_price:
     type: number_decimal
