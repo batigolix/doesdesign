@@ -5,6 +5,7 @@ migration_tags:
   - Drupal 7
   - Content
   - doesdesign
+  - taxonomy
 deriver: Drupal\taxonomy\Plugin\migrate\D7TaxonomyTermDeriver
 source:
   plugin: d7_taxonomy_term
@@ -42,6 +43,7 @@ process:
     source: '@parent_id'
   forum_container: is_container
   changed: timestamp
+  created: timestamp
   langcode: language
 destination:
   plugin: entity:taxonomy_term

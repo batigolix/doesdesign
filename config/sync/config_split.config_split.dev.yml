@@ -8,13 +8,9 @@ description: ''
 weight: 0
 folder: ../config/dev
 module:
-  chosen: 0
-  chosen_lib: 0
   devel: 0
   devel_generate: 0
-  field_ui: 0
   stage_file_proxy: 0
-  views_ui: 0
 theme: {  }
 blacklist: {  }
 graylist: {  }

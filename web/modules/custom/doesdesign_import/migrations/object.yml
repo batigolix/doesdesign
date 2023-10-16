@@ -12,6 +12,7 @@ destination:
 process:
   title: title
   created: created
+  changed: changed
   default_langcode:
     plugin: default_value
     default_value: 1
