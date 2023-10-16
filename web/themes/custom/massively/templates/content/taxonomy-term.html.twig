@@ -23,10 +23,14 @@
  * @see template_preprocess_taxonomy_term()
  */
 #}
+
 <div{{ attributes }}>
   {{ title_prefix }}
   {% if name and not page %}
     <h2><a href="{{ url }}">{{ name }}</a></h2>
+  {% endif %}
+  {% if name and page %}
+    <h1>{{ name }}</h1>
   {% endif %}
   {{ title_suffix }}
   {{ content }}

@@ -14,7 +14,8 @@
 		max-width: _size(wrapper);
 		z-index: 2;
 
-		> * {
+		> *,
+    .taxonomy-terms .posts {
 			@include padding((_size(padding) * 2), (_size(padding) * 2));
 			border-top: solid 2px _palette(border);
 			margin: 0;

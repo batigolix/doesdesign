@@ -2451,7 +2451,7 @@ header.major > .date:before, header.major > .date:after {
   display: block;
   position: absolute;
   top: 50%;
-  width: calc(50% - 6rem);
+  width: calc(50% - 8rem);
   border-top: solid 2px;
 }
 header.major > .date:before {
@@ -3170,12 +3170,14 @@ body.is-preload #intro:not(.hidden) + #header + #nav {
   max-width: 72rem;
   z-index: 2;
 }
-#main > * {
+#main > *,
+#main .taxonomy-terms .posts {
   padding: 4rem 4rem 2rem 4rem;
   border-top: solid 2px #eeeeee;
   margin: 0;
 }
-#main > *:first-child {
+#main > *:first-child,
+#main .taxonomy-terms .posts:first-child {
   border-top: 0;
 }
 #main > footer {
