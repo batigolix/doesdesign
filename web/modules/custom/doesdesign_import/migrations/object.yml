@@ -53,6 +53,15 @@ process:
         migration:
           - media_image
         source: fid
+  uid_lookup:
+    plugin: migration_lookup
+    source: uid
+    no_stub: true
+    migration: user
+  uid:
+    plugin: default_value
+    source: '@uid_lookup'
+    default_value: 1
 migration_dependencies:
   required: { }
   optional: { }
