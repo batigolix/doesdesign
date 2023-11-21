@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - media.type.image
     - node.type.object
     - node.type.page
     - taxonomy.vocabulary.material
@@ -11,6 +12,7 @@ dependencies:
     - contextual
     - environment_indicator
     - file
+    - media
     - node
     - path
     - shortcut
@@ -28,6 +30,7 @@ permissions:
   - 'access contextual links'
   - 'access environment indicator'
   - 'access files overview'
+  - 'access media overview'
   - 'access shortcuts'
   - 'access site in maintenance mode'
   - 'access site reports'
@@ -37,22 +40,30 @@ permissions:
   - 'administer menu'
   - 'administer nodes'
   - 'bypass node access'
+  - 'create image media'
+  - 'create media'
   - 'create object content'
   - 'create page content'
   - 'create terms in material'
   - 'create terms in type'
   - 'create url aliases'
   - 'delete all revisions'
+  - 'delete any image media'
+  - 'delete any media'
   - 'delete any object content'
   - 'delete any page content'
+  - 'delete media'
   - 'delete object revisions'
+  - 'delete own image media'
   - 'delete own object content'
   - 'delete own page content'
   - 'delete page revisions'
   - 'delete terms in material'
   - 'delete terms in type'
+  - 'edit any image media'
   - 'edit any object content'
   - 'edit any page content'
+  - 'edit own image media'
   - 'edit own object content'
   - 'edit own page content'
   - 'edit terms in material'
@@ -60,8 +71,12 @@ permissions:
   - 'revert all revisions'
   - 'revert object revisions'
   - 'revert page revisions'
+  - 'update any media'
+  - 'update media'
+  - 'view all media revisions'
   - 'view all revisions'
   - 'view object revisions'
   - 'view own unpublished content'
+  - 'view own unpublished media'
   - 'view page revisions'
   - 'view the administration theme'

@@ -48,6 +48,7 @@
         "drupal/config_ignore": "^2.3",
         "drupal/config_split": "^1.4",
         "drupal/core-recommended": "^9.1",
+        "drupal/entity_usage": "^2.0@beta",
         "drupal/environment_indicator": "^4.0",
         "drupal/focal_point": "^1.4",
         "drupal/gin": "^3.0@RC",
