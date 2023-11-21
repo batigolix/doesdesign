@@ -281,7 +281,7 @@ a {
 }
 a:hover {
   border-bottom-color: transparent;
-  color: #18bfef !important;
+  color: #2E8B57 !important;
 }
 
 strong, b {
@@ -1777,8 +1777,8 @@ input[type=reset]:hover,
 input[type=button]:hover,
 button:hover,
 .button:hover {
-  box-shadow: inset 0 0 0 2px #18bfef;
-  color: #18bfef !important;
+  box-shadow: inset 0 0 0 2px #2E8B57;
+  color: #2E8B57 !important;
 }
 input[type=submit].primary,
 input[type=reset].primary,
@@ -1794,7 +1794,7 @@ input[type=reset].primary:hover,
 input[type=button].primary:hover,
 button.primary:hover,
 .button.primary:hover {
-  background-color: #18bfef;
+  background-color: #2E8B57;
 }
 
 /* Form */
@@ -2387,13 +2387,13 @@ ul.divided li {
   border-top-color: #eeeeee;
 }
 ul.icons li a.icon:hover:before {
-  color: #18bfef;
+  color: #2E8B57;
 }
 ul.icons.alt li .icon:before {
   box-shadow: inset 0 0 0 2px #eeeeee;
 }
 ul.icons.alt li a.icon:hover:before {
-  box-shadow: inset 0 0 0 2px #18bfef;
+  box-shadow: inset 0 0 0 2px #2E8B57;
 }
 
 /* Section/Article */
@@ -2637,12 +2637,12 @@ table.alt tbody tr td {
   color: #212931 !important;
 }
 .pagination a:hover {
-  color: #18bfef !important;
-  border-color: #18bfef;
+  color: #2E8B57 !important;
+  border-color: #2E8B57;
   z-index: 1;
 }
 .pagination a:hover + a, .pagination a:hover + span {
-  border-left-color: #18bfef;
+  border-left-color: #2E8B57;
 }
 .pagination a.active {
   background-color: #eeeeee;
@@ -2803,7 +2803,7 @@ body.is-preload #wrapper.fade-in:before {
 }
 #intro a:hover {
   border-bottom-color: transparent;
-  color: #18bfef !important;
+  color: #ADFF2F !important;
 }
 #intro strong, #intro b {
   color: #ffffff;
@@ -2835,8 +2835,8 @@ body.is-preload #wrapper.fade-in:before {
 #intro input[type=button]:hover,
 #intro button:hover,
 #intro .button:hover {
-  box-shadow: inset 0 0 0 2px #18bfef;
-  color: #18bfef !important;
+  box-shadow: inset 0 0 0 2px #ADFF2F;
+  color: #ADFF2F !important;
 }
 #intro input[type=submit].primary,
 #intro input[type=reset].primary,
@@ -2852,7 +2852,7 @@ body.is-preload #wrapper.fade-in:before {
 #intro input[type=button].primary:hover,
 #intro button.primary:hover,
 #intro .button.primary:hover {
-  background-color: #18bfef;
+  background-color: #ADFF2F;
 }
 #intro h1 {
   font-size: 5rem;
@@ -2980,7 +2980,7 @@ body.is-preload #intro:not(.hidden) + #header + #nav {
 }
 #header a:hover {
   border-bottom-color: transparent;
-  color: #18bfef !important;
+  color: #ADFF2F !important;
 }
 #header strong, #header b {
   color: #ffffff;
@@ -3017,8 +3017,8 @@ body.is-preload #intro:not(.hidden) + #header + #nav {
   visibility: visible;
 }
 #header .logo:hover {
-  border-color: #18bfef !important;
-  color: #18bfef !important;
+  border-color: #ADFF2F !important;
+  color: #ADFF2F !important;
 }
 @media screen and (max-width: 980px) {
   #header {
@@ -3062,13 +3062,13 @@ body.is-preload #intro:not(.hidden) + #header + #nav {
   border-top-color: #ffffff;
 }
 #nav ul.icons li a.icon:hover:before {
-  color: #18bfef;
+  color: #ADFF2F;
 }
 #nav ul.icons.alt li .icon:before {
   box-shadow: inset 0 0 0 2px #ffffff;
 }
 #nav ul.icons.alt li a.icon:hover:before {
-  box-shadow: inset 0 0 0 2px #18bfef;
+  box-shadow: inset 0 0 0 2px #ADFF2F;
 }
 #nav input, #nav select, #nav textarea {
   color: #ffffff;
@@ -3079,7 +3079,7 @@ body.is-preload #intro:not(.hidden) + #header + #nav {
 }
 #nav a:hover {
   border-bottom-color: transparent;
-  color: #18bfef !important;
+  color: #ADFF2F !important;
 }
 #nav strong, #nav b {
   color: #ffffff;
@@ -3142,7 +3142,7 @@ body.is-preload #intro:not(.hidden) + #header + #nav {
   color: #1e252d;
 }
 #nav ul.links li.active a:hover {
-  color: #18bfef !important;
+  color: #ADFF2F !important;
 }
 #nav ul.icons {
   -moz-flex-grow: 0;
@@ -3511,7 +3511,7 @@ body.is-preload #intro:not(.hidden) + #header + #nav {
 }
 #copyright a:hover {
   border-bottom-color: transparent;
-  color: #18bfef !important;
+  color: #ADFF2F !important;
 }
 #copyright strong, #copyright b {
   color: #ffffff;

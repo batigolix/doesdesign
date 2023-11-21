@@ -9,7 +9,6 @@ dependencies:
     - taxonomy.vocabulary.material
     - taxonomy.vocabulary.type
   module:
-    - contextual
     - environment_indicator
     - file
     - media
@@ -27,7 +26,6 @@ permissions:
   - 'access administration pages'
   - 'access content'
   - 'access content overview'
-  - 'access contextual links'
   - 'access environment indicator'
   - 'access files overview'
   - 'access media overview'
