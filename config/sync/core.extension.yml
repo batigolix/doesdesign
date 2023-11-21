@@ -27,6 +27,7 @@ module:
   doesdesign_tools: 0
   dynamic_page_cache: 0
   editor: 0
+  entity_usage: 0
   environment_indicator: 0
   field: 0
   field_ui: 0
