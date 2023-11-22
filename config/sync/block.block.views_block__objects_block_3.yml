@@ -1,22 +1,22 @@
-uuid: 85dc8463-b0c2-41ff-be24-c9636f89d69a
+uuid: 6f982ad1-ca1a-4e8e-8b19-7bc4ae755f7b
 langcode: nl
-status: false
+status: true
 dependencies:
   config:
-    - views.view.news
+    - views.view.objects
   module:
     - system
     - views
   theme:
     - massively
-id: views_block__news_block_1
+id: views_block__objects_block_3
 theme: massively
 region: content
-weight: 1
+weight: -4
 provider: null
-plugin: 'views_block:news-block_1'
+plugin: 'views_block:objects-block_3'
 settings:
-  id: 'views_block:news-block_1'
+  id: 'views_block:objects-block_3'
   label: ''
   label_display: visible
   provider: views
@@ -26,5 +26,4 @@ visibility:
   request_path:
     id: request_path
     negate: false
-    context_mapping: {  }
-    pages: '<front>'
+    pages: /test

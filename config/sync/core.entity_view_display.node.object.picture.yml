@@ -1,0 +1,39 @@
+uuid: 5cfc0d16-3d02-4edb-9d0c-b44233515d4f
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.picture
+    - field.field.node.object.body
+    - field.field.node.object.field_material
+    - field.field.node.object.field_media_image
+    - field.field.node.object.field_price
+    - field.field.node.object.field_type
+    - field.field.node.object.field_weight
+    - field.field.node.object.field_year
+    - node.type.object
+  module:
+    - user
+id: node.object.picture
+targetEntityType: node
+bundle: object
+mode: picture
+content:
+  field_media_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: small
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  body: true
+  field_material: true
+  field_price: true
+  field_type: true
+  field_weight: true
+  field_year: true
+  langcode: true
+  links: true

@@ -9,7 +9,7 @@ dependencies:
 id: messages
 theme: massively
 region: content
-weight: 5
+weight: 6
 provider: null
 plugin: system_messages_block
 settings:

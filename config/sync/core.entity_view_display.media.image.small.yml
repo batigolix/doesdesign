@@ -1,8 +1,9 @@
-uuid: fe8f9ecb-3ac8-4906-967b-324ee586a7cc
+uuid: aa1bf7a8-601d-4021-86e3-400fe80de362
 langcode: nl
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.media.small
     - field.field.media.image.field_media_image
     - image.style.medium_wide_508_x_310_
     - media.type.image
@@ -10,10 +11,10 @@ dependencies:
     - image
 _core:
   default_config_hash: 73xaTNkI5J6sfFcBmNYeuk070X3mQS_iwwWaPYyfG2M
-id: media.image.default
+id: media.image.small
 targetEntityType: media
 bundle: image
-mode: default
+mode: small
 content:
   field_media_image:
     type: image
