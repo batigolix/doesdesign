@@ -32,7 +32,13 @@
     <h2{{ title_attributes }}>{{ label }}</h2>
   {% endif %}
   {{ title_suffix }}
+
+{#  {{ content }}#}
+
   {% block content %}
+
+{#    {{ dpm(content) }}#}
+
     {{ content }}
   {% endblock %}
 </div>
