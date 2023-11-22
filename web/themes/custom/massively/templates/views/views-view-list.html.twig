@@ -17,22 +17,35 @@
  */
 #}
 {% if attributes -%}
-  <div{{ attributes }}>
+<div{{ attributes }}>
 {% endif %}
   {% if title %}
     <h3>{{ title }}</h3>
   {% endif %}
-
-  <{{ list.type }}{{ list.attributes }}>
-
-    {% for row in rows %}
-      <li{{ row.attributes }}>
-        {{- row.content -}}
-      </li>
-    {% endfor %}
-
-  </{{ list.type }}>
-
-{% if attributes -%}
+  <div class="row">
+    <div class="half col-6 col-12-small">
+      <{{ list.type }}{{ list.attributes }}>
+      {% for item in rows %}
+        {% if not loop.index is even %}
+          <li{{ item.attributes }}>
+            {{- item.content -}}
+          </li>
+        {% endif %}
+      {% endfor %}
+      </{{ list.type }}>
+    </div>
+    <div class="half col-6 col-12-small">
+      <{{ list.type }}{{ list.attributes }}>
+      {% for item in rows %}
+        {% if loop.index is even %}
+          <li{{ item.attributes }}>
+            {{- item.content -}}
+          </li>
+        {% endif %}
+      {% endfor %}
+      </{{ list.type }}>
+    </div>
   </div>
+{% if attributes -%}
+</div>
 {% endif %}

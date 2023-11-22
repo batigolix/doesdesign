@@ -105,3 +105,45 @@ function doesdesign_tools_preprocess_node(&$variables) {
     $variables['#attached']['drupalSettings']['ask'] = "Vraag over sieraad $label";
   }
 }
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for taxonomies.
+ *
+ * {@inheritdoc}
+ */
+function HOOK_theme_suggestions_taxonomy_term_alter(&$suggestions, $vars, $hook) {
+  if($vars['elements']['#view_mode'] == 'teaser') {
+    $suggestions[] = 'taxonomy_term__teaser'; // note underscores
+  }
+}
+
+
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for taxonomies.
+ *
+ * {@inheritdoc}
+ */
+function doesdesign_tools_theme_suggestions_taxonomy_term_alter(&$suggestions, $vars, $hook) {
+
+  /** @var \Drupal\taxonomy\TermInterface $term */
+  $term = $vars['elements']['#taxonomy_term'];
+  $suggestions[] = 'taxonomy_term__' . $term->bundle() . '__' . $vars['elements']['#view_mode'];
+  $suggestions[] = 'taxonomy_term__' . $vars['elements']['#view_mode'];
+
+}
+
+///**
+// * Implements hook_theme_suggestions_HOOK().
+// */
+//function taxonomy_theme_suggestions_taxonomy_term(array $variables) {
+//  $suggestions = [];
+//
+//  /** @var \Drupal\taxonomy\TermInterface $term */
+//  $term = $variables['elements']['#taxonomy_term'];
+//
+//  $suggestions[] = 'taxonomy_term__' . $term->bundle();
+//  $suggestions[] = 'taxonomy_term__' . $term->id();
+//
+//  return $suggestions;
+//}

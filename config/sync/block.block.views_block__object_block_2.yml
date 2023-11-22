@@ -1,29 +1,24 @@
-uuid: 62606542-06b7-4887-b761-cdb182b60dba
+uuid: 935b2818-15a9-4034-b43d-3d6491d9b90d
 langcode: nl
 status: true
 dependencies:
   config:
     - views.view.object
   module:
-    - system
     - views
   theme:
     - massively
-id: views_block__object_block_1
+id: views_block__object_block_2
 theme: massively
 region: content
 weight: 0
 provider: null
-plugin: 'views_block:object-block_1'
+plugin: 'views_block:object-block_2'
 settings:
-  id: 'views_block:object-block_1'
+  id: 'views_block:object-block_2'
   label: ''
   label_display: visible
   provider: views
   views_label: ''
   items_per_page: none
-visibility:
-  request_path:
-    id: request_path
-    negate: false
-    pages: '<front>'
+visibility: {  }

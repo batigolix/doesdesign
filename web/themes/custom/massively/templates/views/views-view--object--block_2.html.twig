@@ -33,9 +33,9 @@
 {%
   set classes = [
     dom_id ? 'js-view-dom-id-' ~ dom_id,
-    'posts'
   ]
 %}
+
 <section {{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {{ title }}
@@ -49,8 +49,6 @@
 
   {{ exposed }}
   {{ attachment_before }}
-
-
 
   {% if rows -%}
     {{ rows }}

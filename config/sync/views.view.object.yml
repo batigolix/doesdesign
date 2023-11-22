@@ -3,7 +3,6 @@ langcode: nl
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.taxonomy_term.teaser
     - taxonomy.vocabulary.type
   module:
     - taxonomy
@@ -160,16 +159,21 @@ display:
         groups:
           1: AND
       style:
-        type: default
+        type: html_list
         options:
-          grouping: {  }
           row_class: ''
           default_row_class: true
+          uses_fields: false
+          type: ul
+          wrapper_class: item-list
+          class: ''
       row:
-        type: 'entity:taxonomy_term'
+        type: fields
         options:
-          relationship: none
-          view_mode: teaser
+          default_field_elements: true
+          inline: {  }
+          separator: ''
+          hide_empty: false
       query:
         type: views_query
         options:
@@ -194,6 +198,20 @@ display:
     display_title: Block
     display_plugin: block
     position: 1
+    display_options:
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - user.permissions
+      tags: {  }
+  block_2:
+    id: block_2
+    display_title: 'Blok 2'
+    display_plugin: block
+    position: 2
     display_options:
       display_extenders: {  }
     cache_metadata:
