@@ -6,7 +6,6 @@ dependencies:
     - field.field.media.image.field_media_image
     - image.style.extra_large_wide
     - image.style.medium_wide_508_x_310_
-    - image.style.original_with_watermark
     - media.type.image
   module:
     - colorbox
@@ -23,7 +22,7 @@ content:
     settings:
       colorbox_node_style: medium_wide_508_x_310_
       colorbox_node_style_first: extra_large_wide
-      colorbox_image_style: original_with_watermark
+      colorbox_image_style: extra_large_wide
       colorbox_gallery: page
       colorbox_gallery_custom: ''
       colorbox_caption: auto

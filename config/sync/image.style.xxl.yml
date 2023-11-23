@@ -1,0 +1,29 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+    - image_effects
+name: xxl
+label: 'Extra extra large (2048 x 1152)'
+effects:
+  cbe4c6c7-7309-49d6-a42c-0f2f1b2eeb8b:
+    uuid: cbe4c6c7-7309-49d6-a42c-0f2f1b2eeb8b
+    id: focal_point_scale_and_crop
+    weight: -10
+    data:
+      width: 2048
+      height: 1152
+      crop_type: focal_point
+  f1da7eaa-d33c-4a6f-89b6-07a337e759af:
+    uuid: f1da7eaa-d33c-4a6f-89b6-07a337e759af
+    id: image_effects_watermark
+    weight: 3
+    data:
+      watermark_image: themes/custom/massively/images/watermark.png
+      watermark_width: ''
+      watermark_height: ''
+      placement: right-bottom
+      x_offset: '-20'
+      y_offset: '-20'
+      opacity: 10
