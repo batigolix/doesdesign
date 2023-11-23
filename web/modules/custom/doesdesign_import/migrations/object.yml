@@ -55,7 +55,7 @@ process:
         source: fid
   uid_lookup:
     plugin: migration_lookup
-    source: uid
+    source: node_uid
     no_stub: true
     migration: user
   uid:
