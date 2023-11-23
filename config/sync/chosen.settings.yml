@@ -1,8 +1,8 @@
 _core:
   default_config_hash: exRaKE0s6uZbfQrl_2WFEcTlc_1t81xEqCLuCCteUSk
 langcode: nl
-minimum_single: 20
-minimum_multiple: 20
+minimum_single: 10
+minimum_multiple: 10
 disable_search_threshold: 0
 minimum_width: 0
 max_shown_results: null
@@ -12,9 +12,8 @@ search_contains: true
 disable_search: false
 allow_single_deselect: false
 disabled_themes:
-  bartik: '0'
   claro: '0'
-  seven: '0'
+  gin: '0'
   massively: '0'
 chosen_include: 0
 placeholder_text_multiple: 'Choose some options'
