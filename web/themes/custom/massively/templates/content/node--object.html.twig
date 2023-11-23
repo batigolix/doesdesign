@@ -8,7 +8,12 @@
   {{ title_suffix }}
   {% if page %}
     <header class="major">
-      <span class="date"><span>{{ content.field_type.0 }}</span></span>
+      <span class="date"><span>{{ content.field_type }}</span></span>
+{#      <ul>#}
+{#        {% for key, item in content.field_type if key|first != '#' %}#}
+{#          <li class="item-{{ key + 1 }}">{{ item }}</li>#}
+{#        {% endfor %}#}
+{#      </ul>#}
       <h1>{{ label }}</h1>
       <p>{{ node.body.summary }}</p>
     </header>

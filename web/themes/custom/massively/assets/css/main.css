@@ -2371,6 +2371,10 @@ ul.divided li:first-child {
   padding-top: 0;
 }
 
+ul.flat li {
+  display: inline-block;
+}
+
 dl {
   margin: 0 0 2rem 0;
 }
