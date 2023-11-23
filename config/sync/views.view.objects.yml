@@ -189,6 +189,7 @@ display:
     display_plugin: block
     position: 2
     display_options:
+      title: Teasers
       fields:
         title:
           id: title
@@ -282,6 +283,7 @@ display:
           relationship: none
           view_mode: teaser
       defaults:
+        title: false
         pager: false
         style: false
         row: false
@@ -302,6 +304,7 @@ display:
     display_plugin: block
     position: 3
     display_options:
+      title: Thumbs
       pager:
         type: some
         options:
@@ -316,6 +319,7 @@ display:
           relationship: none
           view_mode: thumb
       defaults:
+        title: false
         pager: false
         style: false
         row: false
