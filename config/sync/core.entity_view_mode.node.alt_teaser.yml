@@ -1,0 +1,10 @@
+uuid: 9924d05c-dc1c-4f18-be25-ce5f2702005d
+langcode: nl
+status: true
+dependencies:
+  module:
+    - node
+id: node.alt_teaser
+label: 'Alt teaser'
+targetEntityType: node
+cache: true

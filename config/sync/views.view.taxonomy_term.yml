@@ -3,7 +3,7 @@ langcode: nl
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser
+    - core.entity_view_mode.node.alt_teaser
   module:
     - node
     - taxonomy
@@ -224,7 +224,8 @@ display:
       row:
         type: 'entity:node'
         options:
-          view_mode: teaser
+          relationship: none
+          view_mode: alt_teaser
       query:
         type: views_query
         options:

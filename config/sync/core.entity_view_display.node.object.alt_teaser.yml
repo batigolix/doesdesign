@@ -1,9 +1,9 @@
-uuid: b8f818b0-0a0a-4003-8648-4f32684af67a
+uuid: e6e53d08-ba19-4dba-8a8b-11bfc59520bc
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser
+    - core.entity_view_mode.node.alt_teaser
     - field.field.node.object.body
     - field.field.node.object.field_material
     - field.field.node.object.field_media_image
@@ -15,10 +15,10 @@ dependencies:
   module:
     - text
     - user
-id: node.object.teaser
+id: node.object.alt_teaser
 targetEntityType: node
 bundle: object
-mode: teaser
+mode: alt_teaser
 content:
   body:
     type: text_trimmed
@@ -26,7 +26,7 @@ content:
     settings:
       trim_length: 160
     third_party_settings: {  }
-    weight: 0
+    weight: 2
     region: content
   field_material:
     type: entity_reference_label
@@ -34,7 +34,7 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-    weight: 3
+    weight: 5
     region: content
   field_media_image:
     type: entity_reference_entity_view
@@ -50,11 +50,11 @@ content:
     label: above
     settings:
       thousand_separator: ''
-      decimal_separator: ','
+      decimal_separator: .
       scale: 2
       prefix_suffix: true
     third_party_settings: {  }
-    weight: 4
+    weight: 3
     region: content
   field_type:
     type: entity_reference_label
@@ -62,18 +62,18 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 2
+    weight: 6
     region: content
   field_weight:
     type: number_decimal
     label: above
     settings:
       thousand_separator: ''
-      decimal_separator: ','
+      decimal_separator: .
       scale: 2
       prefix_suffix: true
     third_party_settings: {  }
-    weight: 5
+    weight: 4
     region: content
   field_year:
     type: number_integer
@@ -82,8 +82,12 @@ content:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    weight: 6
+    weight: 7
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
     region: content
 hidden:
   langcode: true
-  links: true

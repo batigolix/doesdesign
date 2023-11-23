@@ -25,6 +25,6 @@ settings:
 visibility:
   request_path:
     id: request_path
-    negate: true
+    negate: false
     context_mapping: {  }
-    pages: '<front>'
+    pages: /sieraden

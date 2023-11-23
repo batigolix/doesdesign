@@ -1,0 +1,14 @@
+<span class="image fit">
+{{ items|first.content }}
+</span>
+<div class="box alt">
+  <div class="row gtr-50 gtr-uniform">
+    {% for item in items|slice(1) %}
+      <div class="col-4">
+        <span class="image fit">
+          {{ item.content }}
+        </span>
+      </div>
+    {% endfor %}
+  </div>
+</div>
