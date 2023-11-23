@@ -11,9 +11,6 @@ source:
   plugin: d7_taxonomy_term
 process:
   vid:
-  - plugin: skip_on_value
-    source: vid
-    method: process
   - plugin: static_map
     source: vid
     map:
