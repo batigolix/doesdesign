@@ -64,7 +64,8 @@ function doesdesign_tools_mail($key, &$message, $params) {
  * Implements hook_form_FORM_ID_alter().
  */
 function doesdesign_tools_form_contact_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  honeypot_add_form_protection($form, $form_state, [
+
+  \Drupal::service('honeypot') ->addFormProtection($form, $form_state, [
     'honeypot',
     'time_restriction',
   ]);

@@ -54,7 +54,7 @@ class DdToolsContact extends BlockBase {
         'class' => 'youtube',
       ],
     ];
-    $img_path = drupal_get_path('theme', 'shakudo') . '/images/';
+    $img_path = \Drupal::service('extension.list.theme')->getPath('shakudo') . '/images/';
     $items = [];
     foreach ($socials as $social) {
       $img = [
