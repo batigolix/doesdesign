@@ -7,7 +7,7 @@ libraries:
   - massively/global-styling
   - massively/custom
 
-base theme: stable9
+base theme: stable
 
 regions:
   nav: Navigation

@@ -46,7 +46,9 @@
         "drupal/colorbox": "^2.0",
         "drupal/config_ignore": "^2.3",
         "drupal/config_split": "^1.4",
-        "drupal/core-recommended": "^9.1",
+        "drupal/core-composer-scaffold": "^10",
+        "drupal/core-project-message": "^10",
+        "drupal/core-recommended": "^10",
         "drupal/entity_usage": "^2.0@beta",
         "drupal/environment_indicator": "^4.0",
         "drupal/focal_point": "^2.0",
@@ -61,13 +63,14 @@
         "drupal/redirect": "^1.5",
         "drupal/single_image_formatter": "^1.5",
         "drupal/upgrade_status": "^4.0@alpha",
-        "drush/drush": "^10.3",
+        "drush/drush": "^11.6",
         "jackmoore/colorbox": "^1.6",
         "overtrue/phplint": "^2.3"
     },
     "require-dev": {
         "drupal/chosen": "^3.0",
         "drupal/coder": "^8.3",
+        "drupal/core-dev": "^10",
         "drupal/devel": "^5.1",
         "drupal/migrate_devel": "2.1",
         "drupal/stage_file_proxy": "^2.1",
@@ -85,7 +88,10 @@
         "allow-plugins": {
             "composer/installers": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
-            "cweagans/composer-patches": true
+            "cweagans/composer-patches": true,
+            "drupal/core-composer-scaffold": true,
+            "drupal/core-project-message": true,
+            "phpstan/extension-installer": true
         }
     },
     "extra": {
