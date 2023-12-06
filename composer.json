@@ -44,7 +44,7 @@
         "cweagans/composer-patches": "^1.6",
         "drupal/admin_toolbar": "^3.0",
         "drupal/colorbox": "^2.0",
-        "drupal/config_ignore": "^3.1",
+        "drupal/config_ignore": "^2.3",
         "drupal/config_split": "^1.4",
         "drupal/core-composer-scaffold": "^10",
         "drupal/core-project-message": "^10",
@@ -71,7 +71,9 @@
         "drupal/chosen": "^3.0",
         "drupal/coder": "^8.3",
         "drupal/core-dev": "^10",
+        "drupal/devel": "^5.1",
         "drupal/migrate_devel": "2.1",
+        "drupal/stage_file_proxy": "^2.1",
         "harvesthq/chosen": "^1.8"
     },
     "conflict": {
