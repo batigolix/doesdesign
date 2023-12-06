@@ -16,11 +16,11 @@ module:
   config: 0
   config_filter: 0
   config_ignore: 0
-  config_split: 0
   crop: 0
   ctools: 0
   datetime: 0
   dblog: 0
+  devel_generate: 0
   doesdesign_import: 0
   doesdesign_tools: 0
   dynamic_page_cache: 0
