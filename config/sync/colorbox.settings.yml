@@ -1,8 +1,9 @@
 _core:
   default_config_hash: GXgpFNb8H7n-27gImTB9s1A2lE-lmH43d6qf2KMYp_A
 langcode: nl
+dompurify_hide_warning: false
 custom:
-  style: example1
+  style: example5
   activate: 0
   transition_type: elastic
   transition_speed: 350

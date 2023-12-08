@@ -63,14 +63,11 @@
         "drupal/redirect": "^1.5",
         "drupal/single_image_formatter": "^1.5",
         "drupal/upgrade_status": "^4.0@alpha",
-        "drush/drush": "^11.6",
-        "jackmoore/colorbox": "^1.6",
-        "overtrue/phplint": "^2.3"
+        "drush/drush": "^12.4",
+        "jackmoore/colorbox": "^1.6"
     },
     "require-dev": {
         "drupal/chosen": "^3.0",
-        "drupal/coder": "^8.3",
-        "drupal/core-dev": "^10",
         "drupal/devel": "^5.1",
         "drupal/migrate_devel": "2.1",
         "drupal/stage_file_proxy": "^2.1",
