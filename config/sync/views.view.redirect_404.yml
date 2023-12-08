@@ -21,7 +21,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: '404-pagina''s oplossen'
+      title: "404-pagina's oplossen"
       fields:
         path:
           id: path

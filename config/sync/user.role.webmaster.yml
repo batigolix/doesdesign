@@ -52,6 +52,7 @@ permissions:
   - 'delete any page content'
   - 'delete media'
   - 'delete object revisions'
+  - 'delete own files'
   - 'delete own image media'
   - 'delete own object content'
   - 'delete own page content'
