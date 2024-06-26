@@ -6,5 +6,6 @@ dependencies:
     - node
 id: node.thumb
 label: Thumb
+description: ''
 targetEntityType: node
 cache: true

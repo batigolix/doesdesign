@@ -6,5 +6,6 @@ dependencies:
     - node
 id: node.picture
 label: Picture
+description: ''
 targetEntityType: node
 cache: true
