@@ -70,7 +70,7 @@
     "require-dev": {
         "drupal/chosen": "^3.0",
         "drupal/devel": "^5.1",
-        "drupal/migrate_devel": "2.1",
+        "drupal/migrate_devel": "2.3.0",
         "drupal/stage_file_proxy": "^2.1",
         "harvesthq/chosen": "^1.8"
     },

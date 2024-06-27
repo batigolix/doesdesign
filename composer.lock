@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dafaec0a0a4aa5c9527490a7a318a670",
+    "content-hash": "fe4bba9839b38cb81d5e13adedc01938",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -8695,17 +8695,17 @@
         },
         {
             "name": "drupal/migrate_devel",
-            "version": "2.1.0",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/migrate_devel.git",
-                "reference": "8.x-2.1"
+                "reference": "8.x-2.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/migrate_devel-8.x-2.1.zip",
-                "reference": "8.x-2.1",
-                "shasum": "1a90a2baf1d6d6d2b87e66a88cefdc8bd92531f6"
+                "url": "https://ftp.drupal.org/files/projects/migrate_devel-8.x-2.3.zip",
+                "reference": "8.x-2.3",
+                "shasum": "2e8efc7c16f9c3d830444a6af674dd3d511eaa69"
             },
             "require": {
                 "drupal/core": "^9.5 || ^10"
@@ -8716,8 +8716,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.1",
-                    "datestamp": "1690561080",
+                    "version": "8.x-2.3",
+                    "datestamp": "1698392974",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
