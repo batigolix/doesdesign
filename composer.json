@@ -68,7 +68,7 @@
         "jackmoore/colorbox": "^1.6"
     },
     "require-dev": {
-        "drupal/chosen": "^3.0",
+        "drupal/chosen": "^4.0",
         "drupal/devel": "^5.1",
         "drupal/migrate_devel": "2.3.0",
         "drupal/stage_file_proxy": "^2.1",
