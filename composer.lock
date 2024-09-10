@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fe4bba9839b38cb81d5e13adedc01938",
+    "content-hash": "c82e463a9b0663c2b1f198b6790fdd85",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3080,26 +3080,26 @@
         },
         {
             "name": "drupal/single_image_formatter",
-            "version": "1.7.0",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/single_image_formatter.git",
-                "reference": "8.x-1.7"
+                "reference": "2.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/single_image_formatter-8.x-1.7.zip",
-                "reference": "8.x-1.7",
-                "shasum": "ed213ebd4d752342e398fbd99d4abe8d3598fac5"
+                "url": "https://ftp.drupal.org/files/projects/single_image_formatter-2.0.0.zip",
+                "reference": "2.0.0",
+                "shasum": "4a783072e49c48ded9a69b294f2133984c8b6634"
             },
             "require": {
-                "drupal/core": "^8 || ^9 || ^10"
+                "drupal/core": "^8 || ^9 || ^10 || ^11"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.7",
-                    "datestamp": "1676360136",
+                    "version": "2.0.0",
+                    "datestamp": "1721028832",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
