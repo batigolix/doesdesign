@@ -64,7 +64,7 @@
         "drupal/single_image_formatter": "^2.0",
         "drupal/stable": "^2.0",
         "drupal/upgrade_status": "^4.0@alpha",
-        "drush/drush": "^12.4",
+        "drush/drush": "^13.0",
         "jackmoore/colorbox": "^1.6"
     },
     "require-dev": {
