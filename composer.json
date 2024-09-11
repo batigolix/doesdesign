@@ -71,7 +71,7 @@
         "drupal/devel": "^5.1",
         "drupal/migrate_devel": "3.0.0",
         "drupal/stage_file_proxy": "*",
-        "drush/drush": "^12.5",
+        "drush/drush": "^13.0",
         "harvesthq/chosen": "^1.8"
     },
     "conflict": {
