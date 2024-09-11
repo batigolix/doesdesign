@@ -1,5 +1,4 @@
 #ddev-generated
-version: '3.6'
 services:
   adminer:
     container_name: ddev-${DDEV_SITENAME}-adminer
@@ -20,6 +19,9 @@ services:
     labels:
       com.ddev.site-name: ${DDEV_SITENAME}
       com.ddev.approot: $DDEV_APPROOT
+    volumes:
+    - ".:/mnt/ddev_config"
+    - "ddev-global-cache:/mnt/ddev-global-cache"
     depends_on:
     - db
 

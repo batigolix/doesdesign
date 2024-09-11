@@ -17,7 +17,7 @@ use_dns_when_possible: true
 composer_version: "2"
 web_environment: []
 nodejs_version: "14"
-webimage_extra_packages: [build-essential, python]
+webimage_extra_packages: [build-essential, python3]
 
 # Key features of ddev's config.yaml:
 
