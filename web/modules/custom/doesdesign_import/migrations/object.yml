@@ -63,5 +63,8 @@ process:
     source: '@uid_lookup'
     default_value: 1
 migration_dependencies:
-  required: { }
+  required:
+    - media_image
+    - user
+    - term
   optional: { }
