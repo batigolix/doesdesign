@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - filter.format.basic_html
     - media.type.image
     - node.type.object
     - node.type.page
@@ -11,6 +12,7 @@ dependencies:
   module:
     - environment_indicator
     - file
+    - filter
     - media
     - node
     - path
@@ -72,6 +74,7 @@ permissions:
   - 'revert page revisions'
   - 'update any media'
   - 'update media'
+  - 'use text format basic_html'
   - 'view all media revisions'
   - 'view all revisions'
   - 'view object revisions'
