@@ -16,30 +16,32 @@
 		}
 	}
 
-	ul {
-		list-style: disc;
-		margin: 0 0 _size(element-margin) 0;
-		padding-left: 1rem;
+  .main {
+    ul {
+      list-style: disc;
+      margin: 0 0 _size(element-margin) 0;
+      padding-left: 1rem;
 
-		li {
-			padding-left: 0.5rem;
-		}
+      li {
+        padding-left: 0.5rem;
+      }
 
-		&.divided {
-			list-style: none;
-			padding-left: 0;
+      &.divided {
+        list-style: none;
+        padding-left: 0;
 
-			li {
-				border-top: solid 1px;
-				padding: 0.5rem 0;
+        li {
+          border-top: solid 1px;
+          padding: 0.5rem 0;
 
-				&:first-child {
-					border-top: 0;
-					padding-top: 0;
-				}
-			}
-		}
-	}
+          &:first-child {
+            border-top: 0;
+            padding-top: 0;
+          }
+        }
+      }
+    }
+  }
 
   ul.flat {
     li {

@@ -113,6 +113,7 @@
 	@mixin color-button($p: null) {
     $highlight: _palette($p, highlight);
 
+    .main {
       input[type="submit"],
       input[type="reset"],
       input[type="button"],
@@ -138,6 +139,5 @@
         }
       }
     }
+  }
     @include color-button;
-
-

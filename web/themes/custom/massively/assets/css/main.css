@@ -137,7 +137,7 @@ body, input, select, textarea {
   line-height: 2.375;
 }
 
-a {
+.main a {
   -moz-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   -webkit-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   -ms-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
@@ -145,10 +145,10 @@ a {
   border-bottom: solid 1px;
   text-decoration: none;
 }
-a:hover {
+.main a:hover {
   border-bottom-color: transparent;
 }
-a:focus, a:focus-visible {
+.main a:focus, .main a:focus-visible {
   outline: 4px solid deeppink;
   outline-offset: 2px;
   border-radius: 4px;
@@ -1763,37 +1763,37 @@ button:disabled,
   opacity: 0.25;
 }
 
-input[type=submit],
-input[type=reset],
-input[type=button],
-button,
-.button {
+.main input[type=submit],
+.main input[type=reset],
+.main input[type=button],
+.main button,
+.main .button {
   background-color: transparent;
   box-shadow: inset 0 0 0 2px #212931;
   color: #212931 !important;
 }
-input[type=submit]:hover,
-input[type=reset]:hover,
-input[type=button]:hover,
-button:hover,
-.button:hover {
+.main input[type=submit]:hover,
+.main input[type=reset]:hover,
+.main input[type=button]:hover,
+.main button:hover,
+.main .button:hover {
   box-shadow: inset 0 0 0 2px #2E8B57;
   color: #2E8B57 !important;
 }
-input[type=submit].primary,
-input[type=reset].primary,
-input[type=button].primary,
-button.primary,
-.button.primary {
+.main input[type=submit].primary,
+.main input[type=reset].primary,
+.main input[type=button].primary,
+.main button.primary,
+.main .button.primary {
   background-color: #212931;
   box-shadow: none;
   color: #ffffff !important;
 }
-input[type=submit].primary:hover,
-input[type=reset].primary:hover,
-input[type=button].primary:hover,
-button.primary:hover,
-.button.primary:hover {
+.main input[type=submit].primary:hover,
+.main input[type=reset].primary:hover,
+.main input[type=button].primary:hover,
+.main button.primary:hover,
+.main .button.primary:hover {
   background-color: #2E8B57;
 }
 
@@ -2350,23 +2350,23 @@ ol li {
   padding-left: 0.25rem;
 }
 
-ul {
+.main ul {
   list-style: disc;
   margin: 0 0 2rem 0;
   padding-left: 1rem;
 }
-ul li {
+.main ul li {
   padding-left: 0.5rem;
 }
-ul.divided {
+.main ul.divided {
   list-style: none;
   padding-left: 0;
 }
-ul.divided li {
+.main ul.divided li {
   border-top: solid 1px;
   padding: 0.5rem 0;
 }
-ul.divided li:first-child {
+.main ul.divided li:first-child {
   border-top: 0;
   padding-top: 0;
 }
@@ -2825,37 +2825,37 @@ body.is-preload #wrapper.fade-in:before {
 #intro hr {
   border-bottom-color: #ffffff;
 }
-#intro input[type=submit],
-#intro input[type=reset],
-#intro input[type=button],
-#intro button,
-#intro .button {
+#intro .main input[type=submit],
+#intro .main input[type=reset],
+#intro .main input[type=button],
+#intro .main button,
+#intro .main .button {
   background-color: transparent;
   box-shadow: inset 0 0 0 2px #ffffff;
   color: #ffffff !important;
 }
-#intro input[type=submit]:hover,
-#intro input[type=reset]:hover,
-#intro input[type=button]:hover,
-#intro button:hover,
-#intro .button:hover {
+#intro .main input[type=submit]:hover,
+#intro .main input[type=reset]:hover,
+#intro .main input[type=button]:hover,
+#intro .main button:hover,
+#intro .main .button:hover {
   box-shadow: inset 0 0 0 2px #ADFF2F;
   color: #ADFF2F !important;
 }
-#intro input[type=submit].primary,
-#intro input[type=reset].primary,
-#intro input[type=button].primary,
-#intro button.primary,
-#intro .button.primary {
+#intro .main input[type=submit].primary,
+#intro .main input[type=reset].primary,
+#intro .main input[type=button].primary,
+#intro .main button.primary,
+#intro .main .button.primary {
   background-color: #ffffff;
   box-shadow: none;
   color: #1e252d !important;
 }
-#intro input[type=submit].primary:hover,
-#intro input[type=reset].primary:hover,
-#intro input[type=button].primary:hover,
-#intro button.primary:hover,
-#intro .button.primary:hover {
+#intro .main input[type=submit].primary:hover,
+#intro .main input[type=reset].primary:hover,
+#intro .main input[type=button].primary:hover,
+#intro .main button.primary:hover,
+#intro .main .button.primary:hover {
   background-color: #ADFF2F;
 }
 #intro h1 {
