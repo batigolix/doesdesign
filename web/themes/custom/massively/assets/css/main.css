@@ -3171,6 +3171,7 @@ body.is-preload #intro:not(.hidden) + #header + #nav {
 /* Main */
 #main {
   background-color: #ffffff;
+  opacity: 0.9;
   position: relative;
   margin: 0 auto;
   width: calc(100% - 4rem);
@@ -3326,6 +3327,7 @@ body.is-preload #intro:not(.hidden) + #header + #nav {
   display: -ms-flex;
   display: flex;
   background-color: #f5f5f5;
+  opacity: 0.85;
   cursor: default;
   position: relative;
   margin: 0 auto;

@@ -3,7 +3,9 @@ langcode: nl
 status: true
 dependencies:
   module:
+    - ckeditor_media_resize
     - editor
+    - media
 _core:
   default_config_hash: P8ddpAIKtawJDi5SzOwCzVnnNYqONewSTJ6Xn0dW_aQ
 name: 'Eenvoudige HTML'
@@ -14,38 +16,79 @@ filters:
     id: editor_file_reference
     provider: editor
     status: true
-    weight: 11
+    weight: -46
     settings: {  }
   filter_align:
     id: filter_align
     provider: filter
     status: true
-    weight: 7
+    weight: -49
+    settings: {  }
+  filter_autop:
+    id: filter_autop
+    provider: filter
+    status: false
+    weight: -41
     settings: {  }
   filter_caption:
     id: filter_caption
     provider: filter
     status: true
-    weight: 8
+    weight: -48
     settings: {  }
   filter_html:
     id: filter_html
     provider: filter
     status: true
-    weight: -10
+    weight: -50
     settings:
-      allowed_html: '<br> <p> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <cite> <dl> <dt> <dd> <span> <a hreflang href> <blockquote cite> <ul type> <ol type start> <img src alt height width data-entity-type data-entity-uuid data-align data-caption> <strong> <em> <code> <li>'
+      allowed_html: '<br> <p> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <cite> <dl> <dt> <dd> <a hreflang href class data-insert-attach data-insert-type title> <blockquote cite> <ul type> <ol type start> <strong> <em> <code> <li> <img src alt height width data-caption data-align class data-insert-attach data-insert-type sizes srcset title> <drupal-media data-entity-type data-entity-uuid alt data-caption data-align data-media-width> <audio contenteditable controls data-insert-attach data-insert-type src type> <span class data-insert-attach data-insert-type> <video contenteditable controls data-insert-attach data-insert-type src type>'
       filter_html_help: false
       filter_html_nofollow: false
+  filter_html_escape:
+    id: filter_html_escape
+    provider: filter
+    status: false
+    weight: -42
+    settings: {  }
   filter_html_image_secure:
     id: filter_html_image_secure
     provider: filter
     status: true
-    weight: 9
+    weight: -47
+    settings: {  }
+  filter_htmlcorrector:
+    id: filter_htmlcorrector
+    provider: filter
+    status: false
+    weight: -39
     settings: {  }
   filter_image_lazy_load:
     id: filter_image_lazy_load
     provider: filter
     status: true
-    weight: 12
+    weight: -45
     settings: {  }
+  filter_resize_media:
+    id: filter_resize_media
+    provider: ckeditor_media_resize
+    status: true
+    weight: -44
+    settings: {  }
+  filter_url:
+    id: filter_url
+    provider: filter
+    status: false
+    weight: -40
+    settings:
+      filter_url_length: 72
+  media_embed:
+    id: media_embed
+    provider: media
+    status: true
+    weight: -43
+    settings:
+      default_view_mode: default
+      allowed_view_modes: {  }
+      allowed_media_types:
+        image: image

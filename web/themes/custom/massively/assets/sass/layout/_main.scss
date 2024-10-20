@@ -8,6 +8,7 @@
 
 	#main {
 		background-color: _palette(bg);
+    opacity: 0.9;
 		position: relative;
 		margin: 0 auto;
 		width: calc(100% - #{_size(padding) * 2});

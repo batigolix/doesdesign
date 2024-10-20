@@ -21,6 +21,8 @@ settings:
       - bulletedList
       - numberedList
       - sourceEditing
+      - drupalInsertImage
+      - drupalMedia
   plugins:
     ckeditor5_heading:
       enabled_headings:
@@ -29,6 +31,8 @@ settings:
         - heading4
         - heading5
         - heading6
+    ckeditor5_imageResize:
+      allow_resize: true
     ckeditor5_list:
       properties:
         reversed: false
@@ -40,16 +44,23 @@ settings:
         - '<dl>'
         - '<dt>'
         - '<dd>'
-        - '<span>'
         - '<a hreflang>'
         - '<blockquote cite>'
         - '<ul type>'
         - '<ol type>'
-        - '<img src alt height width data-entity-type data-entity-uuid data-align data-caption>'
         - '<h2 id>'
         - '<h3 id>'
         - '<h4 id>'
         - '<h5 id>'
         - '<h6 id>'
+    ckeditor_media_resize_mediaResize:
+      apply_image_styles: true
+      image_styles:
+        - cke_media_resize_small
+        - cke_media_resize_medium
+        - cke_media_resize_large
+        - cke_media_resize_xl
+    media_media:
+      allow_view_mode_override: false
 image_upload:
   status: false

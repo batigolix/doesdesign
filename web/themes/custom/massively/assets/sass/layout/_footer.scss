@@ -11,6 +11,7 @@
 		@include vendor('display', 'flex');
 		background-color: _palette(alt, bg);
 		//color: _palette(fg-light);
+    opacity: 0.85;
 		cursor: default;
 		position: relative;
 		margin: 0 auto;
