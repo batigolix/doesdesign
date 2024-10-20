@@ -3,7 +3,7 @@ _core:
 langcode: nl
 dompurify_hide_warning: false
 custom:
-  style: example5
+  style: plain
   activate: 0
   transition_type: elastic
   transition_speed: 350

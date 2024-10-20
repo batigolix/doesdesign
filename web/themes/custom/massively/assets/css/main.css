@@ -2774,7 +2774,6 @@ body.is-preload #wrapper.fade-in:before {
 /* Intro */
 #intro {
   color: #ffffff;
-  padding: 8rem 4rem 6rem 4rem;
   -moz-align-items: center;
   -webkit-align-items: center;
   -ms-align-items: center;
@@ -2920,7 +2919,7 @@ body.is-preload #intro:not(.hidden) + #header + #nav {
 @media screen and (max-width: 980px) {
   #intro {
     padding: 4rem 4rem 2rem 4rem;
-    min-height: 90vh;
+    min-height: 80vh;
   }
   #intro p br {
     display: none;
@@ -2932,10 +2931,10 @@ body.is-preload #intro:not(.hidden) + #header + #nav {
 @media screen and (max-width: 736px) {
   #intro {
     padding: 3rem 2rem 1rem 2rem;
-    min-height: 80vh;
+    min-height: 60vh;
   }
   #intro h1 {
-    font-size: 3.25rem;
+    font-size: 2.8rem;
     line-height: 1.1;
     margin-bottom: 1rem;
   }
@@ -3054,11 +3053,12 @@ body.is-preload #intro:not(.hidden) + #header + #nav {
   -webkit-transition: -webkit-transform 1s ease, opacity 1s ease;
   -ms-transition: -ms-transform 1s ease, opacity 1s ease;
   transition: transform 1s ease, opacity 1s ease;
-  background: rgba(255, 255, 255, 0.575);
+  background: #444;
   height: 4rem;
   line-height: 4rem;
   margin: -4rem auto 0 auto;
   overflow: hidden;
+  opacity: 0.75;
   padding: 0 2rem 0 0;
   position: relative;
   width: calc(100% - 4rem);
