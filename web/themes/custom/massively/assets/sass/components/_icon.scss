@@ -6,7 +6,7 @@
 
 /* Icon */
 
-	.icon {
+  a.icon, .icon {
 		@include icon;
 		border-bottom: none;
 		position: relative;

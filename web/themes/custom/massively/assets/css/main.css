@@ -259,15 +259,18 @@ hr.major {
   margin: 5rem 0;
 }
 
-.align-left {
+.align-left,
+.align-left p {
   text-align: left;
 }
 
-.align-center {
+.align-center,
+.align-center p {
   text-align: center;
 }
 
-.align-right {
+.align-right,
+.align-right p {
   text-align: right;
 }
 
@@ -2104,12 +2107,12 @@ input[type=radio]:checked + label:before {
 }
 
 /* Icon */
-.icon {
+a.icon, .icon {
   text-decoration: none;
   border-bottom: none;
   position: relative;
 }
-.icon:before {
+a.icon:before, .icon:before {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   display: inline-block;
@@ -2121,16 +2124,16 @@ input[type=radio]:checked + label:before {
   font-family: "Font Awesome 5 Free";
   font-weight: 400;
 }
-.icon > .label {
+a.icon > .label, .icon > .label {
   display: none;
 }
-.icon:before {
+a.icon:before, .icon:before {
   line-height: inherit;
 }
-.icon.solid:before {
+a.icon.solid:before, .icon.solid:before {
   font-weight: 900;
 }
-.icon.brands:before {
+a.icon.brands:before, .icon.brands:before {
   font-family: "Font Awesome 5 Brands";
 }
 
@@ -3051,7 +3054,7 @@ body.is-preload #intro:not(.hidden) + #header + #nav {
   -webkit-transition: -webkit-transform 1s ease, opacity 1s ease;
   -ms-transition: -ms-transform 1s ease, opacity 1s ease;
   transition: transform 1s ease, opacity 1s ease;
-  background: rgba(255, 255, 255, 0.175);
+  background: rgba(255, 255, 255, 0.575);
   height: 4rem;
   line-height: 4rem;
   margin: -4rem auto 0 auto;
@@ -3133,7 +3136,7 @@ body.is-preload #intro:not(.hidden) + #header + #nav {
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
   display: block;
   font-size: 0.8rem;
-  padding: 0 2rem;
+  padding: 0 1.3rem;
 }
 #nav ul.links li a:hover, #nav ul.links li a:focus, #nav ul.links li a:focus-visible {
   color: inherit !important;

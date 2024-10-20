@@ -21,7 +21,7 @@ bundle: object
 mode: alt_teaser
 content:
   body:
-    type: text_trimmed
+    type: text_summary_or_trimmed
     label: hidden
     settings:
       trim_length: 160

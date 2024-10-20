@@ -163,15 +163,18 @@
 		}
 	}
 
-	.align-left {
-		text-align: left;
-	}
+  .align-left,
+  .align-left p {
+    text-align: left;
+  }
 
-	.align-center {
+  .align-center,
+  .align-center p {
 		text-align: center;
 	}
 
-	.align-right {
+	.align-right,
+  .align-right p {
 		text-align: right;
 	}
 

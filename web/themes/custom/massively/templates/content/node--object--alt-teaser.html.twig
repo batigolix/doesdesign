@@ -4,7 +4,9 @@
     <h2><a href="{{ url }}">{{ label }}</a></h2>
   </header>
   <a href="{{ url }}" class="image fit">{{ content.field_media_image.0 }}</a>
-  {{ content.body }}
+  <div class="align-left">
+    {{ content.body }}
+  </div>
   <ul class="actions special">
     <li><a href="{{ url }}" class="button">{{ 'Sieraad bekijken'|t }}</a></li>
   </ul>

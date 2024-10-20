@@ -85,8 +85,9 @@
       <p>{{ node.body.summary }}</p>
     </header>
   {% endif %}
-
-  <div class="image main">{{ content.field_image }}</div>
+  {% if content.field_image %}
+    <div class="image main">{{ content.field_image }}</div>
+  {% endif %}
   <div{{ content_attributes }}>
     {{ content|without('field_image') }}
   </div>

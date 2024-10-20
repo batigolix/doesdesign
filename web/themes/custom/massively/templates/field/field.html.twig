@@ -45,16 +45,16 @@
 {% if label_hidden %}
   {% if multiple %}
       {% for item in items %}
-        <p{{ item.attributes }}>{{ item.content }}</p>
+        <div{{ item.attributes }}>{{ item.content }}</div>
       {% endfor %}
   {% else %}
     {% for item in items %}
-      <p{{ attributes }}>{{ item.content }}</p>
+      <div{{ attributes }}>{{ item.content }}</div>
     {% endfor %}
   {% endif %}
 {% else %}
     <h3{{ title_attributes.addClass(title_classes) }}>{{ label }}</h3>
     {% for item in items %}
-      <p{{ item.attributes }}>{{ item.content }}</p>
+      <div{{ item.attributes }}>{{ item.content }}</div>
     {% endfor %}
 {% endif %}
