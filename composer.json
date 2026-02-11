@@ -41,7 +41,7 @@
     "require": {
         "php": "*",
         "composer/installers": "^1.2",
-        "cweagans/composer-patches": "^1.6",
+        "cweagans/composer-patches": "^2.0",
         "drupal/admin_toolbar": "^3.0",
         "drupal/ckeditor_media_resize": "^1.0@beta",
         "drupal/colorbox": "^2.0",
