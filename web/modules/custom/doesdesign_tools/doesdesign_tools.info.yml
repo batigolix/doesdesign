@@ -1,9 +1,8 @@
 name: 'Doesdesign tools'
 type: module
 description: 'My Awesome Module'
-core: 8.x
 package: 'Custom'
 dependencies:
   - node
   - colorbox
-core_version_requirement: ^8 || ^9 || ^10
+core_version_requirement: ^8 || ^9 || ^10 || ^11
