@@ -40,16 +40,16 @@
     ],
     "require": {
         "php": "*",
-        "composer/installers": "^1.2",
+        "composer/installers": "^2.0",
         "cweagans/composer-patches": "^2.0",
         "drupal/admin_toolbar": "^3.0",
         "drupal/ckeditor_media_resize": "^1.0@beta",
         "drupal/colorbox": "^2.0",
-        "drupal/config_ignore": "^2.3",
-        "drupal/config_split": "^1.4",
-        "drupal/core-composer-scaffold": "^10",
-        "drupal/core-project-message": "^10",
-        "drupal/core-recommended": "^10",
+        "drupal/config_ignore": "^3.0",
+        "drupal/config_split": "^2.0",
+        "drupal/core-composer-scaffold": "^11",
+        "drupal/core-project-message": "^11",
+        "drupal/core-recommended": "^11",
         "drupal/entity_usage": "^2.0@beta",
         "drupal/environment_indicator": "^4.0",
         "drupal/focal_point": "^2.1",
@@ -58,7 +58,7 @@
         "drupal/honeypot": "^2.0",
         "drupal/image_effects": "^5.0",
         "drupal/media_library_edit": "^3.0",
-        "drupal/metatag": "^1.13",
+        "drupal/metatag": "^2.0",
         "drupal/migrate_plus": "^6.0",
         "drupal/migrate_tools": "^6.0",
         "drupal/pathauto": "^1.6",
@@ -73,7 +73,7 @@
         "drupal/devel": "^5.1",
         "drupal/migrate_devel": "3.0.1",
         "drupal/stage_file_proxy": "*",
-        "drush/drush": "^12.5",
+        "drush/drush": "^13.0",
         "harvesthq/chosen": "^1.8"
     },
     "conflict": {
@@ -136,11 +136,7 @@
             "web/modules/custom/{$name}": ["type:drupal-custom-module"],
             "web/themes/custom/{$name}": ["type:drupal-custom-theme"]
         },
-        "patches": {
-            "drupal/chosen": {
-                "library folder": "https://www.drupal.org/files/issues/2019-12-19/3102250-composer-package-info-2.patch"
-            }
-        },
+        "patches": {},
         "drupal-core-project-message": {
             "include-keys": ["homepage", "support"],
             "post-create-project-cmd-message": [
