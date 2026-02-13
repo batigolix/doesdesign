@@ -1,0 +1,17 @@
+{
+    "_hash": "cf67ad2e2b3de9114eff7c6ca2d12de8d57cac5954667ddd0cc2f87a7510af51",
+    "patches": {
+        "drupal/chosen": [
+            {
+                "package": "drupal/chosen",
+                "description": "library folder",
+                "url": "https://www.drupal.org/files/issues/2019-12-19/3102250-composer-package-info-2.patch",
+                "sha256": "2fb8719a7bbef2fc1dcde773eba7727ea7cec4bc76773c8733c8dad203e7a240",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ]
+    }
+}
