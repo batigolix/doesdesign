@@ -3,3 +3,4 @@ entity_type_groups:
     object:
       basic: basic
       advanced: advanced
+tag_trim_end: '|.,-:;/+&([{"'''

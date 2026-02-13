@@ -6,10 +6,9 @@ dependencies:
     - core.entity_view_mode.media.large
     - field.field.media.image.field_media_image
     - image.style.extra_large_wide
-    - image.style.medium_wide_508_x_310_
     - media.type.image
   module:
-    - colorbox
+    - image
 _core:
   default_config_hash: 73xaTNkI5J6sfFcBmNYeuk070X3mQS_iwwWaPYyfG2M
 id: media.image.large
@@ -18,16 +17,13 @@ bundle: image
 mode: large
 content:
   field_media_image:
-    type: colorbox
+    type: image
     label: visually_hidden
     settings:
-      colorbox_image_style: ''
-      colorbox_gallery: page
-      colorbox_gallery_custom: ''
-      colorbox_caption: auto
-      colorbox_caption_custom: ''
-      colorbox_node_style: medium_wide_508_x_310_
-      colorbox_node_style_first: extra_large_wide
+      image_link: ''
+      image_style: extra_large_wide
+      image_loading:
+        attribute: lazy
     third_party_settings: {  }
     weight: 1
     region: content

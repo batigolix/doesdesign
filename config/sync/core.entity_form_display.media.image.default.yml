@@ -4,10 +4,10 @@ status: true
 dependencies:
   config:
     - field.field.media.image.field_media_image
-    - image.style.medium
+    - image.style.thumbnail
     - media.type.image
   module:
-    - focal_point
+    - image
     - path
 _core:
   default_config_hash: JSY4-JPyNZBiYYo6imdRYF6_SdtWQexPndrLvn3-vw4
@@ -23,14 +23,12 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_media_image:
-    type: image_focal_point
+    type: image_image
     weight: 0
     region: content
     settings:
       progress_indicator: throbber
-      preview_image_style: medium
-      preview_link: true
-      offsets: '50,50'
+      preview_image_style: thumbnail
     third_party_settings: {  }
   langcode:
     type: language_select

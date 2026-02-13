@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\dd8_tools\Plugin\Block;
+namespace Drupal\doesdesign_tools\Plugin\Block;
 
 use Drupal\Core\Link;
 use Drupal\Core\Block\BlockBase;

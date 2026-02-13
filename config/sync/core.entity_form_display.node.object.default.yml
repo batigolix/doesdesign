@@ -13,7 +13,6 @@ dependencies:
     - node.type.object
   module:
     - media_library
-    - media_library_edit
     - path
     - text
 id: node.object.default
@@ -49,10 +48,7 @@ content:
     region: content
     settings:
       media_types: {  }
-    third_party_settings:
-      media_library_edit:
-        show_edit: '1'
-        edit_form_mode: default
+    third_party_settings: {  }
   field_price:
     type: number
     weight: 4

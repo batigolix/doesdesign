@@ -11,7 +11,6 @@ module:
   chosen: 0
   chosen_lib: 0
   ckeditor5: 0
-  ckeditor_media_resize: 0
   colorbox: 0
   config: 0
   config_ignore: 0
@@ -44,7 +43,6 @@ module:
   locale: 0
   media: 0
   media_library: 0
-  media_library_edit: 0
   menu_link_content: 0
   menu_ui: 0
   metatag: 0
