@@ -99,6 +99,7 @@ h1, h2, h3, h4, h5, h6 {
     @media (min-width: $break1) {
       img {
         width: 75%;
+        max-width: 100px;
       };
     }
     float: left;
@@ -108,12 +109,12 @@ h1, h2, h3, h4, h5, h6 {
     @media (min-width: $break1) {
       float: left;
       width: 83.33%;
-      font-size: 150%;
+      font-size: 112.5%;
     }
     @media (min-width: $break2) {
       float: left;
       width: 50%;
-      font-size: 125%;
+      font-size: 93.75%;
     }
     margin: 0 12px 0;
     #site-name {
