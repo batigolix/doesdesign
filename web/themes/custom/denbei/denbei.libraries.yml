@@ -1,0 +1,34 @@
+global-styling:
+  version: 1.x
+  css:
+    theme:
+      css/screen.css: { weight: 100 }
+  dependencies:
+    - denbei/google-fonts
+
+print:
+  version: 1.x
+  css:
+    theme:
+      css/print.css: { media: print }
+
+tabs:
+  version: 1.x
+  css:
+    theme:
+      css/tabs.css: {}
+
+custom-js:
+  version: 1.x
+  js:
+    js/scripts.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/once
+
+google-fonts:
+  version: 1.x
+  css:
+    base:
+      '//fonts.googleapis.com/css?family=Gentium+Book+Basic:400,700,400italic,700italic': { type: external, minified: true }

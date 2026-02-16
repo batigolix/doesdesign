@@ -1,0 +1,20 @@
+uuid: 39a44eb5-dc06-482b-9e55-d53906feb0f7
+langcode: nl
+status: true
+dependencies:
+  module:
+    - doesdesign_tools
+  theme:
+    - denbei
+id: denbei_social
+theme: denbei
+region: header_right
+weight: 0
+provider: null
+plugin: social_block
+settings:
+  id: social_block
+  label: 'Social block'
+  label_display: '0'
+  provider: doesdesign_tools
+visibility: {  }

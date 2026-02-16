@@ -26,7 +26,7 @@ content:
       colorbox_caption: auto
       colorbox_caption_custom: ''
       colorbox_node_style: medium_wide_508_x_310_
-      colorbox_node_style_first: extra_large_wide
+      colorbox_node_style_first: medium_wide_508_x_310_
     third_party_settings: {  }
     weight: 1
     region: content

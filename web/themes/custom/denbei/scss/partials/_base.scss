@@ -1,0 +1,19 @@
+// Color variables
+$light_brown: #b37649;
+$dark_yellow: #ad771a;
+$light_grey: #adadb0;
+$dark_grey: #635753;
+$light_beige: #d3cdc8;
+$color: $light_brown;
+$light_yellow: #ebe5d0;
+
+// Font mixin
+@mixin font($weight: 700) {
+  font-family: "Gentium Basic", Georgia, serif, cursive;
+  font-weight: $weight;
+}
+
+// Breakpoint variables
+$break1: 480px;
+$break2: 768px;
+$break3: 1000px;

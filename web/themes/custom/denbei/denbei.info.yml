@@ -1,0 +1,18 @@
+name: Denbei
+type: theme
+description: 'Denbei theme - port of the Drupal 7 Shoami theme for doesdesign.nl'
+package: Custom
+core_version_requirement: ^11
+base theme: stable9
+libraries:
+  - denbei/global-styling
+  - denbei/custom-js
+  - denbei/tabs
+regions:
+  header: Header
+  header_right: 'Header Right'
+  content_top: 'Content Top'
+  help: Help
+  content: Content
+  sidebar: Sidebar
+  footer: Footer

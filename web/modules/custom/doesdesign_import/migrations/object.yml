@@ -66,5 +66,6 @@ migration_dependencies:
   required:
     - media_image
     - user
-    - term
+    - term:vocabulary_6
+    - term:vocabulary_7
   optional: { }

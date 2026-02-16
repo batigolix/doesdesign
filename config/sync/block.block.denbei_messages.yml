@@ -1,0 +1,18 @@
+uuid: e7c6c081-2ec5-46fb-9dc6-f1ec46ffc98d
+langcode: nl
+status: true
+dependencies:
+  theme:
+    - denbei
+id: denbei_messages
+theme: denbei
+region: content
+weight: -10
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  label_display: '0'
+  provider: system
+visibility: {  }

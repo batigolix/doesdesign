@@ -1,0 +1,67 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the Denbei theme.
+ */
+
+/**
+ * Implements hook_preprocess_image().
+ *
+ * Removes width/height attributes for specific image styles to allow
+ * responsive sizing via CSS.
+ */
+function denbei_preprocess_image(&$variables) {
+  if (isset($variables['style_name'])) {
+    switch ($variables['style_name']) {
+      case 'square-thumb':
+      case 'square-thumb-medium':
+      case 'large-thumb':
+      case 'x-medium':
+        unset($variables['attributes']['width']);
+        unset($variables['attributes']['height']);
+        break;
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_page().
+ *
+ * Provides logo, site_name, site_slogan, and page_title variables
+ * for the page.html.twig template.
+ */
+function denbei_preprocess_page(&$variables) {
+  $site_config = \Drupal::config('system.site');
+  $variables['site_name'] = $site_config->get('name');
+  $variables['site_slogan'] = $site_config->get('slogan');
+
+  // Provide logo path.
+  $logo = theme_get_setting('logo', 'denbei');
+  if ($logo && isset($logo['url'])) {
+    $variables['logo'] = $logo['url'];
+  }
+  elseif ($logo && isset($logo['path'])) {
+    $variables['logo'] = \Drupal::service('file_url_generator')->generateString($logo['path']);
+  }
+
+  // Provide page title.
+  $request = \Drupal::request();
+  $route_match = \Drupal::routeMatch();
+  if ($route = $route_match->getRouteObject()) {
+    $variables['page_title'] = \Drupal::service('title_resolver')->getTitle($request, $route);
+  }
+}
+
+/**
+ * Implements hook_preprocess_menu_local_task().
+ *
+ * Adds button classes to local task links for tab styling.
+ */
+function denbei_preprocess_menu_local_task(&$variables) {
+  $link = &$variables['element']['#link'];
+  $link['url']->setOption('attributes', ['class' => ['button']]);
+  if (!empty($variables['element']['#active'])) {
+    $link['url']->setOption('attributes', ['class' => ['button', 'primary']]);
+  }
+}

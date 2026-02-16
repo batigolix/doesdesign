@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Theme override to display a region.
+ *
+ * Simplified region template without wrapper div.
+ * The content is printed directly to avoid unnecessary markup.
+ *
+ * Available variables:
+ * - content: The content for this region, typically blocks.
+ * - attributes: HTML attributes for the region.
+ * - region: The name of the region variable as defined in the theme's .info.yml file.
+ *
+ * @see template_preprocess_region()
+ */
+#}
+{% if content %}
+  {{ content }}
+{% endif %}

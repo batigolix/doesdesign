@@ -24,7 +24,7 @@ use Drupal\migrate\Row;
  *   source: tid
  * @endcode
  */
-class getTermName extends ProcessPluginBase {
+class GetTermName extends ProcessPluginBase {
 
   /**
    * {@inheritdoc}

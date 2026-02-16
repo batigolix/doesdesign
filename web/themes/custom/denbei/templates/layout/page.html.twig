@@ -1,0 +1,81 @@
+{#
+/**
+ * @file
+ * Theme override to display a single page.
+ *
+ * Available variables:
+ * - is_front: A flag indicating if the current page is the front page.
+ * - logo: The path to the logo image.
+ * - site_name: The name of the site.
+ * - site_slogan: The slogan of the site.
+ * - page_title: The title of the current page.
+ * - page: Regions for the page.
+ *
+ * @see template_preprocess_page()
+ */
+#}
+<div id="page">
+  <header id="header" role="banner">
+    {% if logo %}
+      <div id="logo">
+        <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">
+          <img src="{{ logo }}" alt="{{ 'Home'|t }}"/>
+        </a>
+      </div>
+    {% endif %}
+    <div id="site-name-and-slogan">
+      {% if site_name %}
+        <div id="site-name">
+          <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">{{ site_name }}</a>
+        </div>
+      {% endif %}
+      {% if site_slogan %}
+        <div id="site-slogan">{{ site_slogan }}</div>
+      {% endif %}
+    </div>
+    <div id="header-block">
+      {% if page.header_right %}
+        {{ page.header_right }}
+      {% endif %}
+    </div>
+  </header>
+
+  <div id="content-wrapper">
+    <div id="content-top">
+      {% if page.content_top %}
+        <nav id="content-top-1" role="navigation">
+          {{ page.content_top }}
+        </nav>
+      {% endif %}
+    </div>
+
+    <div id="content">
+      <div id="content-area" role="main">
+        {% if page_title and not is_front %}
+          <h1 class="title">{{ page_title }}</h1>
+        {% endif %}
+        {{ page.help }}
+        {% if tabs %}
+          <div class="tabs">{{ tabs }}</div>
+        {% endif %}
+        {% if action_links %}
+          <ul class="action-links">{{ action_links }}</ul>
+        {% endif %}
+        {{ page.content }}
+      </div>
+
+      {% if page.sidebar %}
+        <aside id="sidebar" role="complementary">
+          {{ page.sidebar }}
+        </aside>
+      {% endif %}
+      <div id="content-end"></div>
+    </div>
+
+    {% if page.footer %}
+      <footer id="footer" role="contentinfo">
+        {{ page.footer }}
+      </footer>
+    {% endif %}
+  </div>
+</div>

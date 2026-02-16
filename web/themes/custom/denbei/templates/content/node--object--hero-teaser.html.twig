@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Theme override for product (object) nodes in hero-teaser view mode.
+ *
+ * Minimal template for slideshow use - displays only the first image.
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {% if content.field_media_image[0] %}
+    {{ content.field_media_image[0] }}
+  {% endif %}
+  {{ title_suffix }}
+</div>

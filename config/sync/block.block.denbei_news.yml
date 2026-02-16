@@ -1,0 +1,30 @@
+uuid: 1c7fac6c-10e5-431d-ab40-1e46c7500ddb
+langcode: nl
+status: true
+dependencies:
+  config:
+    - views.view.news
+  module:
+    - system
+    - views
+  theme:
+    - denbei
+id: denbei_news
+theme: denbei
+region: content
+weight: 5
+provider: null
+plugin: 'views_block:news-block_1'
+settings:
+  id: 'views_block:news-block_1'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+  items_per_page: null
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: '<front>'

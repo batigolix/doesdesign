@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * Theme override for product (object) nodes in teaser view mode.
+ *
+ * Displays a compact teaser with image, title, and description.
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+<article id="node-{{ node.id() }}"{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {% if content.field_media_image[0] %}
+    <div class="object-image">{{ content.field_media_image[0] }}</div>
+  {% endif %}
+  <h2{{ title_attributes }}>
+    <a href="{{ url }}">{{ label }}</a>
+  </h2>
+  <div class="object-description">
+    {{ content.body }}
+  </div>
+  {{ title_suffix }}
+</article>

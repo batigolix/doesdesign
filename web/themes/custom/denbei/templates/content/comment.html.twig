@@ -1,0 +1,56 @@
+{#
+/**
+ * @file
+ * Theme override for comments.
+ *
+ * Available variables:
+ * - author: Comment author. Can be a link or plain text.
+ * - content: The content-related items for the comment display.
+ * - created: Formatted date and time for when the comment was created.
+ * - user_picture: The comment author's profile picture.
+ * - status: Comment status. Possible values: unpublished, published, or preview.
+ * - title: Comment title, linked to the comment.
+ * - attributes: HTML attributes for the containing element.
+ * - title_attributes: HTML attributes for the title element.
+ * - content_attributes: HTML attributes for the content element.
+ * - new_indicator_timestamp: Timestamp for the "new" indicator.
+ *
+ * @see template_preprocess_comment()
+ */
+#}
+{%
+  set classes = [
+    'comment',
+    status != 'published' ? status,
+    comment.owner.anonymous ? 'by-anonymous',
+    author_id and author_id == commented_entity.getOwnerId() ? 'by-' ~ commented_entity.getEntityTypeId() ~ '-author',
+  ]
+%}
+{%
+  set zebra = comment.id() is odd ? 'odd' : 'even'
+%}
+<div{{ attributes.addClass(classes, zebra) }}>
+  <div class="comment-inner">
+
+    {% if title %}
+      <h3 class="title">{{ title }}</h3>
+    {% endif %}
+
+    {% if new_indicator_timestamp %}
+      <span class="new">{{ 'New'|t }}</span>
+    {% endif %}
+
+    {{ user_picture }}
+
+    <span class="submitted">{{ created }} — {{ author }}</span>
+
+    <div class="content">
+      {{ content|without('links') }}
+    </div>
+
+    {% if content.links %}
+      <div class="links">{{ content.links }}</div>
+    {% endif %}
+
+  </div>
+</div>

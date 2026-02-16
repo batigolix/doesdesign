@@ -1,0 +1,45 @@
+{#
+/**
+ * @file
+ * Theme override for a field.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the containing element.
+ * - label_hidden: Whether to show the field label or not.
+ * - title_attributes: HTML attributes for the title.
+ * - label: The label for the field.
+ * - multiple: TRUE if a field can contain multiple items.
+ * - items: List of all the field items.
+ * - entity_type: The entity type to which the field belongs.
+ * - field_name: The name of the field.
+ * - field_type: The type of the field.
+ * - label_display: The display settings for the label.
+ *
+ * @see template_preprocess_field()
+ */
+#}
+{%
+  set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+    'clearfix',
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {% if not label_hidden %}
+    <div class="field-label"{{ title_attributes }}>{{ label }}:&nbsp;</div>
+  {% endif %}
+  <div class="field-items">
+    {% for item in items %}
+      {%
+        set item_classes = [
+          'field-item',
+          loop.index is odd ? 'odd' : 'even',
+        ]
+      %}
+      <div{{ item.attributes.addClass(item_classes) }}>{{ item.content }}</div>
+    {% endfor %}
+  </div>
+</div>

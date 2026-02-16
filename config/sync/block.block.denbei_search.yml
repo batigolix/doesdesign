@@ -1,0 +1,26 @@
+uuid: 8225f50b-497f-47ed-9b35-10f01e792745
+langcode: nl
+status: true
+dependencies:
+  module:
+    - search
+  theme:
+    - denbei
+id: denbei_search
+theme: denbei
+region: sidebar
+weight: 0
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: Zoeken
+  label_display: visible
+  provider: search
+  page_id: null
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    context_mapping: {  }
+    pages: "/search\r\n/search/*"

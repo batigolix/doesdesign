@@ -1,0 +1,80 @@
+{#
+/**
+ * @file
+ * Theme override for product (object) nodes in full view mode.
+ *
+ * This template displays product details with Schema.org microdata.
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+<div id="node-{{ node.id() }}"{{ attributes.addClass(classes) }} itemscope itemtype="http://schema.org/Product">
+  <span class="hidden"{{ title_attributes }} itemprop="name">
+    <a href="{{ url }}">{{ label }}</a>
+  </span>
+  {{ content.field_media_image }}
+  <div class="data-list">
+
+    {% if node.body.value %}
+      <div class="field" itemprop="description">
+        {{ node.body.value|raw }}
+      </div>
+    {% endif %}
+
+    {% if content.field_material %}
+      <div class="field field-name-field-material">
+        <div class="field-label">{{ 'Materialen'|t }}:</div>
+        <div>{{ content.field_material }}</div>
+      </div>
+    {% endif %}
+
+    {% if node.field_price.value %}
+      <div class="field field-name-field-prijs" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+        <div class="field-label">{{ 'Prijs'|t }}:</div>
+        <div itemprop="price">&euro;{{ node.field_price.value|number_format(0, ',', '.') }}</div>
+        <link itemprop="availability" href="http://schema.org/PreOrder" />
+      </div>
+    {% endif %}
+
+    {% if node.field_weight.value %}
+      <div class="field field-name-field-gewicht">
+        <div class="field-label">{{ 'Gewicht'|t }}:</div>
+        <div>{{ node.field_weight.value|number_format(0, ',', '.') }} gr.</div>
+      </div>
+    {% endif %}
+
+    {% if content.field_type %}
+      <div class="field field-name-field-type">
+        <div class="field-label">{{ 'Categorie'|t }}:</div>
+        <div>{{ content.field_type }}</div>
+      </div>
+    {% endif %}
+
+    {% if node.field_year.value %}
+      <div class="field field-name-field-year">
+        <div class="field-label">{{ 'Gemaakt in'|t }}:</div>
+        <div>{{ node.field_year.value }}</div>
+      </div>
+    {% endif %}
+
+    <div class="field field-name-field-article_number">
+      <div class="field-label">{{ 'Artikelnummer'|t }}:</div>
+      <div>{{ node.id() }}</div>
+    </div>
+
+    {% if content.ask %}
+      <div class="field field-name-field-contact">
+        <div class="field-label">{{ 'Contact'|t }}:</div>
+        <div>{{ content.ask }}</div>
+      </div>
+    {% endif %}
+  </div>
+</div>
