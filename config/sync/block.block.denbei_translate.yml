@@ -1,0 +1,20 @@
+uuid: 0fbdcae9-2d2f-4b3d-b66b-b6225ee9673f
+langcode: nl
+status: true
+dependencies:
+  module:
+    - doesdesign_tools
+  theme:
+    - denbei
+id: denbei_translate
+theme: denbei
+region: sidebar
+weight: -1
+provider: null
+plugin: gtranslate
+settings:
+  id: gtranslate
+  label: Translate
+  label_display: visible
+  provider: doesdesign_tools
+visibility: {}

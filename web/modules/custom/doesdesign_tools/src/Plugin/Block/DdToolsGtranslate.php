@@ -21,8 +21,8 @@ class DdToolsGtranslate extends BlockBase {
   public function build() {
     $build = [];
     $build['container']['#markup'] = '<div id="google_translate_element"></div>';
-    $build['#attached']['library'][] = 'dd8_tools/gtranslate';
-    $build['#attached']['library'][] = 'dd8_tools/gtranslate_external';
+    $build['#attached']['library'][] = 'doesdesign_tools/gtranslate';
+    $build['#attached']['library'][] = 'doesdesign_tools/gtranslate_external';
     return $build;
   }
 
