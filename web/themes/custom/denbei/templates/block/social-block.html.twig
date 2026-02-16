@@ -4,18 +4,20 @@
  * @file
  * Theme override for the social block in the Denbei theme.
  *
- * Displays social media links matching the original doesdesign.nl layout.
+ * Displays social media links with icon images matching doesdesign7 layout.
  */
 #}
-<div id="header-right-block">
-  <div>
-    <strong><a href="/about">{{ 'Birgit Doesborg'|t }}</a></strong>, {{ 'Goud- en zilversmid.'|t }}
+{% set img_path = '/' ~ directory ~ '/images' %}
+<div id="block-dd_tools-contact">
+  <div class="content">
+    <img class="doespic" src="{{ img_path }}/Doesklein.jpg" width="75" height="100" alt="Foto Birgit Doesborg" title="Birgit Doesborg">
+    <div class="about"><strong><a href="/about">{{ 'Birgit Doesborg'|t }}</a></strong>, {{ 'Goud- en zilversmid.'|t }}</div>
+    <div class="contact"><strong><a href="/contact">{{ 'Contact'|t }}</a></strong></div>
+    <ul class="socialist">
+      <li><a href="https://www.facebook.com/Doesdesign.nl" class="social facebook" title="{{ 'Visit Doesdesign at Facebook'|t }}"><img src="{{ img_path }}/facebook-logo.png" alt="{{ 'Visit Doesdesign at Facebook'|t }}" width="32" height="32"></a></li>
+      <li><a href="http://nl.linkedin.com/in/birgitdoesborg" class="social linkedin" title="{{ 'Visit Birgit at Linkedin'|t }}"><img src="{{ img_path }}/linkedin-logo.png" alt="{{ 'Visit Birgit at Linkedin'|t }}" width="32" height="32"></a></li>
+      <li><a href="http://youtube.com/@metalartcreations" class="social youtube" title="{{ 'Visit YouTube page from Birgit'|t }}"><img src="{{ img_path }}/youtube-logo.png" alt="{{ 'Visit YouTube page from Birgit'|t }}" width="32" height="32"></a></li>
+      <li><a href="https://www.instagram.com/doesdesign_nl/?hl=nl" class="social instagram" title="{{ 'Visit Doesdesign at Instagram'|t }}"><img src="{{ img_path }}/instagram-logo.jpg" alt="{{ 'Visit Doesdesign at Instagram'|t }}" width="32" height="32"></a></li>
+    </ul>
   </div>
-  <strong><a href="/contact">{{ 'Contact'|t }}</a></strong>
-  <ul class="socialist">
-    <li><a href="https://www.facebook.com/Doesdesign.nl" title="Visit Doesdesign at Facebook">Facebook</a></li>
-    <li><a href="http://nl.linkedin.com/in/birgitdoesborg" title="Visit Birgit at Linkedin">LinkedIn</a></li>
-    <li><a href="http://youtube.com/@metalartcreations" title="Visit YouTube page from Birgit">YouTube</a></li>
-    <li><a href="https://www.instagram.com/doesdesign_nl/?hl=nl" title="Visit Doesdesign at Instagram">Instagram</a></li>
-  </ul>
 </div>
