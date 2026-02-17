@@ -10,7 +10,7 @@ custom:
 flickr:
   version: 1.x
   js:
-    flickr.js: {}
+    js/flickr.js: {}
   dependencies:
     - core/jquery
     - core/once
@@ -19,7 +19,7 @@ flickr:
 object:
   version: 1.x
   js:
-    object.js: {}
+    js/object.js: {}
   dependencies:
     - core/jquery
     - core/once

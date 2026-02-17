@@ -339,6 +339,21 @@ a {
   }
 }
 
+#block-denbei-object-types {
+  .view-content {
+    margin: 1em auto;
+    .views-row {
+      border-bottom: 1px dotted #999999;
+      padding: 8px 0;
+      margin: 0;
+      font-size: 1.2em;
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
 h2.block-title {
   font-size: 1.6em;
 }

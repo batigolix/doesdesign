@@ -1,0 +1,21 @@
+uuid: c9c1c15f-0c45-4a94-8e47-311e73ed125f
+langcode: nl
+status: true
+dependencies:
+  module:
+    - doesdesign_tools
+  theme:
+    - denbei
+id: denbei_flickr
+theme: denbei
+region: sidebar
+weight: 2
+provider: null
+plugin: flickr
+settings:
+  id: flickr
+  label: "Foto's op flickr"
+  label_display: visible
+  provider: doesdesign_tools
+  flickr_items: 12
+visibility: {}
