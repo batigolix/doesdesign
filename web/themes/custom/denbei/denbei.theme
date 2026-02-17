@@ -51,6 +51,20 @@ function denbei_preprocess_page(&$variables) {
   if ($route = $route_match->getRouteObject()) {
     $variables['page_title'] = \Drupal::service('title_resolver')->getTitle($request, $route);
   }
+
+  // Provide local tasks (tabs) directly since the page template uses
+  // {{ tabs }} instead of a block region.
+  $route_name = $route_match->getRouteName();
+  if ($route_name) {
+    $local_task_manager = \Drupal::service('plugin.manager.menu.local_task');
+    $primary = $local_task_manager->getLocalTasks($route_name, 0);
+    $secondary = $local_task_manager->getLocalTasks($route_name, 1);
+    $variables['tabs'] = [
+      '#theme' => 'menu_local_tasks',
+      '#primary' => $primary['tabs'] ?? [],
+      '#secondary' => $secondary['tabs'] ?? [],
+    ];
+  }
 }
 
 /**

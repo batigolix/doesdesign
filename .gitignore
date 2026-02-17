@@ -43,3 +43,4 @@ web/INSTALL.txt
 drush/a2h.aliases.drushrc.php
 tests/backstop/backstop_data
 /web/themes/custom/massively/node_modules/
+/web/themes/custom/denbei/node_modules/
