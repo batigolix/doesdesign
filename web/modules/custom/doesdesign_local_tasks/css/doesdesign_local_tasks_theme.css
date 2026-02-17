@@ -1,0 +1,128 @@
+/* Styles for Drupal 8 */
+/*----------------------------------------------------------------------------*/
+
+.ief-form.ief-form-row.js-form-wrapper.form-wrapper {
+  border: 1px solid #999;
+  padding: 20px;
+  background-color: #ccf;
+}
+
+/* multilevel menu */
+.toolbar-tray-horizontal ul li.menu-item--expanded:hover ul {
+  width: 350px !important;
+}
+
+.toolbar-tray-horizontal ul li.menu-item--expanded .menu-item:hover ul {
+  margin: -40px 0 0 348px !important;
+}
+
+/* adding a node */
+fieldset[data-drupal-selector="edit-field-manageable-blocks-form"] {
+  background-color: #eee !important;
+  margin-left: 40px !important;
+}
+
+div[data-drupal-selector*="edit-field-manageable-blocks-entities"] {
+  background-color: #f7fcff !important;
+}
+@media screen and (min-width: 1200px) {
+  div[data-drupal-selector*="edit-field-manageable-blocks-entities"] {
+    min-width: 190px;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
+
+div[data-drupal-selector*="edit-field-manageable-blocks-entities"] .button {
+  margin: 0.25em !important;
+}
+
+/** Drupal Admin navigation fix */
+@media (min-width: 768px) and (max-width: 975px) {
+  #toolbar-administration + .header-spacer + header {
+    top: 40px;
+    left: 15rem;
+  }
+}
+
+@media (min-width: 976px) {
+  #toolbar-administration + .header-spacer + header {
+    top: 40px;
+  }
+
+  .toolbar-horizontal #toolbar-administration + .header-spacer + .header.header--transparent:after,
+  .toolbar-horizontal #toolbar-administration + .header-spacer + header {
+    top: 80px;
+  }
+}
+
+@media only screen and (min-width: 760px) {
+  .header + div + .visually-hidden + .nav-page-edit + .hero {
+    margin-top: -121px;
+  }
+
+  .toolbar-horizontal .header__bottom {
+    top: 118px;
+  }
+}
+
+.toolbar-lining ul {
+  margin-bottom: 0;
+}
+
+
+.toolbar-fixed > footer {
+  margin-bottom: 45px;
+}
+
+.nav-page-edit {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: 0;
+  padding: 5px 20px;
+  z-index: 1000;
+  display: block;
+  text-align: center;
+  background-color: #0f0f0f;
+  list-style: none;
+}
+
+.nav-page-edit li {
+  display: inline-block;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 5px 10px 5px 5px;
+  margin-right: 4px;
+}
+
+.nav-page-edit a {
+  color: #fff;
+}
+
+.nav-page-edit a:hover {
+  color: #0084d7;
+  text-decoration: none;
+}
+
+.nav-page-edit li:last-child {
+  border-right-width: 0;
+  margin-right: 0;
+}
+
+div[aria-label="Status message"] {
+  position: fixed;
+  bottom: 50px;
+  right: 0;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #a6ca8a;
+  color: #222;
+  background-color: rgba(233, 255, 217, 0.85);
+  z-index: 1000;
+}
+
+#toolbar-administration {
+  z-index: 2000;
+}

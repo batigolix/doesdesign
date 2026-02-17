@@ -17,4 +17,4 @@ settings:
   label: Translate
   label_display: visible
   provider: doesdesign_tools
-visibility: {}
+visibility: {  }

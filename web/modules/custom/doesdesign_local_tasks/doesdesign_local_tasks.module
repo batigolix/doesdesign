@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * @file
+ * Contains doesdesign_local_tasks.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function doesdesign_local_tasks_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the doesdesign_local_tasks module.
+    case 'help.page.doesdesign_local_tasks':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Fancy local tasks module') . '</p>';
+      return $output;
+
+    default:
+      return '';
+  }
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function doesdesign_local_tasks_preprocess_page(&$variables) {
+  if ($variables['logged_in'] && !\Drupal::service('router.admin_context')->isAdminRoute()) {
+    $variables['#attached']['library'][] = 'doesdesign_local_tasks/doesdesign-local-tasks';
+  }
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function doesdesign_local_tasks_theme_registry_alter(&$theme_registry) {
+
+  if (!Drupal::service('router.admin_context')->isAdminRoute()) {
+    $theme_registry['menu_local_tasks']['path'] = \Drupal::service('extension.list.module')->getPath('doesdesign_local_tasks') . '/templates';
+  }
+}

@@ -18,4 +18,4 @@ settings:
   label_display: visible
   provider: doesdesign_tools
   flickr_items: 12
-visibility: {}
+visibility: {  }

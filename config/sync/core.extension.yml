@@ -20,6 +20,7 @@ module:
   datetime: 0
   dblog: 0
   doesdesign_import: 0
+  doesdesign_local_tasks: 0
   doesdesign_tools: 0
   dynamic_page_cache: 0
   editor: 0

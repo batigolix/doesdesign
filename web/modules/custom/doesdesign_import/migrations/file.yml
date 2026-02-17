@@ -27,11 +27,16 @@ process:
       source:
         - '@source_base_path'
         - filepath
+  destination_uri:
+    plugin: timestamp_to_date_path
+    source:
+      - timestamp
+      - filename
   uri:
     plugin: file_copy
     source:
       - '@source_full_path'
-      - uri
+      - '@destination_uri'
   filemime: filemime
   status: status
   created: timestamp

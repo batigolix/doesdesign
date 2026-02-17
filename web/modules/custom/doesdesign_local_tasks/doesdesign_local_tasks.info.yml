@@ -1,0 +1,5 @@
+name: Fancy local tasks
+type: module
+description: Adds sticky local tasks bar to the bottom of the page
+core_version_requirement: ^8.8.0 || ^9.0 || ^10 || ^11
+package: Doesdesign

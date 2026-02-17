@@ -1,0 +1,5 @@
+doesdesign-local-tasks:
+  version: 1.x
+  css:
+    theme:
+      css/doesdesign_local_tasks_theme.css: {}
