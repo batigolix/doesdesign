@@ -1,0 +1,12 @@
+{
+  "name": "denbei",
+  "version": "1.0.0",
+  "description": "Denbei Drupal 11 theme build tools",
+  "scripts": {
+    "build": "sass scss/screen.scss css/screen.css --style=compressed && sass scss/print.scss css/print.css --style=compressed",
+    "watch": "sass --watch scss/screen.scss:css/screen.css scss/print.scss:css/print.css"
+  },
+  "devDependencies": {
+    "sass": "^1.77.0"
+  }
+}
