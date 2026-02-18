@@ -1,0 +1,46 @@
+# AI generated
+id: article
+label: Article
+migration_tags:
+  - 'doesdesign'
+source:
+  plugin: d7_node
+  node_type: story
+destination:
+  plugin: 'entity:node'
+  default_bundle: 'article'
+
+process:
+  nid: nid
+  title: title
+  created: created
+  changed: changed
+  status: status
+  default_langcode:
+    plugin: default_value
+    default_value: 1
+  'body/value':
+    plugin: body_inline_files
+    source: body/0/value
+  'body/summary': body/0/summary
+  'body/format':
+    plugin: default_value
+    default_value: full_html
+  uid_lookup:
+    plugin: migration_lookup
+    source: node_uid
+    no_stub: true
+    migration: user
+  uid:
+    plugin: default_value
+    source: '@uid_lookup'
+    default_value: 1
+  path/alias: alias
+  path/pathauto:
+    plugin: default_value
+    default_value: 0
+migration_dependencies:
+  required:
+    - user
+    - file
+  optional: {  }

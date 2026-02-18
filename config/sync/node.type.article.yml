@@ -1,0 +1,11 @@
+uuid: 960cdc69-5c20-4211-b745-463ba518dc93
+langcode: nl
+status: true
+dependencies: {  }
+name: Article
+type: article
+description: 'News articles and announcements'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true
