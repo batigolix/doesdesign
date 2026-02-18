@@ -269,7 +269,7 @@ class BodyInlineFiles extends ProcessPluginBase implements ContainerFactoryPlugi
    *   The original path, used in log messages on failure.
    *
    * @return string
-   *   The generated absolute URL, or $original_path when the entity cannot
+   *   The generated relative URL, or $original_path when the entity cannot
    *   be loaded or the URL cannot be generated.
    */
   protected function generateD11FileUrl(int $d11_fid, string $original_path): string {
@@ -285,7 +285,7 @@ class BodyInlineFiles extends ProcessPluginBase implements ContainerFactoryPlugi
         return $original_path;
       }
 
-      return $this->fileUrlGenerator->generateAbsoluteString($file->getFileUri());
+      return $this->fileUrlGenerator->generateString($file->getFileUri());
     }
     catch (\Exception $e) {
       $this->logger->notice(
