@@ -11,6 +11,10 @@
 body {
   background: url(../images/achtergrond.jpg) no-repeat fixed center center;
   background-size: 100% 100%;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #333;
 }
 
 #content-wrapper {
@@ -321,7 +325,8 @@ a {
 /* blocks */
 
 #block-dd_tools-news,
-#block-dd_tools-categories {
+#block-dd_tools-categories,
+.view-news {
   ul {
     list-style: none outside none;
     margin: 1em auto;
@@ -331,7 +336,7 @@ a {
       padding: 8px 0;
       margin: 0;
       font-size: 1.2em;
-      &.last {
+      &:last-child {
         border-bottom: none;
       }
 
