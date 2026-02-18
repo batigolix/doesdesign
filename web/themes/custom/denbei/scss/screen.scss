@@ -57,17 +57,19 @@ h1, h2, h3, h4, h5, h6 {
 /* header */
 
 #header {
+  @media (min-width: $break2) {
+    display: flex;
+    align-items: flex-start;
+  }
   #header-block {
     @media (min-width: $break1) {
-      clear: right;
       width: 100%;
     }
     @media (min-width: $break2) {
-      float: right;
       width: 37.5%;
+      margin-left: auto;
     }
     @media (min-width: $break3) {
-      float: right;
       width: 30%;
     }
     #block-dd_tools-contact {
@@ -97,29 +99,22 @@ h1, h2, h3, h4, h5, h6 {
   }
   #logo {
     @media (min-width: $break1) {
-      float: left;
-      width: 16.67%;
-    }
-    @media (min-width: $break1) {
       img {
         width: 75%;
         max-width: 100px;
       };
     }
-    float: left;
     margin: 0 12px 0 0;
+    flex-shrink: 0;
   }
   #site-name-and-slogan {
     @media (min-width: $break1) {
-      float: left;
-      width: 83.33%;
       font-size: 112.5%;
     }
     @media (min-width: $break2) {
-      float: left;
-      width: 50%;
       font-size: 93.75%;
     }
+    flex: 1;
     margin: 0 12px 0;
     #site-name {
       text-shadow: black 2px 2px 2px;
