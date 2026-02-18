@@ -84,26 +84,20 @@ function doesdesign_tools_form_search_form_alter(&$form, $form_state, $form_id) 
 function doesdesign_tools_preprocess_node(&$variables) {
   $type = $variables['node']->getType();
   if ($type == "object") {
-    $link_options = [
-      'fragment' => 'contact-form',
-      'attributes' => [
-        'class' => [
-          'button',
-        ],
-      ],
-    ];
-    $url = Url::fromRoute('<current>', [], $link_options);
+    $label = $variables['node']->label();
+    $nid = $variables['node']->id();
+    $subject = "$label - $nid";
+    $url = Url::fromUri('internal:/contact', [
+      'query' => ['subject' => $subject],
+    ]);
     $link = Link::fromTextAndUrl(t('Stel een vraag over dit sieraad'), $url)
       ->toString();
     $variables['content']['ask'] = [
       '#markup' => $link,
       '#weight' => 666,
-      '#prefix' => '<p id="dam_return">',
+      '#prefix' => '<p>',
       '#suffix' => '</p>',
     ];
-    $label = $variables['node']->label();
-    $variables['#attached']['library'][] = 'doesdesign_tools/object';
-    $variables['#attached']['drupalSettings']['ask'] = "Vraag over sieraad $label";
   }
 }
 
