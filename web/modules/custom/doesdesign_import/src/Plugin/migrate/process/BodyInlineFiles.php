@@ -127,10 +127,10 @@ class BodyInlineFiles extends ProcessPluginBase implements ContainerFactoryPlugi
       return $value;
     }
 
-    // Match src attributes that contain a sites/doesdesign.nl/files/ path.
-    // Handles optional leading slash, URL-encoded characters (%xx) and both
-    // single- and double-quoted attributes.
-    $pattern = '#(src=["\'])([^"\']*(?:%2F|/)sites(?:%2F|/)doesdesign\.nl(?:%2F|/)files(?:%2F|/)[^"\']+)(["\'])#i';
+    // Match src and href attributes that contain a sites/doesdesign.nl/files/
+    // path. Handles optional leading slash, URL-encoded characters (%xx) and
+    // both single- and double-quoted attributes.
+    $pattern = '#((?:src|href)=["\'])([^"\']*(?:%2F|/)sites(?:%2F|/)doesdesign\.nl(?:%2F|/)files(?:%2F|/)[^"\']+)(["\'])#i';
 
     $body = preg_replace_callback($pattern, function (array $matches) {
       $attr_open  = $matches[1];
@@ -177,11 +177,14 @@ class BodyInlineFiles extends ProcessPluginBase implements ContainerFactoryPlugi
     // Look up the file in the D7 migrate database.
     $d7_fid = $this->findD7Fid($d7_uri);
     if ($d7_fid === NULL) {
+      // Fallback: for files not in file_managed (e.g. legacy u2/ uploads),
+      // rewrite the path to the D11 public files directory directly.
       $this->logger->notice(
-        'BodyInlineFiles: no D7 file_managed record found for URI "@uri" (original path: "@path").',
+        'BodyInlineFiles: no D7 file_managed record found for URI "@uri", using direct path rewrite.',
         ['@uri' => $d7_uri, '@path' => $original_path]
       );
-      return $original_path;
+      $encoded = implode('/', array_map('rawurlencode', explode('/', $relative_path)));
+      return '/sites/default/files/' . $encoded;
     }
 
     // Look up the D11 file ID via the migration map.

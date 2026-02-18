@@ -1,0 +1,34 @@
+uuid: b0a32bde-2e22-4f9e-85eb-d5cd808f88bb
+langcode: nl
+status: true
+dependencies:
+  module:
+    - language
+    - node
+id: article
+label: article
+type: 'canonical_entities:node'
+pattern: 'nieuws/[node:title]'
+selection_criteria:
+  2951fa6a-883d-4370-9090-7725565c0282:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 2951fa6a-883d-4370-9090-7725565c0282
+    context_mapping:
+      node: node
+    bundles:
+      article: article
+  7a6c1d76-6899-46d4-8430-70fdc7f9b051:
+    id: language
+    negate: false
+    uuid: 7a6c1d76-6899-46d4-8430-70fdc7f9b051
+    context_mapping:
+      language: 'node:langcode:language'
+    langcodes:
+      nl: nl
+      en: en
+selection_logic: and
+weight: 0
+relationships:
+  'node:langcode:language':
+    label: Taal

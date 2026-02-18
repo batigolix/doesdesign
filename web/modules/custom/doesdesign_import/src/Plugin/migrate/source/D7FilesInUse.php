@@ -23,6 +23,9 @@ use Drupal\migrate\Plugin\migrate\source\SourcePluginBase;
  *   fields:
  *     - field_my_image
  *     - field_your_document
+ *   body_fields:
+ *     - body
+ *   inline_file_pattern: 'sites/doesdesign.nl/files/'
  * @endcode
  */
 class D7FilesInUse extends SourcePluginBase {
@@ -100,6 +103,86 @@ class D7FilesInUse extends SourcePluginBase {
         $items[] = $record;
       }
     }
+    // Also discover files referenced inline in body fields.
+    if (!empty($this->configuration['body_fields']) && !empty($this->configuration['inline_file_pattern'])) {
+      $inline_items = $this->fetchInlineBodyFiles($connection);
+      // Merge, deduplicating by fid.
+      $existing_fids = [];
+      foreach ($items as $item) {
+        $existing_fids[$item->fid] = TRUE;
+      }
+      foreach ($inline_items as $item) {
+        if (!isset($existing_fids[$item->fid])) {
+          $items[] = $item;
+          $existing_fids[$item->fid] = TRUE;
+        }
+      }
+    }
+
+    return $items;
+  }
+
+  /**
+   * Discovers files referenced inline in body field HTML.
+   *
+   * Scans body field values for src attributes matching the configured
+   * inline_file_pattern, extracts relative paths, and looks them up in
+   * file_managed.
+   *
+   * @param \Drupal\Core\Database\Connection $connection
+   *   The D7 database connection.
+   *
+   * @return array
+   *   Array of file_managed record objects.
+   */
+  private function fetchInlineBodyFiles($connection) {
+    $pattern = $this->configuration['inline_file_pattern'];
+    $body_fields = $this->configuration['body_fields'];
+    $items = [];
+    $found_uris = [];
+
+    foreach ($body_fields as $field_name) {
+      $table = 'field_data_' . $field_name;
+      $column = $field_name . '_value';
+
+      // Only fetch rows that contain the file path pattern.
+      $query = $connection->select($table, 'fdf');
+      $query->addField('fdf', $column, 'body_value');
+      $query->condition($column, '%' . $connection->escapeLike($pattern) . '%', 'LIKE');
+
+      if ($this->configuration['parent_entity_type'] === 'node') {
+        $query->leftJoin('node', 'n', 'fdf.entity_id = n.nid');
+        $query->condition('n.status', 1);
+      }
+
+      $results = $query->execute();
+      foreach ($results as $record) {
+        // Extract all file paths from src attributes.
+        $regex = '#(?:' . preg_quote($pattern, '#') . ')([^"\'<>\s]+)#';
+        if (preg_match_all($regex, $record->body_value, $matches)) {
+          foreach ($matches[1] as $relative_path) {
+            $relative_path = urldecode($relative_path);
+            $uri = 'public://' . $relative_path;
+            if (!isset($found_uris[$uri])) {
+              $found_uris[$uri] = TRUE;
+            }
+          }
+        }
+      }
+    }
+
+    // Look up all discovered URIs in file_managed.
+    if (!empty($found_uris)) {
+      $uris = array_keys($found_uris);
+      $fm_query = $connection->select('file_managed', 'fm');
+      $fm_query->fields('fm');
+      $fm_query->condition('fm.uri', $uris, 'IN');
+      $fm_results = $fm_query->execute();
+      foreach ($fm_results as $record) {
+        $items[] = $record;
+      }
+    }
+
     return $items;
   }
 

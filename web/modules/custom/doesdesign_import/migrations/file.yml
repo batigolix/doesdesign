@@ -8,6 +8,9 @@ source:
   plugin: d7_files_in_use
   fields:
     - field_image
+  body_fields:
+    - body
+  inline_file_pattern: 'sites/doesdesign.nl/files/'
   parent_entity_type: node
   # provides the d7 public and private file paths otherwise they need to be looked up in the db during the migration.
   constants:

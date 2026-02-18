@@ -51,10 +51,14 @@
       </div>
     {% endif %}
 
-    {% if content.field_type %}
+    {% if node.field_type.entity %}
       <div class="field field-name-field-type">
         <div class="field-label">{{ 'Categorie'|t }}:</div>
-        <div>{{ content.field_type }}</div>
+        <div>
+          {% for item in node.field_type %}
+            <a href="{{ path('entity.taxonomy_term.canonical', {'taxonomy_term': item.target_id}) }}">{{ item.entity.name.value }}</a>{% if not loop.last %}, {% endif %}
+          {% endfor %}
+        </div>
       </div>
     {% endif %}
 

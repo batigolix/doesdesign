@@ -34,10 +34,9 @@ process:
     plugin: default_value
     source: '@uid_lookup'
     default_value: 1
-  path/alias: alias
   path/pathauto:
     plugin: default_value
-    default_value: 0
+    default_value: 1
 migration_dependencies:
   required:
     - user
