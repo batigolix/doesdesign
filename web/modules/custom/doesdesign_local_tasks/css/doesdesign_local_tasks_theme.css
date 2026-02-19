@@ -96,12 +96,15 @@ div[data-drupal-selector*="edit-field-manageable-blocks-entities"] .button {
   margin-right: 4px;
 }
 
-.nav-page-edit a {
+.nav-page-edit a,
+.nav-page-edit a:link,
+.nav-page-edit a:visited {
   color: #fff;
 }
 
-.nav-page-edit a:hover {
-  color: #0084d7;
+.nav-page-edit a:hover,
+.nav-page-edit a:active {
+  color: #4db8ff;
   text-decoration: none;
 }
 
