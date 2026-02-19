@@ -16,10 +16,12 @@ process:
   default_langcode:
     plugin: default_value
     default_value: 1
-  'body/value': body/0/value
+  'body/value':
+    plugin: body_inline_files
+    source: body/0/value
   'body/format':
     plugin: default_value
-    default_value: basic_html
+    default_value: full_html
   field_weight: field_gewicht/0/value
   field_year:
     plugin: get_term_name
@@ -64,6 +66,7 @@ process:
     default_value: 1
 migration_dependencies:
   required:
+    - file
     - media_image
     - user
     - term:vocabulary_6

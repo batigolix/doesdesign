@@ -143,7 +143,20 @@ class BodyInlineFiles extends ProcessPluginBase implements ContainerFactoryPlugi
     }, $value);
 
     // Return original value when preg_replace_callback fails.
-    return $body ?? $value;
+    $body = $body ?? $value;
+
+    // Fix mixed content: upgrade http:// to https:// in src and href attributes.
+    $body = preg_replace('#((?:src|href)=["\'])http://(www\.youtube\.com|youtube\.com|player\.vimeo\.com|flickr\.com|www\.flickr\.com)/#i', '$1https://$2/', $body);
+
+    // Replace inline border styles on images with the image-border class.
+    // Extract width/height from style into attributes, remove style, add class.
+    $body = preg_replace_callback(
+      '#<img\b([^>]*?)\s*style\s*=\s*["\']([^"\']*border[^"\']*)["\']([^>]*?)\s*/?\s*>#i',
+      [$this, 'replaceImageBorderStyle'],
+      $body
+    );
+
+    return $body;
   }
 
   /**
@@ -294,6 +307,47 @@ class BodyInlineFiles extends ProcessPluginBase implements ContainerFactoryPlugi
       );
       return $original_path;
     }
+  }
+
+  /**
+   * Replaces inline border styles on an img tag with the image-border class.
+   *
+   * Extracts width and height from the style attribute and converts them to
+   * img attributes. The style attribute is removed and class="image-border"
+   * is added.
+   *
+   * @param array $matches
+   *   Regex matches: [0] full tag, [1] attrs before style, [2] style value,
+   *   [3] attrs after style.
+   *
+   * @return string
+   *   The rewritten img tag.
+   */
+  protected function replaceImageBorderStyle(array $matches): string {
+    $before_style = $matches[1];
+    $style_value  = $matches[2];
+    $after_style  = $matches[3];
+
+    // Extract width and height from the style value.
+    $width = '';
+    $height = '';
+    if (preg_match('/(?<![a-z-])width\s*:\s*(\d+)px/', $style_value, $w)) {
+      $width = ' width="' . $w[1] . '"';
+    }
+    if (preg_match('/(?<![a-z-])height\s*:\s*(\d+)px/', $style_value, $h)) {
+      $height = ' height="' . $h[1] . '"';
+    }
+
+    // Merge with existing class attribute or add new one.
+    $attrs = $before_style . $after_style;
+    if (preg_match('/class\s*=\s*["\']/', $attrs)) {
+      $attrs = preg_replace('/class\s*=\s*(["\'])/', 'class=$1image-border ', $attrs);
+    }
+    else {
+      $attrs .= ' class="image-border"';
+    }
+
+    return '<img' . $attrs . $width . $height . ' />';
   }
 
 }
