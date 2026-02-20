@@ -1,0 +1,50 @@
+# AI generated
+id: menu_link
+label: Menu links
+migration_tags:
+  - 'doesdesign'
+source:
+  plugin: menu_link
+  menu_name: main-menu
+  constants:
+    bundle: menu_link_content
+    menu_name: main
+destination:
+  plugin: 'entity:menu_link_content'
+  no_stub: true
+
+process:
+  # Skip hidden menu links.
+  hidden_check:
+    plugin: skip_on_value
+    source: hidden
+    method: row
+    value: 1
+  # Skip duplicate/stale entries not shown in D7 navigation.
+  mlid_check:
+    plugin: skip_on_value
+    source: mlid
+    method: row
+    value:
+      - 15015
+      - 65
+      - 15016
+  bundle: 'constants/bundle'
+  title: link_title
+  description: description
+  menu_name: 'constants/menu_name'
+  'link/uri':
+    plugin: menu_link_uri
+    source: link_path
+  'link/options': options
+  weight: weight
+  expanded: expanded
+  enabled: enabled
+
+migration_dependencies:
+  required:
+    - page
+    - article
+    - object
+    - term
+  optional: { }
