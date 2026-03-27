@@ -189,15 +189,21 @@ a {
   word-wrap: normal;
 }
 
+/* Hide local tasks when there is only one tab (e.g. "View") */
+.nav-page-edit:has(li:only-child) {
+  display: none;
+}
+
 /* lists of objects */
 
-.page-taxonomy {
+.path-taxonomy {
   #content{
-    .taxonomy-term-description {
+    .taxonomy-term .field--name-description {
       font-size: 1.3em;
       font-style: oblique;
+      margin-bottom: 1em;
     }
-    article {
+    article.node--view-mode-teaser {
       h2 {
         font-size: 1.4em;
         line-height: 1.2em;
@@ -220,11 +226,10 @@ a {
       .object-image {
         display: inline;
         img {
-          max-width: 100%;
-          _width: 100%;
+          width: 100%;
+          aspect-ratio: 1 / 1;
+          object-fit: cover;
           vertical-align: middle;
-          height: auto;
-          top: 0px;
           border: 2px #eeeeee solid;
           padding: 2px;
           box-shadow: #bbbbbb 1px 1px 3px;
@@ -233,6 +238,32 @@ a {
       }
       .object-description {
         font-size: 0.8em;
+      }
+    }
+    /* Pager: horizontal inline list matching D7 style */
+    .pager {
+      clear: both;
+      .pager__items {
+        list-style: none;
+        padding: 0;
+        margin: 1em 0;
+        display: flex;
+        gap: 0;
+      }
+      .pager__item {
+        padding: 0 0.5em;
+        a {
+          text-decoration: none;
+          color: #c38a2a;
+        }
+        &.is-active a {
+          font-weight: bold;
+          color: #333;
+        }
+      }
+      .pager__item--next a,
+      .pager__item--last a {
+        color: #c38a2a;
       }
     }
   }

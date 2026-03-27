@@ -9,7 +9,7 @@ dependencies:
 id: object_type
 label: 'object type'
 type: 'canonical_entities:taxonomy_term'
-pattern: 'sieraden/[term:name]'
+pattern: 'soort-sieraden/[term:name]'
 selection_criteria:
   7c613c95-d0f9-41b7-8ebe-a50bce14ed7c:
     id: 'entity_bundle:taxonomy_term'
