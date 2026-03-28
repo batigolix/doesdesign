@@ -20,7 +20,21 @@
   <span class="hidden"{{ title_attributes }} itemprop="name">
     <a href="{{ url }}">{{ label }}</a>
   </span>
-  {{ content.field_media_image }}
+  <div class="field field-name-field-image">
+    {% for item in node.field_media_image %}
+      {% set media = item.entity %}
+      {% if media and media.field_media_image.entity %}
+        <div class="field--name-field-media-image__item">
+          {{ {
+            '#theme': 'image_style',
+            '#style_name': 'large_thumb',
+            '#uri': media.field_media_image.entity.uri.value,
+            '#alt': media.field_media_image.alt,
+          } }}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
   <div class="data-list">
 
     {% if node.body.value %}
@@ -39,7 +53,7 @@
     {% if node.field_price.value %}
       <div class="field field-name-field-prijs" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
         <div class="field-label">{{ 'Prijs'|t }}:</div>
-        <div itemprop="price">&euro;{{ node.field_price.value|number_format(0, ',', '.') }}</div>
+        <div itemprop="price">&euro;{{ node.field_price.value|number_format(0, ',', '') }}</div>
         <link itemprop="availability" href="http://schema.org/PreOrder" />
       </div>
     {% endif %}

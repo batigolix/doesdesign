@@ -1,0 +1,105 @@
+TODO - Visuele verschillen doesdesign.nl (live) vs D11 (ddev)
+==============================================================
+Gebaseerd op visual regression rapport (28-3-2026)
+Bron: doesdesign.nl vs doesdesign.ddev.site
+
+== SAMENVATTING ==
+
+  01-gesp-texmex       8.7%  object detail
+  02-heren-ringen      9.6%  taxonomy grid
+  03-dames-ringen     10.5%  taxonomy grid
+  04-trouwringen       9.2%  taxonomy grid
+  05-colliers         10.6%  taxonomy grid
+  06-about            13.7%  page
+  07-contact           9.2%  page
+  08-object-detail    10.8%  object detail
+  09-mokume-gane      12.0%  page
+  10-nieuws-1         17.2%  nieuws artikel (hoogste!)
+  11-nieuws-2          7.1%  nieuws artikel (laagste!)
+  12-trouwringen-page 10.8%  page — "Pagina niet gevonden" op D11
+
+== OPGELOST ==
+
+[x] "Afbeelding:" label verborgen op object detail
+[x] Geneste <article> wrappers verwijderd op object detail
+[x] Materialen gelinkt op object detail
+[x] Prijs formattering: €1900 (zoals live)
+[x] Twitter icoon terug in header (5 icons, net als live)
+[x] Social block configureerbaar gemaakt (HTML tekstveld)
+[x] Social block exact als D7 (iconen gekopieerd, border verwijderd, <p> i.p.v. <ul>)
+[x] Alignment CSS toegevoegd (.align-left, .align-right, .align-center)
+[x] Contact formulier opmaak (labels boven velden, volle breedte inputs)
+[x] Taxonomy grid: 4 kolommen, vierkante thumbnails, term beschrijving
+[x] Object detail: tekst wrapping gefixed (clearfix wrapper rond afbeeldingen)
+[x] Object detail: dubbele dotted lines gefixed (> .field selector)
+[x] URL aliases: D7→D11 node ID mapping via migration_lookup (464 aliases)
+[x] Image style large_thumb (300×300 scale and crop, zoals D7)
+
+== GLOBAAL (alle pagina's) ==
+
+[ ] Sidebar "Sieraden en objecten" volgorde verschilt (D11 alfabetisch, live handmatig)
+[ ] Flickr block in sidebar D11 — niet aanwezig op live site
+[ ] Footer copyright jaar "2000 - 2012" — bijwerken?
+
+== 01-GESP-TEXMEX / 08-OBJECT DETAIL (8.7% / 10.8%) ==
+
+[ ] Materialen links: /taxonomy/term/ID i.p.v. /sieraden-gemaakt-van/zilver
+[ ] Afbeelding breedte: D11 smaller dan live
+[ ] "Gemaakt in:" jaar niet gelinkt
+[ ] Artikelnummer verschilt (live gebruikt ander nid)
+[ ] Contact link tekst: D11 "Stel een vraag" vs live "Een vraag stellen"
+
+== 02-05 TAXONOMY GRID (9.2-10.6%) ==
+
+[ ] Thumbnail grootte D11 iets kleiner dan live
+[ ] Object titels: D11 toont volledige titel, live kapt af
+
+== 06-ABOUT (13.7%) ==
+
+[ ] Inline afbeeldingen positie/grootte wijkt af
+[ ] Portretfoto Birgit: live met ronde hoek effect
+[ ] Gildelid badge positie verschilt
+[ ] Body tekst spacing/marges verschillen
+
+== 07-CONTACT (9.2%) ==
+
+[ ] Kleine spacing/font verschillen
+[ ] Webform mist "Onderwerp" en "Bericht" velden t.o.v. live
+
+== 09-MOKUME-GANE (12.0%) ==
+
+[ ] Inline afbeeldingen positie/grootte wijkt licht af
+[ ] Externe links controleren
+
+== 10-NIEUWS-1 (17.2% — hoogste!) ==
+
+[ ] Afbeelding in body neemt minder breedte in op D11
+[ ] Sidebar verschilt
+
+== 11-NIEUWS-2 (7.1% — laagste) ==
+
+[ ] Minimale afwijkingen — vrijwel identiek
+
+== 12-TROUWRINGEN-PAGE (10.8%) ==
+
+[ ] D11 toont "Pagina niet gevonden" — content niet gemigreerd of ander pad
+
+== PRIORITEITEN ==
+
+Hoog:
+  - Trouwringen page fixen (pagina niet gevonden)
+  - Nieuws-1 afbeelding breedte (17.2%)
+  - About page layout (13.7%)
+
+Middel:
+  - Object detail afbeelding breedte vergroten
+  - Materialen URL-paden (pathauto voor materiaal vocabulary)
+  - Flickr block verwijderen uit D11 sidebar
+
+Laag:
+  - Sidebar volgorde
+  - Thumbnail grootte taxonomy grid
+  - Footer copyright jaar
+  - Artikelnummer mapping
+  - Contact link tekst / extra velden
+  - "Gemaakt in" jaar linken

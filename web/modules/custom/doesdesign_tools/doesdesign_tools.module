@@ -16,9 +16,8 @@ function doesdesign_tools_theme() {
   return [
     'social_block' => [
       'variables' => [
-        'content' => NULL,
+        'body' => NULL,
       ],
-      'render element' => 'children',
     ],
     'doesdesign_tools' => [
       'render element' => 'children',

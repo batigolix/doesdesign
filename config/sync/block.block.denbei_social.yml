@@ -17,4 +17,7 @@ settings:
   label: 'Social block'
   label_display: '0'
   provider: doesdesign_tools
+  body:
+    value: "<div><strong><a href=\"/about\">Birgit Doesborg</a></strong>, Goud- en zilversmid.</div>\r\n<div><strong><a href=\"/contact\">Contact</a></strong></div>\r\n<p><a class=\"social facebook\" href=\"https://www.facebook.com/Doesdesign.nl\"><img alt=\"\" src=\"/themes/custom/denbei/images/facebook-logo.png\" title=\"Visit Doesdesign at Facebook\"></a> <a class=\"social linkedin\" href=\"http://nl.linkedin.com/in/birgitdoesborg\"><img alt=\"\" src=\"/themes/custom/denbei/images/linkedin-logo.png\" title=\"Visit Birgit at Linkedin\"></a> <a class=\"social twitter\" href=\"https://twitter.com/#!/Doesdesign_nl\"><img alt=\"\" src=\"/themes/custom/denbei/images/twitter-logo.png\" title=\"Tweet Birgit\"></a> <a class=\"social youtube\" href=\"http://youtube.com/@metalartcreations\"><img alt=\"\" src=\"/themes/custom/denbei/images/youtube-logo.png\" title=\"Visit YouTube page from Birgit\"></a>&nbsp;<a href=\"https://www.instagram.com/doesdesign_nl/?hl=nl\"><img alt=\"\" src=\"/themes/custom/denbei/images/instagram-logo.png\" style=\"height:32px; width:32px\" title=\"Visit Doesdesign at Instagram\"></a></p>"
+    format: full_html
 visibility: {  }

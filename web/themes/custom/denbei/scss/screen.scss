@@ -4,6 +4,25 @@
   box-sizing: border-box;
 }
 
+/* CKEditor 5 image alignment */
+.align-left,
+img[style*="float: left"],
+img[style*="float:left"] {
+  float: left;
+  margin: 0 1em 1em 0;
+}
+.align-right,
+img[style*="float: right"],
+img[style*="float:right"] {
+  float: right;
+  margin: 0 0 1em 1em;
+}
+.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .tab {
   box-sizing: content-box;
 }
@@ -73,29 +92,12 @@ h1, h2, h3, h4, h5, h6 {
       width: 30%;
     }
     #block-dd_tools-contact {
-      background: url(../images/fff-50.png);
-      border: 1px dotted #999999;
-      padding: 6px;
-      margin: 3px;
       .content {
         div {
           margin-bottom: 6px;
         }
       }
-      img.doespic {
-        float: left;
-        margin: 0 8px 0 0;
-      }
-      .socialist {
-        margin: 0;
-        padding: 0;
-        li{
-          list-style: none;
-          display: inline;
-          margin: 0 2px 0 0;
-          padding: 0;
-        }
-      }}
+    }
   }
   #logo {
     @media (min-width: $break1) {
@@ -273,8 +275,16 @@ a {
 
 .node-type-object #content,
 .page-node-type-object #content {
+  .field-name-field-image {
+    &::after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+  }
   .field-type-image .field-item,
-  .field--name-field-media-image > article {
+  .field--name-field-media-image > article,
+  .field--name-field-media-image__item {
     float: left;
     display: inline;
     margin: 0 22px 22px 0;
@@ -302,7 +312,7 @@ a {
     .label, .field-label {
       font-weight: bold;
     }
-    .field {
+    > .field {
       border-bottom: 1px dotted #999999;
       line-height: 1.3em;
       padding: 0 0 10px 0;
@@ -310,6 +320,39 @@ a {
     }
     .field-name-body {
       margin: 10px 0 0 0;
+    }
+  }
+}
+
+/* contact form */
+
+.webform-submission-form {
+  .form-item {
+    margin-bottom: 1em;
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 0.2em;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea {
+      width: 100%;
+      max-width: 100%;
+      padding: 4px;
+      border: 1px solid #ccc;
+      font-family: inherit;
+      font-size: 1em;
+    }
+    textarea {
+      height: 10em;
+    }
+  }
+  .form-actions {
+    input[type="submit"] {
+      padding: 6px 16px;
+      cursor: pointer;
     }
   }
 }

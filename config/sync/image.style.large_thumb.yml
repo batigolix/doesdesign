@@ -1,0 +1,15 @@
+uuid: f8a2c1e3-5d4b-4a91-b7e0-3c9f8d2a1b5e
+langcode: nl
+status: true
+dependencies: {  }
+name: large_thumb
+label: 'Groot thumbnail (300×300)'
+effects:
+  a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d:
+    uuid: a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d
+    id: image_scale_and_crop
+    weight: 0
+    data:
+      width: 300
+      height: 300
+      anchor: center-center

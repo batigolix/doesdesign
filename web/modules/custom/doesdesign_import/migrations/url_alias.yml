@@ -1,0 +1,45 @@
+id: url_alias
+label: URL aliases
+migration_tags:
+  - 'doesdesign'
+source:
+  plugin: d7_url_alias
+  constants:
+    slash: '/'
+destination:
+  plugin: 'entity:path_alias'
+
+process:
+  # Prepend leading slash to the alias (D7 stores without, D11 requires it).
+  alias:
+    plugin: concat
+    source:
+      - constants/slash
+      - alias
+  # Skip <front> entries; they have no valid internal path in D11.
+  front_check:
+    plugin: skip_on_value
+    source: source
+    method: row
+    value: '<front>'
+  # Skip corrupted taxonomy aliases that have no term ID in the source path.
+  invalid_taxonomy_check:
+    plugin: skip_on_value
+    source: source
+    method: row
+    value: 'taxonomy/term/'
+  # Pass through the language code (nl or und).
+  langcode: language
+  # Translate D7 internal paths (node/NID, taxonomy/term/TID) to D11 IDs.
+  path:
+    plugin: alias_path_lookup
+    source: source
+
+migration_dependencies:
+  required:
+    - article
+    - object
+    - page
+    - term
+  optional:
+    - user
