@@ -66,10 +66,6 @@ settings:
         startIndex: true
         styles: true
       multiBlock: true
-    ckeditor5_style:
-      styles:
-        - label: 'Image border'
-          element: '<img class="image-border">'
     ckeditor5_sourceEditing:
       allowed_tags:
         - '<div>'
@@ -88,6 +84,11 @@ settings:
         - '<h6 id>'
         - '<img src alt height width data-entity-type data-entity-uuid data-align data-caption>'
         - '<iframe src width height frameborder allowfullscreen>'
+    ckeditor5_style:
+      styles:
+        -
+          label: 'Image border'
+          element: '<img class="image-border">'
 image_upload:
   status: true
   scheme: public
