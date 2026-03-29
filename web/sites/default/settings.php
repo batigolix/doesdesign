@@ -762,6 +762,15 @@ $settings['entity_update_backup'] = TRUE;
 if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
   include $app_root . '/' . $site_path . '/settings.local.php';
 }
+
+if (strpos(DRUPAL_ROOT, 'production')) {
+  include '/home/doesborg/public_html/doesdesign-project/settings/production.php';
+}
+
+if (strpos(DRUPAL_ROOT, 'stage')) {
+  include '/home/doesborg/public_html/doesdesign-project/settings/stage.php';
+}
+
 $settings['config_sync_directory'] = '../config/sync';
 
 // Automatically generated include for settings managed by ddev.
