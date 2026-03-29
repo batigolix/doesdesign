@@ -8,7 +8,7 @@ dependencies:
 _core:
   default_config_hash: P7F4DFe8BL31DRVqsvS-ix9KZZqvvaPjZ7zEvGo9yNM
 id: content
-label: Content
+label: Inhoud
 module: node
 description: 'Inhoud zoeken en beheren'
 tag: default
@@ -21,7 +21,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: Content
+      title: Inhoud
       fields:
         node_bulk_form:
           id: node_bulk_form
@@ -261,7 +261,7 @@ display:
         options:
           submit_button: Filter
           reset_button: true
-          reset_button_label: Reset
+          reset_button_label: 'Opnieuw instellen'
           exposed_sorts_label: 'Sorteren op'
           expose_sort_order: true
           sort_asc_label: Oplopend
@@ -598,14 +598,14 @@ display:
       path: admin/content/node
       menu:
         type: 'default tab'
-        title: Content
+        title: Inhoud
         description: ''
         weight: -10
         menu_name: admin
         context: ''
       tab_options:
         type: normal
-        title: Content
+        title: Inhoud
         description: 'Inhoud vinden en beheren'
         weight: -10
         menu_name: admin

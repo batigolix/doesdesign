@@ -5,6 +5,24 @@ ddev:
   uri: http://doesdesign.ddev.site
   paths:
     config-sync: '/var/www/html/config/sync'
+  db:
+    driver: mysql
+    database: db
+    username: db
+    password: db
+    host: db
+    port: 3306
+
+d7:
+  root: /var/www/html/web
+  uri: http://doesdesign.ddev.site
+  db:
+    driver: mysql
+    database: db
+    username: db
+    password: db
+    host: ddev-doesdesign7-db
+    port: 3306
 
 live:
   host: ${env.REMOTE_HOST}
@@ -25,3 +43,10 @@ stage:
   uri: ${env.STAGE_URI}
   paths:
     drush-script: ${env.REMOTE_PROJECT_DIR}/stage/bin/drush
+  db:
+    driver: mysql
+    database: db
+    username: db
+    password: db
+    host: ddev-doesdesign7-db
+    port: 3306

@@ -350,7 +350,7 @@ display:
         options:
           submit_button: Filter
           reset_button: true
-          reset_button_label: Reset
+          reset_button_label: 'Opnieuw instellen'
           exposed_sorts_label: 'Sorteren op'
           expose_sort_order: true
           sort_asc_label: Oplopend
@@ -468,7 +468,7 @@ display:
           exposed: false
           expose:
             operator_id: ''
-            label: Resolved
+            label: Opgelost
             description: ''
             use_operator: false
             operator: resolved_op

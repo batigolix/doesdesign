@@ -159,7 +159,7 @@ display:
         options:
           submit_button: 'Filters toepassen'
           reset_button: false
-          reset_button_label: Reset
+          reset_button_label: 'Opnieuw instellen'
           exposed_sorts_label: 'Sorteren op'
           expose_sort_order: false
           sort_asc_label: Oplopend

@@ -4,9 +4,9 @@ status: true
 dependencies: {  }
 _core:
   default_config_hash: flCi9IdafdLXlJqvoHguutUOiC05-aynK4niYN4YZ3o
-label: 'Focal point'
+label: Focuspunt
 id: focal_point
-description: 'Crop type used by Focal point module.'
+description: 'Type uitsnede dat gebruikt wordt door de Focal Point-module.'
 aspect_ratio: ''
 soft_limit_width: null
 soft_limit_height: null

@@ -16,6 +16,6 @@ disabled_themes:
   gin: '0'
   massively: '0'
 chosen_include: 0
-placeholder_text_multiple: 'Choose some options'
-placeholder_text_single: 'Choose an option'
+placeholder_text_multiple: 'Kies enkele opties'
+placeholder_text_single: 'Kies een optie'
 no_results_text: 'No results match'

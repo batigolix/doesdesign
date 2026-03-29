@@ -11,7 +11,7 @@ settings:
   default_ajax_effect: fade
   default_ajax_speed: 500
   default_submit_button_label: Indienen
-  default_reset_button_label: Reset
+  default_reset_button_label: 'Opnieuw instellen'
   default_delete_button_label: Verwijderen
   default_form_submit_once: false
   default_form_open_message: 'This form has not yet been opened to submissions.'

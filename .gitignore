@@ -48,3 +48,4 @@ tests/backstop/backstop_data
 /.claude/
 /.playwright-cli/
 /.playwright-mcp/
+/tests/playwright/node_modules/

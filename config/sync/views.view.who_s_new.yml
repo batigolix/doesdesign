@@ -66,7 +66,7 @@ display:
         options:
           submit_button: Toepassen
           reset_button: false
-          reset_button_label: Reset
+          reset_button_label: 'Opnieuw instellen'
           exposed_sorts_label: 'Sorteren op'
           expose_sort_order: true
           sort_asc_label: Oplopend
@@ -187,7 +187,7 @@ display:
       display_description: 'Een lijst van nieuwe gebruikers'
       display_extenders: {  }
       block_description: 'Wie is nieuw'
-      block_category: User
+      block_category: Gebruiker
     cache_metadata:
       max-age: -1
       contexts:
