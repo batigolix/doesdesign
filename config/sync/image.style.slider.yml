@@ -1,0 +1,15 @@
+uuid: ab15e670-daa3-4be9-9235-cf747e96dc79
+langcode: nl
+status: true
+dependencies: {  }
+name: slider
+label: 'Slider (700x350)'
+effects:
+  d7e53fd6-2a2b-4b77-9491-82a0bc10ec26:
+    uuid: d7e53fd6-2a2b-4b77-9491-82a0bc10ec26
+    id: image_scale_and_crop
+    weight: null
+    data:
+      width: 700
+      height: 350
+      anchor: center-center

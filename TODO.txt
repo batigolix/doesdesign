@@ -1,0 +1,125 @@
+Visual Regression: D7 vs D11 — TODO
+=====================================
+Gebaseerd op rapport: tests/playwright/visual-regression/report.html (29-3-2026)
+
+Legenda:
+  [x] = opgelost
+  [ ] = open
+  [-] = acceptabel verschil (bewust anders in D11)
+
+
+GLOBALE VERSCHILLEN (alle pagina's)
+------------------------------------
+[x] Logo: werkt — 75x75px, src=/themes/custom/denbei/logo.png
+[x] Social/contact blok: portretfoto Doesklein.jpg + D7 styling (achtergrond, stippelrand) toegevoegd
+[x] Google Translate widget: werkt (goog-te-gadget widget laadt correct)
+[-] Sidebar volgorde: D11 sidebar items staan in iets andere volgorde dan D7 (Zoeken, Sieraden en objecten, Foto's op Flickr)
+[x] Foto's op Flickr: werkt — 13 thumbnails laden via JSONP
+[ ] Footer: D7 footer toont "Home | Contact | About" links, D11 toont "Home | Contact | About" — vergelijk exacte tekst en opmaak
+
+
+01 — OBJECT DETAIL: gesp-texmex (8.6% diff)
+----------------------------------------------
+[ ] Categorie-links: D7 toont categorie als links (bijv. "Gespen"), D11 toont als "Bijzondere Gedenksieraden en objecten, Heren ringen, Dames ringen" — check taxonomy term referenties
+[ ] Contact-link: D7 toont "Een vraag stellen over dit sieraad" als link, controleer of dit ook in D11 werkt
+[ ] Materialen: D7 toont materialen als links (Zilver, Alpaca, Koper, Messing), D11 lijkt ze ook als links te tonen — controleer formatting
+
+
+02 — TAXONOMY: heren-ringen (10.3% diff)
+------------------------------------------
+[ ] Grid items: D7 toont 4 items per rij, D11 ook 4 per rij — maar D7 items bevatten meer tekst (beschrijving) onder de titel
+[ ] Object beschrijving in teaser: D7 toont korte beschrijving onder elke afbeelding, D11 lijkt dit ook te doen maar controleer of tekst volledig overeen komt
+[-] Paginering: D7 toont numerieke paginering (1, 2, 3...), D11 toont vergelijkbare paginering — visueel verschil klein
+
+
+03 — TAXONOMY: dames-ringen (10% diff)
+----------------------------------------
+[ ] Zelfde issues als 02-heren-ringen: grid layout, teaser beschrijvingen
+[ ] D11 toont minder items in laatste rij (2 items i.p.v. 3 in D7) — controleer items per pagina instelling
+
+
+04 — TAXONOMY: trouwringen (12.8% diff)
+-----------------------------------------
+[ ] Taxonomy beschrijving: D7 toont beschrijvende tekst bovenaan ("Unieke hoogwaardige trouwringen, handgemaakt van Mokume-gane..."), D11 toont "Unieke Trouwringen" — korter. Controleer of de volledige beschrijving is gemigreerd
+[ ] Grid layout: D7 toont 4 kolommen, D11 ook maar met iets andere spacing
+[ ] Teaser tekst onder afbeeldingen is korter/anders in D11
+
+
+05 — TAXONOMY: colliers (10.1% diff)
+--------------------------------------
+[ ] Taxonomy beschrijving: D7 toont langere intro tekst, D11 korter
+[ ] Grid: D7 3 rijen items, D11 ook 3 rijen maar aantal items kan verschillen per rij
+[ ] Laatste rij D7 heeft 3 items (Vossen hanger, Hanger "When the earth burns", leeg), D11 toont 2 items — controleer of alle objecten gemigreerd zijn
+
+
+06 — PAGE: about (13.7% diff)
+-------------------------------
+[ ] Titel: D7 "Birgit Doesborg, Goudsmid en Zilversmid in Hertogenbosch" — controleer of D11 dezelfde titel heeft
+[ ] Afbeeldingen in body: D7 toont meerdere inline afbeeldingen (portret, gebouwen), D11 ook maar positionering/grootte kan afwijken
+[-] Body tekst: inhoud lijkt gelijk, kleine rendering-verschillen door CKEditor migratie zijn acceptabel
+[ ] Inline afbeeldingen: controleer of float/alignment van afbeeldingen in body correct is (D7 gebruikt float:left/right)
+
+
+07 — CONTACT (9.1% diff)
+--------------------------
+[ ] Formuliervelden: D7 toont Naam, Emailadres, Telefoonnummer velden + Indienen knop. D11 lijkt dezelfde velden te hebben maar opmaak/styling kan afwijken
+[ ] Contact info bovenaan: D7 toont telefoon, email als klikbare links; controleer D11
+[ ] "Op het web" sectie: D7 toont sociale media links als lijst, D11 ook maar controleer of alle links aanwezig zijn
+[ ] Webform vs Contact form: D7 gebruikt webform, D11 moet ook webform gebruiken — controleer of formulier correct is gemigreerd
+
+
+08 — OBJECT DETAIL: kardinaalring (10.8% diff)
+-------------------------------------------------
+[ ] Afbeelding layout: D7 toont grote afbeelding links met meerdere thumbnails, D11 ook — maar eerste afbeelding in D11 lijkt groter/anders gepositioneerd
+[ ] Data lijst: D7 toont materialen, prijs, gewicht etc. in gestructureerde lijst met labels. Controleer of D11 dezelfde data-list styling heeft
+[ ] Meerdere afbeeldingen: D7 toont 2 afbeeldingen naast/onder elkaar. D11 ook maar controleer float-layout
+
+
+09 — PAGE: mokume-gane (12% diff)
+-----------------------------------
+[ ] Body content: lange pagina met veel tekst en inline afbeeldingen. Controleer of alle afbeeldingen correct zijn gemigreerd
+[ ] Embedded video/link: D7 bevat mogelijk embedded content (YouTube link). Controleer in D11
+[ ] Externe links lijst: D7 toont lijst met externe mokume-gane websites. Controleer of deze in D11 behouden zijn
+[ ] Afbeeldingen positie: D7 heeft afbeeldingen met float positioning in body. Controleer of CKEditor migratie dit behouden heeft
+
+
+10 — NEWS: expositie wintersalon (12.5% diff)
+-----------------------------------------------
+[ ] Datum/auteur: D7 toont "vr, 01/12/... - blog" als metadata. D11 toont datum anders
+[ ] Body afbeelding: D7 toont grote foto van expositie-ruimte. D11 ook maar formaat/kwaliteit kan afwijken
+[ ] Nieuwslijst onderaan: D7 en D11 tonen beide nieuwslijst — controleer of alle items aanwezig zijn
+
+
+11 — NEWS: expositie sieraden juli 2023 (6.9% diff)
+-----------------------------------------------------
+[-] Laagste diff (6.9%) — grotendeels visueel gelijk
+[ ] Inline afbeeldingen: D7 toont meerdere sieraad-foto's in body. Controleer of ze allemaal correct in D11 staan
+[ ] Afbeelding grootte: sommige inline afbeeldingen lijken in D11 iets anders geschaald
+
+
+12 — PAGE: trouwringen-page (11% diff)
+----------------------------------------
+[ ] Body content: lange pagina over trouwringen met veel tekst en afbeeldingen
+[ ] Inline afbeeldingen: D7 toont ring-foto's met float:left/right in tekst. Controleer of D11 dit correct rendert
+[ ] Materialentabel: D7 heeft uitgebreide tekst over materiaalcombinaties. Controleer of dit volledig gemigreerd is
+[ ] "Meer informatie" links onderaan: D7 toont links naar gerelateerde pagina's. Controleer in D11
+[ ] Sidebar volgorde: D11 sidebar items staan in andere volgorde dan D7 (Sieraden en objecten, Foto's op Flickr)
+
+
+PRIORITEITEN
+-------------
+Hoog:
+  - Logo toevoegen aan D11 header
+  - Google Translate widget werkend maken
+  - Flickr blok toevoegen aan sidebar
+  - Social media icons consistent maken
+
+Medium:
+  - Taxonomy term beschrijvingen controleren/completeren
+  - Object detail pagina data-list styling verfijnen
+  - Inline afbeelding float/alignment in body content controleren
+
+Laag:
+  - Kleine spacing/font-size afwijkingen
+  - Paginering styling
+  - Sidebar blok volgorde finetunen

@@ -36,6 +36,18 @@
                     "type": "zip"
                 }
             }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "splidejs/splide",
+                "version": "4.1.3",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://github.com/Splidejs/splide/archive/refs/tags/v4.1.3.zip",
+                    "type": "zip"
+                }
+            }
         }
     ],
     "require": {
@@ -67,7 +79,8 @@
         "drupal/stable": "^2.0",
         "drupal/upgrade_status": "^4.0@alpha",
         "drupal/webform": "^6.3@beta",
-        "jackmoore/colorbox": "^1.6"
+        "jackmoore/colorbox": "^1.6",
+        "splidejs/splide": "^4.1"
     },
     "require-dev": {
         "drupal/chosen": "^5.0",

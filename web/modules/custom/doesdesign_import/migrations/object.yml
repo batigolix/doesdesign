@@ -13,6 +13,7 @@ process:
   title: title
   created: created
   changed: changed
+  promote: promote
   default_langcode:
     plugin: default_value
     default_value: 1

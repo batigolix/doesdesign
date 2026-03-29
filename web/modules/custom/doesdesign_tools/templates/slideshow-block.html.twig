@@ -1,0 +1,28 @@
+{# AI generated. #}
+{#
+/**
+ * @file
+ * Template for the slideshow block.
+ *
+ * Available variables:
+ * - slides: Array of slides, each with:
+ *   - image: Rendered image element.
+ *   - title: Node title.
+ *   - url: URL to the node.
+ */
+#}
+{% if slides %}
+<div class="splide" aria-label="{{ 'Sieraden slideshow'|t }}">
+  <div class="splide__track">
+    <ul class="splide__list">
+      {% for slide in slides %}
+        <li class="splide__slide">
+          <a href="{{ slide.url }}">
+            {{ slide.image }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endif %}

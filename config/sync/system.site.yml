@@ -8,7 +8,7 @@ slogan: 'Mokume gane sieraden'
 page:
   403: ''
   404: ''
-  front: /node/1
+  front: /pagina/homepage
 admin_compact_mode: false
 weight_select_max: 100
 default_langcode: nl

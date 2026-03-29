@@ -40,6 +40,11 @@ function doesdesign_tools_theme() {
       ],
       'render element' => 'children',
     ],
+    'slideshow_block' => [
+      'variables' => [
+        'slides' => [],
+      ],
+    ],
   ];
 }
 

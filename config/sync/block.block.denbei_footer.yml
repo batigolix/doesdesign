@@ -1,0 +1,25 @@
+uuid: 9a324928-b37a-42f2-be4e-7238f3a76440
+langcode: nl
+status: true
+dependencies:
+  module:
+    - doesdesign_tools
+  theme:
+    - denbei
+id: denbei_footer
+theme: denbei
+region: footer
+weight: 0
+provider: null
+plugin: footer_block
+settings:
+  id: footer_block
+  label: 'Footer block'
+  label_display: '0'
+  provider: doesdesign_tools
+  body:
+    value: |-
+      <p><strong><a href="/">Home</a> | <a href="/contact">Contact</a> | <a href="/about">About</a></strong></p>
+      <p><strong>&copy; 2000 - 2026 Birgit Doesborg.</strong> De sieraden en objecten op deze website zijn gemaakt door Birgit Doesborg en zijn geregistreerd. Elke poging tot imitatie of namaak van deze artikelen is wettelijk strafbaar. Alle rechten op de teksten, ontwerpen en afbeeldingen op deze website zijn voorbehouden aan Birgit Doesborg. Om teksten, ontwerpen en afbeeldingen over te nemen dient men eerst <a href="/contact">toestemming te vragen</a>.</p>
+    format: full_html
+visibility: {  }

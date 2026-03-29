@@ -1,0 +1,28 @@
+uuid: c3ad71d8-ad26-44e4-8305-ca5518683891
+langcode: nl
+status: true
+dependencies:
+  module:
+    - doesdesign_tools
+    - system
+  theme:
+    - denbei
+id: denbei_slideshow
+theme: denbei
+region: content
+weight: -10
+provider: null
+plugin: slideshow_block
+settings:
+  id: slideshow_block
+  label: Slideshow
+  label_display: '0'
+  provider: doesdesign_tools
+  items: 5
+  order: DESC
+  order_property: created
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'
