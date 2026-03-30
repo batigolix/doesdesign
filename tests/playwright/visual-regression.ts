@@ -31,6 +31,7 @@ interface PageResult {
 }
 
 const pages: PageDef[] = [
+  { name: '00-home', d7: '/pagina/homepage', d11: '/pagina/homepage' },
   { name: '01-gesp-texmex', d7: '/sieraad/gesp-texmex', d11: '/sieraad/gesp-texmex' },
   { name: '02-heren-ringen', d7: '/soort-sieraden/heren-ringen-0', d11: '/soort-sieraden/heren-ringen' },
   { name: '03-dames-ringen', d7: '/soort-sieraden/dames-ringen', d11: '/soort-sieraden/dames-ringen' },
@@ -98,6 +99,18 @@ function createResizedPng(img: PNG, width: number, height: number): PNG {
         pageD7.goto(`${D7_BASE}${pg.d7}`, { waitUntil: 'networkidle', timeout: 15000 }),
         pageD11.goto(`${D11_BASE}${pg.d11}`, { waitUntil: 'networkidle', timeout: 15000 }),
       ]);
+
+      // Wait for async content to finish loading (Flickr JSONP, Google
+      // Translate widget, Splide slider initialization). Each selector
+      // is optional — we catch timeouts silently so pages without these
+      // elements don't block the run.
+      const waitForAsync = (page: typeof pageD7) =>
+        Promise.allSettled([
+          page.waitForSelector('#flickr_images ul', { timeout: 5000 }),
+          page.waitForSelector('.goog-te-gadget', { timeout: 5000 }),
+          page.waitForSelector('.splide.is-initialized', { timeout: 5000 }),
+        ]);
+      await Promise.all([waitForAsync(pageD7), waitForAsync(pageD11)]);
 
       // Hide the header so only content is compared.
       const hideHeader = (page: typeof pageD7) =>
