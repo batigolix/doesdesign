@@ -31,7 +31,7 @@ interface PageResult {
 }
 
 const pages: PageDef[] = [
-  { name: '00-home', d7: '/pagina/homepage', d11: '/pagina/homepage' },
+  { name: '00-home', d7: '/pagina/homepage', d11: '/' },
   { name: '01-gesp-texmex', d7: '/sieraad/gesp-texmex', d11: '/sieraad/gesp-texmex' },
   { name: '02-heren-ringen', d7: '/soort-sieraden/heren-ringen-0', d11: '/soort-sieraden/heren-ringen' },
   { name: '03-dames-ringen', d7: '/soort-sieraden/dames-ringen', d11: '/soort-sieraden/dames-ringen' },

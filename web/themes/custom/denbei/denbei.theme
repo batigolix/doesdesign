@@ -45,6 +45,13 @@ function denbei_preprocess_page(&$variables) {
     $variables['logo'] = \Drupal::service('file_url_generator')->generateString($logo['path']);
   }
 
+  // Provide is_front for page template. Core's PathMatcher::isFrontPage() can
+  // cache a stale FALSE when called before routing completes, so we compare
+  // the resolved front page path with the current path directly.
+  $front = \Drupal::config('system.site')->get('page.front');
+  $front_path = \Drupal::service('path_alias.manager')->getPathByAlias($front);
+  $variables['is_front'] = ($front_path === \Drupal::service('path.current')->getPath());
+
   // Provide page title.
   $request = \Drupal::request();
   $route_match = \Drupal::routeMatch();
