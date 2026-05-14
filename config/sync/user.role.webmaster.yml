@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - filter.format.basic_html
+    - filter.format.full_html
+    - filter.format.webform_default
     - media.type.image
     - node.type.object
     - node.type.page
@@ -76,6 +78,8 @@ permissions:
   - 'update any media'
   - 'update media'
   - 'use text format basic_html'
+  - 'use text format full_html'
+  - 'use text format webform_default'
   - 'view all media revisions'
   - 'view all revisions'
   - 'view object revisions'
