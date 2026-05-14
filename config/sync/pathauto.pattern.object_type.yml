@@ -2,19 +2,19 @@ uuid: f6c1b54b-f94f-419f-afb8-b0b141f69d4a
 langcode: nl
 status: true
 dependencies:
+  config:
+    - taxonomy.vocabulary.type
   module:
-    - ctools
     - language
     - taxonomy
 id: object_type
 label: 'object type'
 type: 'canonical_entities:taxonomy_term'
-pattern: 'soort-sieraden/[term:name]'
+pattern: '/soort-sieraden/[term:name]'
 selection_criteria:
   7c613c95-d0f9-41b7-8ebe-a50bce14ed7c:
     id: 'entity_bundle:taxonomy_term'
     negate: false
-    uuid: 7c613c95-d0f9-41b7-8ebe-a50bce14ed7c
     context_mapping:
       taxonomy_term: taxonomy_term
     bundles:
@@ -22,7 +22,6 @@ selection_criteria:
   86f02a4f-c192-476f-96a8-3a9be564d99e:
     id: language
     negate: false
-    uuid: 86f02a4f-c192-476f-96a8-3a9be564d99e
     context_mapping:
       language: 'taxonomy_term:langcode:language'
     langcodes:

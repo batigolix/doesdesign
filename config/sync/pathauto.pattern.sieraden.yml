@@ -2,18 +2,19 @@ uuid: da8a7519-16db-4a56-86f5-2b47ce3daa6f
 langcode: nl
 status: true
 dependencies:
+  config:
+    - node.type.object
   module:
     - language
     - node
 id: sieraden
 label: sieraden
 type: 'canonical_entities:node'
-pattern: 'sieraad/[node:title]'
+pattern: '/sieraad/[node:title]'
 selection_criteria:
   1b4b1b23-f231-4c92-9097-2475384569ea:
     id: 'entity_bundle:node'
     negate: false
-    uuid: 1b4b1b23-f231-4c92-9097-2475384569ea
     context_mapping:
       node: node
     bundles:
@@ -21,7 +22,6 @@ selection_criteria:
   713cde29-4761-4eb0-b61a-a2132e36cbb9:
     id: language
     negate: false
-    uuid: 713cde29-4761-4eb0-b61a-a2132e36cbb9
     context_mapping:
       language: 'node:langcode:language'
     langcodes:
