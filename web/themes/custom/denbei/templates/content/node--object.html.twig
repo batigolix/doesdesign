@@ -21,19 +21,7 @@
     <a href="{{ url }}">{{ label }}</a>
   </span>
   <div class="field field-name-field-image">
-    {% for item in node.field_media_image %}
-      {% set media = item.entity %}
-      {% if media and media.field_media_image.entity %}
-        <div class="field--name-field-media-image__item">
-          {{ {
-            '#theme': 'image_style',
-            '#style_name': 'large_thumb',
-            '#uri': media.field_media_image.entity.uri.value,
-            '#alt': media.field_media_image.alt,
-          } }}
-        </div>
-      {% endif %}
-    {% endfor %}
+    {{ content.field_media_image }}
   </div>
   <div class="data-list">
 

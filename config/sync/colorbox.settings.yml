@@ -32,4 +32,4 @@ advanced:
   mobile_device_width: 480px
   caption_trim: 0
   caption_trim_length: 75
-  compression_type: minified
+  compression_type: none

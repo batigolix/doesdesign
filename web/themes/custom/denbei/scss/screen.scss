@@ -285,8 +285,7 @@ a {
     }
   }
   .field-type-image .field-item,
-  .field--name-field-media-image > article,
-  .field--name-field-media-image__item {
+  .field-name-field-image article.media {
     float: left;
     display: inline;
     margin: 0 22px 22px 0;

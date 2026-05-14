@@ -283,41 +283,33 @@ a:hover, a:active, a:link, a:visited {
   clear: both;
 }
 .node-type-object #content .field-type-image .field-item,
-.node-type-object #content .field--name-field-media-image > article,
-.node-type-object #content .field--name-field-media-image__item,
+.node-type-object #content .field-name-field-image article.media,
 .page-node-type-object #content .field-type-image .field-item,
-.page-node-type-object #content .field--name-field-media-image > article,
-.page-node-type-object #content .field--name-field-media-image__item {
+.page-node-type-object #content .field-name-field-image article.media {
   float: left;
   display: inline;
   margin: 0 22px 22px 0;
 }
 @media (min-width: 480px) {
   .node-type-object #content .field-type-image .field-item,
-  .node-type-object #content .field--name-field-media-image > article,
-  .node-type-object #content .field--name-field-media-image__item,
+  .node-type-object #content .field-name-field-image article.media,
   .page-node-type-object #content .field-type-image .field-item,
-  .page-node-type-object #content .field--name-field-media-image > article,
-  .page-node-type-object #content .field--name-field-media-image__item {
+  .page-node-type-object #content .field-name-field-image article.media {
     width: 240px;
   }
 }
 @media (min-width: 768px) {
   .node-type-object #content .field-type-image .field-item,
-  .node-type-object #content .field--name-field-media-image > article,
-  .node-type-object #content .field--name-field-media-image__item,
+  .node-type-object #content .field-name-field-image article.media,
   .page-node-type-object #content .field-type-image .field-item,
-  .page-node-type-object #content .field--name-field-media-image > article,
-  .page-node-type-object #content .field--name-field-media-image__item {
+  .page-node-type-object #content .field-name-field-image article.media {
     width: 308px;
   }
 }
 .node-type-object #content .field-type-image .field-item img,
-.node-type-object #content .field--name-field-media-image > article img,
-.node-type-object #content .field--name-field-media-image__item img,
+.node-type-object #content .field-name-field-image article.media img,
 .page-node-type-object #content .field-type-image .field-item img,
-.page-node-type-object #content .field--name-field-media-image > article img,
-.page-node-type-object #content .field--name-field-media-image__item img {
+.page-node-type-object #content .field-name-field-image article.media img {
   max-width: 100%;
   _width: 100%;
   vertical-align: middle;
@@ -602,5 +594,3 @@ h2.block-title {
 img.image-border {
   border: 2px solid;
 }
-
-/*# sourceMappingURL=screen.css.map */

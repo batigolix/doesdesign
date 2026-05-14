@@ -1,0 +1,266 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - link "Home" [ref=e6] [cursor=pointer]:
+      - /url: /
+      - img "Home" [ref=e7]
+    - generic [ref=e8]:
+      - link "Doesdesign.nl" [ref=e10] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e11]: Mokume gane sieraden
+    - generic [ref=e16]:
+      - generic [ref=e17]:
+        - strong [ref=e18]:
+          - link "Birgit Doesborg" [ref=e19] [cursor=pointer]:
+            - /url: /about
+        - text: ", Goud- en zilversmid."
+      - strong [ref=e21]:
+        - link "Contact" [ref=e22] [cursor=pointer]:
+          - /url: /contact
+      - paragraph [ref=e23]:
+        - link "Visit Doesdesign at Facebook" [ref=e24] [cursor=pointer]:
+          - /url: https://www.facebook.com/Doesdesign.nl
+          - img "Visit Doesdesign at Facebook" [ref=e25]
+        - link "Visit Birgit at Linkedin" [ref=e26] [cursor=pointer]:
+          - /url: http://nl.linkedin.com/in/birgitdoesborg
+          - img "Visit Birgit at Linkedin" [ref=e27]
+        - link "Tweet Birgit" [ref=e28] [cursor=pointer]:
+          - /url: https://twitter.com/#!/Doesdesign_nl
+          - img "Tweet Birgit" [ref=e29]
+        - link "Visit YouTube page from Birgit" [ref=e30] [cursor=pointer]:
+          - /url: http://youtube.com/@metalartcreations
+          - img "Visit YouTube page from Birgit" [ref=e31]
+        - link "Visit Doesdesign at Instagram" [ref=e32] [cursor=pointer]:
+          - /url: https://www.instagram.com/doesdesign_nl/?hl=nl
+          - img "Visit Doesdesign at Instagram" [ref=e33]
+  - generic [ref=e34]:
+    - navigation [ref=e36]:
+      - navigation "Main navigation" [ref=e37]:
+        - heading "Main navigation" [level=2] [ref=e38]
+        - list [ref=e39]:
+          - listitem [ref=e40]:
+            - link "Over Birgit" [ref=e41] [cursor=pointer]:
+              - /url: /pagina/birgit-doesborg-goudsmid-en-zilversmid-hertogenbosch
+          - listitem [ref=e42]:
+            - link "Wat is Mokume-gane?" [ref=e43] [cursor=pointer]:
+              - /url: /pagina/over-mokume-gane
+          - listitem [ref=e44]:
+            - link "Trouwringen" [ref=e45] [cursor=pointer]:
+              - /url: /soort-sieraden/unieke-trouwringen
+          - listitem [ref=e46]:
+            - link "Verkoop" [ref=e47] [cursor=pointer]:
+              - /url: /pagina/bezichtigen-doesdesign-sieraden
+          - listitem [ref=e48]:
+            - link "Workshops" [ref=e49] [cursor=pointer]:
+              - /url: /pagina/cursussen-en-workshops-edelsmeden
+          - listitem [ref=e50]:
+            - link "Reparaties van sieraden, sierobjecten en antiek" [ref=e51] [cursor=pointer]:
+              - /url: /pagina/goud-recyclen-oude-sieraden-repareren-geeft-waarde
+          - listitem [ref=e52]:
+            - link "Contact" [ref=e53] [cursor=pointer]:
+              - /url: /contact
+    - generic [ref=e54]:
+      - main [ref=e55]:
+        - heading "Homepage" [level=1] [ref=e56]
+        - heading "Primaire tabs" [level=2] [ref=e57]
+        - region "Sieraden slideshow" [ref=e60]:
+          - generic [ref=e61]:
+            - tabpanel "1 of 5" [ref=e62]:
+              - link "Zilveren-filigrain-armband.jpg Zilveren armband met Filigrain motief" [ref=e63] [cursor=pointer]:
+                - /url: /sieraad/zilveren-armband-met-filigrain-motief
+                - img "Zilveren-filigrain-armband.jpg" [ref=e64]
+                - generic [ref=e65]: Zilveren armband met Filigrain motief
+            - tabpanel [ref=e66]:
+              - link [ref=e67] [cursor=pointer]:
+                - /url: /sieraad/zilveren-armband-yinyan
+                - img [ref=e68]
+                - generic [ref=e69]: Zilveren armband "YinYan"
+            - tabpanel [ref=e70]:
+              - link [ref=e71] [cursor=pointer]:
+                - /url: /sieraad/kardinaalring-franciscus-met-mokume-gane-en-carneool
+                - img [ref=e72]
+                - generic [ref=e73]: Kardinaalring "Franciscus" met Mokume-gane en Carneool
+            - tabpanel [ref=e74]:
+              - link [ref=e75] [cursor=pointer]:
+                - /url: /sieraad/mokume-gane-trouwring-met-moissaniet
+                - img [ref=e76]
+                - generic [ref=e77]: Mokume-gane trouwring met Moissaniet
+            - tabpanel [ref=e78]:
+              - link [ref=e79] [cursor=pointer]:
+                - /url: /sieraad/hoedenspeld-springbalsemien
+                - img [ref=e80]
+                - generic [ref=e81]: Hoedenspeld- Springbalsemien
+          - tablist "Select a slide to show":
+            - tab "Go to slide 1" [selected] [ref=e82]
+            - tab "Go to slide 2" [ref=e83]
+            - tab "Go to slide 3" [ref=e84]
+            - tab "Go to slide 4" [ref=e85]
+            - tab "Go to slide 5" [ref=e86]
+        - generic [ref=e93]:
+          - paragraph [ref=e94]:
+            - text: Via de
+            - link "contactpagina" [ref=e95] [cursor=pointer]:
+              - /url: https://doesdesign.nl/about
+            - text: op mijn website kunt u een afspraak maken om een sieraad te aanschouwen of om sieraden/objecten te repareren.
+          - paragraph [ref=e96]:
+            - text: De collectie
+            - link "Mokume-gane sieraden" [ref=e97] [cursor=pointer]:
+              - /url: https://doesdesign.nl/gemaakt-in/2020
+            - text: zijn gedeeltelijk te bewonderen in haar atelier en op deze website. Prijzen zijn afhankelijk van de
+            - link "goudkoers" [ref=e98] [cursor=pointer]:
+              - /url: https://www.goudprijs.nl/goudkoers/
+            - text: ". Maak eerst een afspraak per telefoon 06-38343719 of per mail:"
+            - link "birgit@doesdesign.nl" [ref=e99] [cursor=pointer]:
+              - /url: mailto:birgit@doesdesign.nl
+        - generic [ref=e100]:
+          - heading "News" [level=2] [ref=e101]
+          - generic [ref=e104]:
+            - list [ref=e107]:
+              - listitem [ref=e108]:
+                - time [ref=e111]: vr, 28/11/2025 - 11:25
+                - link "Expositie Bossche wintersalon 2025-2026" [ref=e114] [cursor=pointer]:
+                  - /url: /nieuws/expositie-bossche-wintersalon-2025-2026
+              - listitem [ref=e115]:
+                - time [ref=e118]: wo, 30/04/2025 - 12:22
+                - link "Expositie sieraden 6 juli 2025" [ref=e121] [cursor=pointer]:
+                  - /url: /nieuws/expositie-sieraden-6-juli-2025
+              - listitem [ref=e122]:
+                - time [ref=e125]: ma, 14/04/2025 - 12:42
+                - link "Designmarket I love it! What is it!" [ref=e128] [cursor=pointer]:
+                  - /url: /nieuws/designmarket-i-love-it-what-it
+              - listitem [ref=e129]:
+                - time [ref=e132]: wo, 11/12/2024 - 12:19
+                - link "Storytelling through jewelry and art-objects" [ref=e135] [cursor=pointer]:
+                  - /url: /nieuws/storytelling-through-jewelry-and-art-objects
+              - listitem [ref=e136]:
+                - time [ref=e139]: za, 20/04/2024 - 14:13
+                - link "Expositie Mokume-gane sieraden en sierobjecten 7 juli 2024" [ref=e142] [cursor=pointer]:
+                  - /url: /nieuws/expositie-mokume-gane-sieraden-en-sierobjecten-7-juli-2024
+              - listitem [ref=e143]:
+                - time [ref=e146]: zo, 02/04/2023 - 16:23
+                - link "Expositie sieraden en objecten 9 Juli 2023" [ref=e149] [cursor=pointer]:
+                  - /url: /nieuws/expositie-sieraden-en-objecten-9-juli-2023
+              - listitem [ref=e150]:
+                - time [ref=e153]: wo, 25/05/2022 - 14:36
+                - link "Sieradenexpositie 10 juli 2022 Doesdesign met cursisten" [ref=e156] [cursor=pointer]:
+                  - /url: /nieuws/sieradenexpositie-10-juli-2022-doesdesign-cursisten
+              - listitem [ref=e157]:
+                - time [ref=e160]: ma, 01/02/2021 - 18:28
+                - link "Project Kettingreactie" [ref=e163] [cursor=pointer]:
+                  - /url: /nieuws/project-kettingreactie
+              - listitem [ref=e164]:
+                - time [ref=e167]: za, 14/11/2020 - 12:58
+                - link "Winter is coming!" [ref=e170] [cursor=pointer]:
+                  - /url: /nieuws/winter-coming
+              - listitem [ref=e171]:
+                - time [ref=e174]: di, 21/05/2019 - 22:25
+                - link "Expositie 30 Juni 2019" [ref=e177] [cursor=pointer]:
+                  - /url: /nieuws/expositie-30-juni-2019
+            - link "Meer" [ref=e179] [cursor=pointer]:
+              - /url: /nieuws
+      - complementary [ref=e180]:
+        - heading "Translate" [level=2] [ref=e182]
+        - search [ref=e183]:
+          - heading "Zoeken" [level=2] [ref=e184]
+          - generic [ref=e185]:
+            - generic [ref=e186]:
+              - generic [ref=e187]: Zoeken
+              - searchbox "Zoeken" [ref=e188]
+            - button "Zoeken" [ref=e190]
+        - generic [ref=e191]:
+          - heading "Sieraden en objecten" [level=2] [ref=e192]
+          - generic [ref=e196]:
+            - link "Armbanden" [ref=e200] [cursor=pointer]:
+              - /url: /soort-sieraden/armbanden
+            - link "Bijzondere Gedenksieraden en objecten" [ref=e204] [cursor=pointer]:
+              - /url: /soort-sieraden/bijzondere-gedenksieraden-en-objecten
+            - link "Broches en Haarspelden" [ref=e208] [cursor=pointer]:
+              - /url: /soort-sieraden/broches-en-haarspelden
+            - link "Colliers & hangers" [ref=e212] [cursor=pointer]:
+              - /url: /soort-sieraden/colliers-hangers
+            - link "Dames ringen" [ref=e216] [cursor=pointer]:
+              - /url: /soort-sieraden/dames-ringen
+            - link "Gespen" [ref=e220] [cursor=pointer]:
+              - /url: /soort-sieraden/gespen
+            - link "Heren ringen" [ref=e224] [cursor=pointer]:
+              - /url: /soort-sieraden/heren-ringen
+            - link "Manchetknopen" [ref=e228] [cursor=pointer]:
+              - /url: /soort-sieraden/manchetknopen
+            - link "Oorbellen" [ref=e232] [cursor=pointer]:
+              - /url: /soort-sieraden/oorbellen
+            - link "Sierobjecten-Kunstobjecten" [ref=e236] [cursor=pointer]:
+              - /url: /soort-sieraden/sierobjecten-kunstobjecten
+            - link "Unieke Trouwringen" [ref=e240] [cursor=pointer]:
+              - /url: /soort-sieraden/unieke-trouwringen
+        - generic [ref=e241]:
+          - heading "Foto's op flickr" [level=2] [ref=e242]
+          - list [ref=e243]:
+            - listitem [ref=e244]:
+              - link "workshop-Mokume-Metalartcreations" [ref=e245] [cursor=pointer]:
+                - /url: https://www.flickr.com/photos/birgitdoesborg/33694130071/
+                - img "workshop-Mokume-Metalartcreations" [ref=e246]
+            - listitem [ref=e247]:
+              - link "workshop-Mokume-gane" [ref=e248] [cursor=pointer]:
+                - /url: https://www.flickr.com/photos/birgitdoesborg/33667305972/
+                - img "workshop-Mokume-gane" [ref=e249]
+            - listitem [ref=e250]:
+              - link "workshop-1771" [ref=e251] [cursor=pointer]:
+                - /url: https://www.flickr.com/photos/birgitdoesborg/33823681985/
+                - img "workshop-1771" [ref=e252]
+            - listitem [ref=e253]:
+              - link "workshop-1766" [ref=e254] [cursor=pointer]:
+                - /url: https://www.flickr.com/photos/birgitdoesborg/33667310172/
+                - img "workshop-1766" [ref=e255]
+            - listitem [ref=e256]:
+              - link "workshop-1759" [ref=e257] [cursor=pointer]:
+                - /url: https://www.flickr.com/photos/birgitdoesborg/33438628970/
+                - img "workshop-1759" [ref=e258]
+            - listitem [ref=e259]:
+              - link "workshop-1758" [ref=e260] [cursor=pointer]:
+                - /url: https://www.flickr.com/photos/birgitdoesborg/33782651406/
+                - img "workshop-1758" [ref=e261]
+            - listitem [ref=e262]:
+              - link "workshop-1757" [ref=e263] [cursor=pointer]:
+                - /url: https://www.flickr.com/photos/birgitdoesborg/33438632080/
+                - img "workshop-1757" [ref=e264]
+            - listitem [ref=e265]:
+              - link "workshop-1752" [ref=e266] [cursor=pointer]:
+                - /url: https://www.flickr.com/photos/birgitdoesborg/33438634500/
+                - img "workshop-1752" [ref=e267]
+            - listitem [ref=e268]:
+              - link "workshop-1751" [ref=e269] [cursor=pointer]:
+                - /url: https://www.flickr.com/photos/birgitdoesborg/33782656176/
+                - img "workshop-1751" [ref=e270]
+            - listitem [ref=e271]:
+              - link "workshop-1750" [ref=e272] [cursor=pointer]:
+                - /url: https://www.flickr.com/photos/birgitdoesborg/33438638490/
+                - img "workshop-1750" [ref=e273]
+            - listitem [ref=e274]:
+              - link "workshop-1747" [ref=e275] [cursor=pointer]:
+                - /url: https://www.flickr.com/photos/birgitdoesborg/33694151551/
+                - img "workshop-1747" [ref=e276]
+            - listitem [ref=e277]:
+              - link "workshop-1746" [ref=e278] [cursor=pointer]:
+                - /url: https://www.flickr.com/photos/birgitdoesborg/33438640790/
+                - img "workshop-1746" [ref=e279]
+            - listitem [ref=e280]:
+              - link "workshop-1744" [ref=e281] [cursor=pointer]:
+                - /url: https://www.flickr.com/photos/birgitdoesborg/33667329322/
+                - img "workshop-1744" [ref=e282]
+    - contentinfo [ref=e283]:
+      - generic [ref=e285]:
+        - paragraph [ref=e286]:
+          - strong [ref=e287]:
+            - link "Home" [ref=e288] [cursor=pointer]:
+              - /url: /
+            - text: "|"
+            - link "Contact" [ref=e289] [cursor=pointer]:
+              - /url: /contact
+            - text: "|"
+            - link "About" [ref=e290] [cursor=pointer]:
+              - /url: /about
+        - paragraph [ref=e291]:
+          - strong [ref=e292]: © 2000 - 2026 Birgit Doesborg.
+          - text: De sieraden en objecten op deze website zijn gemaakt door Birgit Doesborg en zijn geregistreerd. Elke poging tot imitatie of namaak van deze artikelen is wettelijk strafbaar. Alle rechten op de teksten, ontwerpen en afbeeldingen op deze website zijn voorbehouden aan Birgit Doesborg. Om teksten, ontwerpen en afbeeldingen over te nemen dient men eerst
+          - link "toestemming te vragen" [ref=e293] [cursor=pointer]:
+            - /url: /contact
+          - text: .

@@ -1,0 +1,42 @@
+name = Shoami
+description = Shoami, based on Basic starter theme for Drupal 7
+screenshot = images/screenshot.gif
+core = "7.x"
+project = "shoami"
+engine = phptemplate
+
+regions[page_top] = Page top
+regions[header1] = Header Right 1st Col
+regions[header2] = Header Right 2nd Col
+regions[help] = Help
+regions[content_top] = Content top
+regions[content] = Content
+regions[sidebar] =  Sidebar
+regions[footer] = Footer
+
+features[] = logo
+features[] = name
+features[] = slogan
+features[] = node_user_picture
+features[] = comment_user_picture
+features[] = search
+features[] = favicon
+features[] = main_menu
+features[] = secondary_menu
+
+stylesheets[all][] = css/screen.css
+stylesheets[print][] = css/print.css
+stylesheets[all][] = css/ie.css
+stylesheets[all][] = css/tabs.css
+
+scripts[] = js/scripts.js
+
+settings[clear_registry] = 0
+settings[breadcrumb_display]   = yes
+settings[breadcrumb_separator] = ' › '
+settings[breadcrumb_home]      = 1
+settings[breadcrumb_trailing]  = 0
+settings[breadcrumb_title]     = 0
+settings[shoami_shim]           = 1
+
+fonts[google_fonts_api][] = "Gentium Book Basic&subset=latin#regular"
