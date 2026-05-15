@@ -3,76 +3,159 @@ langcode: en
 status: true
 dependencies:
   config:
+    - block_content.type.basic
     - filter.format.basic_html
     - filter.format.full_html
     - filter.format.webform_default
+    - media.type.audio
+    - media.type.document
     - media.type.image
+    - media.type.remote_video
+    - media.type.video
+    - node.type.article
     - node.type.object
     - node.type.page
     - taxonomy.vocabulary.material
     - taxonomy.vocabulary.type
   module:
+    - block
+    - block_content
     - environment_indicator
     - file
     - filter
     - media
     - node
     - path
+    - pathauto
     - shortcut
     - system
     - taxonomy
     - toolbar
+    - webform
 id: webmaster
 label: Webmaster
 weight: 3
 is_admin: null
 permissions:
   - 'access administration pages'
+  - 'access any webform configuration'
+  - 'access block library'
   - 'access content'
   - 'access content overview'
   - 'access environment indicator'
   - 'access files overview'
   - 'access media overview'
+  - 'access own webform configuration'
   - 'access shortcuts'
   - 'access site in maintenance mode'
   - 'access site reports'
   - 'access taxonomy overview'
   - 'access toolbar'
   - 'access user profiles'
+  - 'access webform help'
+  - 'access webform overview'
+  - 'access webform submission user'
+  - 'administer block content'
+  - 'administer blocks'
+  - 'administer media'
+  - 'administer media types'
   - 'administer menu'
+  - 'administer node published status'
   - 'administer nodes'
+  - 'administer url aliases'
+  - 'administer webform'
+  - 'administer webform element access'
+  - 'administer webform overview'
+  - 'administer webform submission'
+  - 'bulk delete aliases'
+  - 'bulk update aliases'
   - 'bypass node access'
+  - 'create article content'
+  - 'create audio media'
+  - 'create basic block content'
+  - 'create document media'
   - 'create image media'
   - 'create media'
   - 'create object content'
   - 'create page content'
+  - 'create remote_video media'
   - 'create terms in material'
   - 'create terms in type'
   - 'create url aliases'
+  - 'create video media'
+  - 'create webform'
   - 'delete all revisions'
+  - 'delete any article content'
+  - 'delete any audio media'
+  - 'delete any audio media revisions'
+  - 'delete any basic block content'
+  - 'delete any basic block content revisions'
+  - 'delete any document media'
+  - 'delete any document media revisions'
   - 'delete any image media'
+  - 'delete any image media revisions'
   - 'delete any media'
   - 'delete any object content'
   - 'delete any page content'
+  - 'delete any remote_video media'
+  - 'delete any remote_video media revisions'
+  - 'delete any video media'
+  - 'delete any video media revisions'
+  - 'delete any webform'
+  - 'delete any webform submission'
+  - 'delete article revisions'
   - 'delete media'
   - 'delete object revisions'
+  - 'delete own article content'
+  - 'delete own audio media'
+  - 'delete own document media'
   - 'delete own files'
   - 'delete own image media'
   - 'delete own object content'
   - 'delete own page content'
+  - 'delete own remote_video media'
+  - 'delete own video media'
+  - 'delete own webform'
+  - 'delete own webform submission'
   - 'delete page revisions'
   - 'delete terms in material'
   - 'delete terms in type'
+  - 'edit any article content'
+  - 'edit any audio media'
+  - 'edit any basic block content'
+  - 'edit any document media'
   - 'edit any image media'
   - 'edit any object content'
   - 'edit any page content'
+  - 'edit any remote_video media'
+  - 'edit any video media'
+  - 'edit any webform'
+  - 'edit any webform submission'
+  - 'edit own article content'
+  - 'edit own audio media'
+  - 'edit own document media'
   - 'edit own image media'
   - 'edit own object content'
   - 'edit own page content'
+  - 'edit own remote_video media'
+  - 'edit own video media'
+  - 'edit own webform'
+  - 'edit own webform submission'
   - 'edit terms in material'
   - 'edit terms in type'
+  - 'edit webform assets'
+  - 'edit webform source'
+  - 'edit webform twig'
+  - 'edit webform variants'
   - 'rebuild node access permissions'
   - 'revert all revisions'
+  - 'revert any audio media revisions'
+  - 'revert any basic block content revisions'
+  - 'revert any document media revisions'
+  - 'revert any image media revisions'
+  - 'revert any remote_video media revisions'
+  - 'revert any video media revisions'
+  - 'revert article revisions'
   - 'revert object revisions'
   - 'revert page revisions'
   - 'update any media'
@@ -82,8 +165,19 @@ permissions:
   - 'use text format webform_default'
   - 'view all media revisions'
   - 'view all revisions'
+  - 'view any audio media revisions'
+  - 'view any basic block content history'
+  - 'view any document media revisions'
+  - 'view any image media revisions'
+  - 'view any remote_video media revisions'
+  - 'view any video media revisions'
+  - 'view any webform submission'
+  - 'view article revisions'
+  - 'view media'
   - 'view object revisions'
   - 'view own unpublished content'
   - 'view own unpublished media'
+  - 'view own webform submission'
   - 'view page revisions'
+  - 'view term revisions in type'
   - 'view the administration theme'
