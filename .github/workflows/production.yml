@@ -1,8 +1,8 @@
 name: Build & deploy production
 on:
   push:
-    tags:
-      - 'v*.*.*'
+    branches:
+      - 'master'
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -21,9 +21,9 @@ jobs:
             cd ${{ secrets.PRODUCTION_DIR }}
             chmod a+w web/sites/default
             chmod a+w web/sites/default/settings.php
-            git fetch --tags origin
             git reset --hard
-            git checkout ${{ github.ref_name }}
+            git checkout master
+            git pull origin master
             ${{ secrets.COMPOSER }} install --no-dev --ignore-platform-reqs
             ln -sfn ../../../../files web/sites/default/files
             chmod a-w web/sites/default
