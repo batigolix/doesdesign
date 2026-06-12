@@ -68,14 +68,14 @@
         "drupal/tagify": "^1.2",
         "drupal/upgrade_status": "^4.0@alpha",
         "drupal/webform": "^6.3@beta",
+        "drush/drush": "^13.0",
         "jackmoore/colorbox": "^1.6",
         "splidejs/splide": "^4.1"
     },
     "require-dev": {
         "drupal/devel": "^5.1",
         "drupal/migrate_devel": "3.0.1",
-        "drupal/stage_file_proxy": "*",
-        "drush/drush": "^13.0"
+        "drupal/stage_file_proxy": "*"
     },
     "conflict": {
         "drupal/drupal": "*"
