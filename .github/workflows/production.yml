@@ -25,6 +25,7 @@ jobs:
             git reset --hard
             git checkout ${{ github.ref_name }}
             ${{ secrets.COMPOSER }} install --no-dev --ignore-platform-reqs
+            ln -sfn ../../../../files web/sites/default/files
             chmod a-w web/sites/default
             chmod a-w web/sites/default/settings.php
             bin/drush deploy
