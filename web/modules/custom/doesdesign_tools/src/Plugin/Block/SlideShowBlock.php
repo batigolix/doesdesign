@@ -5,6 +5,7 @@
 namespace Drupal\doesdesign_tools\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -155,6 +156,16 @@ class SlideShowBlock extends BlockBase implements ContainerFactoryPluginInterfac
         'library' => ['doesdesign_tools/slideshow'],
       ],
     ];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheTags() {
+    return Cache::mergeTags(parent::getCacheTags(), [
+      'node_list:object',
+      'media_list:image',
+    ]);
   }
 
 }
