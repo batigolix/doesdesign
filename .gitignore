@@ -49,3 +49,4 @@ tests/backstop/backstop_data
 /.playwright-cli/
 /.playwright-mcp/
 /tests/playwright/node_modules/
+/private/
