@@ -39,6 +39,50 @@ function doesdesign_import_deploy_rewrite_d7_file_paths(): string {
 }
 
 /**
+ * Remap D7 numeric text format IDs to D11 machine names.
+ *
+ * # Purpose
+ * In D7 text formats had numeric IDs (1, 2, 3, 4). D8+ switched to machine
+ * names (basic_html, full_html, plain_text, restricted_html). The migration
+ * remapped formats in node/block body fields but left
+ * taxonomy_term_field_data.description__format with the original numeric
+ * values. Whenever a term description is rendered, filter module logs
+ * "Missing text format: 3." (or 4) in watchdog.
+ *
+ * # Mapping (from the D7 filter_format table)
+ *   3 (Full HTML)  → full_html
+ *   4 (Plain text) → plain_text
+ * Other D7 IDs (1=Filtered HTML, 2=PHP code) are not present in this dataset.
+ *
+ * @return string
+ *   Human-readable summary printed by `drush deploy`.
+ */
+function doesdesign_import_deploy_remap_taxonomy_format_ids(): string {
+  $connection = Database::getConnection();
+  $tables = [
+    'taxonomy_term_field_data',
+    'taxonomy_term_field_revision',
+  ];
+  $mapping = [
+    '3' => 'full_html',
+    '4' => 'plain_text',
+  ];
+  $total = 0;
+  foreach ($tables as $table) {
+    if (!$connection->schema()->tableExists($table)) {
+      continue;
+    }
+    foreach ($mapping as $old => $new) {
+      $total += $connection->update($table)
+        ->fields(['description__format' => $new])
+        ->condition('description__format', $old)
+        ->execute();
+    }
+  }
+  return sprintf('Remapped taxonomy term description formats in %d row(s).', $total);
+}
+
+/**
  * Copy still-missing original image files from the D7 source tree.
  *
  * # Purpose
