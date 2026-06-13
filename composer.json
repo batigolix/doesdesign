@@ -64,6 +64,7 @@
         "drupal/migrate_tools": "^6.0",
         "drupal/pathauto": "^1.6",
         "drupal/redirect": "^1.5",
+        "drupal/simple_sitemap": "^4.2",
         "drupal/single_image_formatter": "^2.0",
         "drupal/stable": "^2.0",
         "drupal/tagify": "^1.2",

@@ -50,3 +50,4 @@ tests/backstop/backstop_data
 /.playwright-mcp/
 /tests/playwright/node_modules/
 /private/
+/.editorconfig

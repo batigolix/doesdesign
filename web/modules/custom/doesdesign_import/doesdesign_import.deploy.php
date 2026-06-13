@@ -39,6 +39,38 @@ function doesdesign_import_deploy_rewrite_d7_file_paths(): string {
 }
 
 /**
+ * Create 301 redirect for a historical D7 URL alias.
+ *
+ * # Purpose
+ * The D7 page "Unieke en bijzondere trouwringen." (node/711) was not
+ * migrated to D11. Inbound traffic on its old alias
+ * `pagina/originele-en-unieke-trouwringen-van-mokume-gane` therefore hits a
+ * 404. The closest semantic equivalent on D11 is the taxonomy term page for
+ * "Unieke Trouwringen" (term id 59) at `/soort-sieraden/unieke-trouwringen`.
+ *
+ * # Idempotency
+ * Skips creation when a redirect from the same source path already exists.
+ *
+ * @return string
+ */
+function doesdesign_import_deploy_add_legacy_trouwringen_redirect(): string {
+  $source = 'pagina/originele-en-unieke-trouwringen-van-mokume-gane';
+  $existing = \Drupal::entityTypeManager()
+    ->getStorage('redirect')
+    ->loadByProperties(['redirect_source__path' => $source]);
+  if ($existing) {
+    return sprintf('Redirect for "%s" already exists, skipped.', $source);
+  }
+  \Drupal\redirect\Entity\Redirect::create([
+    'redirect_source' => ['path' => $source, 'query' => []],
+    'redirect_redirect' => 'internal:/taxonomy/term/59',
+    'language' => 'und',
+    'status_code' => 301,
+  ])->save();
+  return sprintf('Created 301 redirect: %s → /taxonomy/term/59.', $source);
+}
+
+/**
  * Remap D7 numeric text format IDs to D11 machine names.
  *
  * # Purpose
