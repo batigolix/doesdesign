@@ -778,3 +778,10 @@ $ddev_settings = dirname(__FILE__) . '/settings.ddev.php';
 if (getenv('IS_DDEV_PROJECT') == 'true' && is_readable($ddev_settings)) {
   require $ddev_settings;
 }
+
+// Drupal recommends READ COMMITTED isolation; force it per-connection so it
+// works on shared hosting where the MySQL global can't be changed.
+if (isset($databases['default']['default'])) {
+  $databases['default']['default']['init_commands']['isolation_level']
+    = 'SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED';
+}
