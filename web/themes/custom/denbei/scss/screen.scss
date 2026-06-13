@@ -157,6 +157,8 @@ h1, h2, h3, h4, h5, h6 {
     @media (min-width: $break3) {
       float: left;
       width: 70%;
+      padding-right: 2em;
+      box-sizing: border-box;
     }
   }
   #sidebar {
@@ -168,6 +170,48 @@ h1, h2, h3, h4, h5, h6 {
       padding: 0;
       margin: 1em 0 2em 0;
     }
+  }
+}
+
+/* status messages */
+
+[data-drupal-messages] {
+  margin: 0 0 1.5em 0;
+
+  .messages {
+    padding: 0.75em 1em;
+    margin: 0 0 1em 0;
+    border-radius: 6px;
+    border-left: 5px solid $dark_grey;
+    background: $light_yellow;
+    box-shadow: #cccccc 1px 1px 1px;
+
+    &--status {
+      border-left-color: #4f7a3a;
+      background: #e3eedb;
+    }
+
+    &--warning {
+      border-left-color: $dark_yellow;
+      background: #fbf0d5;
+    }
+
+    &--error {
+      border-left-color: #8b2e2e;
+      background: #f3dada;
+      [role="alert"] {
+        margin: 0;
+      }
+    }
+  }
+
+  .messages__list {
+    margin: 0;
+    padding-left: 1.2em;
+  }
+
+  .messages__item {
+    margin: 0.25em 0;
   }
 }
 
