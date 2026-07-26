@@ -13,3 +13,13 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   line-height: 1.2;
 }
+
+a {
+  color: hsl(var(--color-primary-h) var(--color-primary-s) var(--color-primary-l));
+
+  &:hover,
+  &:focus {
+    // Darker on hover: lightness clamped down.
+    color: hsl(var(--color-primary-h) var(--color-primary-s) calc(var(--color-primary-l) - 15%));
+  }
+}
