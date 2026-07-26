@@ -1,0 +1,16 @@
+_core:
+  default_config_hash: B6saapsLxS2PmsngHwzCKTUiPA9Gy4oYwhs6FKI-0sQ
+favicon:
+  use_default: true
+features:
+  favicon: true
+logo:
+  use_default: false
+color_primary: '#007acc'
+color_secondary: '#626880'
+color_accent: '#ef8354'
+color_background: '#ffffff'
+color_text: '#333333'
+container_width: default
+sidebar_position: right
+show_hero: true

@@ -1,0 +1,24 @@
+uuid: 56df343a-f3b0-4efe-94ee-4b1a3ffdac8b
+langcode: nl
+status: true
+dependencies:
+  config:
+    - views.view.news
+  module:
+    - views
+  theme:
+    - shindo
+id: shindo_news
+theme: shindo
+region: content
+weight: 5
+provider: null
+plugin: 'views_block:news-block_1'
+settings:
+  id: 'views_block:news-block_1'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+  items_per_page: null
+visibility: {  }

@@ -1,0 +1,21 @@
+uuid: 01408cb7-2f68-4056-bef7-f7fc0ae48b14
+langcode: nl
+status: true
+dependencies:
+  module:
+    - doesdesign_tools
+  theme:
+    - shindo
+id: shindo_flickr
+theme: shindo
+region: header
+weight: 2
+provider: null
+plugin: flickr
+settings:
+  id: flickr
+  label: "Foto's op flickr"
+  label_display: visible
+  provider: doesdesign_tools
+  flickr_items: 12
+visibility: {  }
