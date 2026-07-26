@@ -4,7 +4,112 @@
  * @file
  * AI generated
  * Theme functions and preprocess hooks for the Shindo theme.
- *
- * Preprocess hooks and theme settings integrations will be added by
- * follow-up beads: doesdesign-5wg (colors) and doesdesign-il3 (layout).
  */
+
+/**
+ * Implements hook_preprocess_HOOK() for html.
+ *
+ * Injects theme color settings as CSS custom properties on the <html>
+ * element. Brand colors (primary/secondary/accent) are converted to
+ * HSL components so SCSS can derive hover/muted/border variants via
+ * calc() on the lightness.
+ */
+function shindo_preprocess_html(array &$variables): void {
+  $brand_defaults = [
+    'color_primary' => '#007acc',
+    'color_secondary' => '#626880',
+    'color_accent' => '#ef8354',
+  ];
+  $direct_defaults = [
+    'color_background' => '#ffffff',
+    'color_text' => '#333333',
+  ];
+
+  $styles = [];
+
+  foreach ($brand_defaults as $key => $default) {
+    $hex = theme_get_setting($key) ?: $default;
+    [$h, $s, $l] = _shindo_hex_to_hsl($hex);
+    $prefix = '--' . str_replace('_', '-', $key);
+    $styles[] = "$prefix-h:$h";
+    $styles[] = "$prefix-s:$s%";
+    $styles[] = "$prefix-l:$l%";
+  }
+
+  foreach ($direct_defaults as $key => $default) {
+    $hex = theme_get_setting($key) ?: $default;
+    $prefix = '--' . str_replace('_', '-', $key);
+    $styles[] = "$prefix:$hex";
+  }
+
+  $variables['html_attributes']->setAttribute('style', implode(';', $styles));
+}
+
+/**
+ * Converts a hex color string to HSL components.
+ *
+ * @param string $hex_string
+ *   A hex color code (e.g. "#1b9ae4", "1b9ae4", "#abc").
+ *
+ * @return array
+ *   [hue (0-360), saturation (0-100), lightness (0-100)].
+ *
+ * @internal
+ */
+function _shindo_hex_to_hsl(string $hex_string): array {
+  $hex_val = trim($hex_string, '#');
+
+  $r0 = $g0 = $b0 = 0;
+
+  if (strlen($hex_val) === 6) {
+    $r0 = hexdec($hex_val[0] . $hex_val[1]);
+    $g0 = hexdec($hex_val[2] . $hex_val[3]);
+    $b0 = hexdec($hex_val[4] . $hex_val[5]);
+  }
+  elseif (strlen($hex_val) === 3) {
+    $r0 = hexdec($hex_val[0] . $hex_val[0]);
+    $g0 = hexdec($hex_val[1] . $hex_val[1]);
+    $b0 = hexdec($hex_val[2] . $hex_val[2]);
+  }
+
+  $r = fdiv($r0, 255);
+  $g = fdiv($g0, 255);
+  $b = fdiv($b0, 255);
+
+  $c_min = min($r, $g, $b);
+  $c_max = max($r, $g, $b);
+  $delta = $c_max - $c_min;
+
+  if ($delta == 0) {
+    $h = 0;
+  }
+  else {
+    switch ($c_max) {
+      case $r:
+        $h = fmod((($g - $b) / $delta), 6);
+        break;
+
+      case $g:
+        $h = (($b - $r) / $delta) + 2;
+        break;
+
+      case $b:
+        $h = (($r - $g) / $delta) + 4;
+        break;
+
+      default:
+        $h = 0;
+        break;
+    }
+  }
+
+  $h = round($h * 60);
+  if ($h < 0) {
+    $h += 360;
+  }
+
+  $l = ($c_max + $c_min) / 2;
+  $s = $delta == 0 ? 0 : $delta / (1 - abs((2 * $l) - 1));
+
+  return [(int) $h, (int) round($s * 100), (int) round($l * 100)];
+}

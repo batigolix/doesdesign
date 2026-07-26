@@ -1,0 +1,12 @@
+# AI generated
+favicon:
+  use_default: true
+features:
+  favicon: true
+logo:
+  use_default: false
+color_primary: '#007acc'
+color_secondary: '#626880'
+color_accent: '#ef8354'
+color_background: '#ffffff'
+color_text: '#333333'

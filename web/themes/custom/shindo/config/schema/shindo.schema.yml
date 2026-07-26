@@ -1,0 +1,20 @@
+# AI generated
+shindo.settings:
+  type: theme_settings
+  label: 'Shindo theme settings'
+  mapping:
+    color_primary:
+      type: color_hex
+      label: 'Primary color'
+    color_secondary:
+      type: color_hex
+      label: 'Secondary color'
+    color_accent:
+      type: color_hex
+      label: 'Accent color'
+    color_background:
+      type: color_hex
+      label: 'Background color'
+    color_text:
+      type: color_hex
+      label: 'Text color'

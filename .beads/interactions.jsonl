@@ -3,3 +3,4 @@
 {"id":"int-498785f9","kind":"field_change","created_at":"2026-07-26T19:54:20.672653Z","actor":"Boris Doesborg","issue_id":"doesdesign-s83","extra":{"field":"status","new_value":"closed","old_value":"in_progress","reason":"Closed"}}
 {"id":"int-53bf171a","kind":"field_change","created_at":"2026-07-26T20:00:12.090447Z","actor":"Boris Doesborg","issue_id":"doesdesign-d5b","extra":{"field":"status","new_value":"closed","old_value":"in_progress","reason":"Closed"}}
 {"id":"int-3ca1669f","kind":"field_change","created_at":"2026-07-26T20:02:47.066734Z","actor":"Boris Doesborg","issue_id":"doesdesign-0sw","extra":{"field":"status","new_value":"closed","old_value":"in_progress","reason":"Closed"}}
+{"id":"int-7ce1c055","kind":"field_change","created_at":"2026-07-26T20:11:30.816676Z","actor":"Boris Doesborg","issue_id":"doesdesign-5wg","extra":{"field":"status","new_value":"closed","old_value":"in_progress","reason":"Closed"}}
