@@ -19,7 +19,7 @@ web_environment:
     - REMOTE_PROJECT_DIR=/home/doesborg/public_html/doesdesign-project
     - LIVE_URI=https://example.com
     - STAGE_URI=http://drupal:drupal@doesdesign-stage.doesb.org
-nodejs_version: "14"
+nodejs_version: "22"
 corepack_enable: false
 
 # Key features of DDEV's config.yaml:

@@ -1,0 +1,31 @@
+#!/bin/bash
+# AI generated
+## Description: Build custom Drupal theme(s) via npm inside DDEV.
+## Usage: theme-build [theme]
+## Example: "ddev theme-build shindo" or "ddev theme-build" (all themes with a package.json)
+
+set -e
+
+BASE="/var/www/html/web/themes/custom"
+
+if [ -n "$1" ]; then
+  THEMES="$1"
+else
+  THEMES=$(ddev exec "for d in $BASE/*/; do [ -f \"\$d/package.json\" ] && basename \"\$d\"; done")
+fi
+
+if [ -z "$THEMES" ]; then
+  echo "No themes with a package.json found under $BASE" >&2
+  exit 1
+fi
+
+for theme in $THEMES; do
+  path="$BASE/$theme"
+  if ! ddev exec "test -f $path/package.json" >/dev/null 2>&1; then
+    echo "✗ $theme: no package.json — skipping"
+    continue
+  fi
+  echo ""
+  echo "==> Building $theme"
+  ddev exec "cd $path && npm install --silent --no-audit --no-fund && npm run build"
+done

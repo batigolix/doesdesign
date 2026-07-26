@@ -1,0 +1,21 @@
+#!/bin/bash
+# AI generated
+## Description: Watch a custom Drupal theme with npm watch inside DDEV. Ctrl+C to stop.
+## Usage: theme-watch <theme>
+## Example: "ddev theme-watch shindo"
+
+set -e
+
+if [ -z "$1" ]; then
+  echo "Usage: ddev theme-watch <theme>" >&2
+  exit 1
+fi
+
+path="/var/www/html/web/themes/custom/$1"
+if ! ddev exec "test -f $path/package.json" >/dev/null 2>&1; then
+  echo "✗ no package.json in $path" >&2
+  exit 1
+fi
+
+echo "==> Watching $1 (Ctrl+C to stop)"
+ddev exec "cd $path && npm install --silent --no-audit --no-fund && npm run watch"
