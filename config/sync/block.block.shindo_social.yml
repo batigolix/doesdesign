@@ -1,0 +1,23 @@
+uuid: d133b311-54b8-4f76-8445-aacedac25935
+langcode: nl
+status: true
+dependencies:
+  module:
+    - doesdesign_tools
+  theme:
+    - shindo
+id: shindo_social
+theme: shindo
+region: header
+weight: 0
+provider: null
+plugin: social_block
+settings:
+  id: social_block
+  label: 'Social block'
+  label_display: '0'
+  provider: doesdesign_tools
+  body:
+    value: '<div><a href="/about">Birgit Doesborg</a>, Goudsmid en zilversmid.</div><div><a href="/contact">Contact</a></div><p><a class="social facebook" href="https://www.facebook.com/Doesdesign.nl"><img src="/themes/custom/denbei/images/facebook-logo.png" alt="" width="32" height="32" title="Visit Doesdesign at Facebook"></a> <a class="social linkedin" href="http://nl.linkedin.com/in/birgitdoesborg"><img src="/themes/custom/denbei/images/linkedin-logo.png" alt="" width="32" height="32" title="Visit Birgit at Linkedin"></a> &nbsp;<a class="social youtube" href="http://youtube.com/@metalartcreations"><img src="/themes/custom/denbei/images/youtube-logo.png" alt="" width="32" height="32" title="Visit YouTube page from Birgit"></a> <a href="https://www.instagram.com/doesdesign_nl/?hl=nl"><img src="/themes/custom/denbei/images/instagram-logo.png" alt="" width="32" height="32" title="Visit Doesdesign at Instagram"></a></p>'
+    format: full_html
+visibility: {  }
