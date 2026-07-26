@@ -24,9 +24,29 @@ Footer: `footer_col1`, `footer_col2`, `footer_col3`, `footer`, `post_footer`
 - **Fonts** — provided by the [fontyourface](https://www.drupal.org/project/fontyourface) contrib module (`/admin/appearance/font-your-face`), not duplicated in shindo's own settings. See beads `doesdesign-lfy`.
 - **Standard Drupal** — logo, favicon, slogan (inherited from `stable9`).
 
-## Build (planned)
+## Build
 
-`npm run build` / `npm run watch` — plain `sass`, same pattern as `denbei`. Set up by beads `doesdesign-d5b`.
+Two paths — pick whichever fits your workflow.
+
+**Preferred: via DDEV** (works without any host-side Node install):
+
+```bash
+ddev theme-build shindo      # one-off compile screen.scss + print.scss → css/
+ddev theme-watch shindo      # rebuild on save (Ctrl+C to stop)
+ddev theme-build             # build every theme under web/themes/custom that has a package.json
+```
+
+These commands run inside the DDEV web container against Node/npm there (Node 22 as configured in `.ddev/config.yaml`).
+
+**Direct via host npm** (requires Node ≥ 14 locally):
+
+```bash
+cd web/themes/custom/shindo
+npm install
+npm run build         # or: npm run watch
+```
+
+Compiled output lives in `css/` and is committed alongside sources (matches the pattern used by `denbei`).
 
 ## TODO in skeleton
 
