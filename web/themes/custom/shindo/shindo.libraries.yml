@@ -1,0 +1,20 @@
+# AI generated
+global-styling:
+  version: 1.x
+  css:
+    theme:
+      css/screen.css: {}
+
+behaviors:
+  version: 1.x
+  js:
+    js/shindo.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+
+print:
+  version: 1.x
+  css:
+    theme:
+      css/print.css: { media: print }

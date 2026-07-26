@@ -1,0 +1,32 @@
+# AI generated
+shindo.mobile:
+  label: mobile
+  mediaQuery: 'all and (max-width: 480px)'
+  weight: 0
+  multipliers:
+    - 1x
+    - 2x
+
+shindo.tablet:
+  label: tablet
+  mediaQuery: 'all and (min-width: 481px) and (max-width: 768px)'
+  weight: 1
+  multipliers:
+    - 1x
+    - 2x
+
+shindo.desktop:
+  label: desktop
+  mediaQuery: 'all and (min-width: 769px) and (max-width: 1200px)'
+  weight: 2
+  multipliers:
+    - 1x
+    - 2x
+
+shindo.wide:
+  label: wide
+  mediaQuery: 'all and (min-width: 1201px)'
+  weight: 3
+  multipliers:
+    - 1x
+    - 2x

@@ -1,0 +1,25 @@
+# AI generated
+name: Shindo
+type: theme
+description: 'Shindo theme for doesdesign.nl — Dopetrope-based, configurable colors/layout.'
+package: Custom
+core_version_requirement: ^11
+base theme: stable9
+libraries:
+  - shindo/global-styling
+  - shindo/behaviors
+  - shindo/print
+regions:
+  header: Header
+  primary_menu: 'Primary menu'
+  secondary_menu: 'Secondary menu'
+  help: Help
+  pre_main: 'Pre main'
+  content: Content
+  sidebar_first: 'Sidebar first'
+  sidebar_second: 'Sidebar second'
+  footer_col1: 'Footer column 1'
+  footer_col2: 'Footer column 2'
+  footer_col3: 'Footer column 3'
+  footer: Footer
+  post_footer: 'Post footer'
