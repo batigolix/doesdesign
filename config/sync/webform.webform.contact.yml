@@ -17,12 +17,12 @@ id: contact
 title: 'Contact opnemen met Birgit Doesborg'
 description: 'Contactformulier voor Doesdesign.nl'
 categories: {  }
-elements: |
+elements: |-
   contact_info:
     '#type': webform_markup
     '#markup': |
       <p>Zou u een bezoek willen brengen aan het atelier van Doesdesign, maak dan eerst een afspraak via email of telefonisch.</p>
-      <p>Graag per email contact opnemen omdat ik vaak via dit contactformulier veel spam ontvang !!</p>
+      <p>Graag per email contact opnemen.</p>
       <ul>
         <li>Birgit Doesborg</li>
         <li><a href="tel:(+31)06-38343719">06-38343719</a></li>
