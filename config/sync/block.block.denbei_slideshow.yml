@@ -18,13 +18,16 @@ settings:
   label: Slideshow
   label_display: '0'
   provider: doesdesign_tools
-  items: 5
+  items: '11'
   order: DESC
   order_property: created
 visibility:
   request_path:
     id: request_path
     negate: false
-    pages: |-
-      <front>
-      /homepage
+    pages: "<front>\r\n/homepage"
+  response_status:
+    id: response_status
+    negate: false
+    status_codes:
+      - 200
