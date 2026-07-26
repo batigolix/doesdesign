@@ -18,3 +18,24 @@ shindo.settings:
     color_text:
       type: color_hex
       label: 'Text color'
+    container_width:
+      type: string
+      label: 'Container width'
+      constraints:
+        Choice:
+          choices:
+            - narrow
+            - default
+            - wide
+    sidebar_position:
+      type: string
+      label: 'Sidebar position'
+      constraints:
+        Choice:
+          choices:
+            - left
+            - right
+            - none
+    show_hero:
+      type: boolean
+      label: 'Show hero on front page'

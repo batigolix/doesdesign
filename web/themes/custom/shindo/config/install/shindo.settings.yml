@@ -10,3 +10,6 @@ color_secondary: '#626880'
 color_accent: '#ef8354'
 color_background: '#ffffff'
 color_text: '#333333'
+container_width: default
+sidebar_position: right
+show_hero: true
