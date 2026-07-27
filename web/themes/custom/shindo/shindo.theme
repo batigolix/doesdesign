@@ -7,7 +7,28 @@
  * AI generated.
  */
 
+use Drupal\block\Entity\Block;
 use Drupal\Core\Extension\ThemeSettingsProvider;
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for block.
+ *
+ * Adds a block--region--{region} suggestion so per-region wrappers
+ * (e.g. block--region--sidebar-first.html.twig for Dopetrope .box) can
+ * override the default block markup.
+ */
+function shindo_theme_suggestions_block_alter(array &$suggestions, array $variables): void {
+  $id = $variables['elements']['#id'] ?? NULL;
+  if (!$id) {
+    return;
+  }
+  $block = Block::load($id);
+  if (!$block) {
+    return;
+  }
+  $region = $block->getRegion();
+  $suggestions[] = 'block__region__' . str_replace('-', '_', $region);
+}
 
 /**
  * Implements hook_preprocess_HOOK() for html.
