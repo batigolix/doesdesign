@@ -1,18 +1,27 @@
 # AI generated
+dopetrope:
+  version: 1.x
+  css:
+    theme:
+      assets/dopetrope/css/main.css: { minified: false }
+      assets/dopetrope/css/fontawesome-all.min.css: { minified: true }
+  js:
+    assets/dopetrope/js/browser.min.js: { minified: true }
+    assets/dopetrope/js/breakpoints.min.js: { minified: true }
+    assets/dopetrope/js/util.js: {}
+    assets/dopetrope/js/jquery.dropotron.min.js: { minified: true }
+    assets/dopetrope/js/main.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings
+
 global-styling:
   version: 1.x
   css:
     theme:
       css/screen.css: {}
   dependencies:
-    - shindo/google-fonts
-
-google-fonts:
-  # Temporary — swap for fontyourface managed fonts in bead lfy.
-  version: 1.x
-  css:
-    base:
-      'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,300italic&display=swap': { type: external, minified: true }
+    - shindo/dopetrope
 
 behaviors:
   version: 1.x
