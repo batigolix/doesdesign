@@ -1,6 +1,6 @@
 uuid: 92abb997-2024-4512-a9b7-627a0d09f412
 langcode: nl
-status: true
+status: false
 dependencies:
   module:
     - doesdesign_tools
@@ -8,8 +8,8 @@ dependencies:
     - shindo
 id: shindo_translate
 theme: shindo
-region: header
-weight: -1
+region: sidebar_first
+weight: 20
 provider: null
 plugin: gtranslate
 settings:

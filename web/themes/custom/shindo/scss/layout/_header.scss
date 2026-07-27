@@ -13,6 +13,24 @@
     @include dopetrope.inner;
   }
 
+  // Stack logo above the site name/slogan, both centered.
+  .site-branding {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .site-branding__logo {
+    display: inline-block;
+
+    img {
+      display: block;
+      width: auto;
+      max-height: 8em;
+    }
+  }
+
   // Site branding block acts as Dopetrope's h1 logo.
   .site-branding__name {
     color: hsl(var(--color-secondary-h) var(--color-secondary-s) var(--color-secondary-l));

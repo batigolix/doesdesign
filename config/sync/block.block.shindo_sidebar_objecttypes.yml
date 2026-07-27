@@ -1,6 +1,6 @@
 uuid: 91b9ef5d-6dcb-4117-adf0-51753dfe929e
 langcode: nl
-status: true
+status: false
 dependencies:
   content:
     - 'block_content:basic:2e30cb89-92b8-4b39-a400-7dbf944a91da'

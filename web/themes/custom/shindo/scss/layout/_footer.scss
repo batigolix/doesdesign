@@ -52,6 +52,66 @@
   font-size: 0.9em;
 }
 
+// Social + contact lists (used by the footer contact block, styled after
+// metalartcreations' contact block markup).
+.layout-footer-wrapper {
+  ul.social {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5em 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6em;
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.4em;
+      height: 2.4em;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      transition: background-color .2s ease-in-out;
+
+      &:hover,
+      &:focus {
+        background: hsl(var(--color-primary-h) var(--color-primary-s) var(--color-primary-l));
+      }
+
+      // Hide the text label but keep it accessible.
+      .label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+      }
+    }
+  }
+
+  ul.contact {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 1em;
+    }
+
+    h3 {
+      color: #fff;
+      font-size: 1em;
+      margin: 0 0 0.25em 0;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
 // Post-footer sits below the dark footer wrapper (see page.html.twig
 // structure — it renders inside .layout-footer-wrapper but styled as
 // a copyright strip).

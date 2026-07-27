@@ -9,8 +9,8 @@ dependencies:
     - shindo
 id: shindo_search
 theme: shindo
-region: header
-weight: 0
+region: sidebar_first
+weight: 5
 provider: null
 plugin: search_form_block
 settings:

@@ -1,0 +1,18 @@
+uuid: 1a9eec48-f29b-4662-96fd-00ca73a3d9eb
+langcode: nl
+status: true
+dependencies:
+  theme:
+    - shindo
+id: shindo_page_title
+theme: shindo
+region: content
+weight: -20
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility: {  }

@@ -10,8 +10,8 @@ dependencies:
     - shindo
 id: shindo_object_types
 theme: shindo
-region: header
-weight: 1
+region: sidebar_first
+weight: -3
 provider: null
 plugin: 'views_block:object_types-block_1'
 settings:

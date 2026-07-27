@@ -10,8 +10,8 @@ dependencies:
     - shindo
 id: shindo_news
 theme: shindo
-region: content
-weight: 5
+region: sidebar_first
+weight: 10
 provider: null
 plugin: 'views_block:news-block_1'
 settings:
