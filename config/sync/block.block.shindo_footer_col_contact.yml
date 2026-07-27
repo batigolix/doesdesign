@@ -1,0 +1,23 @@
+uuid: ecc9d433-0369-4684-99ae-8b4a50757a76
+langcode: nl
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:1ef77588-1de4-4f57-ac2f-321b71de07dd'
+  module:
+    - block_content
+  theme:
+    - shindo
+id: shindo_footer_col_contact
+theme: shindo
+region: footer_col2
+weight: 0
+provider: null
+plugin: 'block_content:1ef77588-1de4-4f57-ac2f-321b71de07dd'
+settings:
+  id: 'block_content:1ef77588-1de4-4f57-ac2f-321b71de07dd'
+  label: ''
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility: {  }
