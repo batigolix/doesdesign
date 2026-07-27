@@ -1,0 +1,33 @@
+{#
+/**
+ * @file
+ * Theme override for the system branding block.
+ *
+ * AI generated. Follows Dopetrope's #header > h1 pattern; matches
+ * alpaca (metalartcreations) template pattern.
+ *
+ * Available variables:
+ * - site_logo: Logo for site as defined in Appearance or theme settings.
+ * - site_name: Name for site as defined in Site information settings.
+ * - site_slogan: Slogan for site as defined in Site information settings.
+ */
+#}
+{% extends "block.html.twig" %}
+
+{% block content %}
+  {% if site_logo %}
+    <div class="site-logo">
+      <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">
+        <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" />
+      </a>
+    </div>
+  {% endif %}
+  {% if site_name %}
+    <h1>
+      <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">{{ site_name }}</a>
+    </h1>
+  {% endif %}
+  {% if site_slogan %}
+    <p class="site-slogan">{{ site_slogan }}</p>
+  {% endif %}
+{% endblock %}

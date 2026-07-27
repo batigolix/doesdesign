@@ -3,13 +3,20 @@ global-styling:
   css:
     theme:
       assets/css/main.css: {}
+
+font-awesome:
+  version: 1.x
+  css:
+    theme:
+      assets/css/fontawesome-all.min.css: { minified: true }
+
 responsive-menu:
-  version: VERSION
+  version: 1.x
   js:
-    assets/js/jquery.min.js: {}
-    assets/js/jquery.dropotron.min.js: {}
-    assets/js/browser.min.js: {}
-    assets/js/breakpoints.min.js: {}
+    assets/js/jquery.dropotron.min.js: { minified: true }
+    assets/js/browser.min.js: { minified: true }
+    assets/js/breakpoints.min.js: { minified: true }
     assets/js/util.js: {}
     assets/js/main.js: {}
-  dependencies: {}
+  dependencies:
+    - core/jquery
