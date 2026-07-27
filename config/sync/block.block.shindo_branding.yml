@@ -1,0 +1,23 @@
+uuid: b672f10b-4382-4313-b441-af219fb0d4b8
+langcode: nl
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - shindo
+id: shindo_branding
+theme: shindo
+region: header
+weight: -10
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility: {  }

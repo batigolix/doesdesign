@@ -1,0 +1,23 @@
+uuid: 91b9ef5d-6dcb-4117-adf0-51753dfe929e
+langcode: nl
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:2e30cb89-92b8-4b39-a400-7dbf944a91da'
+  module:
+    - block_content
+  theme:
+    - shindo
+id: shindo_sidebar_objecttypes
+theme: shindo
+region: sidebar_first
+weight: -5
+provider: null
+plugin: 'block_content:2e30cb89-92b8-4b39-a400-7dbf944a91da'
+settings:
+  id: 'block_content:2e30cb89-92b8-4b39-a400-7dbf944a91da'
+  label: ''
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility: {  }

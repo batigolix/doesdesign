@@ -10,7 +10,7 @@ dependencies:
     - shindo
 id: shindo_main_menu
 theme: shindo
-region: header
+region: primary_menu
 weight: 0
 provider: null
 plugin: 'system_menu_block:main'
