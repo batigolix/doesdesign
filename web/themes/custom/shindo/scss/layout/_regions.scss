@@ -38,13 +38,35 @@
   }
 }
 
-// Main region — Dopetrope's #main light grey area with content.
+// Main region — Dopetrope's #main light grey area with a subtle texture.
+// Uses bg.png tiled over the base color at low opacity via a pseudo-element
+// (matches Dopetrope's #main:before overlay pattern).
 .layout-main {
+  position: relative;
   background: #f7f7f7;
   padding: 4em 0;
+  z-index: 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('../images/bg.png') repeat;
+    opacity: 0.06;
+    z-index: -1;
+    pointer-events: none;
+  }
 
   // The grid (from _grid.scss) sits inside the constrained inner width.
   @include dopetrope.inner;
+}
+
+// Sidebar area sits on the same main bg but content blocks stay white so
+// there's clear visual separation between main-content column and sidebar
+// (Dopetrope's classic split).
+.layout-sidebar {
+  position: relative;
+  z-index: 1;
 }
 
 // Help messages region.
