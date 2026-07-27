@@ -4,6 +4,15 @@ global-styling:
   css:
     theme:
       css/screen.css: {}
+  dependencies:
+    - shindo/google-fonts
+
+google-fonts:
+  # Temporary — swap for fontyourface managed fonts in bead lfy.
+  version: 1.x
+  css:
+    base:
+      'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,300italic&display=swap': { type: external, minified: true }
 
 behaviors:
   version: 1.x
