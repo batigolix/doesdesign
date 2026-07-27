@@ -2,6 +2,8 @@ uuid: 1a9eec48-f29b-4662-96fd-00ca73a3d9eb
 langcode: nl
 status: true
 dependencies:
+  module:
+    - system
   theme:
     - shindo
 id: shindo_page_title
@@ -15,4 +17,9 @@ settings:
   label: 'Page title'
   label_display: '0'
   provider: core
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    context_mapping: {  }
+    pages: '/node/*'
