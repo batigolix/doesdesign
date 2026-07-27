@@ -21,6 +21,35 @@
 .layout-main {
   display: grid;
   gap: 2rem;
+
+  @media (min-width: 769px) {
+    gap: 3rem;
+  }
+}
+
+// Give the content area and sidebar breathing room from each other and
+// from the surrounding regions.
+.layout-content {
+  padding: 0.5rem 0;
+}
+
+.layout-sidebar {
+  padding: 0.5rem 0;
+
+  @media (min-width: 769px) {
+    padding: 1rem 0 2rem 0;
+  }
+
+  // Individual blocks in the sidebar get their own vertical rhythm
+  // separate from the card padding defined in components/_cards.scss.
+  > .block,
+  > nav {
+    margin-bottom: 1.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .shindo--sidebar-none .layout-main {
