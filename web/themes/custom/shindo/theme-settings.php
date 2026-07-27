@@ -2,8 +2,9 @@
 
 /**
  * @file
- * AI generated
  * Theme settings form for Shindo.
+ *
+ * AI generated.
  */
 
 use Drupal\Core\Form\FormStateInterface;

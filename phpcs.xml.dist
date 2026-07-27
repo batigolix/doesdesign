@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- AI generated -->
+<ruleset name="doesdesign">
+    <description>PHPCS ruleset for doesdesign custom modules and themes.</description>
+
+    <arg name="extensions" value="php,module,inc,install,profile,theme,yml"/>
+    <arg name="colors"/>
+    <arg name="parallel" value="8"/>
+    <arg value="p"/>
+
+    <file>web/modules/custom</file>
+    <file>web/themes/custom</file>
+
+    <exclude-pattern>*/node_modules/*</exclude-pattern>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/css/*</exclude-pattern>
+
+    <rule ref="Drupal"/>
+    <rule ref="DrupalPractice"/>
+</ruleset>
