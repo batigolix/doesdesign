@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Theme override for a block placed in the sidebar_first region.
+ *
+ * AI generated. Wraps in <section class="box"> so Dopetrope's .box CSS
+ * applies to Drupal-rendered sidebar blocks.
+ */
+#}
+<section{{ attributes.addClass('box') }}>
+  {{ title_prefix }}
+  {% if label %}
+    <header><h3>{{ label }}</h3></header>
+  {% endif %}
+  {{ title_suffix }}
+  {{ content }}
+</section>
