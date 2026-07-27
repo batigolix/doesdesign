@@ -1,24 +1,36 @@
 // AI generated
-// Design token defaults.
-// Colors are injected as HSL components via preprocess_html (bead 5wg).
-// These values are fallbacks used when no theme-settings values are set yet.
+// Design tokens.
+// Colors are injected as HSL components + direct hex on <html style="…">
+// via shindo_preprocess_html(). These :root defaults are fallbacks used
+// only if the preprocess doesn't run.
+// Palette originates from html5up.net/dopetrope.
 
 :root {
-  --color-primary-h: 214;
-  --color-primary-s: 60%;
-  --color-primary-l: 50%;
+  // #d52349 → link accent
+  --color-primary-h: 344;
+  --color-primary-s: 72%;
+  --color-primary-l: 49%;
 
-  --color-secondary-h: 30;
-  --color-secondary-s: 30%;
-  --color-secondary-l: 45%;
+  // #252122 → dark headings / footer bg
+  --color-secondary-h: 330;
+  --color-secondary-s: 4%;
+  --color-secondary-l: 14%;
 
-  --color-accent-h: 20;
-  --color-accent-s: 80%;
-  --color-accent-l: 55%;
+  // #43bff0 → form focus / highlights
+  --color-accent-h: 197;
+  --color-accent-s: 86%;
+  --color-accent-l: 60%;
 
   --color-background: #ffffff;
-  --color-text: #333333;
+  --color-text: #5d5d5d;
 
-  --container-max: 1200px;
+  // Typography.
+  --font-body: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heading: var(--font-body);
+  --font-size-base: 14pt;
+  --line-height-base: 1.75;
+
+  // Layout.
+  --container-max: 70em;
   --container-gutter: 1.5rem;
 }

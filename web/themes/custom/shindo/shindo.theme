@@ -43,6 +43,17 @@ function shindo_preprocess_html(array &$variables): void {
   }
 
   $variables['html_attributes']->setAttribute('style', implode(';', $styles));
+
+  // Layout body classes — read by SCSS in scss/layout/.
+  $container_width = theme_get_setting('container_width') ?: 'default';
+  $sidebar_position = theme_get_setting('sidebar_position') ?: 'right';
+  $show_hero = (bool) theme_get_setting('show_hero');
+
+  $variables['attributes']['class'][] = 'shindo--container-' . $container_width;
+  $variables['attributes']['class'][] = 'shindo--sidebar-' . $sidebar_position;
+  if ($show_hero) {
+    $variables['attributes']['class'][] = 'shindo--hero-enabled';
+  }
 }
 
 /**

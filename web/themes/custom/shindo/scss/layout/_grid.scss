@@ -1,0 +1,65 @@
+// AI generated
+// Container widths + main/sidebar grid.
+// Body classes come from shindo_preprocess_html() based on theme settings:
+// - shindo--container-{narrow|default|wide}
+// - shindo--sidebar-{left|right|none}
+
+// Container width overrides. _dopetrope.scss sets --container-max: 70em (1120px)
+// as the default; these classes swap that value on the body element so
+// .layout-container picks it up.
+.shindo--container-narrow {
+  --container-max: 60em; // ~960px
+}
+.shindo--container-default {
+  --container-max: 75em; // ~1200px
+}
+.shindo--container-wide {
+  --container-max: 87.5em; // ~1400px
+}
+
+// Main + sidebar layout. Grid areas differ per sidebar_position setting.
+.layout-main {
+  display: grid;
+  gap: 2rem;
+}
+
+.shindo--sidebar-none .layout-main {
+  grid-template-columns: 1fr;
+  grid-template-areas: 'content';
+}
+
+.shindo--sidebar-right .layout-main {
+  grid-template-columns: 1fr;
+  grid-template-areas: 'content';
+
+  @media (min-width: 769px) {
+    grid-template-columns: minmax(0, 3fr) minmax(200px, 1fr);
+    grid-template-areas: 'content sidebar-first';
+  }
+}
+
+.shindo--sidebar-left .layout-main {
+  grid-template-columns: 1fr;
+  grid-template-areas: 'content';
+
+  @media (min-width: 769px) {
+    grid-template-columns: minmax(200px, 1fr) minmax(0, 3fr);
+    grid-template-areas: 'sidebar-first content';
+  }
+}
+
+.layout-content { grid-area: content; }
+.layout-sidebar--first { grid-area: sidebar-first; }
+.layout-sidebar--second {
+  // Second sidebar stacks below the first on all widths for now — bead 667
+  // may refine multi-sidebar layouts.
+  grid-area: sidebar-first;
+  margin-top: 2rem;
+}
+
+// Hero visibility toggle. Actual hero region rendering is deferred to
+// bead 667; here we just honour show_hero when a .region-hero or similar
+// is placed inside layout-container.
+:not(.shindo--hero-enabled) .region-hero {
+  display: none;
+}

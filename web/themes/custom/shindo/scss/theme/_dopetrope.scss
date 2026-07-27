@@ -1,3 +1,50 @@
 // AI generated
-// Dopetrope-specific styling (backgrounds, banners, dividers).
-// Placeholder — populated when Dopetrope HTML/CSS is ported (bead 0sw).
+// Dopetrope-specific base layer: page wrapper texture, container widths,
+// section rhythm. Region + component styling live in scss/layout/ and
+// scss/components/ (populated by follow-up beads 667 and 4b0).
+
+body {
+  background: hsl(var(--color-secondary-h) var(--color-secondary-s) var(--color-secondary-l))
+    url('../images/bg.png');
+  min-height: 100vh;
+}
+
+// Content sits in a white "page wrapper" over the dark textured body,
+// mirroring the Dopetrope example layout.
+.layout-container {
+  background: var(--color-background);
+  color: var(--color-text);
+  margin: 0 auto;
+  max-width: var(--container-max);
+  width: 100%;
+}
+
+// Fluid gutters below xlarge.
+@media (max-width: 1280px) {
+  .layout-container {
+    max-width: calc(100% - 60px);
+  }
+}
+@media (max-width: 980px) {
+  .layout-container {
+    max-width: calc(100% - 80px);
+  }
+}
+@media (max-width: 736px) {
+  .layout-container {
+    max-width: calc(100% - 40px);
+  }
+}
+
+// Baseline padding for the main region so content doesn't hug the wrapper edges.
+.layout-main,
+.layout-header,
+.layout-footer-wrapper {
+  padding-left: clamp(1rem, 4vw, 3rem);
+  padding-right: clamp(1rem, 4vw, 3rem);
+}
+
+.layout-main {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
