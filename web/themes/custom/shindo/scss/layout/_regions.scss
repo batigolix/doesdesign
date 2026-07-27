@@ -1,0 +1,54 @@
+// AI generated
+// Region backgrounds & rhythm — matches Dopetrope's #banner, #intro, #main.
+
+@use '../theme/dopetrope';
+
+// Pre-main region acts as the Dopetrope "intro" strip:
+// centered, on a subtly lighter background than main.
+.layout-pre-main,
+.region-pre-main {
+  background: #ffffff;
+  padding: 3em 0 2em 0;
+  text-align: center;
+
+  > * {
+    @include dopetrope.inner;
+  }
+}
+
+// Secondary menu under the primary — optional utility bar.
+.layout-secondary-menu {
+  background: #f7f7f7;
+  border-bottom: solid 1px #e5e5e5;
+  padding: 0.75em 0;
+
+  > * {
+    @include dopetrope.inner;
+  }
+
+  .menu-item a {
+    color: var(--color-text);
+    font-size: 0.9em;
+    text-decoration: none;
+    margin-right: 1em;
+
+    &:hover {
+      color: hsl(var(--color-primary-h) var(--color-primary-s) var(--color-primary-l));
+    }
+  }
+}
+
+// Main region — Dopetrope's #main light grey area with content.
+.layout-main {
+  background: #f7f7f7;
+  padding: 4em 0;
+
+  // The grid (from _grid.scss) sits inside the constrained inner width.
+  @include dopetrope.inner;
+}
+
+// Help messages region.
+.region-help {
+  @include dopetrope.inner;
+  padding: 1em 0;
+}

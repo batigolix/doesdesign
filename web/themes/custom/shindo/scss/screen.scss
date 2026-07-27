@@ -4,5 +4,8 @@
 @use 'base/tokens';
 @use 'base/reset';
 @use 'base/typography';
-@use 'layout/grid';
 @use 'theme/dopetrope';
+@use 'layout/grid';
+@use 'layout/header';
+@use 'layout/regions';
+@use 'layout/footer';

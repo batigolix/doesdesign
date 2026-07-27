@@ -1,7 +1,7 @@
 // AI generated
-// Dopetrope-specific base layer: page wrapper texture, container widths,
-// section rhythm. Region + component styling live in scss/layout/ and
-// scss/components/ (populated by follow-up beads 667 and 4b0).
+// Dopetrope base layer: dark textured body, page-wrapper as full-width host
+// for individual regions. Regions have their own backgrounds (see
+// scss/layout/_regions.scss and _header.scss).
 
 body {
   background: hsl(var(--color-secondary-h) var(--color-secondary-s) var(--color-secondary-l))
@@ -9,42 +9,25 @@ body {
   min-height: 100vh;
 }
 
-// Content sits in a white "page wrapper" over the dark textured body,
-// mirroring the Dopetrope example layout.
 .layout-container {
-  background: var(--color-background);
-  color: var(--color-text);
   margin: 0 auto;
-  max-width: var(--container-max);
   width: 100%;
-}
+  max-width: var(--container-max);
 
-// Fluid gutters below xlarge.
-@media (max-width: 1280px) {
-  .layout-container {
-    max-width: calc(100% - 60px);
-  }
-}
-@media (max-width: 980px) {
-  .layout-container {
-    max-width: calc(100% - 80px);
-  }
-}
-@media (max-width: 736px) {
-  .layout-container {
+  // On smaller viewports, add a bit of side breathing room around the
+  // dark texture (like Dopetrope's fluid gutters).
+  @media (max-width: 1200px) {
     max-width: calc(100% - 40px);
   }
 }
 
-// Baseline padding for the main region so content doesn't hug the wrapper edges.
-.layout-main,
-.layout-header,
-.layout-footer-wrapper {
-  padding-left: clamp(1rem, 4vw, 3rem);
-  padding-right: clamp(1rem, 4vw, 3rem);
-}
-
-.layout-main {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+// Inner container mixin — used inside layout regions to constrain content
+// width so full-bleed background regions can span the viewport while the
+// content itself stays readable.
+@mixin inner {
+  margin: 0 auto;
+  width: 100%;
+  max-width: calc(var(--container-max) - 4rem);
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
