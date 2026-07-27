@@ -59,6 +59,14 @@ function shindo_preprocess_html(array &$variables): void {
   if ($show_hero) {
     $variables['attributes']['class'][] = 'shindo--hero-enabled';
   }
+
+  // Dopetrope body classes: mirror the sidebar position and enable the
+  // is-preload state (removed by Dopetrope's main.js after DOM ready to
+  // trigger initial animations).
+  $variables['attributes']['class'][] = 'is-preload';
+  $variables['attributes']['class'][] = $sidebar_position === 'none'
+    ? 'no-sidebar'
+    : ($sidebar_position === 'left' ? 'left-sidebar' : 'right-sidebar');
 }
 
 /**

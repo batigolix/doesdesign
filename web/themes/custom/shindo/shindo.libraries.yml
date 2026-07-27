@@ -1,38 +1,15 @@
-# AI generated
-dopetrope:
-  version: 1.x
-  css:
-    theme:
-      assets/dopetrope/css/main.css: { minified: false }
-      assets/dopetrope/css/fontawesome-all.min.css: { minified: true }
-  js:
-    assets/dopetrope/js/browser.min.js: { minified: true }
-    assets/dopetrope/js/breakpoints.min.js: { minified: true }
-    assets/dopetrope/js/util.js: {}
-    assets/dopetrope/js/jquery.dropotron.min.js: { minified: true }
-    assets/dopetrope/js/main.js: {}
-  dependencies:
-    - core/jquery
-    - core/drupalSettings
-
 global-styling:
   version: 1.x
   css:
     theme:
-      css/screen.css: {}
-  dependencies:
-    - shindo/dopetrope
-
-behaviors:
-  version: 1.x
+      assets/css/main.css: {}
+responsive-menu:
+  version: VERSION
   js:
-    js/shindo.js: {}
-  dependencies:
-    - core/drupal
-    - core/once
-
-print:
-  version: 1.x
-  css:
-    theme:
-      css/print.css: { media: print }
+    assets/js/jquery.min.js: {}
+    assets/js/jquery.dropotron.min.js: {}
+    assets/js/browser.min.js: {}
+    assets/js/breakpoints.min.js: {}
+    assets/js/util.js: {}
+    assets/js/main.js: {}
+  dependencies: {}
