@@ -77,7 +77,8 @@
     "require-dev": {
         "drupal/coder": "^8.3",
         "drupal/devel": "^5.1",
-        "drupal/stage_file_proxy": "*"
+        "drupal/stage_file_proxy": "*",
+        "phpmd/phpmd": "^2.15"
     },
     "conflict": {
         "drupal/drupal": "*"

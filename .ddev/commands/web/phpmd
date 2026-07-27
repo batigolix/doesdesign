@@ -1,9 +1,14 @@
 #!/bin/bash
+# AI generated
+## Description: Run PHPMD (PHP Mess Detector) checks on custom code.
+## Usage: phpmd [path] [format]
+## Example: "ddev phpmd" (all custom code, text output) or "ddev phpmd web/modules/custom/doesdesign_tools ansi"
 
-## Description: Run phpmd checks on code
-## Usage: phpmd
-## Example: "ddev phpmd path/to/module/folder" or "ddev phpmd /path/to/module/folder -a"
+cd /var/www/html
 
-bin/phpmd web/modules/custom text phpmd-ruleset.xml
+PATHS="${1:-web/modules/custom,web/themes/custom}"
+FORMAT="${2:-text}"
 
-#> vendor/bin/phpmd --standard=Drupal,DrupalPractice --extensions=php,module,inc,install,test,profile,theme,scss,yml,twig web/modules/custom web/themes/custom tests/behat -a --ignore='*/node_modules/*' 'web/themes/custom/um_base'
+bin/phpmd "$PATHS" "$FORMAT" phpmd.xml.dist \
+  --suffixes php,module,install,theme,inc,profile \
+  --exclude '*/node_modules/*,*/vendor/*'
