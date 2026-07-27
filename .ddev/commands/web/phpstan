@@ -1,0 +1,7 @@
+#!/bin/bash
+# AI generated
+## Description: Run PHPStan analysis on custom modules and themes.
+## Usage: phpstan [phpstan-args]
+## Example: "ddev phpstan" or "ddev phpstan --level=1" or "ddev phpstan analyse web/themes/custom/shindo"
+
+cd /var/www/html && bin/phpstan analyse --memory-limit=1G "$@"
