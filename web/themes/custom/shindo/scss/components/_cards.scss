@@ -1,0 +1,40 @@
+// AI generated
+// Card — Dopetrope's .box treatment applied to Drupal blocks.
+// Renders each block as a white card with a subtle underline border.
+
+.block,
+.card {
+  background: #ffffff;
+  border-bottom: solid 1px #ccc;
+  padding: 2.75em 1.75em;
+  margin-bottom: 2em;
+
+  > h2,
+  > h3 {
+    margin-top: 0;
+  }
+
+  // Nested featured image slides above the card top edge — Dopetrope
+  // .box .image.featured pattern.
+  .featured-image,
+  .image.featured {
+    position: relative;
+    width: auto;
+    margin: -4.5em -1.5em 2.5em -1.5em;
+
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  footer {
+    margin-top: 1.5em;
+  }
+}
+
+// Slightly denser card variant for sidebar blocks.
+.layout-sidebar .block {
+  padding: 1.5em 1.25em;
+  font-size: 0.95em;
+}
