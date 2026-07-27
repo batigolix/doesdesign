@@ -7,6 +7,8 @@
  * AI generated.
  */
 
+use Drupal\Core\Extension\ThemeSettingsProvider;
+
 /**
  * Implements hook_preprocess_HOOK() for html.
  *
@@ -16,6 +18,8 @@
  * calc() on the lightness.
  */
 function shindo_preprocess_html(array &$variables): void {
+  $settings = \Drupal::service(ThemeSettingsProvider::class);
+
   $brand_defaults = [
     'color_primary' => '#007acc',
     'color_secondary' => '#626880',
@@ -29,7 +33,7 @@ function shindo_preprocess_html(array &$variables): void {
   $styles = [];
 
   foreach ($brand_defaults as $key => $default) {
-    $hex = theme_get_setting($key) ?: $default;
+    $hex = $settings->getSetting($key) ?: $default;
     [$h, $s, $l] = _shindo_hex_to_hsl($hex);
     $prefix = '--' . str_replace('_', '-', $key);
     $styles[] = "$prefix-h:$h";
@@ -38,7 +42,7 @@ function shindo_preprocess_html(array &$variables): void {
   }
 
   foreach ($direct_defaults as $key => $default) {
-    $hex = theme_get_setting($key) ?: $default;
+    $hex = $settings->getSetting($key) ?: $default;
     $prefix = '--' . str_replace('_', '-', $key);
     $styles[] = "$prefix:$hex";
   }
@@ -46,9 +50,9 @@ function shindo_preprocess_html(array &$variables): void {
   $variables['html_attributes']->setAttribute('style', implode(';', $styles));
 
   // Layout body classes — read by SCSS in scss/layout/.
-  $container_width = theme_get_setting('container_width') ?: 'default';
-  $sidebar_position = theme_get_setting('sidebar_position') ?: 'right';
-  $show_hero = (bool) theme_get_setting('show_hero');
+  $container_width = $settings->getSetting('container_width') ?: 'default';
+  $sidebar_position = $settings->getSetting('sidebar_position') ?: 'right';
+  $show_hero = (bool) $settings->getSetting('show_hero');
 
   $variables['attributes']['class'][] = 'shindo--container-' . $container_width;
   $variables['attributes']['class'][] = 'shindo--sidebar-' . $sidebar_position;
