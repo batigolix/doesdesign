@@ -9,8 +9,8 @@ dependencies:
     - shindo
 id: shindo_slideshow
 theme: shindo
-region: content
-weight: -10
+region: pre_main
+weight: 0
 provider: null
 plugin: slideshow_block
 settings:

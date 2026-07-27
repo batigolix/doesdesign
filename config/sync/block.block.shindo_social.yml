@@ -8,8 +8,8 @@ dependencies:
     - shindo
 id: shindo_social
 theme: shindo
-region: header
-weight: 0
+region: footer_col3
+weight: 5
 provider: null
 plugin: social_block
 settings:
