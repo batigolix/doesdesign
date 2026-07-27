@@ -49,6 +49,29 @@
   }
 }
 
+// Full node view: featured image above the title, Dopetrope-style hero.
+.node--view-mode-full {
+  .node__featured-image {
+    margin: -4em -1.5rem 2em -1.5rem;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .node__title {
+    font-size: 2.5em;
+    letter-spacing: -0.015em;
+    margin: 0 0 0.5em 0;
+  }
+
+  .node__content {
+    font-size: 1.05em;
+  }
+}
+
 // Views grid layout — responsive columns.
 .views-view-grid {
   display: grid;
