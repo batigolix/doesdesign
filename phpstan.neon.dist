@@ -1,0 +1,24 @@
+# AI generated
+includes:
+    - vendor/mglaman/phpstan-drupal/extension.neon
+    - vendor/mglaman/phpstan-drupal/rules.neon
+    - vendor/phpstan/phpstan-deprecation-rules/rules.neon
+
+parameters:
+    level: 2
+    paths:
+        - web/modules/custom
+        - web/themes/custom
+    excludePaths:
+        - web/themes/custom/*/node_modules/*
+        - web/themes/custom/*/vendor/*
+        - web/modules/custom/*/vendor/*
+    drupal:
+        drupal_root: web
+    reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        # Procedural preprocess/theme hooks legitimately call \Drupal::.
+        -
+            message: '#Drupal calls should be avoided in classes#'
+            paths:
+                - web/themes/custom/*
