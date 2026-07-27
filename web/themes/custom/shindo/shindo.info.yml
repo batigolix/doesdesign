@@ -5,7 +5,7 @@ package: Custom
 libraries:
   - shindo/font-awesome
   - shindo/global-styling
-#  - shindo/responsive-menu
+  - shindo/responsive-menu
 stylesheets-remove:
   - normalize.css
 regions:
