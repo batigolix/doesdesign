@@ -1,0 +1,17 @@
+uuid: 5a53071f-cdb7-4f1a-9c84-1d3cc772e62d
+langcode: nl
+status: true
+dependencies:
+  module:
+    - focal_point
+name: card_square
+label: 'Card square (400×400, focal point)'
+effects:
+  f809db69-f733-40a2-9d9e-d42b4212ae42:
+    uuid: f809db69-f733-40a2-9d9e-d42b4212ae42
+    id: focal_point_crop
+    weight: 0
+    data:
+      width: 400
+      height: 400
+      crop_type: focal_point

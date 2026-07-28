@@ -5,9 +5,12 @@ dependencies:
   config:
     - block_content.type.basic
     - field.field.block_content.basic.body
+    - field.field.block_content.basic.field_button
     - field.field.block_content.basic.field_image
     - field.field.block_content.basic.field_media_image
+    - field.field.block_content.basic.field_title
   module:
+    - link
     - text
 _core:
   default_config_hash: orJpHUlAc_wiQLMUjIgEJXGeiqylGHMPcmNRjGtct-M
@@ -23,6 +26,18 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
+  field_button:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 10
+    region: content
   field_media_image:
     type: entity_reference_entity_view
     label: hidden
@@ -31,6 +46,15 @@ content:
       link: false
     third_party_settings: {  }
     weight: -6
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: -20
     region: content
 hidden:
   field_image: true
