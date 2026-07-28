@@ -1,3 +1,9 @@
+// This file is the untouched Dopetrope upstream. Compile with:
+//   npm run build   # sass → main.css → postcss #page-wrapper prefix
+// See postcss.config.js for the scoping rule (bead doesdesign-dd3).
+// Selectors starting with html/body/*/root are intentionally left unscoped
+// so the body texture and global reset still apply outside the theme wrapper.
+
 @import 'libs/vars';
 @import 'libs/functions';
 @import 'libs/mixins';
