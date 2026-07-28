@@ -20,6 +20,7 @@ dependencies:
   module:
     - block
     - block_content
+    - contextual
     - environment_indicator
     - file
     - filter
@@ -41,6 +42,7 @@ permissions:
   - 'access block library'
   - 'access content'
   - 'access content overview'
+  - 'access contextual links'
   - 'access environment indicator'
   - 'access files overview'
   - 'access media overview'
