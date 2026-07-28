@@ -29,4 +29,15 @@ function shindo_form_system_theme_settings_alter(array &$form, FormStateInterfac
     ],
     '#config_target' => 'shindo.settings:body_font',
   ];
+
+  $form['shindo_colors'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Colors'),
+  ];
+  $form['shindo_colors']['primary_color'] = [
+    '#type' => 'color',
+    '#title' => t('Hoofdkleur'),
+    '#description' => t('Kleur voor titels (h1-h6), donkere knoppen en accents.'),
+    '#config_target' => 'shindo.settings:primary_color',
+  ];
 }

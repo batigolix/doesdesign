@@ -13,3 +13,6 @@ shindo.settings:
             - lora
             - roboto
             - system
+    primary_color:
+      type: color_hex
+      label: 'Hoofdkleur'
