@@ -8,6 +8,7 @@ logo:
   use_default: false
 body_font: source-sans-pro
 primary_color: '#252122'
+footer_heading_color: '#ffffff'
 color_primary: '#d52349'
 color_secondary: '#252122'
 color_accent: '#43bff0'

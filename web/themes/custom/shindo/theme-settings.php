@@ -40,6 +40,12 @@ function shindo_form_system_theme_settings_alter(array &$form, FormStateInterfac
     '#description' => t('Kleur voor titels (h1-h6), donkere knoppen en accents.'),
     '#config_target' => 'shindo.settings:primary_color',
   ];
+  $form['shindo_colors']['footer_heading_color'] = [
+    '#type' => 'color',
+    '#title' => t('Footer kop-kleur'),
+    '#description' => t('Kleur voor h1-h6 titels binnen het footer-gebied.'),
+    '#config_target' => 'shindo.settings:footer_heading_color',
+  ];
 
   $form['shindo_background'] = [
     '#type' => 'fieldset',

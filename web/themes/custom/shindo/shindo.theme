@@ -73,6 +73,11 @@ function shindo_preprocess_html(array &$variables): void {
   $primary_color = $settings->getSetting('primary_color') ?: '#252122';
   $styles[] = '--shindo-primary:' . $primary_color;
 
+  // Shindo footer heading color (bead doesdesign-b2u) — scoped to
+  // #footer h1-h6 via var(--shindo-footer-heading) in shindo-colors.css.
+  $footer_heading = $settings->getSetting('footer_heading_color') ?: '#ffffff';
+  $styles[] = '--shindo-footer-heading:' . $footer_heading;
+
   // Shindo background color (bead doesdesign-6kj) — overrides
   // Dopetrope's hardcoded #252122 via var(--shindo-bg-color) in
   // shindo-bg.css.
