@@ -1856,7 +1856,7 @@ input, select, textarea {
 				padding-top: 0.15em;
 			}
 
-		ul.dates h3 {
+		#page-wrapper ul.dates h3 {
 			font-size: 1.1em;
 		}
 
@@ -2807,7 +2807,7 @@ input, select, textarea {
 				padding-left: 6em;
 			}
 
-			ul.dates h3 {
+			#page-wrapper ul.dates h3 {
 				margin: 0 0 0.5em 0;
 			}
 
