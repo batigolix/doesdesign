@@ -1,0 +1,36 @@
+/* AI generated */
+/**
+ * Shindo theme overrides for Dopetrope upstream CSS.
+ *
+ * Loaded after main.css so declarations here win against upstream
+ * without needing to edit the vendored Dopetrope stylesheet.
+ */
+
+/* Compact search block in the primary sidebar.
+ *
+ * Drupal's search_form_block renders a title (h2) + form containing a
+ * text input and a form-actions wrapper with the submit button. By
+ * default each element stacks on its own line, wasting vertical space.
+ * Lay them out inline so the input takes the remaining width and the
+ * submit button sits alongside.
+ */
+#block-shindo-search .search-block-form {
+  display: flex;
+  gap: 0.5em;
+  align-items: stretch;
+}
+
+#block-shindo-search .search-block-form input[type="search"] {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+#block-shindo-search .search-block-form .form-actions {
+  margin: 0;
+  flex: 0 0 auto;
+}
+
+#block-shindo-search .search-block-form .form-actions .button,
+#block-shindo-search .search-block-form .form-actions input[type="submit"] {
+  margin: 0;
+}
