@@ -151,12 +151,13 @@ input, select, textarea {
 		font-size: 1.35em;
 	}
 
-	a {
+	/* Scoped to #page-wrapper so Dopetrope link styles don't bleed into Gin admin (Navigation module). Hand-edit only in main.css; not synced to assets/sass/main.scss. */
+	#page-wrapper a {
 		color: #d52349;
 		text-decoration: underline;
 	}
 
-		a:hover {
+		#page-wrapper a:hover {
 			text-decoration: none;
 		}
 

@@ -810,7 +810,7 @@ display:
             uid: uid
             status: status
             thumbnail__target_id: thumbnail__target_id
-          default: changed
+          default: '-1'
           info:
             name:
               sortable: true
