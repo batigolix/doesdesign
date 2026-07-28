@@ -20,10 +20,12 @@ dependencies:
   module:
     - block
     - block_content
+    - contextual
     - environment_indicator
     - file
     - filter
     - media
+    - navigation
     - node
     - path
     - pathauto
@@ -41,9 +43,11 @@ permissions:
   - 'access block library'
   - 'access content'
   - 'access content overview'
+  - 'access contextual links'
   - 'access environment indicator'
   - 'access files overview'
   - 'access media overview'
+  - 'access navigation'
   - 'access own webform configuration'
   - 'access shortcuts'
   - 'access site in maintenance mode'
@@ -56,7 +60,6 @@ permissions:
   - 'administer block content'
   - 'administer blocks'
   - 'administer media'
-  - 'administer media types'
   - 'administer menu'
   - 'administer node published status'
   - 'administer nodes'
