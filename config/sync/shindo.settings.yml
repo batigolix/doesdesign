@@ -7,6 +7,7 @@ features:
 logo:
   use_default: false
 body_font: source-sans-pro
+primary_color: '#252122'
 color_primary: '#d52349'
 color_secondary: '#252122'
 color_accent: '#43bff0'
