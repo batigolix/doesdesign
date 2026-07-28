@@ -6,9 +6,9 @@ dependencies:
     - block_content.type.basic
     - field.field.block_content.basic.body
     - field.field.block_content.basic.field_image
-    - image.style.thumbnail
+    - field.field.block_content.basic.field_media_image
   module:
-    - image
+    - media_library
     - text
 _core:
   default_config_hash: jAps3FCxvKecABS_tgExbhCZrBLQB3bNPWw18WjE3ss
@@ -27,13 +27,13 @@ content:
       placeholder: ''
       show_summary: false
     third_party_settings: {  }
-  field_image:
-    type: image_image
-    weight: -5
+  field_media_image:
+    type: media_library_widget
+    weight: -6
     region: content
     settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
+      media_types:
+        - image
     third_party_settings: {  }
   info:
     type: string_textfield
@@ -50,4 +50,5 @@ content:
     settings:
       include_locked: true
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_image: true

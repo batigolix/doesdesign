@@ -1,0 +1,27 @@
+uuid: 243ac94f-6d8b-4985-b21b-53db05c11b75
+langcode: nl
+status: true
+dependencies:
+  config:
+    - block_content.type.basic
+    - field.storage.block_content.field_media_image
+    - media.type.image
+id: block_content.basic.field_media_image
+field_name: field_media_image
+entity_type: block_content
+bundle: basic
+label: 'Media image'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+field_type: entity_reference

@@ -1,11 +1,11 @@
-uuid: 5b2ce2ff-a01a-4379-b909-4c4c30e4d673
+uuid: 39c07880-385c-4329-8b76-426e464d03eb
 langcode: nl
 status: false
 dependencies:
   module:
     - node
 _core:
-  default_config_hash: 6GCOQ-jP2RbdbHA5YWQ6bT8CfGbqrBYKOSC_XY4E3ZM
+  default_config_hash: d8wBEm7XvJ6H3S0IneDD9PfTBklPIH7GMpxElVemPf8
 id: node.search_result
 label: 'Invoer van zoekresultaatmarkering'
 description: ''
