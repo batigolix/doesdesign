@@ -76,8 +76,8 @@ display:
           hide_alter_empty: true
           type: timestamp
           settings:
-            date_format: custom
-            custom_date_format: 'D, d/m/Y - H:i'
+            date_format: long_dutch
+            custom_date_format: ''
             timezone: ''
             tooltip:
               date_format: ''

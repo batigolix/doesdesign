@@ -1,0 +1,17 @@
+uuid: f3e504fc-ee2f-4ef6-b6e0-62d4ea6b1285
+langcode: nl
+status: true
+dependencies:
+  module:
+    - focal_point
+name: thumbnail_square
+label: 'Thumbnail square (150×150, focal point)'
+effects:
+  86526779-096a-4466-b9b5-66ff807382af:
+    uuid: 86526779-096a-4466-b9b5-66ff807382af
+    id: focal_point_crop
+    weight: 0
+    data:
+      width: 150
+      height: 150
+      crop_type: focal_point

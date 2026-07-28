@@ -1,0 +1,8 @@
+uuid: e85b4ed9-070d-4998-869c-f50ca6012811
+langcode: nl
+status: true
+dependencies: {  }
+id: long_dutch
+label: 'Long (Dutch)'
+locked: false
+pattern: 'j F Y'

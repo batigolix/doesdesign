@@ -5,18 +5,26 @@
  *
  * AI generated. Wraps in <section class="box"> so Dopetrope's .box CSS
  * applies to Drupal-rendered sidebar blocks. If the block has a
- * field_image, it renders above the header as Dopetrope's featured image
- * pattern.
+ * field_image, it renders above the header. field_title takes precedence
+ * over the placement label for the visible <h3> title.
  */
 #}
+{% set display_title = content.field_title|render|striptags|trim ?: label %}
 <section{{ attributes.addClass('box') }}>
   {% if content.field_media_image|render %}
     <span class="image featured">{{ content.field_media_image }}</span>
   {% endif %}
   {{ title_prefix }}
-  {% if label %}
-    <header><h3>{{ label }}</h3></header>
+  {% if display_title %}
+    <header><h3>{{ display_title }}</h3></header>
   {% endif %}
   {{ title_suffix }}
-  {{ content|without('field_media_image', 'field_image') }}
+  {{ content|without('field_media_image', 'field_image', 'field_title', 'field_button') }}
+  {% if content.field_button|render|trim %}
+    <footer>
+      {% for item in content.field_button['#items'] %}
+        <a href="{{ item.getUrl() }}" class="button alt">{{ item.title }}</a>
+      {% endfor %}
+    </footer>
+  {% endif %}
 </section>
