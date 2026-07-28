@@ -10,13 +10,13 @@
  */
 #}
 <section{{ attributes.addClass('box') }}>
-  {% if content.field_image|render %}
-    <span class="image featured">{{ content.field_image }}</span>
+  {% if content.field_media_image|render %}
+    <span class="image featured">{{ content.field_media_image }}</span>
   {% endif %}
   {{ title_prefix }}
   {% if label %}
     <header><h3>{{ label }}</h3></header>
   {% endif %}
   {{ title_suffix }}
-  {{ content|without('field_image') }}
+  {{ content|without('field_media_image', 'field_image') }}
 </section>

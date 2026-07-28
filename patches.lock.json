@@ -1,4 +1,17 @@
 {
-    "_hash": "cf67ad2e2b3de9114eff7c6ca2d12de8d57cac5954667ddd0cc2f87a7510af51",
-    "patches": {}
+    "_hash": "9f8c7c0b2ba57b9984eb454f04ffa0b20f9c0520eb15ebf304884f5451174eff",
+    "patches": {
+        "drupal/ckeditor_media_resize": [
+            {
+                "package": "drupal/ckeditor_media_resize",
+                "description": "3607786: Add core 11.4 support (MR 30, local rebase)",
+                "url": "patches/ckeditor_media_resize-3607786-mr30-local.patch",
+                "sha256": "1bf5f357b04ae715a10f7b5c3d4204d445999c232b98f02c74a21e079c771179",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ]
+    }
 }
