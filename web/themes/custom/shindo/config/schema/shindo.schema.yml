@@ -1,0 +1,15 @@
+# AI generated
+shindo.settings:
+  type: theme_settings
+  label: 'Shindo theme settings'
+  mapping:
+    body_font:
+      type: string
+      label: 'Body font'
+      constraints:
+        Choice:
+          choices:
+            - source-sans-pro
+            - lora
+            - roboto
+            - system

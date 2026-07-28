@@ -3,6 +3,7 @@ global-styling:
   css:
     theme:
       assets/css/main.css: {}
+      assets/css/shindo-fonts.css: {}
 
 font-awesome:
   version: 1.x

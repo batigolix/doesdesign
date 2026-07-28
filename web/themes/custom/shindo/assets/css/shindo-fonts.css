@@ -1,0 +1,42 @@
+/* AI generated
+ * Body-font options exposed via /admin/appearance/settings/shindo.
+ * The body class 'shindo-font-<key>' is set by shindo_preprocess_html
+ * based on the 'body_font' theme setting (bead doesdesign-3mx).
+ * Non-default fonts are loaded here on demand via @import.
+ */
+
+/* Import fonts (default Source Sans Pro is loaded via Dopetrope's main.css). */
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
+
+/* Override Dopetrope's body font-family with the chosen font.
+   #page-wrapper selectors bump specificity so they win over
+   Dopetrope's `body, input, textarea, select { font-family: 'Source Sans Pro' }`. */
+
+.shindo-font-source-sans-pro #page-wrapper,
+.shindo-font-source-sans-pro #page-wrapper input,
+.shindo-font-source-sans-pro #page-wrapper textarea,
+.shindo-font-source-sans-pro #page-wrapper select {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.shindo-font-lora #page-wrapper,
+.shindo-font-lora #page-wrapper input,
+.shindo-font-lora #page-wrapper textarea,
+.shindo-font-lora #page-wrapper select {
+  font-family: 'Lora', Georgia, serif;
+}
+
+.shindo-font-roboto #page-wrapper,
+.shindo-font-roboto #page-wrapper input,
+.shindo-font-roboto #page-wrapper textarea,
+.shindo-font-roboto #page-wrapper select {
+  font-family: 'Roboto', system-ui, sans-serif;
+}
+
+.shindo-font-system #page-wrapper,
+.shindo-font-system #page-wrapper input,
+.shindo-font-system #page-wrapper textarea,
+.shindo-font-system #page-wrapper select {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
