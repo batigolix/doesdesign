@@ -4,14 +4,19 @@
  * Theme override for a block placed in the sidebar_first region.
  *
  * AI generated. Wraps in <section class="box"> so Dopetrope's .box CSS
- * applies to Drupal-rendered sidebar blocks.
+ * applies to Drupal-rendered sidebar blocks. If the block has a
+ * field_image, it renders above the header as Dopetrope's featured image
+ * pattern.
  */
 #}
 <section{{ attributes.addClass('box') }}>
+  {% if content.field_image|render %}
+    <span class="image featured">{{ content.field_image }}</span>
+  {% endif %}
   {{ title_prefix }}
   {% if label %}
     <header><h3>{{ label }}</h3></header>
   {% endif %}
   {{ title_suffix }}
-  {{ content }}
+  {{ content|without('field_image') }}
 </section>

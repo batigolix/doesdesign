@@ -5,7 +5,10 @@ dependencies:
   config:
     - block_content.type.basic
     - field.field.block_content.basic.body
+    - field.field.block_content.basic.field_image
+    - image.style.large
   module:
+    - image
     - text
 _core:
   default_config_hash: orJpHUlAc_wiQLMUjIgEJXGeiqylGHMPcmNRjGtct-M
@@ -20,6 +23,17 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: large
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: -5
     region: content
 hidden:
   langcode: true

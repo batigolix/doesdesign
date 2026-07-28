@@ -1,0 +1,23 @@
+uuid: 54e66426-65e7-4af0-aab1-978838fd2a13
+langcode: nl
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:b8061b12-091f-40c3-8021-e45880f9f0b0'
+  module:
+    - block_content
+  theme:
+    - shindo
+id: shindo_sidebar_featured
+theme: shindo
+region: sidebar_first
+weight: -20
+provider: null
+plugin: 'block_content:b8061b12-091f-40c3-8021-e45880f9f0b0'
+settings:
+  id: 'block_content:b8061b12-091f-40c3-8021-e45880f9f0b0'
+  label: Mokume-gane
+  label_display: visible
+  provider: block_content
+  view_mode: full
+visibility: {  }

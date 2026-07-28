@@ -74,19 +74,10 @@
         </div>
         <div class="col-4 col-12-medium">
 
-          <!-- Sidebar -->
-          <section class="box">
-            <a href="#" class="image featured"><img src="/themes/custom/shindo/images/pic09.jpg" alt="" /></a>
-            <header>
-              <h3>Sed etiam lorem nulla</h3>
-            </header>
-            <p>Lorem ipsum dolor sit amet sit veroeros sed amet blandit consequat veroeros lorem blandit  adipiscing et feugiat phasellus tempus dolore ipsum lorem dolore.</p>
-            <footer>
-              <a href="#" class="button alt">Magna sed taciti</a>
-            </footer>
-          </section>
           {# Drupal sidebar_first region — each block renders as <section class="box">
-             via templates/block--region--sidebar-first.html.twig. #}
+             via templates/block--region--sidebar-first.html.twig.
+             Blocks with a field_image (image field) render Dopetrope's
+             featured-image pattern above the header. #}
           {{ page.sidebar_first }}
 
         </div>
