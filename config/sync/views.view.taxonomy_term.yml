@@ -34,8 +34,8 @@ display:
           total_pages: 0
           id: 0
           tags:
-            next: ››
-            previous: ‹‹
+            next: 'Volgende ›'
+            previous: '‹ Vorige'
             first: '« Eerste'
             last: 'Laatste »'
           expose:

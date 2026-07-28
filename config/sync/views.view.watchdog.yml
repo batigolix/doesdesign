@@ -445,8 +445,8 @@ display:
           total_pages: null
           id: 0
           tags:
-            next: ››
-            previous: ‹‹
+            next: 'Volgende ›'
+            previous: '‹ Vorige'
           expose:
             items_per_page: false
             items_per_page_label: 'Items per pagina'
