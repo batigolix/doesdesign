@@ -88,6 +88,10 @@ function shindo_preprocess_html(array &$variables): void {
   $variables['attributes']['class'][] = $sidebar_position === 'none'
     ? 'no-sidebar'
     : ($sidebar_position === 'left' ? 'left-sidebar' : 'right-sidebar');
+
+  // Body font class — read from theme setting (bead doesdesign-3mx).
+  $body_font = $settings->getSetting('body_font') ?: 'source-sans-pro';
+  $variables['attributes']['class'][] = 'shindo-font-' . $body_font;
 }
 
 /**
