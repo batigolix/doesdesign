@@ -28,9 +28,9 @@ content:
     region: content
   field_material:
     type: entity_reference_label
-    label: hidden
+    label: above
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     weight: 5
     region: content
@@ -45,7 +45,7 @@ content:
     region: content
   field_price:
     type: number_decimal
-    label: hidden
+    label: above
     settings:
       thousand_separator: ''
       decimal_separator: ','
@@ -56,15 +56,15 @@ content:
     region: content
   field_type:
     type: entity_reference_label
-    label: hidden
+    label: above
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     weight: 6
     region: content
   field_weight:
     type: number_decimal
-    label: hidden
+    label: above
     settings:
       thousand_separator: ''
       decimal_separator: ','
@@ -75,7 +75,7 @@ content:
     region: content
   field_year:
     type: number_integer
-    label: hidden
+    label: above
     settings:
       thousand_separator: ''
       prefix_suffix: true
