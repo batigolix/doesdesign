@@ -30,7 +30,6 @@ dependencies:
     - shortcut
     - system
     - taxonomy
-    - toolbar
     - webform
 id: webmaster
 label: Webmaster
@@ -50,7 +49,6 @@ permissions:
   - 'access site in maintenance mode'
   - 'access site reports'
   - 'access taxonomy overview'
-  - 'access toolbar'
   - 'access user profiles'
   - 'access webform help'
   - 'access webform overview'

@@ -1,8 +1,6 @@
 _core:
   default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc
 module:
-  admin_toolbar: 0
-  admin_toolbar_tools: 0
   automated_cron: 0
   big_pipe: 0
   block: 0
@@ -14,6 +12,7 @@ module:
   config: 0
   config_ignore: 0
   config_split: 0
+  contextual: 0
   crop: 0
   ctools: 0
   datetime: 0
@@ -37,6 +36,8 @@ module:
   image: 0
   image_effects: 0
   language: 0
+  layout_builder: 0
+  layout_discovery: 0
   link: 0
   locale: 0
   media: 0
@@ -52,6 +53,7 @@ module:
   migrate_plus: 0
   migrate_tools: 0
   mysql: 0
+  navigation: 0
   node: 0
   options: 0
   page_cache: 0
@@ -61,6 +63,7 @@ module:
   redirect: 0
   redirect_404: 0
   search: 0
+  search_node: 0
   shortcut: 0
   simple_sitemap: 0
   system: 0
@@ -68,7 +71,6 @@ module:
   taxonomy: 0
   text: 0
   token: 0
-  toolbar: 0
   update: 0
   upgrade_status: 0
   user: 0
