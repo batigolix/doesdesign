@@ -1,0 +1,17 @@
+uuid: f968cb46-7e3a-4f5f-b51d-e7436fb93ad5
+langcode: nl
+status: true
+dependencies:
+  module:
+    - focal_point
+name: featurette
+label: 'Featurette (748×520, focal point)'
+effects:
+  c431d291-ed8b-46a4-becd-d819d51e575b:
+    uuid: c431d291-ed8b-46a4-becd-d819d51e575b
+    id: focal_point_scale_and_crop
+    weight: 0
+    data:
+      width: 748
+      height: 520
+      crop_type: focal_point

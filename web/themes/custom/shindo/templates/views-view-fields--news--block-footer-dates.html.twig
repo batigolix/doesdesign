@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Theme override for a "news" / "block_footer_dates" view row.
+ *
+ * AI generated. Emits Dopetrope's <li> pattern:
+ *   <span class="date">Mon <strong>DD</strong></span>
+ *   <h3><a href="…">Title</a></h3>
+ *   <p>Body summary</p>
+ * The created field is provided twice (formatted M and j) in the view
+ * configuration; both are excluded from the default output.
+ */
+#}
+<span class="date">{{ fields.created_month.content }} <strong>{{ fields.created_day.content }}</strong></span>
+<h3>{{ fields.title.content }}</h3>
+<p>{{ fields.body.content }}</p>

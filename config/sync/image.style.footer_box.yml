@@ -1,0 +1,17 @@
+uuid: c7ec0e77-dd2f-4e51-a54b-b51dfc38f9a3
+langcode: nl
+status: true
+dependencies:
+  module:
+    - focal_point
+name: footer_box
+label: 'Footer box (748×334, focal point)'
+effects:
+  294cc7fa-9b07-4c79-9677-fc7ae102d14b:
+    uuid: 294cc7fa-9b07-4c79-9677-fc7ae102d14b
+    id: focal_point_scale_and_crop
+    weight: 0
+    data:
+      width: 748
+      height: 334
+      crop_type: focal_point

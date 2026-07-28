@@ -1,0 +1,17 @@
+uuid: 25a7bb66-b5de-4a64-b5bd-622b3e1dcfe9
+langcode: nl
+status: true
+dependencies:
+  module:
+    - focal_point
+name: sidebar_box
+label: 'Sidebar box (580×272, focal point)'
+effects:
+  c92a26a7-ca98-4476-9b84-7e9440fac073:
+    uuid: c92a26a7-ca98-4476-9b84-7e9440fac073
+    id: focal_point_scale_and_crop
+    weight: 0
+    data:
+      width: 580
+      height: 272
+      crop_type: focal_point

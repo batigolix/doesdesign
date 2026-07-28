@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * Theme override for the "news" view "block_footer_dates" display.
+ *
+ * AI generated. Renders rows inside a <ul class="dates"> list matching
+ * Dopetrope's footer "Recent posts" pattern. Row markup is provided by
+ * views-view-fields--news--block-footer-dates.html.twig.
+ */
+#}
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+<ul class="dates">
+  {% for row in rows %}
+    <li>{{ row.content }}</li>
+  {% endfor %}
+</ul>
