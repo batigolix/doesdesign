@@ -288,3 +288,130 @@ display:
         - user.permissions
       tags:
         - 'config:node.type.article'
+  block_footer_dates:
+    id: block_footer_dates
+    display_title: 'Footer dates block'
+    display_plugin: block
+    position: 2
+    display_options:
+      fields:
+        created_month:
+          id: created_month
+          table: node_field_data
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: created
+          plugin_id: field
+          label: ''
+          exclude: true
+          element_label_colon: false
+          element_default_classes: false
+          type: timestamp
+          settings:
+            date_format: custom
+            custom_date_format: M
+            timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+        created_day:
+          id: created_day
+          table: node_field_data
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: created
+          plugin_id: field
+          label: ''
+          exclude: true
+          element_label_colon: false
+          element_default_classes: false
+          type: timestamp
+          settings:
+            date_format: custom
+            custom_date_format: j
+            timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
+          label: ''
+          exclude: false
+          element_label_colon: false
+          element_default_classes: false
+          type: string
+          settings:
+            link_to_entity: true
+        body:
+          id: body
+          table: node__body
+          field: body
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: body
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            max_length: 160
+            word_boundary: true
+            ellipsis: true
+            strip_tags: true
+            trim: true
+          element_label_colon: false
+          element_default_classes: false
+          type: text_default
+          settings: {  }
+      pager:
+        type: some
+        options:
+          offset: 0
+          items_per_page: 5
+      style:
+        type: default
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: false
+          uses_fields: false
+      row:
+        type: fields
+        options:
+          default_field_elements: false
+          inline: {  }
+          separator: ''
+          hide_empty: false
+      defaults:
+        pager: false
+        use_more: false
+        style: false
+        row: false
+        fields: false
+      use_more: false
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:node.type.article'

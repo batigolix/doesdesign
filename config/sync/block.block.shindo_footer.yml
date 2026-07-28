@@ -1,6 +1,6 @@
 uuid: 084f2592-b5d2-4ba7-b700-a7fec83064a4
 langcode: nl
-status: true
+status: false
 dependencies:
   module:
     - doesdesign_tools
@@ -8,7 +8,7 @@ dependencies:
     - shindo
 id: shindo_footer
 theme: shindo
-region: footer
+region: header
 weight: 0
 provider: null
 plugin: footer_block
