@@ -1,0 +1,17 @@
+uuid: 29619460-2445-4f7e-957a-19ae595be6ff
+langcode: nl
+status: true
+dependencies:
+  module:
+    - focal_point
+name: small_block
+label: 'Small block (374×167, focal point)'
+effects:
+  5bd94013-f11e-43be-8365-f3bfe7432347:
+    uuid: 5bd94013-f11e-43be-8365-f3bfe7432347
+    id: focal_point_scale_and_crop
+    weight: 0
+    data:
+      width: 374
+      height: 167
+      crop_type: focal_point

@@ -1,0 +1,11 @@
+uuid: 58d3ed77-69ff-4e4e-8541-62ecf0a8fcc7
+langcode: nl
+status: true
+dependencies:
+  module:
+    - media
+id: media.small_block
+label: 'Small block'
+description: null
+targetEntityType: media
+cache: true
