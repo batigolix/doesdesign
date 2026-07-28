@@ -7,10 +7,12 @@
  *   <span class="date">Mon <strong>DD</strong></span>
  *   <h3><a href="…">Title</a></h3>
  *   <p>Body summary</p>
- * The created field is provided twice (formatted M and j) in the view
- * configuration; both are excluded from the default output.
+ * The month/day come from the node's created timestamp via row._entity;
+ * title and body use the rendered view fields (which honor the view's
+ * link-to-entity + trim settings).
  */
 #}
-<span class="date">{{ fields.created_month.content }} <strong>{{ fields.created_day.content }}</strong></span>
+{% set node = row._entity %}
+<span class="date">{{ node.getCreatedTime|date('M') }} <strong>{{ node.getCreatedTime|date('j') }}</strong></span>
 <h3>{{ fields.title.content }}</h3>
 <p>{{ fields.body.content }}</p>

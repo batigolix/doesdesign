@@ -10,17 +10,14 @@ stylesheets-remove:
   - normalize.css
 regions:
   header: Header
-  primary_menu: 'Primary menu'
-  secondary_menu: 'Secondary menu'
+  primary_menu: Hoofdnavigatie
+  pre_main: Banner
   help: Help
-  content: Content
-  sidebar_first: 'Sidebar first'
-  sidebar_second: 'Sidebar second'
-  footer: 'Footer'
-  footer_col1: Footer column 1
-  footer_col2: Footer column 2
-  footer_col3: Footer column 3
-  post_footer: 'Post footer'
-  pre_main: 'Pre main'
+  content: Hoofdcontent
+  sidebar_first: Zijkolom
+  footer_col1: 'Footer kolom 1'
+  footer_col2: 'Footer kolom 2'
+  footer_col3: 'Footer kolom 3'
+  post_footer: Colofon
 core_version_requirement: ^8.8.0 || ^9.0 || ^10 || ^11
 base theme: stable
