@@ -1,0 +1,17 @@
+uuid: 6040ff5d-31d6-4058-b245-c050bbfc0890
+langcode: nl
+status: true
+dependencies:
+  module:
+    - focal_point
+name: article_hero
+label: 'Article hero (1200×444, focal point)'
+effects:
+  9acd88a3-0c47-460c-a894-8f3b6b6e92fe:
+    uuid: 9acd88a3-0c47-460c-a894-8f3b6b6e92fe
+    id: focal_point_scale_and_crop
+    weight: 0
+    data:
+      width: 1200
+      height: 444
+      crop_type: focal_point
