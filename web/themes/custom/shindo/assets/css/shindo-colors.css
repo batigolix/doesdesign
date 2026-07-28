@@ -1,0 +1,50 @@
+/* AI generated - shindo-colors.css
+ * Applies theme setting primary_color (bead doesdesign-c98) to Dopetrope's
+ * #252122 hardcoded values. The CSS custom property --shindo-primary is
+ * injected on the <html> element by shindo_preprocess_html().
+ *
+ * Uses #page-wrapper prefix for high specificity so it overrides main.css
+ * without !important.
+ */
+
+#page-wrapper h1,
+#page-wrapper h2,
+#page-wrapper h3,
+#page-wrapper h4,
+#page-wrapper h5,
+#page-wrapper h6 {
+	color: var(--shindo-primary, #252122);
+}
+
+#page-wrapper strong,
+#page-wrapper b {
+	color: var(--shindo-primary, #252122);
+}
+
+#page-wrapper form label {
+	color: var(--shindo-primary, #252122);
+}
+
+#page-wrapper input[type="button"].alt,
+#page-wrapper input[type="submit"].alt,
+#page-wrapper input[type="reset"].alt,
+#page-wrapper button.alt,
+#page-wrapper .button.alt {
+	background: var(--shindo-primary, #252122);
+}
+
+#page-wrapper .icon.featured.alt {
+	background-color: var(--shindo-primary, #252122);
+}
+
+#page-wrapper .icon.featured.alt:after {
+	border-top-color: var(--shindo-primary, #252122);
+}
+
+#page-wrapper #header h1 {
+	color: var(--shindo-primary, #252122);
+}
+
+#page-wrapper .box.post h2 {
+	color: var(--shindo-primary, #252122);
+}

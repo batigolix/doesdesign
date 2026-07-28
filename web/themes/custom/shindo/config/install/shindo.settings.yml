@@ -6,3 +6,4 @@ features:
 logo:
   use_default: false
 body_font: source-sans-pro
+primary_color: '#252122'

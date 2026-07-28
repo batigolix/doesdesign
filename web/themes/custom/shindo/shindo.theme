@@ -68,6 +68,11 @@ function shindo_preprocess_html(array &$variables): void {
     $styles[] = "$prefix:$hex";
   }
 
+  // Shindo primary color (bead doesdesign-c98) — overrides Dopetrope's
+  // hardcoded #252122 via var(--shindo-primary) in shindo-colors.css.
+  $primary_color = $settings->getSetting('primary_color') ?: '#252122';
+  $styles[] = '--shindo-primary:' . $primary_color;
+
   $variables['html_attributes']->setAttribute('style', implode(';', $styles));
 
   // Layout body classes — read by SCSS in scss/layout/.
