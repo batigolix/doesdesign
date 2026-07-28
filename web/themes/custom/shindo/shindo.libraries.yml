@@ -4,6 +4,7 @@ global-styling:
     theme:
       assets/css/main.css: {}
       assets/css/shindo-fonts.css: {}
+      assets/css/shindo-overrides.css: {}
 
 font-awesome:
   version: 1.x
