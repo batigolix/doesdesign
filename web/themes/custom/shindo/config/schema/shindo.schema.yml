@@ -16,3 +16,16 @@ shindo.settings:
     primary_color:
       type: color_hex
       label: 'Hoofdkleur'
+    background_pattern:
+      type: string
+      label: 'Background pattern'
+      constraints:
+        Choice:
+          choices:
+            - bg
+            - none
+            - stripes
+            - grid
+    background_color:
+      type: color_hex
+      label: 'Background color'

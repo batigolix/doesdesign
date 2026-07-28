@@ -40,4 +40,26 @@ function shindo_form_system_theme_settings_alter(array &$form, FormStateInterfac
     '#description' => t('Kleur voor titels (h1-h6), donkere knoppen en accents.'),
     '#config_target' => 'shindo.settings:primary_color',
   ];
+
+  $form['shindo_background'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Background'),
+  ];
+  $form['shindo_background']['background_pattern'] = [
+    '#type' => 'select',
+    '#title' => t('Achtergrond patroon'),
+    '#options' => [
+      'bg' => t('Standaard (Dopetrope textuur)'),
+      'none' => t('Geen (plat)'),
+      'stripes' => t('Strepen'),
+      'grid' => t('Raster'),
+    ],
+    '#config_target' => 'shindo.settings:background_pattern',
+  ];
+  $form['shindo_background']['background_color'] = [
+    '#type' => 'color',
+    '#title' => t('Achtergrond kleur'),
+    '#description' => t('Kleur onder het patroon.'),
+    '#config_target' => 'shindo.settings:background_color',
+  ];
 }

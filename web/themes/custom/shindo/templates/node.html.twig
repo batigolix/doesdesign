@@ -11,6 +11,9 @@
  * mirroring the pattern originally introduced in bead it0 and lost during
  * the shindo theme restructure (see bead doesdesign-f0g).
  *
+ * The `<h1>` and optional `field_subtitle` are wrapped in a `<header>`
+ * matching Dopetrope's article-header pattern (see bead doesdesign-nbl).
+ *
  * For non-page view modes (teasers, search results, embeds) the title
  * falls back to an `<h2>` link so listing pages keep their original
  * markup.
@@ -36,9 +39,15 @@
       </span>
     {% endif %}
 
-    {{ title_prefix }}
-    <h1{{ title_attributes.addClass('node__title') }}>{{ label }}</h1>
-    {{ title_suffix }}
+    <header>
+      {{ title_prefix }}
+      <h1{{ title_attributes.addClass('node__title') }}>{{ label }}</h1>
+      {{ title_suffix }}
+      {% set subtitle = content.field_subtitle|render|striptags|trim %}
+      {% if subtitle %}
+        <p class="node__subtitle">{{ subtitle }}</p>
+      {% endif %}
+    </header>
 
     {% if display_submitted %}
       <footer class="node__meta">
@@ -51,7 +60,7 @@
     {% endif %}
 
     <div{{ content_attributes.addClass('node-content') }}>
-      {{ content|without('field_media_image', 'comments', 'links') }}
+      {{ content|without('field_media_image', 'field_subtitle', 'comments', 'links') }}
     </div>
   {% else %}
     {{ title_prefix }}
