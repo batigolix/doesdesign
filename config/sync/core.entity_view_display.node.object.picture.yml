@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.object.field_material
     - field.field.node.object.field_media_image
     - field.field.node.object.field_price
+    - field.field.node.object.field_subtitle
     - field.field.node.object.field_type
     - field.field.node.object.field_weight
     - field.field.node.object.field_year
@@ -32,6 +33,7 @@ hidden:
   body: true
   field_material: true
   field_price: true
+  field_subtitle: true
   field_type: true
   field_weight: true
   field_year: true

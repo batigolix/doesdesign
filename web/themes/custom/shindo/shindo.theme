@@ -73,7 +73,20 @@ function shindo_preprocess_html(array &$variables): void {
   $primary_color = $settings->getSetting('primary_color') ?: '#252122';
   $styles[] = '--shindo-primary:' . $primary_color;
 
+  // Shindo background color (bead doesdesign-6kj) — overrides
+  // Dopetrope's hardcoded #252122 via var(--shindo-bg-color) in
+  // shindo-bg.css.
+  $bg_color = $settings->getSetting('background_color') ?: '#252122';
+  $styles[] = '--shindo-bg-color:' . $bg_color;
+
   $variables['html_attributes']->setAttribute('style', implode(';', $styles));
+
+  // Shindo background pattern (bead doesdesign-6kj) — toggled via body
+  // class. The actual background-image (bg.png / SVG data URIs / none) is
+  // defined per class in shindo-bg.css. Pattern names are validated by
+  // the config schema (Choice constraint) so no additional whitelist here.
+  $bg_pattern = $settings->getSetting('background_pattern') ?: 'bg';
+  $variables['attributes']['class'][] = 'shindo-bg--' . $bg_pattern;
 
   // Layout body classes — read by SCSS in scss/layout/.
   $container_width = $settings->getSetting('container_width') ?: 'default';

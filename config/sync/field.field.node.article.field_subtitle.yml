@@ -1,0 +1,19 @@
+uuid: 3c76f8dd-d4d7-41dd-9934-3494a3124c55
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_subtitle
+    - node.type.article
+id: node.article.field_subtitle
+field_name: field_subtitle
+entity_type: node
+bundle: article
+label: Subtitel
+description: 'Optionele korte ondertitel die onder de h1 verschijnt.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

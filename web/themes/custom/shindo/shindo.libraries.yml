@@ -6,6 +6,7 @@ global-styling:
       assets/css/shindo-fonts.css: {}
       assets/css/shindo-overrides.css: {}
       assets/css/shindo-colors.css: {}
+      assets/css/shindo-bg.css: {}
 
 font-awesome:
   version: 1.x

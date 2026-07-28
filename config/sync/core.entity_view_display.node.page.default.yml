@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.page.body
     - field.field.node.page.field_media_image
+    - field.field.node.page.field_subtitle
     - node.type.page
   module:
     - text
@@ -31,6 +32,15 @@ content:
       link: true
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_subtitle:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: -3
     region: content
   links:
     settings: {  }

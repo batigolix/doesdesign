@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.object.field_material
     - field.field.node.object.field_media_image
     - field.field.node.object.field_price
+    - field.field.node.object.field_subtitle
     - field.field.node.object.field_type
     - field.field.node.object.field_weight
     - field.field.node.object.field_year
@@ -62,6 +63,14 @@ content:
     settings:
       placeholder: ''
     third_party_settings: {  }
+  field_subtitle:
+    type: string_textfield
+    weight: -4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_type:
     type: tagify_select_widget
     weight: 3
@@ -106,6 +115,11 @@ content:
     region: content
     settings:
       display_label: true
+    third_party_settings: {  }
+  simple_sitemap:
+    weight: 10
+    region: content
+    settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
