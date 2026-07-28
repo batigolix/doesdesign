@@ -12,7 +12,11 @@
 {% set display_title = content.field_title|render|striptags|trim ?: label %}
 <section{{ attributes.addClass('box') }}>
   {% if content.field_media_image|render %}
-    <span class="image featured">{{ content.field_media_image }}</span>
+    {% set media_render = content.field_media_image %}
+    {% if media_render[0] %}
+      {% set media_render = media_render|merge({0: media_render[0]|merge({'#view_mode': 'small_block'})}) %}
+    {% endif %}
+    <span class="image featured">{{ media_render }}</span>
   {% endif %}
   {{ title_prefix }}
   {% if display_title %}
