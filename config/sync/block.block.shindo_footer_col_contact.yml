@@ -10,8 +10,8 @@ dependencies:
     - shindo
 id: shindo_footer_col_contact
 theme: shindo
-region: footer_col2
-weight: 0
+region: footer_col3
+weight: 10
 provider: null
 plugin: 'block_content:1ef77588-1de4-4f57-ac2f-321b71de07dd'
 settings:
