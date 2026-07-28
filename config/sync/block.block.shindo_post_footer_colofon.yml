@@ -1,0 +1,23 @@
+uuid: dedb0f8d-00d3-4a56-aa9d-214790dbee6c
+langcode: nl
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:a933aaa6-9806-4aba-9c33-59f7ae3d1b9a'
+  module:
+    - block_content
+  theme:
+    - shindo
+id: shindo_post_footer_colofon
+theme: shindo
+region: post_footer
+weight: 0
+provider: null
+plugin: 'block_content:a933aaa6-9806-4aba-9c33-59f7ae3d1b9a'
+settings:
+  id: 'block_content:a933aaa6-9806-4aba-9c33-59f7ae3d1b9a'
+  label: Colofon
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility: {  }
