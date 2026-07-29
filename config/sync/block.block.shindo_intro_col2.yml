@@ -1,0 +1,29 @@
+uuid: 22c40544-f9f6-46ec-9fb5-a0b9e6e01e8c
+langcode: nl
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:7af49c55-8205-4080-bd22-9cb64592749a'
+  module:
+    - block_content
+    - system
+  theme:
+    - shindo
+id: shindo_intro_col2
+theme: shindo
+region: intro_col2
+weight: 0
+provider: null
+plugin: 'block_content:7af49c55-8205-4080-bd22-9cb64592749a'
+settings:
+  id: 'block_content:7af49c55-8205-4080-bd22-9cb64592749a'
+  label: 'Intro feature 2'
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: '<front>'

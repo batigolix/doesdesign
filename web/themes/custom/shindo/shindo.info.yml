@@ -12,6 +12,9 @@ regions:
   header: Header
   primary_menu: Hoofdnavigatie
   pre_main: Banner
+  intro_col1: 'Intro kolom 1'
+  intro_col2: 'Intro kolom 2'
+  intro_col3: 'Intro kolom 3'
   content: Hoofdcontent
   sidebar_first: Zijkolom
   footer_col1: 'Footer kolom 1'

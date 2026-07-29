@@ -13,11 +13,12 @@
  * een block met markup <section id="banner"><header><h2>…</h2><p>…</p></header></section>
  * om de Dopetrope hero over te nemen.
  *
- * Features: voorlopig gehardcodeerde placeholder-content. TODO: omzetten naar
- * configurable blocks (bijv. via 3 nieuwe regions of één "features" region met
- * custom blocks).
+ * Features: drie configurable blocks in de regions intro_col1/2/3 (zie
+ * shindo.info.yml). Basic Blocks worden geplaatst via block.block.shindo_intro_col*.yml
+ * en zijn zichtbaar op <front> only. Site-eigenaar bewerkt content via
+ * /admin/content/block.
  *
- * AI generated (bead doesdesign-pil).
+ * AI generated (bead doesdesign-pil, ep5).
  */
 #}
 {%
@@ -46,35 +47,17 @@
     {{ page.pre_main }}
 
     {# Intro featurettes — Dopetrope "id=intro" met drie kolommen.
-       TODO(doesdesign-pil): omzetten naar configurable blocks. #}
+       Content wordt beheerd via de regions intro_col1/2/3 (Basic Blocks). #}
     <section id="intro" class="container">
       <div class="row">
-        <div class="col-4 col-12-medium">
-          <section class="first">
-            <i class="icon solid featured fa-cog"></i>
-            <header>
-              <h2>Ipsum consequat</h2>
-            </header>
-            <p>Nisl amet dolor sit ipsum veroeros sed blandit consequat veroeros et magna tempus.</p>
-          </section>
+        <div class="col-4 col-12-medium first">
+          {{ page.intro_col1 }}
         </div>
-        <div class="col-4 col-12-medium">
-          <section class="middle">
-            <i class="icon solid featured alt fa-bolt"></i>
-            <header>
-              <h2>Magna etiam dolor</h2>
-            </header>
-            <p>Nisl amet dolor sit ipsum veroeros sed blandit consequat veroeros et magna tempus.</p>
-          </section>
+        <div class="col-4 col-12-medium middle">
+          {{ page.intro_col2 }}
         </div>
-        <div class="col-4 col-12-medium">
-          <section class="last">
-            <i class="icon solid featured alt2 fa-star"></i>
-            <header>
-              <h2>Tempus adipiscing</h2>
-            </header>
-            <p>Nisl amet dolor sit ipsum veroeros sed blandit consequat veroeros et magna tempus.</p>
-          </section>
+        <div class="col-4 col-12-medium last">
+          {{ page.intro_col3 }}
         </div>
       </div>
     </section>
