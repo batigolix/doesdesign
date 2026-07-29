@@ -9,6 +9,7 @@ dependencies:
     - node.type.page
   module:
     - media_library
+    - media_library_edit
     - path
     - text
 _core:
@@ -40,7 +41,10 @@ content:
     region: content
     settings:
       media_types: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      media_library_edit:
+        show_edit: true
+        edit_form_mode: media.media_library
   field_subtitle:
     type: string_textfield
     weight: -4

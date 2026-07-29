@@ -15,6 +15,7 @@ dependencies:
     - node.type.object
   module:
     - media_library
+    - media_library_edit
     - path
     - tagify
     - text
@@ -56,7 +57,10 @@ content:
     region: content
     settings:
       media_types: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      media_library_edit:
+        show_edit: true
+        edit_form_mode: media.media_library
   field_price:
     type: number
     weight: 4
