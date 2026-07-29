@@ -78,9 +78,9 @@ class DdToolsContact extends BlockBase {
     ];
 
     $url = Url::fromUserInput('/about');
-    $build['doestxt']['about']['#markup'] = '<div class="about"><strong>' . Link::fromTextAndUrl('Birgit Doesborg', $url) . '</strong>, Goud- en zilversmid.</div>';
+    $build['doestxt']['about']['#markup'] = '<div class="about"><strong>' . Link::fromTextAndUrl('Birgit Doesborg', $url)->toString() . '</strong>, Goud- en zilversmid.</div>';
     $url = Url::fromUserInput('/contact');
-    $build['doestxt']['contact_link']['#markup'] = '<div class="contact"><strong>' . Link::fromTextAndUrl('Contact', $url) . '</strong></div>';
+    $build['doestxt']['contact_link']['#markup'] = '<div class="contact"><strong>' . Link::fromTextAndUrl('Contact', $url)->toString() . '</strong></div>';
     $build['doestxt']['social'] = [
       '#theme' => 'item_list',
       '#items' => $items,
