@@ -1,0 +1,20 @@
+uuid: 8f138034-3f12-41b1-8ea9-235fbab3a175
+langcode: nl
+status: true
+dependencies:
+  theme:
+    - shindo
+id: shindo_local_tasks_secondary
+theme: shindo
+region: content
+weight: -14
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Secondary tabs'
+  label_display: '0'
+  provider: core
+  primary: false
+  secondary: true
+visibility: {  }
