@@ -8,7 +8,7 @@
 
 /* Node full view h1: match Dopetrope .box.post h2 sizing (bead doesdesign-vg1).
  * Dopetrope's original size rule targets h2; shindo uses h1 for SEO. */
-.box.post > header > h1.node__title {
+.box.post header h1.node__title {
   font-size: 2.5em;
   letter-spacing: -0.015em;
 }

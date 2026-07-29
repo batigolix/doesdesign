@@ -1,3 +1,10 @@
+{%
+  set articleClasses = [
+  'box',
+  'post',
+]
+%}
+
 <div id="page-wrapper">
 
   <!-- Header -->
@@ -18,8 +25,11 @@
       <div class="row">
         <div class="col-8 col-12-medium">
 
+          <article{{ attributes.addClass(articleClasses) }}>
+
           {{ page.content }}
 
+          </article>
         </div>
         <div class="col-4 col-12-medium">
 
