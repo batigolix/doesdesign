@@ -1,0 +1,70 @@
+# AI generated
+name: Static analysis
+
+on:
+  push:
+    branches:
+      - develop
+      - master
+  pull_request:
+    branches:
+      - develop
+      - master
+
+permissions:
+  contents: read
+
+jobs:
+  analyze:
+    name: ${{ matrix.tool }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        tool:
+          - phpcs
+          - phpstan
+          - phpmd
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          coverage: none
+          tools: composer:v2
+
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{ steps.composer-cache.outputs.dir }}
+            vendor
+          key: composer-${{ runner.os }}-php8.4-${{ hashFiles('composer.lock') }}
+          restore-keys: |
+            composer-${{ runner.os }}-php8.4-
+            composer-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: composer install --no-progress --prefer-dist --no-scripts --no-interaction
+
+      - name: Run phpcs
+        if: matrix.tool == 'phpcs'
+        run: vendor/bin/phpcs --standard=phpcs.xml.dist
+
+      - name: Run phpstan
+        if: matrix.tool == 'phpstan'
+        run: vendor/bin/phpstan analyse --configuration=phpstan.neon.dist --memory-limit=1G --no-progress
+
+      - name: Run phpmd
+        if: matrix.tool == 'phpmd'
+        run: |
+          vendor/bin/phpmd web/modules/custom,web/themes/custom github phpmd.xml.dist \
+            --suffixes php,module,install,theme,inc,profile \
+            --exclude '*/node_modules/*,*/vendor/*'
