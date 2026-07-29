@@ -1,10 +1,12 @@
 #!/bin/bash
-
-## Description: Run phpcbf on code to automatically fix code style issues.
-## Usage: phpcbf
-## Example: "ddev phpcbf path/to/module/folder"
+# AI generated
+## Description: Run PHPCBF to automatically fix code style issues, using phpcs.xml.dist.
+## Usage: phpcbf [path...]
+## Example: "ddev phpcbf" (fixes web/modules/custom + web/themes/custom) or "ddev phpcbf web/modules/custom/doesdesign_tools"
 
 cd /var/www/html
-# bin/phpcbf --standard=Drupal --ignore=vendor $@
-
-/var/www/html/bin/phpcbf --standard=vendor/drupal/coder/coder_sniffer/Drupal --extensions=inc,module,install,info,test,profile,theme,php --report=full --ignore=backstop,react,adminer,featureContext $@
+if [ -z "$*" ]; then
+  bin/phpcbf --standard=phpcs.xml.dist
+else
+  bin/phpcbf --standard=phpcs.xml.dist "$@"
+fi
