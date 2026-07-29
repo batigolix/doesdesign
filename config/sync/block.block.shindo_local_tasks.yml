@@ -6,8 +6,8 @@ dependencies:
     - shindo
 id: shindo_local_tasks
 theme: shindo
-region: content
-weight: -15
+region: pre_main
+weight: 0
 provider: null
 plugin: local_tasks_block
 settings:
