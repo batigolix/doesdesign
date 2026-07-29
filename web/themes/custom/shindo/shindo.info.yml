@@ -12,7 +12,6 @@ regions:
   header: Header
   primary_menu: Hoofdnavigatie
   pre_main: Banner
-  help: Help
   content: Hoofdcontent
   sidebar_first: Zijkolom
   footer_col1: 'Footer kolom 1'
