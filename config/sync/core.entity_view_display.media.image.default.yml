@@ -8,7 +8,7 @@ dependencies:
     - image.style.medium_wide_508_x_310_
     - media.type.image
   module:
-    - colorbox
+    - photoswipe
 _core:
   default_config_hash: 73xaTNkI5J6sfFcBmNYeuk070X3mQS_iwwWaPYyfG2M
 id: media.image.default
@@ -17,16 +17,18 @@ bundle: image
 mode: default
 content:
   field_media_image:
-    type: colorbox
+    type: photoswipe_field_formatter
     label: hidden
     settings:
-      colorbox_image_style: extra_large_wide
-      colorbox_gallery: page
-      colorbox_gallery_custom: ''
-      colorbox_caption: auto
-      colorbox_caption_custom: ''
-      colorbox_node_style: medium_wide_508_x_310_
-      colorbox_node_style_first: medium_wide_508_x_310_
+      photoswipe_thumbnail_style_first: medium_wide_508_x_310_
+      photoswipe_thumbnail_style: medium_wide_508_x_310_
+      photoswipe_image_style: extra_large_wide
+      photoswipe_reference_image_field: ''
+      photoswipe_view_mode: ''
+      photoswipe_remove_gallery_wrapper_class: false
+      photoswipe_show_download_button: false
+      image_loading:
+        attribute: lazy
     third_party_settings: {  }
     weight: 1
     region: content

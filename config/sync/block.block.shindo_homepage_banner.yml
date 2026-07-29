@@ -1,0 +1,30 @@
+uuid: 6f3920bd-b8f8-4b4b-9d18-7763d078df02
+langcode: nl
+status: true
+dependencies:
+  config:
+    - views.view.homepage_banner
+  module:
+    - system
+    - views
+  theme:
+    - shindo
+id: shindo_homepage_banner
+theme: shindo
+region: pre_main
+weight: -100
+provider: null
+plugin: 'views_block:homepage_banner-block_banner'
+settings:
+  id: 'views_block:homepage_banner-block_banner'
+  label: 'Homepage banner'
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: null
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: '<front>'

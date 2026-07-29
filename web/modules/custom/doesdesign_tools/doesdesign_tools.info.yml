@@ -4,5 +4,4 @@ description: 'My Awesome Module'
 package: 'Custom'
 dependencies:
   - node
-  - colorbox
 core_version_requirement: ^8 || ^9 || ^10 || ^11

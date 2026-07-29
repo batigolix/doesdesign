@@ -1,0 +1,21 @@
+uuid: 443b727c-af85-49db-bf34-02337c2611b6
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_show_in_banner
+    - node.type.object
+id: node.object.field_show_in_banner
+field_name: field_show_in_banner
+entity_type: node
+bundle: object
+label: 'In banner tonen'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: Aan
+  off_label: Uit
+field_type: boolean
