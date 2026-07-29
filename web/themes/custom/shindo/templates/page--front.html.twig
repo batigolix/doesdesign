@@ -1,0 +1,176 @@
+{#
+/**
+ * @file
+ * Front page template — Dopetrope demo homepage layout.
+ *
+ * Baseert op https://html5up.net/uploads/demos/dopetrope/index.html:
+ * - Banner ("id=banner") en Intro featurettes ("class=features") zitten in
+ *   het header <section> — dus boven de main content.
+ * - Main splitst content + sidebar_first zoals de default page template.
+ * - Footer is identiek aan page.html.twig.
+ *
+ * Banner-slot: page.pre_main region ("Banner" in shindo.info.yml). Plaats hier
+ * een block met markup <section id="banner"><header><h2>…</h2><p>…</p></header></section>
+ * om de Dopetrope hero over te nemen.
+ *
+ * Features: voorlopig gehardcodeerde placeholder-content. TODO: omzetten naar
+ * configurable blocks (bijv. via 3 nieuwe regions of één "features" region met
+ * custom blocks).
+ *
+ * AI generated (bead doesdesign-pil).
+ */
+#}
+{%
+  set articleClasses = [
+  'box',
+  'post',
+]
+%}
+
+<div id="page-wrapper">
+
+  <!-- Header -->
+  <section id="header">
+
+    {# Site branding block (see block--system-branding-block.html.twig). #}
+    {{ page.header }}
+
+    {# Primary menu block wrapper is <nav id="nav"> (see
+       block--system-menu-block--main.html.twig). #}
+    {{ page.primary_menu }}
+
+    {# Banner — Drupal pre_main region ("Banner" label). Plaats hier één
+       block met de Dopetrope hero-markup. Voorbeeld:
+       <section id="banner"><header><h2>Titel</h2><p>Ondertitel</p></header></section>
+    #}
+    {{ page.pre_main }}
+
+    {# Intro featurettes — Dopetrope "id=intro" met drie kolommen.
+       TODO(doesdesign-pil): omzetten naar configurable blocks. #}
+    <section id="intro" class="container">
+      <div class="row">
+        <div class="col-4 col-12-medium">
+          <section class="first">
+            <i class="icon solid featured fa-cog"></i>
+            <header>
+              <h2>Ipsum consequat</h2>
+            </header>
+            <p>Nisl amet dolor sit ipsum veroeros sed blandit consequat veroeros et magna tempus.</p>
+          </section>
+        </div>
+        <div class="col-4 col-12-medium">
+          <section class="middle">
+            <i class="icon solid featured alt fa-bolt"></i>
+            <header>
+              <h2>Magna etiam dolor</h2>
+            </header>
+            <p>Nisl amet dolor sit ipsum veroeros sed blandit consequat veroeros et magna tempus.</p>
+          </section>
+        </div>
+        <div class="col-4 col-12-medium">
+          <section class="last">
+            <i class="icon solid featured alt2 fa-star"></i>
+            <header>
+              <h2>Tempus adipiscing</h2>
+            </header>
+            <p>Nisl amet dolor sit ipsum veroeros sed blandit consequat veroeros et magna tempus.</p>
+          </section>
+        </div>
+      </div>
+    </section>
+
+  </section>
+
+  <!-- Main -->
+  <section id="main">
+    <div class="container">
+      <div class="row">
+        <div class="col-8 col-12-medium">
+
+          <article{{ attributes.addClass(articleClasses) }}>
+
+          {{ page.content }}
+
+          </article>
+        </div>
+        <div class="col-4 col-12-medium">
+
+          {# Drupal sidebar_first region — see page.html.twig. #}
+          {{ page.sidebar_first }}
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <section id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-8 col-12-medium">
+          <section>
+            <header>
+              <h2>Recent nieuws</h2>
+            </header>
+            {# Drupal footer_col1 region — renders the "news" view
+               block_footer_dates display as <ul class="dates"> with the
+               five most recent article nodes. #}
+            {{ page.footer_col1 }}
+          </section>
+        </div>
+        <div class="col-4 col-12-medium">
+
+          {# Drupal footer_col2 region — each block renders as <section class="box">
+             via templates/block--region--footer-col2.html.twig. #}
+          {{ page.footer_col2 }}
+
+        </div>
+        <div class="col-4 col-6-medium col-12-small">
+          <section>
+            <header>
+              <h2>Tempus consequat</h2>
+            </header>
+            <ul class="divided">
+              <li><a href="#">Lorem ipsum dolor sit amet sit veroeros</a></li>
+              <li><a href="#">Sed et blandit consequat sed tlorem blandit</a></li>
+              <li><a href="#">Adipiscing feugiat phasellus sed tempus</a></li>
+              <li><a href="#">Hendrerit tortor vitae mattis tempor sapien</a></li>
+              <li><a href="#">Sem feugiat sapien id suscipit magna felis nec</a></li>
+              <li><a href="#">Elit class aptent taciti sociosqu ad litora</a></li>
+            </ul>
+          </section>
+        </div>
+        <div class="col-4 col-6-medium col-12-small">
+          <section>
+            <header>
+              <h2>Ipsum et phasellus</h2>
+            </header>
+            <ul class="divided">
+              <li><a href="#">Lorem ipsum dolor sit amet sit veroeros</a></li>
+              <li><a href="#">Sed et blandit consequat sed tlorem blandit</a></li>
+              <li><a href="#">Adipiscing feugiat phasellus sed tempus</a></li>
+              <li><a href="#">Hendrerit tortor vitae mattis tempor sapien</a></li>
+              <li><a href="#">Sem feugiat sapien id suscipit magna felis nec</a></li>
+              <li><a href="#">Elit class aptent taciti sociosqu ad litora</a></li>
+            </ul>
+          </section>
+        </div>
+        <div class="col-4 col-12-medium">
+
+          {# Drupal footer_col3 region — social/contact blocks. #}
+          {{ page.footer_col3 }}
+
+        </div>
+        <div class="col-12">
+
+          {# Drupal post_footer region — configurable Colofon block. #}
+          <div id="copyright">
+            {{ page.post_footer }}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
