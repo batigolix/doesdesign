@@ -35,7 +35,7 @@
 #page-wrapper .messages,
 #page-wrapper .messages-list__item,
 #page-wrapper .messages__item {
-  margin: 0 0 1em 0;
+  margin: 0 0 5em 0;
   padding: 1em 1.25em;
   border-left: 4px solid #3ecf5f;
   background: rgba(62, 207, 95, 0.08);
