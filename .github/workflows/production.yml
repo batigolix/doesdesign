@@ -18,11 +18,12 @@ jobs:
           script: |
             set -euo pipefail
             cd ${{ secrets.PRODUCTION_DIR }}
+            pwd
             chmod a+w web/sites/default
             chmod a+w web/sites/default/settings.php
             git reset --hard
-            git checkout master
-            git pull origin master
+            git fetch origin
+            git checkout -B master origin/master
             ${{ secrets.COMPOSER }} install --no-dev --ignore-platform-reqs
             ln -sfn ../../../../files web/sites/default/files
             chmod a-w web/sites/default
