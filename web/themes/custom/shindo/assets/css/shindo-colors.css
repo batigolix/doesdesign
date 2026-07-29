@@ -16,11 +16,6 @@
 	color: var(--shindo-primary, #252122);
 }
 
-#page-wrapper strong,
-#page-wrapper b {
-	color: var(--shindo-primary, #252122);
-}
-
 #page-wrapper form label {
 	color: var(--shindo-primary, #252122);
 }
