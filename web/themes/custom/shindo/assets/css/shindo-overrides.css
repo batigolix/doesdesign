@@ -12,3 +12,53 @@
   font-size: 2.5em;
   letter-spacing: -0.015em;
 }
+
+/* Drupal status messages — bead doesdesign-w8y.
+ * Style Drupal's .messages / .messages--status / --warning / --error
+ * containers to fit Dopetrope's callout aesthetic. Selectors scoped to
+ * #page-wrapper so admin UI stays untouched.
+ *
+ * Note: shindo's base theme is stable, whose status-messages.html.twig
+ * does NOT emit .messages classes — it renders bare [data-drupal-messages]
+ * containers with [role="contentinfo"] children (and [role="alert"] for
+ * errors). Selectors below cover both markup variants so the styling holds
+ * if a template override is added later. */
+#page-wrapper [data-drupal-messages] {
+  margin: 0 0 2em 0;
+}
+#page-wrapper .messages-list {
+  margin: 0 0 2em 0;
+  padding: 0;
+  list-style: none;
+}
+#page-wrapper [data-drupal-messages] > [role="contentinfo"],
+#page-wrapper .messages,
+#page-wrapper .messages-list__item,
+#page-wrapper .messages__item {
+  margin: 0 0 1em 0;
+  padding: 1em 1.25em;
+  border-left: 4px solid #3ecf5f;
+  background: rgba(62, 207, 95, 0.08);
+  color: #252122;
+  border-radius: 2px;
+}
+#page-wrapper .messages--status,
+#page-wrapper .messages-list__item--status {
+  border-left-color: #3ecf5f;
+  background: rgba(62, 207, 95, 0.08);
+}
+#page-wrapper .messages--warning,
+#page-wrapper .messages-list__item--warning {
+  border-left-color: #f0ad4e;
+  background: rgba(240, 173, 78, 0.10);
+}
+#page-wrapper .messages--error,
+#page-wrapper .messages-list__item--error,
+#page-wrapper [data-drupal-messages] > [role="contentinfo"]:has([role="alert"]) {
+  border-left-color: #e04836;
+  background: rgba(224, 72, 54, 0.10);
+}
+#page-wrapper [data-drupal-messages] a,
+#page-wrapper .messages a {
+  text-decoration: underline;
+}
