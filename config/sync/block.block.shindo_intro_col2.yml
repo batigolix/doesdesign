@@ -14,9 +14,9 @@ theme: shindo
 region: intro_col2
 weight: 0
 provider: null
-plugin: 'block_content:7af49c55-8205-4080-bd22-9cb64592749a'
+plugin: 'block_content:1fbb5b2f-a9f8-4932-b152-f6cf2d1fcb6c'
 settings:
-  id: 'block_content:7af49c55-8205-4080-bd22-9cb64592749a'
+  id: 'block_content:1fbb5b2f-a9f8-4932-b152-f6cf2d1fcb6c'
   label: 'Intro feature 2'
   label_display: '0'
   provider: block_content

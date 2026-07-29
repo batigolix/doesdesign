@@ -1,0 +1,45 @@
+uuid: 6ae0167e-2372-43dc-a5be-82c1e93cab27
+langcode: nl
+status: true
+dependencies:
+  module:
+    - block_content
+    - options
+id: block_content.field_icon
+field_name: field_icon
+entity_type: block_content
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: fa-cog
+      label: 'Tandwiel (fa-cog)'
+    -
+      value: fa-bolt
+      label: 'Bliksem (fa-bolt)'
+    -
+      value: fa-star
+      label: 'Ster (fa-star)'
+    -
+      value: fa-gem
+      label: 'Diamant (fa-gem)'
+    -
+      value: fa-heart
+      label: 'Hart (fa-heart)'
+    -
+      value: fa-check
+      label: 'Vink (fa-check)'
+    -
+      value: fa-envelope
+      label: 'Envelop (fa-envelope)'
+    -
+      value: fa-camera
+      label: 'Camera (fa-camera)'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,21 @@
+uuid: a00ad964-d897-43b2-bdec-629705aa1bde
+langcode: nl
+status: true
+dependencies:
+  config:
+    - block_content.type.intro_feature
+    - field.storage.block_content.field_icon
+  module:
+    - options
+id: block_content.intro_feature.field_icon
+field_name: field_icon
+entity_type: block_content
+bundle: intro_feature
+label: Icoon
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

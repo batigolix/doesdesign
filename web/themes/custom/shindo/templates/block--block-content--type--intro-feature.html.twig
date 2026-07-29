@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Template for the intro_feature block_content bundle (doesdesign-siu).
+ *
+ * Renders a Dopetrope-style intro column with icon + heading + body.
+ * The outer .first/.middle/.last variant classes live on the col-4 div in
+ * page--front.html.twig; this template only renders the inner <section>.
+ *
+ * AI generated (bead doesdesign-siu).
+ */
+#}
+{# Read raw field values so we get the machine key (e.g. "fa-cog") for the
+   icon class instead of the human-readable label ("Tandwiel (fa-cog)"). #}
+{% set icon = content.field_icon['#object'].field_icon.value|default('')|trim %}
+{% set heading = content.field_heading['#object'].field_heading.value|default('')|trim %}
+<section>
+  {% if icon %}
+    <i class="icon solid featured {{ icon }}"></i>
+  {% endif %}
+  <header>
+    <h2>{{ heading }}</h2>
+  </header>
+  {{ content.field_body }}
+</section>

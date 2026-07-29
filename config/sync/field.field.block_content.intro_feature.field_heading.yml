@@ -1,0 +1,19 @@
+uuid: 3ea1d188-069f-4881-97ce-c5920d595582
+langcode: nl
+status: true
+dependencies:
+  config:
+    - block_content.type.intro_feature
+    - field.storage.block_content.field_heading
+id: block_content.intro_feature.field_heading
+field_name: field_heading
+entity_type: block_content
+bundle: intro_feature
+label: Kop
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

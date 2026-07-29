@@ -1,0 +1,8 @@
+uuid: 3249f743-aa14-4024-81f0-827271645972
+langcode: nl
+status: true
+dependencies: {  }
+id: intro_feature
+label: 'Intro feature'
+revision: false
+description: 'Icoon + kop + tekst blok voor de 3-koloms intro op de homepage.'
