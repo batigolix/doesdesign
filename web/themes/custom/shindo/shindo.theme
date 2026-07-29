@@ -185,3 +185,51 @@ function _shindo_hex_to_hsl(string $hex_string): array {
 
   return [(int) $h, (int) round($s * 100), (int) round($l * 100)];
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for views_view_fields.
+ *
+ * Appends the number of published object nodes per material term to the
+ * term name in the browse_by_material view, e.g. "Zilver (12)".
+ *
+ * Counts are fetched once per request via a single GROUP BY query and
+ * cached in a static variable to avoid N+1 queries when rendering the
+ * sidebar block.
+ */
+function shindo_preprocess_views_view_fields(array &$variables): void {
+  /** @var \Drupal\views\ViewExecutable $view */
+  $view = $variables['view'];
+  if ($view->id() !== 'browse_by_material') {
+    return;
+  }
+  if (empty($variables['fields']['name'])) {
+    return;
+  }
+
+  $row = $variables['row'] ?? NULL;
+  if (!$row || empty($row->tid)) {
+    return;
+  }
+  $tid = (int) $row->tid;
+
+  $counts = &drupal_static(__FUNCTION__);
+  if ($counts === NULL) {
+    $connection = \Drupal::database();
+    // Count published object nodes per material term in a single query.
+    $query = $connection->select('node__field_material', 'fm');
+    $query->join('node_field_data', 'n', 'n.nid = fm.entity_id AND n.type = fm.bundle');
+    $query->addField('fm', 'field_material_target_id', 'tid');
+    $query->addExpression('COUNT(DISTINCT n.nid)', 'count');
+    $query->condition('fm.bundle', 'object');
+    $query->condition('n.status', 1);
+    $query->groupBy('fm.field_material_target_id');
+    $counts = $query->execute()->fetchAllKeyed(0, 1);
+  }
+
+  $count = (int) ($counts[$tid] ?? 0);
+
+  // Append the count to the rendered term name field.
+  $variables['fields']['name']->content = [
+    '#markup' => (string) $variables['fields']['name']->content . ' (' . $count . ')',
+  ];
+}
