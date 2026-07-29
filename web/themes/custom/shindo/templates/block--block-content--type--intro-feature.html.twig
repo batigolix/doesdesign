@@ -18,8 +18,10 @@
   {% if icon %}
     <i class="icon solid featured {{ icon }}"></i>
   {% endif %}
+  {{ title_prefix }}
   <header>
     <h2>{{ heading }}</h2>
   </header>
+  {{ title_suffix }}
   {{ content.field_body }}
 </section>
