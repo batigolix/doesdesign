@@ -38,15 +38,21 @@
 
   <!-- Main -->
   <section id="main">
+
+
     <div class="container">
       <div class="row">
         <div class="col-12">
 
-          <article{{ attributes.addClass(articleClasses) }}>
+          <section>
+          <header class="major"><h2>{{ title }}</h2></header>
+
+          {#          <article{{ attributes.addClass(articleClasses) }}>#}
+
 
           {{ page.content }}
-
-          </article>
+          </section>
+{#          </article>#}
         </div>
       </div>
     </div>
