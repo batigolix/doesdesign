@@ -187,6 +187,32 @@ function _shindo_hex_to_hsl(string $hex_string): array {
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for media.
+ *
+ * Removes contextual links from media entities rendered on the frontend
+ * (bead doesdesign-mka). Media is edited via parent node/block forms
+ * (media_library_edit, bead doesdesign-0ya), so the media-level contextual
+ * popup adds no value and interferes with layout. Node/block contextual
+ * links remain untouched.
+ *
+ * Themes cannot use hook_entity_view_alter (ModuleHandler::alter does not
+ * dispatch to themes), so this runs at preprocess time. contextual_preprocess
+ * places the placeholder in {{ title_suffix.contextual_links }} — unset it
+ * there, and also drop the .contextual-region class the preprocess added.
+ *
+ * AI generated.
+ */
+function shindo_preprocess_media(array &$variables): void {
+  unset($variables['title_suffix']['contextual_links']);
+  if (!empty($variables['attributes']['class']) && is_array($variables['attributes']['class'])) {
+    $variables['attributes']['class'] = array_values(array_diff(
+      $variables['attributes']['class'],
+      ['contextual-region']
+    ));
+  }
+}
+
+/**
  * Implements hook_preprocess_HOOK() for views_view_fields.
  *
  * Appends the number of published object nodes per material term to the
