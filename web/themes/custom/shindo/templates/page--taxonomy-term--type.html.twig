@@ -45,10 +45,17 @@
         <div class="col-12">
 
           <section>
-          {#          <article{{ attributes.addClass(articleClasses) }}>#}
+            {# Dopetrope banner-style page title (bead doesdesign-2c4).
+               page_title is set in shindo_preprocess_page__taxonomy_term__type()
+               because the page_title_block is hidden on /soort-sieraden/* via
+               block visibility in block.block.shindo_page_title.yml. #}
+            {% if page_title %}
+              <header class="major">
+                <h2>{{ page_title }}</h2>
+              </header>
+            {% endif %}
 
-
-          {{ page.content }}
+            {{ page.content }}
           </section>
 {#          </article>#}
         </div>

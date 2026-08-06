@@ -22,4 +22,4 @@ visibility:
     id: request_path
     negate: true
     context_mapping: {  }
-    pages: '/node/*'
+    pages: "/node/*\r\n/soort-sieraden/*"

@@ -34,6 +34,24 @@ function shindo_theme_suggestions_page_alter(array &$suggestions, array $variabl
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for page templates on the
+ * taxonomy-term/type route.
+ *
+ * Bead doesdesign-2c4 — the page_title_block is hidden on
+ * /soort-sieraden/* via block visibility so the template can render the
+ * term name inside a Dopetrope <header class="major"> banner. Core does
+ * not populate a `page_title` variable on page templates by default, so
+ * we resolve the current taxonomy term here and expose its name for
+ * page--taxonomy-term--type.html.twig.
+ */
+function shindo_preprocess_page__taxonomy_term__type(array &$variables): void {
+  $term = \Drupal::routeMatch()->getParameter('taxonomy_term');
+  if ($term instanceof \Drupal\taxonomy\TermInterface) {
+    $variables['page_title'] = $term->getName();
+  }
+}
+
+/**
  * Implements hook_theme_suggestions_HOOK_alter() for block.
  *
  * Adds a block--region--{region} suggestion so per-region wrappers
