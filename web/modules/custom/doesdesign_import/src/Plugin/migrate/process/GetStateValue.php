@@ -11,7 +11,8 @@ use Drupal\migrate\Row;
  *
  * An example could be the location of the D7 files folder, which can
  * vary per environment. It can be stored in state.
- * Example using drush to set a state value: drush @self state:set aventus_import.d7_files_folder '/home/um-studenten-intranet-d7'                                                                        ✘ 1 feature/migration-setup ⬆ ✚ ✖ ✱ ◼
+ * Example using drush to set a state value:
+ *   drush @self state:set aventus_import.d7_files_folder '/home/example-d7'
  *
  * @MigrateProcessPlugin(
  *   id = "get_state_value"

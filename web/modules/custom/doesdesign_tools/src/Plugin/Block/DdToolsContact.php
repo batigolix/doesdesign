@@ -6,8 +6,6 @@ use Drupal\Core\Link;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Url;
 
-// Use Drupal\my_module\MyEntityInterface;.
-
 /**
  * Provides a 'Example: configurable text string' block.
  *

@@ -94,9 +94,9 @@ class ContactForm extends FormBase {
     ];
     $form['tools'] = [
       '#type' => 'textfield',
-      '#title' => t('Noem drie letters uit de naam van de site'),
+      '#title' => $this->t('Noem drie letters uit de naam van de site'),
       '#size' => 24,
-      '#description' => t('Ik stel deze vraag om te controleren dat dit formulier niet door een robot wordt ingevuld'),
+      '#description' => $this->t('Ik stel deze vraag om te controleren dat dit formulier niet door een robot wordt ingevuld'),
     ];
     $form['submit'] = [
       '#type' => 'submit',
@@ -115,7 +115,7 @@ class ContactForm extends FormBase {
     $result = array_intersect($letters, $doesdesign_letters);
     $result = count($result);
     if ($result < 3) {
-      $form_state->setError($form, t('Het antwoord is niet juist. Om te controleren of u geen spamrobot bent, vraag ik om 3 letters uit de naam van de site in te voeren. Als het niet lukt, stuur dan een email naar birgit@doesdesign.nl'));
+      $form_state->setError($form, $this->t('Het antwoord is niet juist. Om te controleren of u geen spamrobot bent, vraag ik om 3 letters uit de naam van de site in te voeren. Als het niet lukt, stuur dan een email naar birgit@doesdesign.nl'));
     }
     parent::validateForm($form, $form_state);
   }
@@ -139,10 +139,10 @@ class ContactForm extends FormBase {
     $send = TRUE;
     $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
     if ($result['result'] !== TRUE) {
-      $this->messenger()->addError(t('There was a problem sending your message and it was not sent.'));
+      $this->messenger()->addError($this->t('There was a problem sending your message and it was not sent.'));
     }
     else {
-      $this->messenger()->addStatus(t('Your message has been sent.'));
+      $this->messenger()->addStatus($this->t('Your message has been sent.'));
     }
   }
 

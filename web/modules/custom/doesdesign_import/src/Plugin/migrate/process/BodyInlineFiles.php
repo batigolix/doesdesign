@@ -143,7 +143,7 @@ final class BodyInlineFiles extends ProcessPluginBase implements ContainerFactor
     // Return original value when preg_replace_callback fails.
     $body = $body ?? $value;
 
-    // Fix mixed content: upgrade http:// to https:// in src and href attributes.
+    // Fix mixed content: upgrade http:// to https:// in src/href attributes.
     $body = preg_replace('#((?:src|href)=["\'])http://(www\.youtube\.com|youtube\.com|player\.vimeo\.com|flickr\.com|www\.flickr\.com)/#i', '$1https://$2/', $body);
 
     // Replace inline border styles on images with the image-border class.

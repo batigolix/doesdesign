@@ -3,5 +3,5 @@ type: module
 description: 'My Awesome Module'
 package: 'Custom'
 dependencies:
-  - node
+  - drupal:node
 core_version_requirement: ^8 || ^9 || ^10 || ^11

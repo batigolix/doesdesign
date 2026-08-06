@@ -13,7 +13,7 @@ use Drupal\redirect\Entity\Redirect;
 use Drupal\Core\Database\Database;
 
 /**
- * Rewrite D7 file paths (sites/doesdesign.nl/files/) to D11 (sites/default/files/).
+ * Rewrite D7 file paths (sites/doesdesign.nl/files/) to D11 files dir.
  */
 function doesdesign_import_deploy_rewrite_d7_file_paths(): string {
   $connection = Database::getConnection();
@@ -174,7 +174,9 @@ function doesdesign_import_deploy_remap_taxonomy_format_ids(): string {
  *          | sort -u \
  *          | sed -E 's|sites/doesdesign\.nl/files/styles/[^/]+/public/||' \
  *          | sed -E 's|sites/doesdesign\.nl/files/||' \
- *          | python3 -c "import sys,urllib.parse;[print(urllib.parse.unquote(l.strip())) for l in sys.stdin if l.strip()]" \
+ *          | python3 -c "import sys,urllib.parse; \
+ *              [print(urllib.parse.unquote(l.strip())) \
+ *               for l in sys.stdin if l.strip()]" \
  *          | sort -u
  *
  *      Paste the result into `$missing_files`.

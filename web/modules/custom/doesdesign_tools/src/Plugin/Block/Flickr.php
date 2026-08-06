@@ -29,7 +29,7 @@ class Flickr extends BlockBase {
     // Add a form field to the existing block configuration form.
     $form['flickr_items'] = [
       '#type' => 'select',
-      '#title' => t('Number of items'),
+      '#title' => $this->t('Number of items'),
       '#options' => [
         10 => 10,
         12 => 12,
@@ -38,7 +38,7 @@ class Flickr extends BlockBase {
         18 => 18,
         20 => 20,
       ],
-      '#description' => t('Number of items that will be shown in the slideshow.'),
+      '#description' => $this->t('Number of items that will be shown in the slideshow.'),
       '#default_value' => $config['flickr_items'] ?? '',
     ];
     return $form;

@@ -4,6 +4,7 @@ doesdesign_tools.contact_form:
     _form: '\Drupal\doesdesign_tools\Form\ContactForm'
     _title: 'ContactForm'
   requirements:
+    # Public contact form: intentionally accessible to anonymous visitors.
     _access: 'TRUE'
 
 doesdesign_tools.home:
@@ -12,4 +13,5 @@ doesdesign_tools.home:
     _controller: '\Drupal\doesdesign_tools\Controller\HomeController::render'
     _title: ''
   requirements:
+    # Public homepage alias: intentionally accessible to anonymous visitors.
     _access: 'TRUE'
