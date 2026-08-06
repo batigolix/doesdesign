@@ -265,10 +265,6 @@ function shindo_preprocess_node(array &$variables): void {
   $view_builder = \Drupal::entityTypeManager()->getViewBuilder('media');
   $items = [];
   foreach ($node->get('field_media_image')->referencedEntities() as $delta => $media) {
-    if ($delta === 0) {
-      // Hero — rendered via the default field render in the template.
-      continue;
-    }
     $items[] = $view_builder->view($media, 'gallery');
   }
   $variables['gallery_items'] = $items;
