@@ -68,18 +68,23 @@
     {% endif %}
 
     <div{{ content_attributes.addClass('node-content') }}>
-      {{ content|without('field_media_image', 'field_subtitle', 'comments', 'links') }}
-    </div>
+      {# Body content first #}
+      {{ content.body }}
 
-    {% if gallery_items is defined and gallery_items|length > 0 %}
-      <div class="row photoswipe-gallery node__gallery">
-        {% for gallery_item in gallery_items %}
-          <div class="col-6 col-12-medium">
-            {{ gallery_item }}
-          </div>
-        {% endfor %}
-      </div>
-    {% endif %}
+      {# Gallery between body and other details fields (bead 55mq) #}
+      {% if gallery_items is defined and gallery_items|length > 0 %}
+        <div class="row photoswipe-gallery node__gallery">
+          {% for gallery_item in gallery_items %}
+            <div class="col-6 col-12-medium">
+              {{ gallery_item }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {# Remaining fields: prijs, materiaal, type, jaar, etc. #}
+      {{ content|without('body', 'field_media_image', 'field_subtitle', 'comments', 'links') }}
+    </div>
   {% else %}
     {{ title_prefix }}
     <h2{{ title_attributes }}>
