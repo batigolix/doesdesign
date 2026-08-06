@@ -12,7 +12,7 @@
 {% set body_text = content.body|render|striptags|trim %}
 <section{{ attributes.addClass('box') }}>
   <a href="{{ url }}" class="image featured">
-    {{ content.field_media_image }}
+    {{ content.field_media_image.0 }}
   </a>
   <header>
     <h3><a href="{{ url }}" rel="bookmark">{{ label }}</a></h3>
