@@ -4,7 +4,6 @@ status: true
 dependencies:
   module:
     - focal_point
-    - image_effects
 name: medium_wide_508_x_310_
 label: 'Medium wide (508 x 310)'
 effects:
@@ -16,15 +15,3 @@ effects:
       width: 508
       height: 310
       crop_type: focal_point
-  19b7d16f-4cc9-4898-92b2-c7cd67569ea4:
-    uuid: 19b7d16f-4cc9-4898-92b2-c7cd67569ea4
-    id: image_effects_watermark
-    weight: 3
-    data:
-      watermark_image: themes/custom/massively/images/watermark.png
-      watermark_width: ''
-      watermark_height: ''
-      placement: right-bottom
-      x_offset: '-20'
-      y_offset: '-20'
-      opacity: 10

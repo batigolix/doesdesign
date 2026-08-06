@@ -4,7 +4,6 @@ status: true
 dependencies:
   module:
     - focal_point
-    - image_effects
 name: extra_large_wide
 label: 'Extra large wide (1008 x 491)'
 effects:
@@ -16,15 +15,3 @@ effects:
       width: 1008
       height: 491
       crop_type: focal_point
-  f1da7eaa-d33c-4a6f-89b6-07a337e759af:
-    uuid: f1da7eaa-d33c-4a6f-89b6-07a337e759af
-    id: image_effects_watermark
-    weight: 3
-    data:
-      watermark_image: themes/custom/massively/images/watermark.png
-      watermark_width: ''
-      watermark_height: ''
-      placement: right-bottom
-      x_offset: '-20'
-      y_offset: '-20'
-      opacity: 10
