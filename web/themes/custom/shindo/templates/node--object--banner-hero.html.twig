@@ -16,11 +16,11 @@
  * AI generated.
  */
 #}
-{% set title = label|render|striptags|trim %}
-<a href="{{ url }}" class="banner-link" rel="bookmark" aria-label="{{ title }}"
+{% set title_str = node.getTitle() %}
+<a href="{{ url }}" class="banner-link" rel="bookmark" aria-label="{{ title_str }}"
    {%- if banner_bg_url %} style="background-image: url('{{ banner_bg_url }}');"{% endif %}>
   <header>
-    <h2>{{ title }}</h2>
+    <h2>{{ label }}</h2>
     {% set subtitle = content.field_subtitle|render|striptags|trim %}
     {% if subtitle %}
       <p>{{ subtitle }}</p>
