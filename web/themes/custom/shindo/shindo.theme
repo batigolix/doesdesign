@@ -12,6 +12,7 @@ use Drupal\Core\Extension\ThemeSettingsProvider;
 use Drupal\file\FileInterface;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\media\MediaInterface;
+use Drupal\node\NodeInterface;
 use Drupal\taxonomy\TermInterface;
 
 /**
@@ -85,6 +86,24 @@ function shindo_theme_suggestions_block_alter(array &$suggestions, array $variab
 function shindo_preprocess_html(array &$variables): void {
   $settings = \Drupal::service(ThemeSettingsProvider::class);
 
+  $styles = _shindo_html_build_style_declarations($settings);
+  $variables['html_attributes']->setAttribute('style', implode(';', $styles));
+
+  _shindo_html_add_body_classes($variables, $settings);
+}
+
+/**
+ * Builds the inline style declarations for the <html> element.
+ *
+ * @param \Drupal\Core\Extension\ThemeSettingsProvider $settings
+ *   Theme settings provider.
+ *
+ * @return string[]
+ *   List of "property:value" strings to be joined with ";".
+ *
+ * @internal
+ */
+function _shindo_html_build_style_declarations(ThemeSettingsProvider $settings): array {
   $brand_defaults = [
     'color_primary' => '#007acc',
     'color_secondary' => '#626880',
@@ -96,7 +115,6 @@ function shindo_preprocess_html(array &$variables): void {
   ];
 
   $styles = [];
-
   foreach ($brand_defaults as $key => $default) {
     $hex = $settings->getSetting($key) ?: $default;
     [$h, $s, $l] = _shindo_hex_to_hsl($hex);
@@ -105,7 +123,6 @@ function shindo_preprocess_html(array &$variables): void {
     $styles[] = "$prefix-s:$s%";
     $styles[] = "$prefix-l:$l%";
   }
-
   foreach ($direct_defaults as $key => $default) {
     $hex = $settings->getSetting($key) ?: $default;
     $prefix = '--' . str_replace('_', '-', $key);
@@ -114,22 +131,29 @@ function shindo_preprocess_html(array &$variables): void {
 
   // Shindo primary color (bead doesdesign-c98) — overrides Dopetrope's
   // hardcoded #252122 via var(--shindo-primary) in shindo-colors.css.
-  $primary_color = $settings->getSetting('primary_color') ?: '#252122';
-  $styles[] = '--shindo-primary:' . $primary_color;
-
+  $styles[] = '--shindo-primary:' . ($settings->getSetting('primary_color') ?: '#252122');
   // Shindo footer heading color (bead doesdesign-b2u) — scoped to
   // #footer h1-h6 via var(--shindo-footer-heading) in shindo-colors.css.
-  $footer_heading = $settings->getSetting('footer_heading_color') ?: '#ffffff';
-  $styles[] = '--shindo-footer-heading:' . $footer_heading;
-
+  $styles[] = '--shindo-footer-heading:' . ($settings->getSetting('footer_heading_color') ?: '#ffffff');
   // Shindo background color (bead doesdesign-6kj) — overrides
   // Dopetrope's hardcoded #252122 via var(--shindo-bg-color) in
   // shindo-bg.css.
-  $bg_color = $settings->getSetting('background_color') ?: '#252122';
-  $styles[] = '--shindo-bg-color:' . $bg_color;
+  $styles[] = '--shindo-bg-color:' . ($settings->getSetting('background_color') ?: '#252122');
 
-  $variables['html_attributes']->setAttribute('style', implode(';', $styles));
+  return $styles;
+}
 
+/**
+ * Appends theme-setting driven classes to the <body> element.
+ *
+ * @param array $variables
+ *   The preprocess_html variables array (modified in place).
+ * @param \Drupal\Core\Extension\ThemeSettingsProvider $settings
+ *   Theme settings provider.
+ *
+ * @internal
+ */
+function _shindo_html_add_body_classes(array &$variables, ThemeSettingsProvider $settings): void {
   // Shindo background pattern (bead doesdesign-6kj) — toggled via body
   // class. The actual background-image (bg.png / SVG data URIs / none) is
   // defined per class in shindo-bg.css. Pattern names are validated by
@@ -152,13 +176,30 @@ function shindo_preprocess_html(array &$variables): void {
   // is-preload state (removed by Dopetrope's main.js after DOM ready to
   // trigger initial animations).
   $variables['attributes']['class'][] = 'is-preload';
-  $variables['attributes']['class'][] = $sidebar_position === 'none'
-    ? 'no-sidebar'
-    : ($sidebar_position === 'left' ? 'left-sidebar' : 'right-sidebar');
+  $variables['attributes']['class'][] = _shindo_sidebar_body_class($sidebar_position);
 
   // Body font class — read from theme setting (bead doesdesign-3mx).
   $body_font = $settings->getSetting('body_font') ?: 'source-sans-pro';
   $variables['attributes']['class'][] = 'shindo-font-' . $body_font;
+}
+
+/**
+ * Maps a sidebar_position setting to the Dopetrope body class.
+ *
+ * @param string $sidebar_position
+ *   One of "none", "left", or any other value (defaults to right-sidebar).
+ *
+ * @return string
+ *   The matching Dopetrope body class.
+ *
+ * @internal
+ */
+function _shindo_sidebar_body_class(string $sidebar_position): string {
+  return match ($sidebar_position) {
+    'none' => 'no-sidebar',
+    'left' => 'left-sidebar',
+    default => 'right-sidebar',
+  };
 }
 
 /**
@@ -279,36 +320,68 @@ function shindo_preprocess_node(array &$variables): void {
   }
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
-
-  // Full node view: build gallery_items with per-delta media view mode.
-  if ($variables['view_mode'] === 'full' && $node->bundle() === 'object' && $node->hasField('field_media_image')) {
-    $view_builder = \Drupal::entityTypeManager()->getViewBuilder('media');
-    $items = [];
-    foreach ($node->get('field_media_image')->referencedEntities() as $media) {
-      $items[] = $view_builder->view($media, 'gallery');
-    }
-    $variables['gallery_items'] = $items;
+  if ($node->bundle() !== 'object' || !$node->hasField('field_media_image')) {
+    return;
   }
 
-  // Banner hero view mode: compute background-image URL so node--object--
-  // banner-hero.html.twig can render as a CSS background (Dopetrope style)
-  // instead of a nested <img> (bead doesdesign-xgx). Uses banner_ultrawide
-  // (2400×800) so wide viewports get a crisp cover-crop without fallback.
-  if ($variables['view_mode'] === 'banner_hero' && $node->bundle() === 'object' && $node->hasField('field_media_image')) {
-    /** @var \Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem $media_field */
-    $media_field = $node->get('field_media_image')->first();
-    $media = $media_field ? $media_field->entity : NULL;
-    if ($media instanceof MediaInterface && $media->hasField('field_media_image')) {
-      /** @var \Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem $file_field */
-      $file_field = $media->get('field_media_image')->first();
-      $file = $file_field ? $file_field->entity : NULL;
-      if ($file instanceof FileInterface) {
-        $style = ImageStyle::load('banner_ultrawide');
-        if ($style) {
-          $variables['banner_bg_url'] = $style->buildUrl($file->getFileUri());
-        }
-      }
-    }
+  $view_mode = $variables['view_mode'];
+  if ($view_mode === 'full') {
+    _shindo_node_build_gallery_items($variables, $node);
+    return;
+  }
+  if ($view_mode === 'banner_hero') {
+    _shindo_node_add_banner_bg($variables, $node);
+  }
+}
+
+/**
+ * Builds the gallery_items render array for full object node display.
+ *
+ * @param array $variables
+ *   The preprocess_node variables array (modified in place).
+ * @param \Drupal\node\NodeInterface $node
+ *   The object node.
+ *
+ * @internal
+ */
+function _shindo_node_build_gallery_items(array &$variables, NodeInterface $node): void {
+  $view_builder = \Drupal::entityTypeManager()->getViewBuilder('media');
+  $items = [];
+  foreach ($node->get('field_media_image')->referencedEntities() as $media) {
+    $items[] = $view_builder->view($media, 'gallery');
+  }
+  $variables['gallery_items'] = $items;
+}
+
+/**
+ * Computes the banner_ultrawide background URL for banner_hero view mode.
+ *
+ * Bead doesdesign-xgx — node--object--banner-hero.html.twig renders the
+ * hero image as a CSS background instead of a nested <img>.
+ *
+ * @param array $variables
+ *   The preprocess_node variables array (modified in place).
+ * @param \Drupal\node\NodeInterface $node
+ *   The object node.
+ *
+ * @internal
+ */
+function _shindo_node_add_banner_bg(array &$variables, NodeInterface $node): void {
+  /** @var \Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem|null $media_field */
+  $media_field = $node->get('field_media_image')->first();
+  $media = $media_field ? $media_field->entity : NULL;
+  if (!$media instanceof MediaInterface || !$media->hasField('field_media_image')) {
+    return;
+  }
+  /** @var \Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem|null $file_field */
+  $file_field = $media->get('field_media_image')->first();
+  $file = $file_field ? $file_field->entity : NULL;
+  if (!$file instanceof FileInterface) {
+    return;
+  }
+  $style = ImageStyle::load('banner_ultrawide');
+  if ($style) {
+    $variables['banner_bg_url'] = $style->buildUrl($file->getFileUri());
   }
 }
 
