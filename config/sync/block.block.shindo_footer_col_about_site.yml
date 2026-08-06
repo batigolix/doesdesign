@@ -10,7 +10,7 @@ dependencies:
     - shindo
 id: shindo_footer_col_about_site
 theme: shindo
-region: footer_col2
+region: footer_col_2
 weight: 0
 provider: null
 plugin: 'block_content:665cd1e7-a982-49b6-b8f4-4c367a1b17dc'

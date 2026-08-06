@@ -17,9 +17,11 @@ regions:
   intro_col3: 'Intro kolom 3'
   content: Hoofdcontent
   sidebar_first: Zijkolom
-  footer_col1: 'Footer kolom 1'
-  footer_col2: 'Footer kolom 2'
-  footer_col3: 'Footer kolom 3'
+  footer_col_1: 'Footer kolom 1'
+  footer_col_2: 'Footer kolom 2'
+  footer_col_3: 'Footer kolom 3'
+  footer_col_4: 'Footer kolom 4'
+  footer_col_5: 'Footer kolom 5'
   post_footer: Colofon
 core_version_requirement: ^8.8.0 || ^9.0 || ^10 || ^11
 base theme: stable
