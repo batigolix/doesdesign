@@ -285,32 +285,17 @@
 
 /* Reset bullets on Drupal-generated lists — bead doesdesign-098.
  *
- * Dopetrope's main.css opens with `ol, ul { list-style: none }` (line 36),
- * but that global reset is later overridden by `ul { list-style: disc;
- * padding-left: 1em }` inside the article/wysiwyg section (line 1754).
- * That later rule catches every plain <ul> Drupal emits — main menu,
- * `.item-list` view wrappers, `.banner-list` view wrapper, and the
- * `.row.portfolio-list` grid — because none of them carry the Dopetrope
- * class names (.actions, .links, .contact, etc.) that get their own
- * `list-style: none` overrides further down.
- *
- * Fix: explicitly re-reset list-style on the Drupal-specific list
- * containers. Scoped so WYSIWYG content lists inside body fields keep
- * their bullets (users expect bulleted lists inside rich-text content). */
-#page-wrapper #nav > ul,
+ * Defensieve fix: alleen list-style weghalen, NIET padding/margin
+ * aanpassen. Dopetrope's main.css definieert `ul { list-style: disc;
+ * padding-left: 1em }` verderop; op Drupal-lists (nav, view wrappers,
+ * portfolio) willen we geen bullets, maar de padding-left blijft
+ * behouden zodat de layout niet verschuift. WYSIWYG body-lists blijven
+ * onaangeraakt. */
 #page-wrapper #nav ul,
 #page-wrapper .banner-list > ul,
 #page-wrapper .item-list > ul,
 #page-wrapper ul.portfolio-list {
   list-style: none;
-  padding-left: 0;
-}
-
-#page-wrapper #nav ul > li,
-#page-wrapper .banner-list > ul > li,
-#page-wrapper .item-list > ul > li,
-#page-wrapper ul.portfolio-list > li {
-  padding-left: 0;
 }
 
 /* Random hero banner — bead doesdesign-xgx.
@@ -389,5 +374,45 @@
 @media screen and (min-width: 1200px) {
   #page-wrapper #banner.hero-banner .banner-link {
     background-size: cover;
+  }
+}
+
+/* Intro column gap — bead doesdesign-050.
+ *
+ * Dopetrope's `.row` uses a negative-margin gutter (`margin-left: -50px` on
+ * the row + `padding: 50px 0 0 50px` on each child). That works but bleeds
+ * outside the container and depends on top padding — which caused visual
+ * inconsistency between the intro columns compared to the demo.
+ *
+ * Fix (mirrors the .node__gallery pattern from bead z1n): switch to modern
+ * flex + gap. Zero the row's negative offsets and column padding, then use
+ * `gap` for gutters. Gutter values mirror Dopetrope's per-breakpoint `.row`
+ * margin sizes (50 / 40 / 20 px). Below 736px columns stack vertically
+ * (Dopetrope's `col-12-medium` rule already does the width switch; we just
+ * tighten the gap for the stacked layout). */
+#page-wrapper #intro .row {
+  margin-top: 0;
+  margin-left: 0;
+  gap: 50px;
+}
+
+#page-wrapper #intro .row > .col-4 {
+  padding: 0;
+  flex: 1;
+}
+
+@media screen and (max-width: 980px) {
+  #page-wrapper #intro .row {
+    gap: 40px;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  #page-wrapper #intro .row {
+    gap: 20px;
+  }
+  #page-wrapper #intro .row > .col-4 {
+    flex: none;
+    width: 100%;
   }
 }
