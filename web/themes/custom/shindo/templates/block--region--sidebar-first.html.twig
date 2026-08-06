@@ -9,55 +9,43 @@
  * over the placement label for the visible <h3> title.
  */
 #}
-
 {% set display_title = content.field_title|render|striptags|trim ?: label %}
-<section{{ attributes }}>
+{% set button_url = '' %}
+{% if content.field_button|render|trim %}
+  {% for item in content.field_button['#items'] %}
+    {% set button_url = item.getUrl()|render %}
+  {% endfor %}
+{% endif %}
+<section{{ attributes.addClass('box') }}>
+  {% if content.field_media_image[0] %}
+    {% set media = content.field_media_image['#items'].entity %}
+    {% if media %}
+      {% set file_item = media.field_media_image.0 %}
+      {% set file = file_item.entity %}
+      {% if file %}
+        <span class="image featured">
+          {{ {
+            '#theme': 'image_style',
+            '#style_name': 'sidebar_box',
+            '#uri': file.fileUri,
+            '#alt': file_item.alt,
+            '#attributes': {'loading': 'lazy'}
+          } }}
+        </span>
+      {% endif %}
+    {% endif %}
+  {% endif %}
   {{ title_prefix }}
   {% if display_title %}
-    <header><h2>{{ display_title }}</h2></header>
+    <header><h3>{{ display_title }}</h3></header>
   {% endif %}
   {{ title_suffix }}
-  {{ content|without('field_title', 'field_media_image', 'field_button') }}
+  {{ content|without('field_media_image', 'field_image', 'field_title', 'field_button') }}
+  {% if content.field_button|render|trim %}
+    <footer>
+      {% for item in content.field_button['#items'] %}
+        <a href="{{ item.getUrl() }}" class="button alt">{{ item.title }}</a>
+      {% endfor %}
+    </footer>
+  {% endif %}
 </section>
-
-
-{#{% set display_title = content.field_title|render|striptags|trim ?: label %}#}
-{#{% set button_url = '' %}#}
-{#{% if content.field_button|render|trim %}#}
-{#  {% for item in content.field_button['#items'] %}#}
-{#    {% set button_url = item.getUrl()|render %}#}
-{#  {% endfor %}#}
-{#{% endif %}#}
-{#<section{{ attributes.addClass('box') }}>#}
-{#  {% if content.field_media_image[0] %}#}
-{#    {% set media = content.field_media_image['#items'].entity %}#}
-{#    {% if media %}#}
-{#      {% set file_item = media.field_media_image.0 %}#}
-{#      {% set file = file_item.entity %}#}
-{#      {% if file %}#}
-{#        <a href="{{ button_url ?: '#' }}" class="image featured">#}
-{#          {{ {#}
-{#            '#theme': 'image_style',#}
-{#            '#style_name': 'sidebar_box',#}
-{#            '#uri': file.fileUri,#}
-{#            '#alt': file_item.alt,#}
-{#            '#attributes': {'loading': 'lazy'}#}
-{#          } }}#}
-{#        </a>#}
-{#      {% endif %}#}
-{#    {% endif %}#}
-{#  {% endif %}#}
-{#  {{ title_prefix }}#}
-{#  {% if display_title %}#}
-{#    <header><h3>{{ display_title }}</h3></header>#}
-{#  {% endif %}#}
-{#  {{ title_suffix }}#}
-{#  {{ content|without('field_media_image', 'field_image', 'field_title', 'field_button') }}#}
-{#  {% if content.field_button|render|trim %}#}
-{#    <footer>#}
-{#      {% for item in content.field_button['#items'] %}#}
-{#        <a href="{{ item.getUrl() }}" class="button alt">{{ item.title }}</a>#}
-{#      {% endfor %}#}
-{#    </footer>#}
-{#  {% endif %}#}
-{#</section>#}

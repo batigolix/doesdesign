@@ -1,0 +1,52 @@
+{#
+/**
+ * @file
+ * Theme override for the homepage_banner view (bead doesdesign-3m3).
+ *
+ * Adds a shared `photoswipe-gallery` class to the outer view wrapper so the
+ * Photoswipe module groups all banner rows into ONE gallery with next/prev
+ * navigation, instead of one gallery per row (counter "1/1").
+ *
+ * AI generated.
+ *
+ * @see template_preprocess_views_view()
+ */
+#}
+{%
+  set classes = [
+    dom_id ? 'js-view-dom-id-' ~ dom_id,
+    'photoswipe-gallery',
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {{ title }}
+  {{ title_suffix }}
+
+  {% if header %}
+    <header>
+      {{ header }}
+    </header>
+  {% endif %}
+
+  {{ exposed }}
+  {{ attachment_before }}
+
+  {% if rows -%}
+    {{ rows }}
+  {% elseif empty -%}
+    {{ empty }}
+  {% endif %}
+  {{ pager }}
+
+  {{ attachment_after }}
+  {{ more }}
+
+  {% if footer %}
+    <footer>
+      {{ footer }}
+    </footer>
+  {% endif %}
+
+  {{ feed_icons }}
+</div>
