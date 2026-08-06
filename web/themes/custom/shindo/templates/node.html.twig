@@ -6,14 +6,14 @@
  * AI generated
  *
  * Renders a Dopetrope-style article page for full node displays:
- * `<header>` with `<h1 class="node__title">` and optional
- * `field_subtitle`, followed by the body/other fields, and finally a
- * three-column responsive photoswipe gallery grid containing every
- * delta of `field_media_image` (see beads doesdesign-1f5 and
- * doesdesign-9tu — the previous template only rendered delta 0, which
- * hid additional images from multi-value objects like "Gesp
- * Processor"; the grid + gallery treatment addresses the sibling
- * feature request).
+ * a hero image (delta 0 of `field_media_image`) above the `<header>`,
+ * then the `<h1 class="node__title">` and optional `field_subtitle`,
+ * followed by the body/other fields, and finally a three-column
+ * responsive photoswipe gallery grid containing the remaining deltas
+ * (1..N) of `field_media_image` (see beads doesdesign-1f5,
+ * doesdesign-9tu, doesdesign-a8f — the hero re-instates the classic
+ * Dopetrope featured image while the grid keeps multi-value objects
+ * like "Gesp Processor" browsable without rendering delta 0 twice).
  *
  * The photoswipe field formatter already wraps each `<img>` in an
  * `<a class="photoswipe" href="...">` element (lightbox trigger); by
@@ -39,6 +39,10 @@
 <div{{ attributes.addClass(classes) }}>
 
   {% if page %}
+    {% if content.field_media_image['#items'] is not empty %}
+        {{ content.field_media_image.0 }}
+    {% endif %}
+
     <header>
       {{ title_prefix }}
       <h1{{ title_attributes.addClass('node__title') }}>{{ label }}</h1>
@@ -63,12 +67,14 @@
       {{ content|without('field_media_image', 'field_subtitle', 'comments', 'links') }}
     </div>
 
-    {% if content.field_media_image['#items'] is not empty %}
+    {% if content.field_media_image['#items']|length > 1 %}
       <div class="row photoswipe-gallery node__gallery">
         {% for item in content.field_media_image['#items'] %}
-          <div class="col-4 col-6-medium col-12-small">
-            {{ content.field_media_image[loop.index0] }}
-          </div>
+          {% if loop.index0 > 0 %}
+            <div class="col-4 col-6-medium col-12-small">
+              {{ content.field_media_image[loop.index0] }}
+            </div>
+          {% endif %}
         {% endfor %}
       </div>
     {% endif %}
