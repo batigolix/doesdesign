@@ -1,0 +1,11 @@
+uuid: 5c687bb1-647c-4bb2-998f-ba028646004c
+langcode: nl
+status: true
+dependencies:
+  module:
+    - media
+id: media.featured_block
+label: 'Featured block'
+description: null
+targetEntityType: media
+cache: true
