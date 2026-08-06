@@ -4,6 +4,7 @@ namespace Drupal\doesdesign_tools\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Session\AccountProxyInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -33,6 +34,13 @@ class ContactForm extends FormBase {
   protected $loggerChannelDefault;
 
   /**
+   * The current user.
+   *
+   * @var \Drupal\Core\Session\AccountProxyInterface
+   */
+  protected $currentUser;
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
@@ -40,6 +48,7 @@ class ContactForm extends FormBase {
     $instance->pluginManagerMail = $container->get('plugin.manager.mail');
     $instance->loggerFactory = $container->get('logger.factory');
     $instance->loggerChannelDefault = $container->get('logger.channel.default');
+    $instance->currentUser = $container->get('current_user');
     return $instance;
   }
 
@@ -128,16 +137,15 @@ class ContactForm extends FormBase {
     $name = $form_state->getValue('name');
     $message = $form_state->getValue('message');
     $subject = $form_state->getValue('subject');
-    $mailManager = \Drupal::service('plugin.manager.mail');
     $module = 'doesdesign_tools';
     $key = 'doesdesign_tools_mail';
     $to = "coxdoes@gmail.com";
     $params = [];
     $params['message'] = "Onderwerp: $subject \n\nNaam: $name \n\nTelefoon: $telephone\n\nBericht: $message";
     $params['subject'] = $subject;
-    $langcode = \Drupal::currentUser()->getPreferredLangcode();
+    $langcode = $this->currentUser->getPreferredLangcode();
     $send = TRUE;
-    $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+    $result = $this->pluginManagerMail->mail($module, $key, $to, $langcode, $params, NULL, $send);
     if ($result['result'] !== TRUE) {
       $this->messenger()->addError($this->t('There was a problem sending your message and it was not sent.'));
     }

@@ -100,54 +100,17 @@ final class SlideShowBlock extends BlockBase implements ContainerFactoryPluginIn
    * {@inheritdoc}
    */
   public function build() {
-    $config = $this->getConfiguration();
-    $storage = $this->entityTypeManager->getStorage('node');
-
-    $query = $storage->getQuery()
-      ->accessCheck(TRUE)
-      ->condition('type', 'object')
-      ->condition('status', 1)
-      ->condition('promote', 1)
-      ->sort($config['order_property'], $config['order'])
-      ->range(0, (int) $config['items']);
-
-    $nids = $query->execute();
-    if (empty($nids)) {
+    $nodes = $this->loadPromotedNodes();
+    if (empty($nodes)) {
       return [];
     }
 
-    $nodes = $storage->loadMultiple($nids);
     $slides = [];
-
     foreach ($nodes as $node) {
-      if (!$node instanceof NodeInterface || !$node->hasField('field_media_image') || $node->get('field_media_image')->isEmpty()) {
-        continue;
+      $slide = $this->buildSlide($node);
+      if ($slide !== NULL) {
+        $slides[] = $slide;
       }
-
-      /** @var \Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem $media_field */
-      $media_field = $node->get('field_media_image')->first();
-      $media = $media_field->entity;
-      if (!$media instanceof MediaInterface || !$media->hasField('field_media_image') || $media->get('field_media_image')->isEmpty()) {
-        continue;
-      }
-
-      /** @var \Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem $file_field */
-      $file_field = $media->get('field_media_image')->first();
-      $file = $file_field->entity;
-      if (!$file instanceof FileInterface) {
-        continue;
-      }
-
-      $slides[] = [
-        'image' => [
-          '#theme' => 'image_style',
-          '#style_name' => 'slider',
-          '#uri' => $file->getFileUri(),
-          '#alt' => $media->get('field_media_image')->alt ?: $node->label(),
-        ],
-        'title' => $node->label(),
-        'url' => $node->toUrl()->toString(),
-      ];
     }
 
     if (empty($slides)) {
@@ -161,6 +124,92 @@ final class SlideShowBlock extends BlockBase implements ContainerFactoryPluginIn
         'library' => ['doesdesign_tools/slideshow'],
       ],
     ];
+  }
+
+  /**
+   * Loads promoted object nodes according to the block configuration.
+   *
+   * @return \Drupal\node\NodeInterface[]
+   *   The loaded nodes keyed by nid, or [] if none match.
+   */
+  private function loadPromotedNodes(): array {
+    $config = $this->getConfiguration();
+    $storage = $this->entityTypeManager->getStorage('node');
+
+    $nids = $storage->getQuery()
+      ->accessCheck(TRUE)
+      ->condition('type', 'object')
+      ->condition('status', 1)
+      ->condition('promote', 1)
+      ->sort($config['order_property'], $config['order'])
+      ->range(0, (int) $config['items'])
+      ->execute();
+
+    if (empty($nids)) {
+      return [];
+    }
+
+    return $storage->loadMultiple($nids);
+  }
+
+  /**
+   * Builds a single slide render array from a node, or NULL if unusable.
+   *
+   * @param mixed $node
+   *   Candidate node entity (typed loosely to allow the isinstance check).
+   *
+   * @return array|null
+   *   The slide render array, or NULL when required media is missing.
+   */
+  private function buildSlide($node): ?array {
+    if (!$node instanceof NodeInterface) {
+      return NULL;
+    }
+    $media = $this->getFirstReferencedMedia($node);
+    if ($media === NULL) {
+      return NULL;
+    }
+    $file = $this->getMediaFile($media);
+    if ($file === NULL) {
+      return NULL;
+    }
+
+    return [
+      'image' => [
+        '#theme' => 'image_style',
+        '#style_name' => 'slider',
+        '#uri' => $file->getFileUri(),
+        '#alt' => $media->get('field_media_image')->alt ?: $node->label(),
+      ],
+      'title' => $node->label(),
+      'url' => $node->toUrl()->toString(),
+    ];
+  }
+
+  /**
+   * Returns the first Media referenced from the node's field_media_image.
+   */
+  private function getFirstReferencedMedia(NodeInterface $node): ?MediaInterface {
+    if (!$node->hasField('field_media_image') || $node->get('field_media_image')->isEmpty()) {
+      return NULL;
+    }
+    /** @var \Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem $media_field */
+    $media_field = $node->get('field_media_image')->first();
+    $media = $media_field->entity;
+    return $media instanceof MediaInterface ? $media : NULL;
+  }
+
+  /**
+   * Returns the underlying File entity referenced from a media entity.
+   */
+  private function getMediaFile(MediaInterface $media): ?FileInterface {
+    if (!$media->hasField('field_media_image') || $media->get('field_media_image')->isEmpty()) {
+      return NULL;
+    }
+    /** @var \Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem $file_field */
+    $file_field = $media->get('field_media_image')->first();
+    $file = $file_field->entity;
+    return $file instanceof FileInterface ? $file : NULL;
   }
 
   /**

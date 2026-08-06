@@ -4,7 +4,10 @@ namespace Drupal\doesdesign_tools\Plugin\Block;
 
 use Drupal\Core\Link;
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Extension\ModuleExtensionList;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides a 'Example: configurable text string' block.
@@ -15,7 +18,43 @@ use Drupal\Core\Url;
  *   admin_label = @Translation("DD 8 tools: Contact"),
  * )
  */
-class DdToolsContact extends BlockBase {
+final class DdToolsContact extends BlockBase implements ContainerFactoryPluginInterface {
+
+  /**
+   * The module extension list.
+   *
+   * @var \Drupal\Core\Extension\ModuleExtensionList
+   */
+  protected $moduleExtensionList;
+
+  /**
+   * Constructs a new DdToolsContact block.
+   *
+   * @param array $configuration
+   *   A configuration array containing information about the plugin instance.
+   * @param string $plugin_id
+   *   The plugin_id for the plugin instance.
+   * @param mixed $plugin_definition
+   *   The plugin implementation definition.
+   * @param \Drupal\Core\Extension\ModuleExtensionList $module_extension_list
+   *   The module extension list.
+   */
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, ModuleExtensionList $module_extension_list) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->moduleExtensionList = $module_extension_list;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('extension.list.module'),
+    );
+  }
 
   /**
    * {@inheritdoc}
@@ -52,7 +91,7 @@ class DdToolsContact extends BlockBase {
         'class' => 'youtube',
       ],
     ];
-    $img_path = \Drupal::service('extension.list.module')->getPath('doesdesign_tools') . '/images/';
+    $img_path = $this->moduleExtensionList->getPath('doesdesign_tools') . '/images/';
     $build = [];
     $items = [];
     foreach ($socials as $social) {
