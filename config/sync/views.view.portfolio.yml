@@ -154,6 +154,85 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
+  block_homepage:
+    id: block_homepage
+    display_title: 'Homepage block'
+    display_plugin: block
+    position: 2
+    display_options:
+      pager:
+        type: some
+        options:
+          offset: 0
+          items_per_page: 6
+      arguments: {  }
+      filters:
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            object: object
+          group: 1
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+        promote:
+          id: promote
+          table: node_field_data
+          field: promote
+          entity_type: node
+          entity_field: promote
+          plugin_id: boolean
+          value: '1'
+          group: 1
+      style:
+        type: html_list
+        options:
+          grouping: {  }
+          row_class: 'col-4 col-6-medium col-12-small'
+          default_row_class: true
+          uses_fields: false
+          type: ul
+          wrapper_class: ''
+          class: 'row portfolio-list'
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: portfolio_teaser
+      defaults:
+        access: true
+        cache: true
+        pager: false
+        exposed_form: true
+        style: false
+        row: false
+        fields: true
+        sorts: true
+        arguments: false
+        filters: false
+      display_extenders: {  }
+      block_description: 'Portfolio: promoted objects (homepage)'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
   page_1:
     id: page_1
     display_title: Page
