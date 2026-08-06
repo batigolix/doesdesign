@@ -1,0 +1,11 @@
+uuid: 5a0e2c8f-9d63-4492-bdae-eb91573d59cd
+langcode: nl
+status: true
+dependencies:
+  module:
+    - media
+id: media.banner_hero
+label: 'Banner hero'
+description: null
+targetEntityType: media
+cache: true

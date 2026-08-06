@@ -1,0 +1,11 @@
+uuid: 1755459d-1e81-4ec0-a2a3-69abe3675c9e
+langcode: nl
+status: true
+dependencies:
+  module:
+    - node
+id: node.banner_hero
+label: 'Banner hero'
+description: null
+targetEntityType: node
+cache: true

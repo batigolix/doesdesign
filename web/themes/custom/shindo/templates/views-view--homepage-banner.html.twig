@@ -1,52 +1,29 @@
 {#
 /**
  * @file
- * Theme override for the homepage_banner view (bead doesdesign-3m3).
+ * Theme override for the homepage_banner view (bead doesdesign-xgx).
  *
- * Adds a shared `photoswipe-gallery` class to the outer view wrapper so the
- * Photoswipe module groups all banner rows into ONE gallery with next/prev
- * navigation, instead of one gallery per row (counter "1/1").
+ * Renders a SINGLE random object as a full-width hero section on the
+ * homepage. The row template (node--object--banner-hero.html.twig) supplies
+ * the actual hero markup with title/subtitle overlay and node link.
+ *
+ * Supersedes the earlier photoswipe-gallery wrapper (bead doesdesign-3m3);
+ * banner is no longer a photoswipe gallery, but a single clickable hero.
  *
  * AI generated.
  *
  * @see template_preprocess_views_view()
  */
 #}
-{%
-  set classes = [
-    dom_id ? 'js-view-dom-id-' ~ dom_id,
-    'photoswipe-gallery',
-  ]
-%}
-<div{{ attributes.addClass(classes) }}>
-  {{ title_prefix }}
-  {{ title }}
-  {{ title_suffix }}
-
-  {% if header %}
-    <header>
-      {{ header }}
-    </header>
-  {% endif %}
-
-  {{ exposed }}
-  {{ attachment_before }}
-
-  {% if rows -%}
+{% if rows %}
+  <section id="banner" class="hero-banner"{{ attributes }}>
+    {{ title_prefix }}
+    {{ title }}
+    {{ title_suffix }}
+    {{ attachment_before }}
     {{ rows }}
-  {% elseif empty -%}
-    {{ empty }}
-  {% endif %}
-  {{ pager }}
-
-  {{ attachment_after }}
-  {{ more }}
-
-  {% if footer %}
-    <footer>
-      {{ footer }}
-    </footer>
-  {% endif %}
-
-  {{ feed_icons }}
-</div>
+    {{ attachment_after }}
+  </section>
+{% elseif empty %}
+  {{ empty }}
+{% endif %}

@@ -1,0 +1,47 @@
+uuid: 0dae71b0-af6a-4afe-8baf-5bae781bd8a4
+langcode: nl
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.banner_hero
+    - field.field.node.object.body
+    - field.field.node.object.field_material
+    - field.field.node.object.field_media_image
+    - field.field.node.object.field_price
+    - field.field.node.object.field_show_in_banner
+    - field.field.node.object.field_subtitle
+    - field.field.node.object.field_type
+    - field.field.node.object.field_weight
+    - field.field.node.object.field_year
+    - node.type.object
+  module:
+    - user
+id: node.object.banner_hero
+targetEntityType: node
+bundle: object
+mode: banner_hero
+content:
+  field_subtitle:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  body: true
+  field_material: true
+  field_media_image: true
+  field_price: true
+  field_show_in_banner: true
+  field_type: true
+  field_weight: true
+  field_year: true
+  langcode: true

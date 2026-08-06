@@ -253,21 +253,38 @@ function shindo_preprocess_media(array &$variables): void {
  * AI generated.
  */
 function shindo_preprocess_node(array &$variables): void {
-  if (empty($variables['node']) || empty($variables['view_mode']) || $variables['view_mode'] !== 'full') {
+  if (empty($variables['node']) || empty($variables['view_mode'])) {
     return;
   }
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
-  if ($node->bundle() !== 'object' || !$node->hasField('field_media_image')) {
-    return;
+
+  // Full node view: build gallery_items with per-delta media view mode.
+  if ($variables['view_mode'] === 'full' && $node->bundle() === 'object' && $node->hasField('field_media_image')) {
+    $view_builder = \Drupal::entityTypeManager()->getViewBuilder('media');
+    $items = [];
+    foreach ($node->get('field_media_image')->referencedEntities() as $media) {
+      $items[] = $view_builder->view($media, 'gallery');
+    }
+    $variables['gallery_items'] = $items;
   }
 
-  $view_builder = \Drupal::entityTypeManager()->getViewBuilder('media');
-  $items = [];
-  foreach ($node->get('field_media_image')->referencedEntities() as $delta => $media) {
-    $items[] = $view_builder->view($media, 'gallery');
+  // Banner hero view mode: compute background-image URL so node--object--
+  // banner-hero.html.twig can render as a CSS background (Dopetrope style)
+  // instead of a nested <img> (bead doesdesign-xgx). Uses banner_ultrawide
+  // (2400×800) so wide viewports get a crisp cover-crop without fallback.
+  if ($variables['view_mode'] === 'banner_hero' && $node->bundle() === 'object' && $node->hasField('field_media_image')) {
+    $media = $node->get('field_media_image')->entity;
+    if ($media && $media->hasField('field_media_image')) {
+      $file = $media->get('field_media_image')->entity;
+      if ($file) {
+        $style = \Drupal\image\Entity\ImageStyle::load('banner_ultrawide');
+        if ($style) {
+          $variables['banner_bg_url'] = $style->buildUrl($file->getFileUri());
+        }
+      }
+    }
   }
-  $variables['gallery_items'] = $items;
 }
 
 /**

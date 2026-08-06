@@ -1,0 +1,17 @@
+uuid: c0f786f0-454a-46da-b4e1-2c9fbe65c21d
+langcode: nl
+status: true
+dependencies:
+  module:
+    - focal_point
+name: banner_ultrawide
+label: 'Banner ultrawide (2400×800, focal point)'
+effects:
+  4c841904-974c-43c0-bd19-ada9504849e6:
+    uuid: 4c841904-974c-43c0-bd19-ada9504849e6
+    id: focal_point_scale_and_crop
+    weight: 0
+    data:
+      width: 2400
+      height: 800
+      crop_type: focal_point

@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Theme override for object nodes rendered in the `banner_hero` view mode
+ * (bead doesdesign-xgx).
+ *
+ * Renders the hero image as a CSS background on <a>, mirroring Dopetrope's
+ * approach where the banner image is decorative (via background-image on
+ * body). Image is intentionally not in the DOM: the object title fully
+ * describes the artwork, so an aria-label on the link is sufficient for
+ * screen readers.
+ *
+ * `banner_bg_url` is set by shindo_preprocess_node() using image style
+ * `hero_wide`.
+ *
+ * AI generated.
+ */
+#}
+{% set title = label|render|striptags|trim %}
+<a href="{{ url }}" class="banner-link" rel="bookmark" aria-label="{{ title }}"
+   {%- if banner_bg_url %} style="background-image: url('{{ banner_bg_url }}');"{% endif %}>
+  <header>
+    <h2>{{ title }}</h2>
+    {% set subtitle = content.field_subtitle|render|striptags|trim %}
+    {% if subtitle %}
+      <p>{{ subtitle }}</p>
+    {% endif %}
+  </header>
+</a>
