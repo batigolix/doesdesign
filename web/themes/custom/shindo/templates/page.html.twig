@@ -48,56 +48,7 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <section id="footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-8 col-12-medium">
-          <section>
-            <header>
-              <h2>Recent nieuws</h2>
-            </header>
-            {# Drupal footer_col_1 region — renders the "news" view
-               block_footer_dates display as <ul class="dates"> with the
-               five most recent article nodes. #}
-            {{ page.footer_col_1 }}
-          </section>
-        </div>
-        <div class="col-4 col-12-medium">
-
-          {# Drupal footer_col_2 region — each block renders as <section class="box">
-             via templates/block--region--footer-col-2.html.twig, matching the
-             Dopetrope featured-image + header + body + button pattern. #}
-          {{ page.footer_col_2 }}
-
-        </div>
-        <div class="col-4 col-6-medium col-12-small">
-          {# Drupal footer_col_3 region — bewerkbaar link-lijst blok. #}
-          {{ page.footer_col_3 }}
-        </div>
-        <div class="col-4 col-6-medium col-12-small">
-          {# Drupal footer_col_4 region — bewerkbaar link-lijst blok. #}
-          {{ page.footer_col_4 }}
-        </div>
-        <div class="col-4 col-12-medium">
-
-          {# Drupal footer_col_5 region — social/contact blocks (social icons,
-             contact info) placed via block config. Replaces the Dopetrope
-             hardcoded "Vitae tempor lorem" column. #}
-          {{ page.footer_col_5 }}
-
-        </div>
-        <div class="col-12">
-
-          {# Drupal post_footer region — configurable Colofon block containing
-             the site's copyright / attribution links. Edit via /admin/content/block. #}
-          <div id="copyright">
-            {{ page.post_footer }}
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
+  {# Shared footer partial — see templates/partials/footer.html.twig. #}
+  {% include '@shindo/partials/footer.html.twig' %}
 
 </div>
