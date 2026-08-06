@@ -1,0 +1,23 @@
+uuid: ae371163-24df-4c65-9cc3-514b29636e39
+langcode: nl
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:a1fa7355-0b09-43ec-a8c7-dc0bd4f3e3b0'
+  module:
+    - block_content
+  theme:
+    - shindo
+id: shindo_footer_col_3_linklist
+theme: shindo
+region: footer_col_3
+weight: 0
+provider: null
+plugin: 'block_content:a1fa7355-0b09-43ec-a8c7-dc0bd4f3e3b0'
+settings:
+  id: 'block_content:a1fa7355-0b09-43ec-a8c7-dc0bd4f3e3b0'
+  label: 'Footer links kolom 1'
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility: {  }

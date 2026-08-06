@@ -1,4 +1,4 @@
-uuid: 91b9ef5d-6dcb-4117-adf0-51753dfe929e
+uuid: 29d1fad6-b24d-499b-bb7c-84029be2fec4
 langcode: nl
 status: false
 dependencies:
@@ -8,7 +8,7 @@ dependencies:
     - block_content
   theme:
     - shindo
-id: shindo_sidebar_objecttypes
+id: shindo_sidebar_object_types
 theme: shindo
 region: sidebar_first
 weight: -5

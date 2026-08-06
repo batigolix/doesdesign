@@ -1,4 +1,4 @@
-uuid: dedb0f8d-00d3-4a56-aa9d-214790dbee6c
+uuid: 41f9abb6-0704-4128-a5cb-ad330fbd110a
 langcode: nl
 status: true
 dependencies:
@@ -8,7 +8,7 @@ dependencies:
     - block_content
   theme:
     - shindo
-id: shindo_post_footer_colofon
+id: shindo_post_footer_colophon
 theme: shindo
 region: post_footer
 weight: 0
