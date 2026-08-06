@@ -148,3 +148,67 @@
   height: auto;
   display: block;
 }
+
+/* Pager styling — bead doesdesign-cq9.
+ *
+ * Dopetrope has no explicit .pagination selector; we style Drupal's default
+ * pager markup (<nav class="pager"><ul class="pager__items">…) to match the
+ * Dopetrope aesthetic. Active page uses --shindo-primary (bead c98), matching
+ * Dopetrope's .button.alt dark background (#252122). Non-active items render
+ * as understated text links with subtle hover fill.
+ *
+ * Rendered on the portfolio view (/soort-sieraden/<term>, bead qdu) and any
+ * other listing view (news, etc.) that emits >1 page.
+ *
+ * Scope: unprefixed so both frontend and admin listings pick this up; the
+ * markup structure is Drupal-specific so there's no bleed risk into unrelated
+ * UI.
+ */
+#page-wrapper .pager {
+  margin: 3em 0 2em 0;
+}
+
+#page-wrapper .pager__items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 0.5em;
+}
+
+#page-wrapper .pager__item {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+#page-wrapper .pager__item a {
+  display: inline-block;
+  min-width: 2.5em;
+  padding: 0.5em 1em;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--shindo-primary, #252122);
+  font-weight: 700;
+  border: 1px solid transparent;
+  transition: background-color .25s ease-in-out, color .25s ease-in-out;
+}
+
+#page-wrapper .pager__item a:hover,
+#page-wrapper .pager__item a:focus {
+  background: rgba(37, 33, 34, 0.08);
+  color: var(--shindo-primary, #252122);
+  text-decoration: none;
+}
+
+#page-wrapper .pager__item.is-active a,
+#page-wrapper .pager__item.is-active a:hover,
+#page-wrapper .pager__item.is-active a:focus {
+  background: var(--shindo-primary, #252122);
+  color: #fff;
+}
