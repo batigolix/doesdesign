@@ -75,49 +75,83 @@ final class MenuLinkUri extends ProcessPluginBase implements ContainerFactoryPlu
       return 'internal:/';
     }
 
-    // Handle node/NID paths — look up D11 nid via migration.
     if (preg_match('#^node/(\d+)$#', $path, $matches)) {
-      $d7_nid = (int) $matches[1];
-      foreach (['page', 'article', 'object'] as $migration_id) {
-        try {
-          $result = $this->migrateLookup->lookup([$migration_id], [$d7_nid]);
-          if (!empty($result[0]['nid'])) {
-            return 'entity:node/' . $result[0]['nid'];
-          }
-        }
-        catch (\Exception $e) {
-          // Continue to next migration.
-        }
-      }
-      $this->logger->notice(
-        'MenuLinkUri: D7 node/@nid not found in any node migration.',
-        ['@nid' => $d7_nid]
-      );
-      return 'internal:/node/' . $d7_nid;
+      return $this->transformNodePath((int) $matches[1]);
     }
 
-    // Handle taxonomy/term/TID paths.
     if (preg_match('#^taxonomy/term/(\d+)$#', $path, $matches)) {
-      $d7_tid = (int) $matches[1];
-      try {
-        $result = $this->migrateLookup->lookup(['term'], [$d7_tid]);
-        if (!empty($result[0]['tid'])) {
-          return 'entity:taxonomy_term/' . $result[0]['tid'];
-        }
-      }
-      catch (\Exception $e) {
-        // Fall through.
-      }
-      return 'internal:/taxonomy/term/' . $d7_tid;
+      return $this->transformTermPath((int) $matches[1]);
     }
 
-    // Handle contact path (case-insensitive).
     if (strtolower($path) === 'contact') {
       return 'internal:/contact';
     }
 
     // Everything else: treat as internal path.
     return 'internal:/' . ltrim($path, '/');
+  }
+
+  /**
+   * Resolves a D7 node/NID path to a D11 entity:node URI.
+   *
+   * @param int $d7_nid
+   *   The D7 node id.
+   *
+   * @return string
+   *   The resolved URI, or a fallback internal path if the lookup fails.
+   */
+  private function transformNodePath(int $d7_nid): string {
+    foreach (['page', 'article', 'object'] as $migration_id) {
+      $nid = $this->lookupDestinationId($migration_id, $d7_nid, 'nid');
+      if ($nid !== NULL) {
+        return 'entity:node/' . $nid;
+      }
+    }
+    $this->logger->notice(
+      'MenuLinkUri: D7 node/@nid not found in any node migration.',
+      ['@nid' => $d7_nid]
+    );
+    return 'internal:/node/' . $d7_nid;
+  }
+
+  /**
+   * Resolves a D7 taxonomy/term/TID path to a D11 entity:taxonomy_term URI.
+   *
+   * @param int $d7_tid
+   *   The D7 term id.
+   *
+   * @return string
+   *   The resolved URI, or a fallback internal path if the lookup fails.
+   */
+  private function transformTermPath(int $d7_tid): string {
+    $tid = $this->lookupDestinationId('term', $d7_tid, 'tid');
+    if ($tid !== NULL) {
+      return 'entity:taxonomy_term/' . $tid;
+    }
+    return 'internal:/taxonomy/term/' . $d7_tid;
+  }
+
+  /**
+   * Looks up a destination id in a migration mapping table.
+   *
+   * @param string $migration_id
+   *   The migration id to consult.
+   * @param int $source_id
+   *   The D7 source id.
+   * @param string $key
+   *   The destination key ("nid", "tid", …).
+   *
+   * @return string|int|null
+   *   The resolved destination id, or NULL when not found or on error.
+   */
+  private function lookupDestinationId(string $migration_id, int $source_id, string $key) {
+    try {
+      $result = $this->migrateLookup->lookup([$migration_id], [$source_id]);
+    }
+    catch (\Exception $e) {
+      return NULL;
+    }
+    return !empty($result[0][$key]) ? $result[0][$key] : NULL;
   }
 
 }
