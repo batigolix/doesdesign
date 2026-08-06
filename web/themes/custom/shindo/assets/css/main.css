@@ -162,6 +162,13 @@ input, select, textarea {
 			text-decoration: none;
 		}
 
+	/* Reset Dopetrope link styling inside Drupal contextual-links popups so they keep default admin styling. */
+	#page-wrapper .contextual-links a,
+	#page-wrapper .contextual-links a:hover {
+		color: revert;
+		text-decoration: revert;
+	}
+
 	br.clear {
 		clear: both;
 	}
@@ -1687,6 +1694,26 @@ input, select, textarea {
 		#page-wrapper .button.large {
 			font-size: 1.5em;
 			padding: 0.75em 1.5em 0.75em 1.5em;
+		}
+
+		/* Reset Dopetrope button styling on Drupal contextual link triggers (the small pencil icon that opens the contextual menu on hover of blocks/nodes). */
+		#page-wrapper .contextual .trigger,
+		#page-wrapper .contextual .trigger:hover,
+		#page-wrapper .contextual .trigger:active {
+			-webkit-appearance: revert;
+			appearance: revert;
+			display: revert;
+			cursor: revert;
+			border: revert;
+			border-radius: revert;
+			background: revert;
+			color: revert;
+			font-weight: revert;
+			outline: revert;
+			font-size: revert;
+			padding: revert;
+			text-align: revert;
+			transition: revert;
 		}
 
 /* Image */
