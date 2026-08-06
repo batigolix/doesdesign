@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9f57b4507e5e8ce378d4ce62143247ab",
+    "content-hash": "fbd598ac83014d01e782a679b15d534b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -978,6 +978,15 @@
                 "source": "https://github.com/dflydev/dflydev-dot-access-data/tree/v3.0.3"
             },
             "time": "2024-07-08T12:26:09+00:00"
+        },
+        {
+            "name": "dimsemenov/photoswipe",
+            "version": "5.4.4",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/dimsemenov/PhotoSwipe/archive/refs/tags/v5.4.4.zip"
+            },
+            "type": "drupal-library"
         },
         {
             "name": "doctrine/lexer",
