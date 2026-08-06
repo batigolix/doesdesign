@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Theme override for a block placed in the footer_col_3 region.
+ *
+ * AI generated (bead doesdesign-g7v). Wraps in <section><header><h2>>
+ * so Dopetrope's footer link-list pattern applies. field_title becomes
+ * the visible <h2>; body renders below (typically <ul class="divided">).
+ */
+#}
+{% set display_title = content.field_title|render|striptags|trim ?: label %}
+<section{{ attributes }}>
+  {{ title_prefix }}
+  {% if display_title %}
+    <header><h2>{{ display_title }}</h2></header>
+  {% endif %}
+  {{ title_suffix }}
+  {{ content|without('field_title', 'field_media_image', 'field_button') }}
+</section>

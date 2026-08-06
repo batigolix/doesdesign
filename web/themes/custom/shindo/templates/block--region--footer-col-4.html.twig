@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * Theme override for a block placed in the footer_col_4 region.
+ *
+ * AI generated (bead doesdesign-g7v). Same pattern as footer_col_3:
+ * <section><header><h2>{title}</h2></header>{body}</section>.
+ */
+#}
+{% set display_title = content.field_title|render|striptags|trim ?: label %}
+<section{{ attributes }}>
+  {{ title_prefix }}
+  {% if display_title %}
+    <header><h2>{{ display_title }}</h2></header>
+  {% endif %}
+  {{ title_suffix }}
+  {{ content|without('field_title', 'field_media_image', 'field_button') }}
+</section>
