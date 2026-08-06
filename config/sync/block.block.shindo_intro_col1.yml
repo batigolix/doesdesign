@@ -3,7 +3,7 @@ langcode: nl
 status: true
 dependencies:
   content:
-    - 'block_content:basic:15df866f-34f4-4c4f-a2b1-018d0c87e249'
+    - 'block_content:intro_feature:293543b4-3fb3-4b57-884e-35aadd96c23e'
   module:
     - block_content
     - system

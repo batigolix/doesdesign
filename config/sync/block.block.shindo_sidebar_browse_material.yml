@@ -1,6 +1,6 @@
 uuid: dd7c52e1-8734-4abd-a13d-fe7f2e9d1950
 langcode: nl
-status: true
+status: false
 dependencies:
   config:
     - views.view.browse_by_material
