@@ -282,3 +282,33 @@
   background: var(--shindo-primary, #252122);
   color: #fff;
 }
+
+/* Reset bullets on Drupal-generated lists — bead doesdesign-098.
+ *
+ * Dopetrope's main.css opens with `ol, ul { list-style: none }` (line 36),
+ * but that global reset is later overridden by `ul { list-style: disc;
+ * padding-left: 1em }` inside the article/wysiwyg section (line 1754).
+ * That later rule catches every plain <ul> Drupal emits — main menu,
+ * `.item-list` view wrappers, `.banner-list` view wrapper, and the
+ * `.row.portfolio-list` grid — because none of them carry the Dopetrope
+ * class names (.actions, .links, .contact, etc.) that get their own
+ * `list-style: none` overrides further down.
+ *
+ * Fix: explicitly re-reset list-style on the Drupal-specific list
+ * containers. Scoped so WYSIWYG content lists inside body fields keep
+ * their bullets (users expect bulleted lists inside rich-text content). */
+#page-wrapper #nav > ul,
+#page-wrapper #nav ul,
+#page-wrapper .banner-list > ul,
+#page-wrapper .item-list > ul,
+#page-wrapper ul.portfolio-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+#page-wrapper #nav ul > li,
+#page-wrapper .banner-list > ul > li,
+#page-wrapper .item-list > ul > li,
+#page-wrapper ul.portfolio-list > li {
+  padding-left: 0;
+}
