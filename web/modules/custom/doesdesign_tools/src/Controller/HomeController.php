@@ -1,12 +1,5 @@
 <?php
 
-/**
- * @file
- * Homepage controller for doesdesign.
- *
- * AI generated (bead doesdesign-9rio).
- */
-
 declare(strict_types=1);
 
 namespace Drupal\doesdesign_tools\Controller;

@@ -1,7 +1,5 @@
 <?php
 
-// AI generated.
-
 namespace Drupal\doesdesign_tools\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
@@ -9,6 +7,9 @@ use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\file\FileInterface;
+use Drupal\media\MediaInterface;
+use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -19,7 +20,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *  admin_label = @Translation("Slideshow"),
  * )
  */
-class SlideShowBlock extends BlockBase implements ContainerFactoryPluginInterface {
+final class SlideShowBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
   /**
    * The entity type manager.
@@ -119,17 +120,21 @@ class SlideShowBlock extends BlockBase implements ContainerFactoryPluginInterfac
     $slides = [];
 
     foreach ($nodes as $node) {
-      if (!$node->hasField('field_media_image') || $node->get('field_media_image')->isEmpty()) {
+      if (!$node instanceof NodeInterface || !$node->hasField('field_media_image') || $node->get('field_media_image')->isEmpty()) {
         continue;
       }
 
-      $media = $node->get('field_media_image')->first()->entity;
-      if (!$media || !$media->hasField('field_media_image') || $media->get('field_media_image')->isEmpty()) {
+      /** @var \Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem $media_field */
+      $media_field = $node->get('field_media_image')->first();
+      $media = $media_field->entity;
+      if (!$media instanceof MediaInterface || !$media->hasField('field_media_image') || $media->get('field_media_image')->isEmpty()) {
         continue;
       }
 
-      $file = $media->get('field_media_image')->entity;
-      if (!$file) {
+      /** @var \Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem $file_field */
+      $file_field = $media->get('field_media_image')->first();
+      $file = $file_field->entity;
+      if (!$file instanceof FileInterface) {
         continue;
       }
 

@@ -1,7 +1,5 @@
 <?php
 
-// AI generated.
-
 namespace Drupal\doesdesign_tools\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;

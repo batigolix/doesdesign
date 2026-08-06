@@ -39,7 +39,7 @@ class Flickr extends BlockBase {
         20 => 20,
       ],
       '#description' => t('Number of items that will be shown in the slideshow.'),
-      '#default_value' => isset($config['flickr_items']) ? $config['flickr_items'] : '',
+      '#default_value' => $config['flickr_items'] ?? '',
     ];
     return $form;
   }
@@ -56,7 +56,7 @@ class Flickr extends BlockBase {
    */
   public function build() {
     $config = $this->getConfiguration();
-    $flickr_items = isset($config['flickr_items']) ? $config['flickr_items'] : 12;
+    $flickr_items = $config['flickr_items'] ?? 12;
     $build = [];
     $build['container']['#markup'] = '<div id="flickr_images"></div>';
     $build['#attached']['library'][] = 'doesdesign_tools/flickr';

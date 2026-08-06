@@ -14,6 +14,8 @@
     <exclude-pattern>*/node_modules/*</exclude-pattern>
     <exclude-pattern>*/vendor/*</exclude-pattern>
     <exclude-pattern>*/css/*</exclude-pattern>
+    <exclude-pattern>*/.playwright-cli/*</exclude-pattern>
+    <exclude-pattern>web/themes/custom/denbei/*</exclude-pattern>
 
     <rule ref="Drupal"/>
     <rule ref="DrupalPractice"/>

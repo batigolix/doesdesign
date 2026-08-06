@@ -15,7 +15,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *  admin_label = @Translation("Social block"),
  * )
  */
-class SocialBlock extends BlockBase implements ContainerFactoryPluginInterface {
+final class SocialBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
   /**
    * Drupal\Core\Config\ConfigManagerInterface definition.

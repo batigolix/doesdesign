@@ -13,6 +13,7 @@ parameters:
         - web/themes/custom/*/node_modules/*
         - web/themes/custom/*/vendor/*
         - web/modules/custom/*/vendor/*
+        - web/themes/custom/denbei/*
     drupal:
         drupal_root: web
     reportUnmatchedIgnoredErrors: false

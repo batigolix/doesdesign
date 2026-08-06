@@ -119,20 +119,6 @@ function doesdesign_tools_preprocess_node(&$variables) {
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter() for taxonomies.
- *
- * {@inheritdoc}
- */
-function HOOK_theme_suggestions_taxonomy_term_alter(&$suggestions, $vars, $hook) {
-  if ($vars['elements']['#view_mode'] == 'teaser') {
-    $suggestions[] = 'taxonomy_term__teaser'; // note underscores
-  }
-}
-
-
-/**
- * Implements hook_theme_suggestions_HOOK_alter() for taxonomies.
- *
- * {@inheritdoc}
  */
 function doesdesign_tools_theme_suggestions_taxonomy_term_alter(&$suggestions, $vars, $hook) {
 

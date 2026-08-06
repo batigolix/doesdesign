@@ -1,7 +1,5 @@
 <?php
 
-// AI generated
-
 namespace Drupal\doesdesign_import\Plugin\migrate\process;
 
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -22,9 +20,20 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   id = "menu_link_uri"
  * )
  */
-class MenuLinkUri extends ProcessPluginBase implements ContainerFactoryPluginInterface {
+final class MenuLinkUri extends ProcessPluginBase implements ContainerFactoryPluginInterface {
 
+  /**
+   * The migrate lookup service.
+   *
+   * @var \Drupal\migrate\MigrateLookupInterface
+   */
   protected MigrateLookupInterface $migrateLookup;
+
+  /**
+   * Logger for migration diagnostics.
+   *
+   * @var \Psr\Log\LoggerInterface
+   */
   protected LoggerInterface $logger;
 
   public function __construct(

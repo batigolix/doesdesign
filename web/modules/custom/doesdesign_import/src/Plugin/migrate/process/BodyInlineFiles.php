@@ -1,7 +1,5 @@
 <?php
 
-// AI generated
-
 namespace Drupal\doesdesign_import\Plugin\migrate\process;
 
 use Drupal\Core\Database\Database;
@@ -35,7 +33,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   source: body
  * @endcode
  */
-class BodyInlineFiles extends ProcessPluginBase implements ContainerFactoryPluginInterface {
+final class BodyInlineFiles extends ProcessPluginBase implements ContainerFactoryPluginInterface {
 
   /**
    * The migrate lookup service.

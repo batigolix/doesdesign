@@ -1,7 +1,5 @@
 <?php
 
-// AI generated
-
 namespace Drupal\doesdesign_import\Plugin\migrate\process;
 
 use Drupal\migrate\MigrateExecutableInterface;

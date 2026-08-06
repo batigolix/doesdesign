@@ -55,6 +55,7 @@ class DdToolsContact extends BlockBase {
       ],
     ];
     $img_path = \Drupal::service('extension.list.module')->getPath('doesdesign_tools') . '/images/';
+    $build = [];
     $items = [];
     foreach ($socials as $social) {
       $img = [

@@ -1,7 +1,5 @@
 <?php
 
-// AI generated
-
 namespace Drupal\doesdesign_import\Plugin\migrate\process;
 
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -23,9 +21,20 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   id = "alias_path_lookup"
  * )
  */
-class AliasPathLookup extends ProcessPluginBase implements ContainerFactoryPluginInterface {
+final class AliasPathLookup extends ProcessPluginBase implements ContainerFactoryPluginInterface {
 
+  /**
+   * The migrate lookup service.
+   *
+   * @var \Drupal\migrate\MigrateLookupInterface
+   */
   protected MigrateLookupInterface $migrateLookup;
+
+  /**
+   * Logger for migration diagnostics.
+   *
+   * @var \Psr\Log\LoggerInterface
+   */
   protected LoggerInterface $logger;
 
   public function __construct(

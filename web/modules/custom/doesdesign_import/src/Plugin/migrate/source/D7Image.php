@@ -106,7 +106,7 @@ class D7Image extends SourcePluginBase {
           'id' => $item->fid,
           'filename' => $item->filename,
           'uid' => $item->uid,
-          'timestamp'=>$item->timestamp,
+          'timestamp' => $item->timestamp,
         ];
       }
     }

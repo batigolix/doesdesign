@@ -9,6 +9,10 @@
 
 use Drupal\block\Entity\Block;
 use Drupal\Core\Extension\ThemeSettingsProvider;
+use Drupal\file\FileInterface;
+use Drupal\image\Entity\ImageStyle;
+use Drupal\media\MediaInterface;
+use Drupal\taxonomy\TermInterface;
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter() for page.
@@ -26,7 +30,7 @@ function shindo_theme_suggestions_page_alter(array &$suggestions, array $variabl
     return;
   }
   $term = $route_match->getParameter('taxonomy_term');
-  if (!$term instanceof \Drupal\taxonomy\TermInterface) {
+  if (!$term instanceof TermInterface) {
     return;
   }
   $suggestions[] = 'page__taxonomy_term';
@@ -34,8 +38,7 @@ function shindo_theme_suggestions_page_alter(array &$suggestions, array $variabl
 }
 
 /**
- * Implements hook_preprocess_HOOK() for page templates on the
- * taxonomy-term/type route.
+ * Implements hook_preprocess_HOOK() for taxonomy-term/type pages.
  *
  * Bead doesdesign-2c4 — the page_title_block is hidden on
  * /soort-sieraden/* via block visibility so the template can render the
@@ -46,7 +49,7 @@ function shindo_theme_suggestions_page_alter(array &$suggestions, array $variabl
  */
 function shindo_preprocess_page__taxonomy_term__type(array &$variables): void {
   $term = \Drupal::routeMatch()->getParameter('taxonomy_term');
-  if ($term instanceof \Drupal\taxonomy\TermInterface) {
+  if ($term instanceof TermInterface) {
     $variables['page_title'] = $term->getName();
   }
 }
@@ -292,11 +295,15 @@ function shindo_preprocess_node(array &$variables): void {
   // instead of a nested <img> (bead doesdesign-xgx). Uses banner_ultrawide
   // (2400×800) so wide viewports get a crisp cover-crop without fallback.
   if ($variables['view_mode'] === 'banner_hero' && $node->bundle() === 'object' && $node->hasField('field_media_image')) {
-    $media = $node->get('field_media_image')->entity;
-    if ($media && $media->hasField('field_media_image')) {
-      $file = $media->get('field_media_image')->entity;
-      if ($file) {
-        $style = \Drupal\image\Entity\ImageStyle::load('banner_ultrawide');
+    /** @var \Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem $media_field */
+    $media_field = $node->get('field_media_image')->first();
+    $media = $media_field ? $media_field->entity : NULL;
+    if ($media instanceof MediaInterface && $media->hasField('field_media_image')) {
+      /** @var \Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem $file_field */
+      $file_field = $media->get('field_media_image')->first();
+      $file = $file_field ? $file_field->entity : NULL;
+      if ($file instanceof FileInterface) {
+        $style = ImageStyle::load('banner_ultrawide');
         if ($style) {
           $variables['banner_bg_url'] = $style->buildUrl($file->getFileUri());
         }

@@ -132,6 +132,7 @@ class ContactForm extends FormBase {
     $module = 'doesdesign_tools';
     $key = 'doesdesign_tools_mail';
     $to = "coxdoes@gmail.com";
+    $params = [];
     $params['message'] = "Onderwerp: $subject \n\nNaam: $name \n\nTelefoon: $telephone\n\nBericht: $message";
     $params['subject'] = $subject;
     $langcode = \Drupal::currentUser()->getPreferredLangcode();

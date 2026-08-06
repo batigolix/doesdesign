@@ -10,6 +10,7 @@
 
     <exclude-pattern>*/node_modules/*</exclude-pattern>
     <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/denbei/*</exclude-pattern>
 
     <rule ref="rulesets/cleancode.xml">
         <!-- Drupal has legitimate uses of `else` in preprocess/hook code. -->
@@ -18,6 +19,9 @@
         <exclude name="BooleanArgumentFlag"/>
         <!-- Drupal factory methods commonly use static access. -->
         <exclude name="StaticAccess"/>
+        <!-- Drupal coder forbids `use` on non-namespaced SPL classes,
+             so \ArrayIterator etc. must be referenced inline. -->
+        <exclude name="MissingImport"/>
     </rule>
 
     <rule ref="rulesets/codesize.xml">

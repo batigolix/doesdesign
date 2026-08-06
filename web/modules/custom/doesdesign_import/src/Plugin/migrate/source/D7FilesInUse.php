@@ -96,7 +96,6 @@ class D7FilesInUse extends SourcePluginBase {
 
       // @todo fabriquate query for files that have other parent entity types
       // such as paragrpahs.
-
       $query->fields('fm');
       $results = $query->execute();
       foreach ($results as $record) {
@@ -215,7 +214,7 @@ class D7FilesInUse extends SourcePluginBase {
           'timestamp' => $item->timestamp,
           'filepath' => $filepath,
           'status' => $item->status,
-          'uid'=>$item->uid,
+          'uid' => $item->uid,
         ];
       }
     }

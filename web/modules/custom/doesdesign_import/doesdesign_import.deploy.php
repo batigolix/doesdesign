@@ -9,6 +9,7 @@
 
 declare(strict_types=1);
 
+use Drupal\redirect\Entity\Redirect;
 use Drupal\Core\Database\Database;
 
 /**
@@ -52,6 +53,7 @@ function doesdesign_import_deploy_rewrite_d7_file_paths(): string {
  * Skips creation when a redirect from the same source path already exists.
  *
  * @return string
+ *   Status message summarising whether the redirect was created or skipped.
  */
 function doesdesign_import_deploy_add_legacy_trouwringen_redirect(): string {
   $source = 'pagina/originele-en-unieke-trouwringen-van-mokume-gane';
@@ -61,7 +63,7 @@ function doesdesign_import_deploy_add_legacy_trouwringen_redirect(): string {
   if ($existing) {
     return sprintf('Redirect for "%s" already exists, skipped.', $source);
   }
-  \Drupal\redirect\Entity\Redirect::create([
+  Redirect::create([
     'redirect_source' => ['path' => $source, 'query' => []],
     'redirect_redirect' => 'internal:/taxonomy/term/59',
     'language' => 'und',
