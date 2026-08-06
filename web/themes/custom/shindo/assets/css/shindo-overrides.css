@@ -132,15 +132,85 @@
  *   - Inner `a.photoswipe` anchors reset the 2em bottom margin defined
  *     for the hero variant (see .field--name-field-media-image
  *     a.photoswipe above) so the grid keeps consistent gutters instead
- *     of double-spacing between rows. */
+ *     of double-spacing between rows.
+ *
+ * Alignment with body content — bead doesdesign-x6r.
+ *
+ * Dopetrope's `.row` uses a negative-margin gutter pattern
+ * (`margin-left: -{gutter}` on the row + `padding-left: {gutter}` on
+ * each child). That works for full-bleed rows but pulls the gallery
+ * outside `.box.post`'s horizontal padding, so the thumbnail grid does
+ * not visually line up with the body text above it.
+ *
+ * Fix: zero the row's negative left margin AND remove the left padding
+ * from left-edge column children, then use `gap` for gutters. That
+ * makes the leftmost thumbnail align with body text and the rightmost
+ * thumbnail align with the body's right edge. `gap` handles wrapping
+ * cleanly on both the 2-col desktop and 1-col mobile layouts.
+ *
+ * Gutter values mirror Dopetrope's per-breakpoint `.row` margin sizes
+ * (50 / 30 / 40 / 20 px). */
 .node__gallery {
   clear: both;
   margin-top: 2em;
+  margin-left: 0;
   padding: 1em 0;
+  gap: 50px;
 }
 
+.node__gallery > * {
+  padding-left: 0;
+}
+
+@media screen and (max-width: 1280px) {
+  .node__gallery {
+    gap: 30px;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .node__gallery {
+    gap: 40px;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  .node__gallery {
+    gap: 20px;
+  }
+}
+
+/* Two-column layout uses `col-6` (width: 50%). With `gap` adding real
+ * space between items, 50% + 50% overflows. Constrain columns to
+ * (100% - gap) / 2 so both fit on one row. Below 980px the columns
+ * switch to `col-12-medium` (100% width) and this override no longer
+ * applies. */
+.node__gallery > .col-6 {
+  width: calc((100% - 50px) / 2);
+}
+
+@media screen and (max-width: 1280px) {
+  .node__gallery > .col-6 {
+    width: calc((100% - 30px) / 2);
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .node__gallery > .col-6.col-12-medium {
+    width: 100%;
+  }
+}
+
+/* Reset the sidebar-featured negative-offset rule (bead zmf) that
+ * `.box .field--name-field-media-image a.photoswipe` applies. Inside
+ * the gallery, thumbnails should sit flush inside their column cell,
+ * not be pulled up-and-left as if they were a hero-featured image. */
 .node__gallery .field--name-field-media-image a.photoswipe {
+  position: static;
+  left: auto;
+  top: auto;
   margin: 0;
+  width: 100%;
 }
 
 .node__gallery .field--name-field-media-image a.photoswipe img {
