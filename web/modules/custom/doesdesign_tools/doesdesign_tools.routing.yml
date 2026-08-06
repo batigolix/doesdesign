@@ -5,3 +5,11 @@ doesdesign_tools.contact_form:
     _title: 'ContactForm'
   requirements:
     _access: 'TRUE'
+
+doesdesign_tools.home:
+  path: '/home'
+  defaults:
+    _controller: '\Drupal\doesdesign_tools\Controller\HomeController::render'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
