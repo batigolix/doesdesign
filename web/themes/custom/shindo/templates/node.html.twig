@@ -6,10 +6,17 @@
  * AI generated
  *
  * Renders the Dopetrope "featured image + title" pattern for full node
- * displays: `field_media_image.0` is placed inside
- * `<span class="image featured">` above the `<h1 class="node__title">`,
- * mirroring the pattern originally introduced in bead it0 and lost during
- * the shindo theme restructure (see bead doesdesign-f0g).
+ * displays: `field_media_image.0` is rendered above the
+ * `<h1 class="node__title">`, mirroring the pattern originally introduced
+ * in bead it0 and lost during the shindo theme restructure (see bead
+ * doesdesign-f0g).
+ *
+ * The photoswipe field formatter already wraps the `<img>` in an
+ * `<a class="photoswipe" href="...">` element (lightbox trigger), which
+ * matches Dopetrope's `<a class="image featured"><img></a>` structural
+ * pattern. Rather than adding a redundant `<span class="image featured">`
+ * wrapper, the photoswipe anchor is styled as Dopetrope's `.image.featured`
+ * via CSS in shindo-overrides.css (bead doesdesign-zmf).
  *
  * The `<h1>` and optional `field_subtitle` are wrapped in a `<header>`
  * matching Dopetrope's article-header pattern (see bead doesdesign-nbl).
@@ -32,9 +39,7 @@
 
   {% if page %}
     {% if content.field_media_image.0 %}
-      <span class="image featured">
-        {{ content.field_media_image.0 }}
-      </span>
+      {{ content.field_media_image.0 }}
     {% endif %}
 
     <header>
