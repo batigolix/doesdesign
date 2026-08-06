@@ -83,6 +83,18 @@ function doesdesign_tools_form_search_form_alter(&$form, $form_state, $form_id) 
 }
 
 /**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ *
+ * Renames the "Promoted to front page" checkbox on object nodes to
+ * "Tonen op voorpagina" to better reflect its role in the homepage banner.
+ */
+function doesdesign_tools_form_node_object_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if (isset($form['promote']['widget']['value']['#title'])) {
+    $form['promote']['widget']['value']['#title'] = t('Tonen op voorpagina');
+  }
+}
+
+/**
  * Preprocesses node.
  */
 function doesdesign_tools_preprocess_node(&$variables) {
