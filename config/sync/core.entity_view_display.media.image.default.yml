@@ -4,8 +4,8 @@ status: true
 dependencies:
   config:
     - field.field.media.image.field_media_image
+    - image.style.article_hero
     - image.style.extra_large_wide
-    - image.style.medium_wide_508_x_310_
     - media.type.image
   module:
     - photoswipe
@@ -20,8 +20,8 @@ content:
     type: photoswipe_field_formatter
     label: hidden
     settings:
-      photoswipe_thumbnail_style_first: medium_wide_508_x_310_
-      photoswipe_thumbnail_style: medium_wide_508_x_310_
+      photoswipe_thumbnail_style_first: article_hero
+      photoswipe_thumbnail_style: article_hero
       photoswipe_image_style: extra_large_wide
       photoswipe_reference_image_field: ''
       photoswipe_view_mode: ''
