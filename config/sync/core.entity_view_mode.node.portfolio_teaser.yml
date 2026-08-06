@@ -1,0 +1,11 @@
+uuid: 60291a58-2cae-4434-be85-6cad9672cab0
+langcode: nl
+status: true
+dependencies:
+  module:
+    - node
+id: node.portfolio_teaser
+label: 'Portfolio teaser'
+description: null
+targetEntityType: node
+cache: true

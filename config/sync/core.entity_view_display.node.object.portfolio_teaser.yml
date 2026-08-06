@@ -1,0 +1,52 @@
+uuid: c1cc692d-ff47-4714-8654-5d592430b33e
+langcode: nl
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.portfolio_teaser
+    - field.field.node.object.body
+    - field.field.node.object.field_material
+    - field.field.node.object.field_media_image
+    - field.field.node.object.field_price
+    - field.field.node.object.field_show_in_banner
+    - field.field.node.object.field_subtitle
+    - field.field.node.object.field_type
+    - field.field.node.object.field_weight
+    - field.field.node.object.field_year
+    - node.type.object
+  module:
+    - text
+    - user
+id: node.object.portfolio_teaser
+targetEntityType: node
+bundle: object
+mode: portfolio_teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 200
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_media_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: portfolio_teaser
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_dimensions: true
+  field_material: true
+  field_price: true
+  field_show_in_banner: true
+  field_subtitle: true
+  field_type: true
+  field_weight: true
+  field_year: true
+  langcode: true
+  links: true

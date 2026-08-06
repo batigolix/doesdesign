@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Portfolio teaser template for object nodes (bead doesdesign-qdu).
+ *
+ * Renders Dopetrope's "My Portfolio" item markup: a <section class="box">
+ * with a featured image, title, trimmed body, and a "Meer info" action link.
+ *
+ * AI generated.
+ */
+#}
+{% set body_text = content.body|render|striptags|trim %}
+<section{{ attributes.addClass('box') }}>
+  <a href="{{ url }}" class="image featured">
+    {{ content.field_media_image }}
+  </a>
+  <header>
+    <h3><a href="{{ url }}" rel="bookmark">{{ label }}</a></h3>
+  </header>
+  {% if body_text %}
+    <p>{{ body_text }}</p>
+  {% endif %}
+  <footer>
+    <ul class="actions">
+      <li><a href="{{ url }}" class="button alt">Meer info</a></li>
+    </ul>
+  </footer>
+</section>

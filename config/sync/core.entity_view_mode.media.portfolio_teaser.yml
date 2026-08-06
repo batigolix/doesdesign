@@ -1,0 +1,11 @@
+uuid: cb301cc4-d0f7-43a5-9306-d276d1578f14
+langcode: nl
+status: true
+dependencies:
+  module:
+    - media
+id: media.portfolio_teaser
+label: 'Portfolio teaser'
+description: null
+targetEntityType: media
+cache: true

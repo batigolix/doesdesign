@@ -11,6 +11,12 @@
  */
 #}
 {% set display_title = content.field_title|render|striptags|trim ?: label %}
+{% set button_url = '' %}
+{% if content.field_button|render|trim %}
+  {% for item in content.field_button['#items'] %}
+    {% set button_url = item.getUrl()|render %}
+  {% endfor %}
+{% endif %}
 <section{{ attributes.addClass('') }}>
   {{ title_prefix }}
   {% if display_title %}
@@ -23,7 +29,7 @@
       {% set file_item = media.field_media_image.0 %}
       {% set file = file_item.entity %}
       {% if file %}
-        <span class="image featured">
+        <a href="{{ button_url ?: '#' }}" class="image featured">
           {{ {
             '#theme': 'image_style',
             '#style_name': 'small_block',
@@ -31,7 +37,7 @@
             '#alt': file_item.alt,
             '#attributes': {'loading': 'lazy'}
           } }}
-        </span>
+        </a>
       {% endif %}
     {% endif %}
   {% endif %}

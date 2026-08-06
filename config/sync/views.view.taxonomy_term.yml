@@ -3,7 +3,7 @@ langcode: nl
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.alt_teaser
+    - core.entity_view_mode.node.teaser
   module:
     - node
     - taxonomy
@@ -273,7 +273,7 @@ display:
         type: views_query
         options: {  }
       display_extenders: {  }
-      path: taxonomy/term/%
+      path: taxonomy/term-legacy/%
     cache_metadata:
       max-age: -1
       contexts:
