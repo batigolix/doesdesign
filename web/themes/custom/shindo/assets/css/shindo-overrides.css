@@ -116,3 +116,35 @@
     margin: -40px 0 40px -30px;
   }
 }
+
+/* Object gallery grid — bead doesdesign-z1n.
+ *
+ * The .node__gallery row is rendered by node.html.twig underneath the
+ * body/content of a full-page object node. It contains photoswipe
+ * thumbnails (media view mode "gallery", image style gallery_square)
+ * laid out as `col-6 col-12-medium` (two columns on desktop, one on
+ * medium/small viewports).
+ *
+ * Spacing rules:
+ *   - `clear: both` + `margin-top` prevents overlap with any floated
+ *     content or link block sitting directly above the gallery.
+ *   - Column padding matches the rest of the .box content flow.
+ *   - Inner `a.photoswipe` anchors reset the 2em bottom margin defined
+ *     for the hero variant (see .field--name-field-media-image
+ *     a.photoswipe above) so the grid keeps consistent gutters instead
+ *     of double-spacing between rows. */
+.node__gallery {
+  clear: both;
+  margin-top: 2em;
+  padding: 1em 0;
+}
+
+.node__gallery .field--name-field-media-image a.photoswipe {
+  margin: 0;
+}
+
+.node__gallery .field--name-field-media-image a.photoswipe img {
+  width: 100%;
+  height: auto;
+  display: block;
+}

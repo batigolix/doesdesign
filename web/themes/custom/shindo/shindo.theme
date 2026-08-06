@@ -213,6 +213,45 @@ function shindo_preprocess_media(array &$variables): void {
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for node.
+ *
+ * Bead doesdesign-z1n — builds a `gallery_items` render-array on full-page
+ * node.object displays that renders each media entity in `field_media_image`
+ * (deltas 1..N — hero delta 0 stays with its default view mode) via a
+ * dedicated `gallery` media view mode with the `gallery_square` image style.
+ *
+ * Rationale: the node view display renders `field_media_image` through
+ * `entity_reference_entity_view` with a single view mode. The hero needs the
+ * wide `article_hero` style while the grid wants square crops. Twig's
+ * `render()` filter cannot switch view modes per-delta and the project does
+ * not use twig_tweak, so we build the alternative render array here and let
+ * node.html.twig iterate over `gallery_items`.
+ *
+ * AI generated.
+ */
+function shindo_preprocess_node(array &$variables): void {
+  if (empty($variables['node']) || empty($variables['view_mode']) || $variables['view_mode'] !== 'full') {
+    return;
+  }
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  if ($node->bundle() !== 'object' || !$node->hasField('field_media_image')) {
+    return;
+  }
+
+  $view_builder = \Drupal::entityTypeManager()->getViewBuilder('media');
+  $items = [];
+  foreach ($node->get('field_media_image')->referencedEntities() as $delta => $media) {
+    if ($delta === 0) {
+      // Hero — rendered via the default field render in the template.
+      continue;
+    }
+    $items[] = $view_builder->view($media, 'gallery');
+  }
+  $variables['gallery_items'] = $items;
+}
+
+/**
  * Implements hook_preprocess_HOOK() for views_view_fields.
  *
  * Appends the number of published object nodes per material term to the

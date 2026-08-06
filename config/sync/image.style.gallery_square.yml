@@ -1,0 +1,17 @@
+uuid: f3707dca-0043-464b-bbda-a0c08a409f45
+langcode: nl
+status: true
+dependencies:
+  module:
+    - focal_point
+name: gallery_square
+label: 'Gallery square (500×500)'
+effects:
+  2dcb56b3-e316-4096-b41b-7da17e4fdb8d:
+    uuid: 2dcb56b3-e316-4096-b41b-7da17e4fdb8d
+    id: focal_point_scale_and_crop
+    weight: null
+    data:
+      width: 500
+      height: 500
+      crop_type: focal_point

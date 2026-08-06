@@ -8,12 +8,16 @@
  * Renders a Dopetrope-style article page for full node displays:
  * a hero image (delta 0 of `field_media_image`) above the `<header>`,
  * then the `<h1 class="node__title">` and optional `field_subtitle`,
- * followed by the body/other fields, and finally a three-column
- * responsive photoswipe gallery grid containing the remaining deltas
- * (1..N) of `field_media_image` (see beads doesdesign-1f5,
- * doesdesign-9tu, doesdesign-a8f — the hero re-instates the classic
- * Dopetrope featured image while the grid keeps multi-value objects
- * like "Gesp Processor" browsable without rendering delta 0 twice).
+ * followed by the body/other fields, and finally a two-column
+ * responsive photoswipe gallery grid with square thumbnails containing
+ * the remaining deltas (1..N) of `field_media_image` (see beads
+ * doesdesign-1f5, doesdesign-9tu, doesdesign-a8f, doesdesign-z1n — the
+ * hero re-instates the classic Dopetrope featured image while the grid
+ * keeps multi-value objects like "Gesp Processor" browsable without
+ * rendering delta 0 twice. The grid renders each media entity via the
+ * `gallery` media view mode — a dedicated photoswipe formatter using
+ * the `gallery_square` image style — built as `gallery_items` in
+ * shindo_preprocess_node()).
  *
  * The photoswipe field formatter already wraps each `<img>` in an
  * `<a class="photoswipe" href="...">` element (lightbox trigger); by
@@ -67,14 +71,12 @@
       {{ content|without('field_media_image', 'field_subtitle', 'comments', 'links') }}
     </div>
 
-    {% if content.field_media_image['#items']|length > 1 %}
+    {% if gallery_items is defined and gallery_items|length > 0 %}
       <div class="row photoswipe-gallery node__gallery">
-        {% for item in content.field_media_image['#items'] %}
-          {% if loop.index0 > 0 %}
-            <div class="col-4 col-6-medium col-12-small">
-              {{ content.field_media_image[loop.index0] }}
-            </div>
-          {% endif %}
+        {% for gallery_item in gallery_items %}
+          <div class="col-6 col-12-medium">
+            {{ gallery_item }}
+          </div>
         {% endfor %}
       </div>
     {% endif %}
