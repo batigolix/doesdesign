@@ -1,0 +1,16 @@
+// AI generated
+// Reset bullets on Drupal-generated lists — bead doesdesign-098.
+//
+// Defensieve fix: alleen list-style weghalen, NIET padding/margin
+// aanpassen. Dopetrope's main.css definieert `ul { list-style: disc;
+// padding-left: 1em }` verderop; op Drupal-lists (nav, view wrappers,
+// portfolio) willen we geen bullets, maar de padding-left blijft
+// behouden zodat de layout niet verschuift. WYSIWYG body-lists blijven
+// onaangeraakt.
+
+#page-wrapper #nav ul,
+#page-wrapper .banner-list > ul,
+#page-wrapper .item-list > ul,
+#page-wrapper ul.portfolio-list {
+  list-style: none;
+}

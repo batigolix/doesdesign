@@ -1,0 +1,25 @@
+// AI generated
+// Shared variables for shindo-overrides SCSS partials.
+//
+// Kleuren en gutter-waardes centraliseren zodat bead-specifieke
+// styling consistent blijft met Dopetrope en met CSS custom property
+// --shindo-primary uit shindo-colors.css.
+
+$shindo-primary: #252122;
+
+$status-green:  #3ecf5f;
+$status-orange: #f0ad4e;
+$status-red:    #e04836;
+$accent-pink:   #d52349;
+
+// Dopetrope row-gutter per breakpoint (matches .row margin sizes).
+$gutter-xl: 50px;
+$gutter-lg: 30px;
+$gutter-md: 40px;
+$gutter-sm: 20px;
+
+// Breakpoints — mirror Dopetrope's main.css.
+$bp-xl:      1280px;
+$bp-lg:       980px;
+$bp-md:       736px;
+$bp-wide:    1200px;

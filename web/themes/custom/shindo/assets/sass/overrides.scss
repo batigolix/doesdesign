@@ -1,0 +1,22 @@
+// AI generated
+// Shindo theme overrides for Dopetrope upstream CSS.
+//
+// Loaded after main.css (see shindo.libraries.yml) so declarations here
+// win against upstream without needing to edit the vendored Dopetrope
+// stylesheet. Compiled to assets/css/shindo-overrides.css via
+// `npm run build:overrides`.
+//
+// Each partial is scoped to a single bead / concern. See individual
+// _*.scss files for the bead-reference and rationale.
+
+@use "overrides/variables";
+@use "overrides/h1";
+@use "overrides/messages";
+@use "overrides/featured-image";
+@use "overrides/gallery";
+@use "overrides/pager";
+@use "overrides/lists";
+@use "overrides/banner";
+@use "overrides/intro";
+@use "overrides/contextual";
+@use "overrides/typography";

@@ -4,8 +4,10 @@
   "description": "Shindo Drupal 11 theme — Dopetrope port.",
   "private": true,
   "scripts": {
-    "build": "sass --no-source-map assets/sass/main.scss:assets/css/main.css",
-    "watch": "sass --watch assets/sass/main.scss:assets/css/main.css"
+    "build": "npm run build:main && npm run build:overrides",
+    "build:main": "sass --no-source-map assets/sass/main.scss:assets/css/main.css",
+    "build:overrides": "sass --no-source-map --style=compressed assets/sass/overrides.scss:assets/css/shindo-overrides.css",
+    "watch": "sass --watch assets/sass/main.scss:assets/css/main.css assets/sass/overrides.scss:assets/css/shindo-overrides.css"
   },
   "devDependencies": {
     "sass": "^1.77.0"

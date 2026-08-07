@@ -1,0 +1,62 @@
+// AI generated
+// Drupal status messages — bead doesdesign-w8y.
+//
+// Style Drupal's .messages / .messages--status / --warning / --error
+// containers to fit Dopetrope's callout aesthetic. Selectors scoped to
+// #page-wrapper so admin UI stays untouched.
+//
+// Note: shindo's base theme is stable, whose status-messages.html.twig
+// does NOT emit .messages classes — it renders bare [data-drupal-messages]
+// containers with [role="contentinfo"] children (and [role="alert"] for
+// errors). Selectors below cover both markup variants so the styling holds
+// if a template override is added later.
+
+@use "variables" as *;
+
+#page-wrapper {
+  [data-drupal-messages] {
+    margin: 0 0 2em 0;
+  }
+
+  .messages-list {
+    margin: 0 0 2em 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  [data-drupal-messages] > [role="contentinfo"],
+  .messages,
+  .messages-list__item,
+  .messages__item {
+    margin: 0 0 5em 0;
+    padding: 1em 1.25em;
+    border-left: 4px solid $status-green;
+    background: rgba($status-green, 0.08);
+    color: $shindo-primary;
+    border-radius: 2px;
+  }
+
+  .messages--status,
+  .messages-list__item--status {
+    border-left-color: $status-green;
+    background: rgba($status-green, 0.08);
+  }
+
+  .messages--warning,
+  .messages-list__item--warning {
+    border-left-color: $status-orange;
+    background: rgba($status-orange, 0.10);
+  }
+
+  .messages--error,
+  .messages-list__item--error,
+  [data-drupal-messages] > [role="contentinfo"]:has([role="alert"]) {
+    border-left-color: $status-red;
+    background: rgba($status-red, 0.10);
+  }
+
+  [data-drupal-messages] a,
+  .messages a {
+    text-decoration: underline;
+  }
+}

@@ -1,0 +1,44 @@
+// AI generated
+// Intro column gap — bead doesdesign-050.
+//
+// Dopetrope's `.row` uses a negative-margin gutter (`margin-left: -50px` on
+// the row + `padding: 50px 0 0 50px` on each child). That works but bleeds
+// outside the container and depends on top padding — which caused visual
+// inconsistency between the intro columns compared to the demo.
+//
+// Fix (mirrors the .node__gallery pattern from bead z1n): switch to modern
+// flex + gap. Zero the row's negative offsets and column padding, then use
+// `gap` for gutters. Gutter values mirror Dopetrope's per-breakpoint `.row`
+// margin sizes (50 / 40 / 20 px). Below 736px columns stack vertically
+// (Dopetrope's `col-12-medium` rule already does the width switch; we just
+// tighten the gap for the stacked layout).
+
+@use "variables" as *;
+
+#page-wrapper #intro .row {
+  margin-top: 0;
+  margin-left: 0;
+  gap: $gutter-xl;
+
+  > .col-4 {
+    padding: 0;
+    flex: 1;
+  }
+}
+
+@media screen and (max-width: $bp-lg) {
+  #page-wrapper #intro .row {
+    gap: $gutter-md;
+  }
+}
+
+@media screen and (max-width: $bp-md) {
+  #page-wrapper #intro .row {
+    gap: $gutter-sm;
+
+    > .col-4 {
+      flex: none;
+      width: 100%;
+    }
+  }
+}

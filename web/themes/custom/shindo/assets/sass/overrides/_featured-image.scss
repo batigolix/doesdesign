@@ -1,0 +1,56 @@
+// AI generated
+// Featured image anchor styling — bead doesdesign-zmf.
+//
+// Dopetrope's featured-image pattern is
+//   <a class="image featured" href="..."><img></a>
+// (see https://html5up.net/uploads/demos/dopetrope/left-sidebar.html).
+//
+// The photoswipe field formatter already renders each media image inside
+// <a class="photoswipe" href="lightbox-image-url">, which structurally
+// matches Dopetrope's anchor. Rather than adding a redundant wrapper,
+// we style that anchor as Dopetrope's .image.featured — the lightbox
+// behaviour is preserved and the visual pattern matches the demo.
+//
+// Selectors mirror main.css:
+//   - .image + .image.featured (base rules, lines ~1721-1745)
+//   - .box .image.featured (sidebar variant, lines ~1586-1592)
+//   - small-viewport overrides (lines ~2790-2798)
+//
+// Scope: only anchors inside the media-image field, so unrelated
+// photoswipe usage elsewhere is untouched.
+
+@use "variables" as *;
+
+.field--name-field-media-image a.photoswipe {
+  // .image base
+  display: inline-block;
+  outline: 0;
+  // .image.featured
+  display: block;
+  width: 100%;
+  margin: 0 0 2em 0;
+
+  img {
+    // .image img
+    display: block;
+    width: 100%;
+  }
+}
+
+// Sidebar variant: negative margin pulls image outside the .box padding,
+// matching Dopetrope's flush-top-left sidebar featured image.
+.box .field--name-field-media-image a.photoswipe {
+  position: relative;
+  width: auto;
+  left: 1.75em;
+  top: 1.75em;
+  margin: -4.5em 0 4.25em -3.5em;
+}
+
+@media screen and (max-width: $bp-md) {
+  .box .field--name-field-media-image a.photoswipe {
+    left: 15px;
+    top: 15px;
+    margin: -40px 0 40px -30px;
+  }
+}
