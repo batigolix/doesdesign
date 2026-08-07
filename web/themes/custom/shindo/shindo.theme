@@ -30,8 +30,7 @@ use Drupal\taxonomy\TermInterface;
  *
  * AI generated.
  *
- * @param array<string, mixed> $attachments
- *   The page attachments render array, altered by reference.
+ * @phpstan-param array<string, mixed> $attachments
  */
 function shindo_page_attachments_alter(array &$attachments): void {
   $attachments['#attached']['html_head'][] = [
@@ -67,10 +66,8 @@ function shindo_page_attachments_alter(array &$attachments): void {
  * needs a full-width layout without sidebar_first for the 'type' vocabulary
  * (URL /soort-sieraden/*) to host the portfolio grid view.
  *
- * @param array<int, string> $suggestions
- *   Existing theme suggestions, altered by reference.
- * @param array<string, mixed> $variables
- *   Template variables for the base theme hook.
+ * @phpstan-param array<int, string> $suggestions
+ * @phpstan-param array<string, mixed> $variables
  */
 function shindo_theme_suggestions_page_alter(array &$suggestions, array $variables): void {
   $route_match = \Drupal::routeMatch();
@@ -95,8 +92,7 @@ function shindo_theme_suggestions_page_alter(array &$suggestions, array $variabl
  * we resolve the current taxonomy term here and expose its name for
  * page--taxonomy-term--type.html.twig.
  *
- * @param array<string, mixed> $variables
- *   Template variables, altered by reference.
+ * @phpstan-param array<string, mixed> $variables
  */
 function shindo_preprocess_page__taxonomy_term__type(array &$variables): void {
   $term = \Drupal::routeMatch()->getParameter('taxonomy_term');
@@ -112,10 +108,8 @@ function shindo_preprocess_page__taxonomy_term__type(array &$variables): void {
  * (e.g. block--region--sidebar-first.html.twig for Dopetrope .box) can
  * override the default block markup.
  *
- * @param array<int, string> $suggestions
- *   Existing theme suggestions, altered by reference.
- * @param array<string, mixed> $variables
- *   Template variables for the base theme hook.
+ * @phpstan-param array<int, string> $suggestions
+ * @phpstan-param array<string, mixed> $variables
  */
 function shindo_theme_suggestions_block_alter(array &$suggestions, array $variables): void {
   $id = $variables['elements']['#id'] ?? NULL;
@@ -138,8 +132,7 @@ function shindo_theme_suggestions_block_alter(array &$suggestions, array $variab
  * HSL components so SCSS can derive hover/muted/border variants via
  * calc() on the lightness.
  *
- * @param array<string, mixed> $variables
- *   Template variables, altered by reference.
+ * @phpstan-param array<string, mixed> $variables
  */
 function shindo_preprocess_html(array &$variables): void {
   $settings = \Drupal::service(ThemeSettingsProvider::class);
@@ -177,17 +170,17 @@ function _shindo_html_build_style_declarations(ThemeSettingsProvider $settings):
   // overrides a Dopetrope hardcoded colour via var(--shindo-*) in the
   // shindo-*.css files. Kept separate variables so typography / button /
   // accent / background can vary independently. See individual beads:
-  // - primary_color         (c98)  → --shindo-primary        (shindo-colors.css)
-  // - button_color          (92zi) → --shindo-button         (shindo-overrides.css)
-  // - footer_heading_color  (b2u)  → --shindo-footer-heading (shindo-colors.css)
-  // - accent_color          (0cpz) → --shindo-accent         (shindo-overrides.css)
-  // - background_color      (6kj)  → --shindo-bg-color       (shindo-bg.css)
+  // - primary_color         (c98)  → --shindo-primary.
+  // - button_color          (92zi) → --shindo-button.
+  // - footer_heading_color  (b2u)  → --shindo-footer-heading.
+  // - accent_color          (0cpz) → --shindo-accent.
+  // - background_color      (6kj)  → --shindo-bg-color.
   $shindo_vars = [
-    'primary_color'        => ['--shindo-primary',        '#252122'],
-    'button_color'         => ['--shindo-button',         '#252122'],
+    'primary_color'        => ['--shindo-primary', '#252122'],
+    'button_color'         => ['--shindo-button', '#252122'],
     'footer_heading_color' => ['--shindo-footer-heading', '#ffffff'],
-    'accent_color'         => ['--shindo-accent',         '#d52349'],
-    'background_color'     => ['--shindo-bg-color',       '#252122'],
+    'accent_color'         => ['--shindo-accent', '#d52349'],
+    'background_color'     => ['--shindo-bg-color', '#252122'],
   ];
 
   $styles = [];
@@ -355,8 +348,7 @@ function _shindo_hex_to_hsl(string $hex_string): array {
  *
  * AI generated.
  *
- * @param array<string, mixed> $variables
- *   Template variables, altered by reference.
+ * @phpstan-param array<string, mixed> $variables
  */
 function shindo_preprocess_media(array &$variables): void {
   unset($variables['title_suffix']['contextual_links']);
@@ -385,8 +377,7 @@ function shindo_preprocess_media(array &$variables): void {
  *
  * AI generated.
  *
- * @param array<string, mixed> $variables
- *   Template variables, altered by reference.
+ * @phpstan-param array<string, mixed> $variables
  */
 function shindo_preprocess_node(array &$variables): void {
   if (empty($variables['node']) || empty($variables['view_mode'])) {
@@ -469,8 +460,7 @@ function _shindo_node_add_banner_bg(array &$variables, NodeInterface $node): voi
  * cached in a static variable to avoid N+1 queries when rendering the
  * sidebar block.
  *
- * @param array<string, mixed> $variables
- *   Template variables, altered by reference.
+ * @phpstan-param array<string, mixed> $variables
  */
 function shindo_preprocess_views_view_fields(array &$variables): void {
   /** @var \Drupal\views\ViewExecutable $view */

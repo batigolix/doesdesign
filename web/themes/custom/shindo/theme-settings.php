@@ -12,10 +12,7 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Implements hook_form_FORM_ID_alter() for system_theme_settings.
  *
- * @param array<string, mixed> $form
- *   The form array, altered by reference.
- * @param \Drupal\Core\Form\FormStateInterface $form_state
- *   The current form state.
+ * @phpstan-param array<string, mixed> $form
  */
 function shindo_form_system_theme_settings_alter(array &$form, FormStateInterface $form_state): void {
   $form['shindo_typography'] = [

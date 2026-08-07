@@ -9,16 +9,8 @@ use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
  * Implements hook_help().
- *
- * @param string $route_name
- *   The current route name.
- * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
- *   The current route match.
- *
- * @return string
- *   The help text for the route.
  */
-function doesdesign_local_tasks_help($route_name, RouteMatchInterface $route_match): string {
+function doesdesign_local_tasks_help(string $route_name, RouteMatchInterface $route_match): string {
   switch ($route_name) {
     // Main module help for the doesdesign_local_tasks module.
     case 'help.page.doesdesign_local_tasks':
@@ -35,8 +27,7 @@ function doesdesign_local_tasks_help($route_name, RouteMatchInterface $route_mat
 /**
  * Implements hook_preprocess_page().
  *
- * @param array<string, mixed> $variables
- *   Template variables.
+ * @phpstan-param array<string, mixed> $variables
  */
 function doesdesign_local_tasks_preprocess_page(array &$variables): void {
   if ($variables['logged_in'] && !\Drupal::service('router.admin_context')->isAdminRoute()) {
@@ -47,8 +38,7 @@ function doesdesign_local_tasks_preprocess_page(array &$variables): void {
 /**
  * Implements hook_theme_registry_alter().
  *
- * @param array<string, mixed> $theme_registry
- *   The theme registry to alter.
+ * @phpstan-param array<string, mixed> $theme_registry
  */
 function doesdesign_local_tasks_theme_registry_alter(array &$theme_registry): void {
 
