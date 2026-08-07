@@ -4,7 +4,7 @@
  * @file
  * Deploy hooks for doesdesign_tools.
  *
- * AI generated
+ * AI generated.
  */
 
 declare(strict_types=1);
@@ -14,7 +14,7 @@ use Drupal\taxonomy\Entity\Vocabulary;
 /**
  * Skip fontyourface_update_8002 if vocabs already exist (bead u6mj).
  *
- * fontyourface's update hook 8002 tries to create vocabularies + fields
+ * The fontyourface update hook 8002 tries to create vocabularies + fields
  * (font_classification, languages_supported, font_tags, font_foundry,
  * font_designer and their field_* attachments) that already ship via
  * config/sync in this project. Because `drush deploy` runs `cim` before
