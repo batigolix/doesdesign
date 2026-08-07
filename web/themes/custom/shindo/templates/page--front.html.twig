@@ -3,19 +3,19 @@
  * @file
  * Front page template — Dopetrope demo homepage layout.
  *
- * Baseert op https://html5up.net/uploads/demos/dopetrope/index.html:
- * - Banner ("id=banner") en Intro featurettes ("class=features") zitten in
- *   het header <section> — dus boven de main content.
- * - Main splitst content + sidebar_first zoals de default page template.
- * - Footer is identiek aan page.html.twig.
+ * Based on https://html5up.net/uploads/demos/dopetrope/index.html:
+ * - Banner ("id=banner") and Intro featurettes ("class=features") live inside
+ *   the header <section> — i.e. above the main content.
+ * - Main splits content + sidebar_first like the default page template.
+ * - Footer is identical to page.html.twig.
  *
- * Banner-slot: page.pre_main region ("Banner" in shindo.info.yml). Plaats hier
- * een block met markup <section id="banner"><header><h2>…</h2><p>…</p></header></section>
- * om de Dopetrope hero over te nemen.
+ * Banner slot: page.pre_main region ("Banner" in shindo.info.yml). Place a
+ * block here with markup <section id="banner"><header><h2>…</h2><p>…</p></header></section>
+ * to reuse the Dopetrope hero.
  *
- * Features: drie configurable blocks in de regions intro_col1/2/3 (zie
- * shindo.info.yml). Basic Blocks worden geplaatst via block.block.shindo_intro_col*.yml
- * en zijn zichtbaar op <front> only. Site-eigenaar bewerkt content via
+ * Features: three configurable blocks in the intro_col1/2/3 regions (see
+ * shindo.info.yml). Basic Blocks are placed via block.block.shindo_intro_col*.yml
+ * and are visible on <front> only. The site owner edits the content via
  * /admin/content/block.
  *
  * AI generated (bead doesdesign-pil, ep5).
@@ -40,14 +40,14 @@
        block--system-menu-block--main.html.twig). #}
     {{ page.primary_menu }}
 
-    {# Banner — Drupal pre_main region ("Banner" label). Plaats hier één
-       block met de Dopetrope hero-markup. Voorbeeld:
-       <section id="banner"><header><h2>Titel</h2><p>Ondertitel</p></header></section>
+    {# Banner — Drupal pre_main region ("Banner" label). Place a single
+       block here with the Dopetrope hero markup. Example:
+       <section id="banner"><header><h2>Title</h2><p>Subtitle</p></header></section>
     #}
     {{ page.pre_main }}
 
-    {# Intro featurettes — Dopetrope "id=intro" met drie kolommen.
-       Content wordt beheerd via de regions intro_col1/2/3 (Basic Blocks). #}
+    {# Intro featurettes — Dopetrope "id=intro" with three columns.
+       Content is managed via the intro_col1/2/3 regions (Basic Blocks). #}
     <section id="intro" class="container">
       <div class="row">
         <div class="col-4 col-12-medium first">

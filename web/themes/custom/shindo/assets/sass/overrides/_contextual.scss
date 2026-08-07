@@ -1,14 +1,14 @@
 // AI generated
-// Contextual trigger pencil-icon herstellen — bead doesdesign-w8yy.
-// Bead 0zb reset in main.css gebruikt `background: revert` (shorthand),
-// wat ook `background-image` naar de UA-default (none) reset. Drupal's
-// contextual.icons.theme.css levert het pencil-icoontje via
-// `background-image: url(...svg)` op `.contextual .trigger`. Onze
-// `#page-wrapper` overrule is specifieker en verstopt daardoor het icon.
+// Restore contextual trigger pencil icon — bead doesdesign-w8yy.
+// The bead 0zb reset in main.css uses `background: revert` (shorthand),
+// which also resets `background-image` to the UA default (none). Drupal's
+// contextual.icons.theme.css supplies the pencil icon via
+// `background-image: url(...svg)` on `.contextual .trigger`. Our
+// `#page-wrapper` override is more specific and therefore hides the icon.
 //
-// Hier zetten we alleen background-image / -repeat / -position / -size
-// expliciet terug naar de core rule, terwijl de neutrale grijze
-// background-color (bead 0zb) en de rest van de reset intact blijven.
+// Here we only set background-image / -repeat / -position / -size back
+// explicitly to the core rule, while the neutral grey background-color
+// (bead 0zb) and the rest of the reset stay intact.
 
 #page-wrapper .contextual .trigger,
 #page-wrapper .contextual .trigger:hover,
