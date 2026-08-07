@@ -22,7 +22,7 @@
 }
 
 // main.css r1875 — dates block arrow (border-left) matching the pill.
-#page-wrapper ul.dates .date:after {
+#page-wrapper ul.dates .date::after {
   border-left-color: var(--shindo-accent, #{$accent-pink});
 }
 
@@ -33,7 +33,7 @@
 
 // main.css r2067 — .icon.featured downward arrow (border-top) matching
 // the pill.
-#page-wrapper .icon.featured:after {
+#page-wrapper .icon.featured::after {
   border-top-color: var(--shindo-accent, #{$accent-pink});
 }
 
