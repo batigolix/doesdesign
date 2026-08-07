@@ -38,8 +38,14 @@ class GetTermName extends ProcessPluginBase {
 
   /**
    * Fetches personid value from the D7 database.
+   *
+   * @param array{tid: int|string} $value
+   *   The source value containing the taxonomy term ID.
+   *
+   * @return mixed
+   *   The term name, or FALSE if not found.
    */
-  private function fetchDatabaseValue($value) {
+  private function fetchDatabaseValue(array $value) {
     $connection = Database::getConnection('default', 'migrate');
     $query = $connection->select('taxonomy_term_data', 'ttd');
     $query->condition('ttd.tid', $value['tid']);

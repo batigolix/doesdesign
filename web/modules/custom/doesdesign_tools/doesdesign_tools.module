@@ -11,8 +11,11 @@ use Drupal\Core\Link;
 
 /**
  * Implements hook_theme().
+ *
+ * @return array<string, array<string, mixed>>
+ *   The theme registry entries.
  */
-function doesdesign_tools_theme() {
+function doesdesign_tools_theme(): array {
   return [
     'slideshow_block' => [
       'variables' => [
@@ -24,8 +27,15 @@ function doesdesign_tools_theme() {
 
 /**
  * Sends mail.
+ *
+ * @param string $key
+ *   The mail template key.
+ * @param array<string, mixed> $message
+ *   The message array, altered by reference.
+ * @param array<string, mixed> $params
+ *   Parameters supplied by the caller.
  */
-function doesdesign_tools_mail($key, &$message, $params) {
+function doesdesign_tools_mail(string $key, array &$message, array $params): void {
   $options = [
     'langcode' => $message['langcode'],
   ];
@@ -40,8 +50,15 @@ function doesdesign_tools_mail($key, &$message, $params) {
 
 /**
  * Implements hook_form_FORM_ID_alter().
+ *
+ * @param array<string, mixed> $form
+ *   The form array, altered by reference.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The current form state.
+ * @param string $form_id
+ *   The form ID.
  */
-function doesdesign_tools_form_contact_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+function doesdesign_tools_form_contact_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
 
   \Drupal::service('honeypot')->addFormProtection($form, $form_state, [
     'honeypot',
@@ -51,8 +68,15 @@ function doesdesign_tools_form_contact_form_alter(&$form, FormStateInterface $fo
 
 /**
  * Implements hook_form_FORM_ID_alter().
+ *
+ * @param array<string, mixed> $form
+ *   The form array, altered by reference.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The current form state.
+ * @param string $form_id
+ *   The form ID.
  */
-function doesdesign_tools_form_search_form_alter(&$form, $form_state, $form_id) {
+function doesdesign_tools_form_search_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
   unset($form['help_link']);
 }
 
@@ -61,8 +85,15 @@ function doesdesign_tools_form_search_form_alter(&$form, $form_state, $form_id) 
  *
  * Renames the "Promoted to front page" checkbox on object nodes to
  * "Tonen op voorpagina" to better reflect its role in the homepage banner.
+ *
+ * @param array<string, mixed> $form
+ *   The form array, altered by reference.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The current form state.
+ * @param string $form_id
+ *   The form ID.
  */
-function doesdesign_tools_form_node_object_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+function doesdesign_tools_form_node_object_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
   if (isset($form['promote']['widget']['value']['#title'])) {
     $form['promote']['widget']['value']['#title'] = t('Tonen op voorpagina');
   }
@@ -70,8 +101,11 @@ function doesdesign_tools_form_node_object_form_alter(&$form, FormStateInterface
 
 /**
  * Preprocesses node.
+ *
+ * @param array<string, mixed> $variables
+ *   Template variables, altered by reference.
  */
-function doesdesign_tools_preprocess_node(&$variables) {
+function doesdesign_tools_preprocess_node(array &$variables): void {
   $type = $variables['node']->getType();
   if ($type == "object") {
     $label = $variables['node']->label();
@@ -93,8 +127,15 @@ function doesdesign_tools_preprocess_node(&$variables) {
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter() for taxonomies.
+ *
+ * @param array<int, string> $suggestions
+ *   Existing theme suggestions, altered by reference.
+ * @param array<string, mixed> $vars
+ *   Template variables from the base theme hook.
+ * @param string $hook
+ *   The theme hook name.
  */
-function doesdesign_tools_theme_suggestions_taxonomy_term_alter(&$suggestions, $vars, $hook) {
+function doesdesign_tools_theme_suggestions_taxonomy_term_alter(array &$suggestions, array $vars, string $hook): void {
 
   /** @var \Drupal\taxonomy\TermInterface $term */
   $term = $vars['elements']['#taxonomy_term'];

@@ -18,6 +18,9 @@ class HomeController extends ControllerBase {
 
   /**
    * Empty render output — blocks/regions provide the homepage content.
+   *
+   * @return array<string, mixed>
+   *   The render array with only cache metadata.
    */
   public function render(): array {
     return [

@@ -36,6 +36,20 @@ final class MenuLinkUri extends ProcessPluginBase implements ContainerFactoryPlu
    */
   protected LoggerInterface $logger;
 
+  /**
+   * Constructs a MenuLinkUri plugin.
+   *
+   * @param array<string, mixed> $configuration
+   *   Plugin configuration.
+   * @param string $plugin_id
+   *   The plugin ID.
+   * @param mixed $plugin_definition
+   *   The plugin definition.
+   * @param \Drupal\migrate\MigrateLookupInterface $migrate_lookup
+   *   The migrate lookup service.
+   * @param \Psr\Log\LoggerInterface $logger
+   *   Logger channel.
+   */
   public function __construct(
     array $configuration,
     $plugin_id,
@@ -50,6 +64,9 @@ final class MenuLinkUri extends ProcessPluginBase implements ContainerFactoryPlu
 
   /**
    * {@inheritdoc}
+   *
+   * @param array<string, mixed> $configuration
+   *   Plugin configuration.
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     return new static(

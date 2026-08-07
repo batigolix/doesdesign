@@ -60,6 +60,14 @@ class ContactForm extends FormBase {
 
   /**
    * {@inheritdoc}
+   *
+   * @param array<string, mixed> $form
+   *   The form array.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current form state.
+   *
+   * @return array<string, mixed>
+   *   The build form array.
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form['contact'] = [
@@ -115,8 +123,13 @@ class ContactForm extends FormBase {
 
   /**
    * {@inheritdoc}
+   *
+   * @param array<string, mixed> $form
+   *   The form array.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current form state.
    */
-  public function validateForm(array &$form, FormStateInterface $form_state) {
+  public function validateForm(array &$form, FormStateInterface $form_state): void {
     $tools_string = strtolower($form_state->getValue('tools'));
     $letters = str_split($tools_string);
     $doesdesign_letters = str_split('doesdesign.nl');
@@ -130,8 +143,13 @@ class ContactForm extends FormBase {
 
   /**
    * {@inheritdoc}
+   *
+   * @param array<string, mixed> $form
+   *   The form array.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current form state.
    */
-  public function submitForm(array &$form, FormStateInterface $form_state) {
+  public function submitForm(array &$form, FormStateInterface $form_state): void {
     $telephone = $form_state->getValue('telephone');
     $name = $form_state->getValue('name');
     $message = $form_state->getValue('message');

@@ -2,7 +2,7 @@
 # Extensions (mglaman/phpstan-drupal, phpstan-deprecation-rules) are auto-loaded
 # by phpstan/extension-installer — no manual includes required.
 parameters:
-    level: 5
+    level: 6
     paths:
         - web/modules/custom
         - web/themes/custom
@@ -18,3 +18,13 @@ parameters:
             message: '#Drupal calls should be avoided in classes#'
             paths:
                 - web/themes/custom/*
+        # Level 6: Drupal form hooks/methods declare narrower array<string, mixed>
+        # for readability, but call untyped Drupal core / contrib APIs
+        # (parent::validateForm, honeypot::addFormProtection) that take plain
+        # `array &$form`. The variance check on by-ref parameters is not fixable
+        # without weakening the docblock or patching contrib code.
+        -
+            identifier: parameterByRef.type
+            paths:
+                - web/modules/custom/doesdesign_tools/doesdesign_tools.module
+                - web/modules/custom/doesdesign_tools/src/Form/ContactForm.php

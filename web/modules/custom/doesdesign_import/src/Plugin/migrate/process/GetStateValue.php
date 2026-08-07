@@ -40,7 +40,7 @@ final class GetStateValue extends ProcessPluginBase implements ContainerFactoryP
   /**
    * Constructs a GetStateValue plugin.
    *
-   * @param array $configuration
+   * @param array<string, mixed> $configuration
    *   The plugin configuration.
    * @param string $plugin_id
    *   The plugin ID.
@@ -56,6 +56,9 @@ final class GetStateValue extends ProcessPluginBase implements ContainerFactoryP
 
   /**
    * {@inheritdoc}
+   *
+   * @param array<string, mixed> $configuration
+   *   Plugin configuration.
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     return new static(

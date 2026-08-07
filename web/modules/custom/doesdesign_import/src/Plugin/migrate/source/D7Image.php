@@ -30,6 +30,9 @@ class D7Image extends SourcePluginBase {
 
   /**
    * {@inheritdoc}
+   *
+   * @return array<string, array<string, mixed>>
+   *   The source identifier definitions.
    */
   public function getIds() {
     $ids = [
@@ -44,6 +47,9 @@ class D7Image extends SourcePluginBase {
 
   /**
    * {@inheritdoc}
+   *
+   * @return array<string, \Drupal\Core\StringTranslation\TranslatableMarkup>
+   *   Available source fields keyed by field name.
    */
   public function fields() {
     return [
@@ -63,6 +69,9 @@ class D7Image extends SourcePluginBase {
 
   /**
    * {@inheritdoc}
+   *
+   * @return array<string, mixed>
+   *   The plugin configuration.
    */
   public function getConfiguration() {
     return $this->configuration;
@@ -70,6 +79,9 @@ class D7Image extends SourcePluginBase {
 
   /**
    * Fetches image data from the database.
+   *
+   * @return array<int, \stdClass>
+   *   List of file_managed records for D7 images.
    */
   private function fetchItems() {
     $connection = Database::getConnection('default', 'migrate');
@@ -99,6 +111,7 @@ class D7Image extends SourcePluginBase {
    */
   protected function initializeIterator() {
     $items = $this->fetchItems();
+    /** @var array<int, array<string, mixed>> $rows */
     $rows = [];
     if ($items) {
       foreach ($items as $item) {

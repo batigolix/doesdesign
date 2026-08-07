@@ -46,6 +46,9 @@ class D7FilesInUse extends SourcePluginBase {
 
   /**
    * {@inheritdoc}
+   *
+   * @return array<string, array<string, string>>
+   *   The source identifier definitions.
    */
   public function getIds() {
     $ids = [
@@ -58,6 +61,9 @@ class D7FilesInUse extends SourcePluginBase {
 
   /**
    * {@inheritdoc}
+   *
+   * @return array<string, string>
+   *   Available source fields keyed by field name.
    */
   public function fields() {
     return [];
@@ -72,6 +78,9 @@ class D7FilesInUse extends SourcePluginBase {
 
   /**
    * {@inheritdoc}
+   *
+   * @return array<string, mixed>
+   *   The plugin configuration.
    */
   public function getConfiguration() {
     return $this->configuration;
@@ -79,8 +88,11 @@ class D7FilesInUse extends SourcePluginBase {
 
   /**
    * Fetches image data from the database.
+   *
+   * @return array<int, \stdClass>
+   *   List of file_managed records.
    */
-  private function fetchItems() {
+  private function fetchItems(): array {
     $connection = Database::getConnection('default', 'migrate');
     $fields = $this->configuration['fields'];
     $items = [];
@@ -131,7 +143,7 @@ class D7FilesInUse extends SourcePluginBase {
    * @param \Drupal\Core\Database\Connection $connection
    *   The D7 database connection.
    *
-   * @return array
+   * @return array<int, \stdClass>
    *   Array of file_managed record objects.
    */
   private function fetchInlineBodyFiles($connection) {
@@ -193,6 +205,7 @@ class D7FilesInUse extends SourcePluginBase {
    */
   protected function initializeIterator() {
     $items = $this->fetchItems();
+    /** @var array<int, array<string, mixed>> $rows */
     $rows = [];
     $public_path = $this->configuration['constants']['d7_public_path'];
     $private_path = $this->configuration['constants']['d7_private_path'];

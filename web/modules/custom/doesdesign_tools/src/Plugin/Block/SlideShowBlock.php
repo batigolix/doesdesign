@@ -31,6 +31,9 @@ final class SlideShowBlock extends BlockBase implements ContainerFactoryPluginIn
 
   /**
    * {@inheritdoc}
+   *
+   * @param array<string, mixed> $configuration
+   *   Plugin configuration.
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     $instance = new static($configuration, $plugin_id, $plugin_definition);
@@ -40,6 +43,9 @@ final class SlideShowBlock extends BlockBase implements ContainerFactoryPluginIn
 
   /**
    * {@inheritdoc}
+   *
+   * @return array<string, mixed>
+   *   The default block configuration.
    */
   public function defaultConfiguration() {
     return [
@@ -51,6 +57,14 @@ final class SlideShowBlock extends BlockBase implements ContainerFactoryPluginIn
 
   /**
    * {@inheritdoc}
+   *
+   * @param array<string, mixed> $form
+   *   The parent form array.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current form state.
+   *
+   * @return array<string, mixed>
+   *   The augmented block configuration form.
    */
   public function blockForm($form, FormStateInterface $form_state) {
     $form = parent::blockForm($form, $form_state);
@@ -88,8 +102,13 @@ final class SlideShowBlock extends BlockBase implements ContainerFactoryPluginIn
 
   /**
    * {@inheritdoc}
+   *
+   * @param array<string, mixed> $form
+   *   The block form array.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current form state.
    */
-  public function blockSubmit($form, FormStateInterface $form_state) {
+  public function blockSubmit($form, FormStateInterface $form_state): void {
     parent::blockSubmit($form, $form_state);
     $this->configuration['items'] = $form_state->getValue('items');
     $this->configuration['order'] = $form_state->getValue('order');
@@ -98,6 +117,9 @@ final class SlideShowBlock extends BlockBase implements ContainerFactoryPluginIn
 
   /**
    * {@inheritdoc}
+   *
+   * @return array<string, mixed>
+   *   The block render array, or [] when no slides are available.
    */
   public function build() {
     $nodes = $this->loadPromotedNodes();
@@ -158,7 +180,7 @@ final class SlideShowBlock extends BlockBase implements ContainerFactoryPluginIn
    * @param mixed $node
    *   Candidate node entity (typed loosely to allow the isinstance check).
    *
-   * @return array|null
+   * @return array<string, mixed>|null
    *   The slide render array, or NULL when required media is missing.
    */
   private function buildSlide($node): ?array {
@@ -193,7 +215,7 @@ final class SlideShowBlock extends BlockBase implements ContainerFactoryPluginIn
     if (!$node->hasField('field_media_image') || $node->get('field_media_image')->isEmpty()) {
       return NULL;
     }
-    /** @var \Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem $media_field */
+    /** @var \Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem<\Drupal\media\MediaInterface> $media_field */
     $media_field = $node->get('field_media_image')->first();
     $media = $media_field->entity;
     return $media instanceof MediaInterface ? $media : NULL;
@@ -206,7 +228,7 @@ final class SlideShowBlock extends BlockBase implements ContainerFactoryPluginIn
     if (!$media->hasField('field_media_image') || $media->get('field_media_image')->isEmpty()) {
       return NULL;
     }
-    /** @var \Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem $file_field */
+    /** @var \Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem<\Drupal\file\FileInterface> $file_field */
     $file_field = $media->get('field_media_image')->first();
     $file = $file_field->entity;
     return $file instanceof FileInterface ? $file : NULL;

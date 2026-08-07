@@ -80,6 +80,8 @@ final class BodyInlineFiles extends ProcessPluginBase implements ContainerFactor
    *   The file URL generator service.
    * @param \Psr\Log\LoggerInterface $logger
    *   The logger channel for doesdesign_import.
+   *
+   * @phpstan-param array<string, mixed> $configuration
    */
   public function __construct(
     array $configuration,
@@ -99,6 +101,9 @@ final class BodyInlineFiles extends ProcessPluginBase implements ContainerFactor
 
   /**
    * {@inheritdoc}
+   *
+   * @param array<string, mixed> $configuration
+   *   Plugin configuration.
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     return new static(
@@ -314,7 +319,7 @@ final class BodyInlineFiles extends ProcessPluginBase implements ContainerFactor
    * img attributes. The style attribute is removed and class="image-border"
    * is added.
    *
-   * @param array $matches
+   * @param array<int, string> $matches
    *   Regex matches: [0] full tag, [1] attrs before style, [2] style value,
    *   [3] attrs after style.
    *

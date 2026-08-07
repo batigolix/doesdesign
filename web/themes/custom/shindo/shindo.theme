@@ -24,6 +24,11 @@ use Drupal\taxonomy\TermInterface;
  * the term id and %, not the vocabulary machine name — bead doesdesign-e2r
  * needs a full-width layout without sidebar_first for the 'type' vocabulary
  * (URL /soort-sieraden/*) to host the portfolio grid view.
+ *
+ * @param array<int, string> $suggestions
+ *   Existing theme suggestions, altered by reference.
+ * @param array<string, mixed> $variables
+ *   Template variables for the base theme hook.
  */
 function shindo_theme_suggestions_page_alter(array &$suggestions, array $variables): void {
   $route_match = \Drupal::routeMatch();
@@ -47,6 +52,9 @@ function shindo_theme_suggestions_page_alter(array &$suggestions, array $variabl
  * not populate a `page_title` variable on page templates by default, so
  * we resolve the current taxonomy term here and expose its name for
  * page--taxonomy-term--type.html.twig.
+ *
+ * @param array<string, mixed> $variables
+ *   Template variables, altered by reference.
  */
 function shindo_preprocess_page__taxonomy_term__type(array &$variables): void {
   $term = \Drupal::routeMatch()->getParameter('taxonomy_term');
@@ -61,6 +69,11 @@ function shindo_preprocess_page__taxonomy_term__type(array &$variables): void {
  * Adds a block--region--{region} suggestion so per-region wrappers
  * (e.g. block--region--sidebar-first.html.twig for Dopetrope .box) can
  * override the default block markup.
+ *
+ * @param array<int, string> $suggestions
+ *   Existing theme suggestions, altered by reference.
+ * @param array<string, mixed> $variables
+ *   Template variables for the base theme hook.
  */
 function shindo_theme_suggestions_block_alter(array &$suggestions, array $variables): void {
   $id = $variables['elements']['#id'] ?? NULL;
@@ -82,6 +95,9 @@ function shindo_theme_suggestions_block_alter(array &$suggestions, array $variab
  * element. Brand colors (primary/secondary/accent) are converted to
  * HSL components so SCSS can derive hover/muted/border variants via
  * calc() on the lightness.
+ *
+ * @param array<string, mixed> $variables
+ *   Template variables, altered by reference.
  */
 function shindo_preprocess_html(array &$variables): void {
   $settings = \Drupal::service(ThemeSettingsProvider::class);
@@ -158,7 +174,7 @@ function _shindo_html_build_style_declarations(ThemeSettingsProvider $settings):
 /**
  * Appends theme-setting driven classes to the <body> element.
  *
- * @param array $variables
+ * @param array<string, mixed> $variables
  *   The preprocess_html variables array (modified in place).
  * @param \Drupal\Core\Extension\ThemeSettingsProvider $settings
  *   Theme settings provider.
@@ -220,7 +236,7 @@ function _shindo_sidebar_body_class(string $sidebar_position): string {
  * @param string $hex_string
  *   A hex color code (e.g. "#1b9ae4", "1b9ae4", "#abc").
  *
- * @return array
+ * @return array{0: int, 1: int, 2: int}
  *   [hue (0-360), saturation (0-100), lightness (0-100)].
  *
  * @internal
@@ -298,6 +314,9 @@ function _shindo_hex_to_hsl(string $hex_string): array {
  * there, and also drop the .contextual-region class the preprocess added.
  *
  * AI generated.
+ *
+ * @param array<string, mixed> $variables
+ *   Template variables, altered by reference.
  */
 function shindo_preprocess_media(array &$variables): void {
   unset($variables['title_suffix']['contextual_links']);
@@ -325,6 +344,9 @@ function shindo_preprocess_media(array &$variables): void {
  * node.html.twig iterate over `gallery_items`.
  *
  * AI generated.
+ *
+ * @param array<string, mixed> $variables
+ *   Template variables, altered by reference.
  */
 function shindo_preprocess_node(array &$variables): void {
   if (empty($variables['node']) || empty($variables['view_mode'])) {
@@ -349,7 +371,7 @@ function shindo_preprocess_node(array &$variables): void {
 /**
  * Builds the gallery_items render array for full object node display.
  *
- * @param array $variables
+ * @param array<string, mixed> $variables
  *   The preprocess_node variables array (modified in place).
  * @param \Drupal\node\NodeInterface $node
  *   The object node.
@@ -371,7 +393,7 @@ function _shindo_node_build_gallery_items(array &$variables, NodeInterface $node
  * Bead doesdesign-xgx — node--object--banner-hero.html.twig renders the
  * hero image as a CSS background instead of a nested <img>.
  *
- * @param array $variables
+ * @param array<string, mixed> $variables
  *   The preprocess_node variables array (modified in place).
  * @param \Drupal\node\NodeInterface $node
  *   The object node.
@@ -379,13 +401,13 @@ function _shindo_node_build_gallery_items(array &$variables, NodeInterface $node
  * @internal
  */
 function _shindo_node_add_banner_bg(array &$variables, NodeInterface $node): void {
-  /** @var \Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem|null $media_field */
+  /** @var \Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem<\Drupal\media\MediaInterface>|null $media_field */
   $media_field = $node->get('field_media_image')->first();
   $media = $media_field ? $media_field->entity : NULL;
   if (!$media instanceof MediaInterface || !$media->hasField('field_media_image')) {
     return;
   }
-  /** @var \Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem|null $file_field */
+  /** @var \Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem<\Drupal\file\FileInterface>|null $file_field */
   $file_field = $media->get('field_media_image')->first();
   $file = $file_field ? $file_field->entity : NULL;
   if (!$file instanceof FileInterface) {
@@ -406,6 +428,9 @@ function _shindo_node_add_banner_bg(array &$variables, NodeInterface $node): voi
  * Counts are fetched once per request via a single GROUP BY query and
  * cached in a static variable to avoid N+1 queries when rendering the
  * sidebar block.
+ *
+ * @param array<string, mixed> $variables
+ *   Template variables, altered by reference.
  */
 function shindo_preprocess_views_view_fields(array &$variables): void {
   /** @var \Drupal\views\ViewExecutable $view */
