@@ -56,15 +56,15 @@ jobs:
 
       - name: Run phpcs
         if: matrix.tool == 'phpcs'
-        run: vendor/bin/phpcs --standard=phpcs.xml.dist
+        run: bin/phpcs --standard=phpcs.xml.dist
 
       - name: Run phpstan
         if: matrix.tool == 'phpstan'
-        run: vendor/bin/phpstan analyse --configuration=phpstan.neon.dist --memory-limit=1G --no-progress
+        run: bin/phpstan analyse --configuration=phpstan.neon.dist --memory-limit=1G --no-progress
 
       - name: Run phpmd
         if: matrix.tool == 'phpmd'
         run: |
-          vendor/bin/phpmd web/modules/custom,web/themes/custom github phpmd.xml.dist \
+          bin/phpmd web/modules/custom,web/themes/custom github phpmd.xml.dist \
             --suffixes php,module,install,theme,inc,profile \
             --exclude '*/node_modules/*,*/vendor/*'
