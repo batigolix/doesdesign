@@ -140,6 +140,13 @@ function _shindo_html_build_style_declarations(ThemeSettingsProvider $settings):
   // Shindo footer heading color (bead doesdesign-b2u) — scoped to
   // #footer h1-h6 via var(--shindo-footer-heading) in shindo-colors.css.
   $styles[] = '--shindo-footer-heading:' . ($settings->getSetting('footer_heading_color') ?: '#ffffff');
+  // Shindo accent color (bead doesdesign-0cpz) — overrides Dopetrope's
+  // hardcoded #d52349 (pink) on link color, dates block bg, post accent
+  // borders, .icon.featured bg, current nav item bg, and banner subtitle
+  // color via var(--shindo-accent) in shindo-overrides.css. Kept separate
+  // from --shindo-button (bead 92zi) so button colour stays configurable
+  // independently.
+  $styles[] = '--shindo-accent:' . ($settings->getSetting('accent_color') ?: '#d52349');
   // Shindo background color (bead doesdesign-6kj) — overrides
   // Dopetrope's hardcoded #252122 via var(--shindo-bg-color) in
   // shindo-bg.css.

@@ -28,6 +28,9 @@ shindo.settings:
     footer_heading_color:
       type: color_hex
       label: 'Footer heading color'
+    accent_color:
+      type: color_hex
+      label: 'Accent color (Dopetrope pink)'
     background_pattern:
       type: string
       label: 'Background pattern'

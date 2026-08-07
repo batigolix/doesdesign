@@ -9,5 +9,6 @@ body_font: source-sans-pro
 primary_color: '#252122'
 button_color: '#252122'
 footer_heading_color: '#ffffff'
+accent_color: '#d52349'
 background_pattern: bg
 background_color: '#252122'

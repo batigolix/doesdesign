@@ -1,0 +1,48 @@
+// AI generated (bead doesdesign-0cpz).
+// Configurable accent color — overrides Dopetrope's hardcoded #d52349
+// (pink) on 7 selectors in main.css. Button background (main.css r1626)
+// stays with --shindo-button from bead doesdesign-92zi and is NOT
+// covered here.
+//
+// The CSS custom property --shindo-accent is written to the <html>
+// element by _shindo_html_build_style_declarations() in shindo.theme.
+// Fallback preserves the original Dopetrope pink so sites without a
+// value in theme settings render identically.
+
+@use "variables" as *;
+
+// main.css r157 — Dopetrope link color.
+#page-wrapper a {
+  color: var(--shindo-accent, #{$accent-pink});
+}
+
+// main.css r1860 — dates block .date pill background.
+#page-wrapper ul.dates .date {
+  background-color: var(--shindo-accent, #{$accent-pink});
+}
+
+// main.css r1875 — dates block arrow (border-left) matching the pill.
+#page-wrapper ul.dates .date:after {
+  border-left-color: var(--shindo-accent, #{$accent-pink});
+}
+
+// main.css r2047 — .icon.featured pill background.
+#page-wrapper .icon.featured {
+  background-color: var(--shindo-accent, #{$accent-pink});
+}
+
+// main.css r2067 — .icon.featured downward arrow (border-top) matching
+// the pill.
+#page-wrapper .icon.featured:after {
+  border-top-color: var(--shindo-accent, #{$accent-pink});
+}
+
+// main.css r2149 — #nav active/current top-level item background.
+#page-wrapper #nav > ul > li.current > a {
+  background: var(--shindo-accent, #{$accent-pink});
+}
+
+// main.css r2230 — #banner header subtitle color.
+#page-wrapper #banner header p {
+  color: var(--shindo-accent, #{$accent-pink});
+}

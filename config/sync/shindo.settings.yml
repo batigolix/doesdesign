@@ -12,8 +12,9 @@ logo:
   use_default: false
 body_font: lora
 primary_color: '#1609ce'
-button_color: '#252122'
-footer_heading_color: '#ffffff'
+button_color: '#19c235'
+footer_heading_color: '#a5a012'
+accent_color: '#d52349'
 background_pattern: bg
 background_color: '#252122'
 color_primary: '#d52349'

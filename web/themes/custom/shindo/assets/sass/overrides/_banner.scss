@@ -34,7 +34,9 @@
       }
 
       p {
-        color: $accent-pink;
+        // Bead doesdesign-0cpz — configurable via --shindo-accent, with
+        // $accent-pink as the SCSS fallback matching Dopetrope's pink.
+        color: var(--shindo-accent, #{$accent-pink});
         padding: 0;
         font-style: normal;
         margin: 0;

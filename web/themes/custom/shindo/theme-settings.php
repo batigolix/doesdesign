@@ -58,6 +58,12 @@ function shindo_form_system_theme_settings_alter(array &$form, FormStateInterfac
     '#description' => t('Kleur voor h1-h6 titels binnen het footer-gebied.'),
     '#config_target' => 'shindo.settings:footer_heading_color',
   ];
+  $form['shindo_colors']['accent_color'] = [
+    '#type' => 'color',
+    '#title' => t('Accent kleur'),
+    '#description' => t('Kleur voor links, post accents en overige accents (default: Dopetrope pink).'),
+    '#config_target' => 'shindo.settings:accent_color',
+  ];
 
   $form['shindo_background'] = [
     '#type' => 'fieldset',
