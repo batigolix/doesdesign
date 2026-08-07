@@ -32,3 +32,33 @@ shindo.settings:
     background_color:
       type: color_hex
       label: 'Background color'
+    color_primary:
+      type: color_hex
+      label: 'Color primary (HSL derivation)'
+    color_secondary:
+      type: color_hex
+      label: 'Color secondary'
+    color_accent:
+      type: color_hex
+      label: 'Color accent'
+    color_background:
+      type: color_hex
+      label: 'Color background'
+    color_text:
+      type: color_hex
+      label: 'Color text'
+    container_width:
+      type: string
+      label: 'Container width'
+      constraints:
+        Choice:
+          choices: [narrow, default, wide]
+    sidebar_position:
+      type: string
+      label: 'Sidebar position'
+      constraints:
+        Choice:
+          choices: [left, right, none]
+    show_hero:
+      type: boolean
+      label: 'Show hero'
