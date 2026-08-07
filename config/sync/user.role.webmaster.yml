@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - block_content.type.basic
-    - filter.format.basic_html
     - filter.format.full_html
     - filter.format.webform_default
     - media.type.audio
@@ -157,7 +156,6 @@ permissions:
   - 'revert page revisions'
   - 'update any media'
   - 'update media'
-  - 'use text format basic_html'
   - 'use text format full_html'
   - 'use text format webform_default'
   - 'view all media revisions'
