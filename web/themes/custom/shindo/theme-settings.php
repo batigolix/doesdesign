@@ -26,6 +26,12 @@ function shindo_form_system_theme_settings_alter(array &$form, FormStateInterfac
       'lora' => t('Lora (serif, editorial)'),
       'roboto' => t('Roboto (modern sans-serif)'),
       'system' => t('System font (native OS)'),
+      'merriweather' => t('Merriweather (serif, elegant)'),
+      'playfair-display' => t('Playfair Display (serif, high-contrast)'),
+      'nunito' => t('Nunito (rounded sans)'),
+      'open-sans' => t('Open Sans (neutral sans)'),
+      'montserrat' => t('Montserrat (geometric sans)'),
+      'poppins' => t('Poppins (contemporary sans)'),
     ],
     '#config_target' => 'shindo.settings:body_font',
   ];

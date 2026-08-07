@@ -13,6 +13,12 @@ shindo.settings:
             - lora
             - roboto
             - system
+            - merriweather
+            - playfair-display
+            - nunito
+            - open-sans
+            - montserrat
+            - poppins
     primary_color:
       type: color_hex
       label: 'Hoofdkleur'
