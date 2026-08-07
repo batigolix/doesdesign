@@ -2,7 +2,7 @@
 # Extensions (mglaman/phpstan-drupal, phpstan-deprecation-rules) are auto-loaded
 # by phpstan/extension-installer — no manual includes required.
 parameters:
-    level: 2
+    level: 5
     paths:
         - web/modules/custom
         - web/themes/custom
