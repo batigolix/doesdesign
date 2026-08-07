@@ -1,0 +1,31 @@
+{
+  "version": "0.2",
+  "language": "en,nl",
+  "words": [
+    "Doesdesign",
+    "Doesborg",
+    "denbei",
+    "shindo",
+    "dopetrope",
+    "mokume",
+    "gane",
+    "shakudo",
+    "photoswipe",
+    "colorbox",
+    "ddev",
+    "drush",
+    "focal_point",
+    "focalpoint"
+  ],
+  "ignorePaths": [
+    "vendor/**",
+    "node_modules/**",
+    "web/themes/custom/denbei/**",
+    "web/core/**",
+    "web/modules/contrib/**",
+    "web/themes/contrib/**",
+    "*.lock",
+    "*.min.js",
+    "*.min.css"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "extends": ["./web/core/.eslintrc.json"],
+  "ignorePatterns": [
+    "**/vendor/**",
+    "**/node_modules/**",
+    "web/themes/custom/denbei/**",
+    "**/*.min.js"
+  ]
+}

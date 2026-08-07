@@ -1,0 +1,61 @@
+# AI generated (bead ouva)
+name: Frontend lint
+
+on:
+  push:
+    branches:
+      - develop
+      - master
+  pull_request:
+    branches:
+      - develop
+      - master
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: ${{ matrix.tool }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        tool:
+          - eslint
+          - stylelint
+          - cspell
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install linters
+        run: |
+          case "${{ matrix.tool }}" in
+            eslint)
+              npm install --no-save eslint@^8
+              ;;
+            stylelint)
+              npm install --no-save stylelint stylelint-config-standard-scss
+              ;;
+            cspell)
+              npm install --no-save cspell
+              ;;
+          esac
+
+      - name: Run eslint
+        if: matrix.tool == 'eslint'
+        run: npx eslint 'web/modules/custom/**/*.js' 'web/themes/custom/shindo/**/*.js' --no-error-on-unmatched-pattern
+
+      - name: Run stylelint
+        if: matrix.tool == 'stylelint'
+        run: npx stylelint 'web/themes/custom/shindo/**/*.{css,scss}' --allow-empty-input
+
+      - name: Run cspell
+        if: matrix.tool == 'cspell'
+        run: npx cspell 'web/modules/custom/**' 'web/themes/custom/shindo/**' --no-progress
