@@ -80,8 +80,11 @@
         "drupal/coder": "^8.3",
         "drupal/devel": "^5.1",
         "drupal/stage_file_proxy": "*",
+        "mglaman/phpstan-drupal": "^2.1",
         "phpmd/phpmd": "^2.15",
-        "phpstan/phpstan": "^2.2"
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan": "^2.2",
+        "phpstan/phpstan-deprecation-rules": "^2.0"
     },
     "conflict": {
         "drupal/drupal": "*"

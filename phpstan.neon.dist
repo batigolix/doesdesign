@@ -1,9 +1,6 @@
 # AI generated
-includes:
-    - vendor/mglaman/phpstan-drupal/extension.neon
-    - vendor/mglaman/phpstan-drupal/rules.neon
-    - vendor/phpstan/phpstan-deprecation-rules/rules.neon
-
+# Extensions (mglaman/phpstan-drupal, phpstan-deprecation-rules) are auto-loaded
+# by phpstan/extension-installer — no manual includes required.
 parameters:
     level: 2
     paths:
@@ -14,8 +11,6 @@ parameters:
         - web/themes/custom/*/vendor/*
         - web/modules/custom/*/vendor/*
         - web/themes/custom/denbei/*
-    drupal:
-        drupal_root: web
     reportUnmatchedIgnoredErrors: false
     ignoreErrors:
         # Procedural preprocess/theme hooks legitimately call \Drupal::.
