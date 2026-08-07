@@ -7,6 +7,7 @@ logo:
   use_default: false
 body_font: source-sans-pro
 primary_color: '#252122'
+button_color: '#252122'
 footer_heading_color: '#ffffff'
 background_pattern: bg
 background_color: '#252122'

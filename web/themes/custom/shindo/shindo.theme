@@ -132,6 +132,11 @@ function _shindo_html_build_style_declarations(ThemeSettingsProvider $settings):
   // Shindo primary color (bead doesdesign-c98) — overrides Dopetrope's
   // hardcoded #252122 via var(--shindo-primary) in shindo-colors.css.
   $styles[] = '--shindo-primary:' . ($settings->getSetting('primary_color') ?: '#252122');
+  // Shindo button color (bead doesdesign-92zi) — overrides Dopetrope's
+  // hardcoded #252122 button background via var(--shindo-button) in
+  // shindo-overrides.css. Kept separate from --shindo-primary so
+  // typography colour and button colour can vary independently.
+  $styles[] = '--shindo-button:' . ($settings->getSetting('button_color') ?: '#252122');
   // Shindo footer heading color (bead doesdesign-b2u) — scoped to
   // #footer h1-h6 via var(--shindo-footer-heading) in shindo-colors.css.
   $styles[] = '--shindo-footer-heading:' . ($settings->getSetting('footer_heading_color') ?: '#ffffff');

@@ -1,0 +1,21 @@
+// AI generated
+// Configurable button color — bead doesdesign-92zi.
+//
+// Overrides Dopetrope's hardcoded button background (main.css ~line 1626
+// for the default pink #d52349, and #252122 on .button.alt) with the
+// theme setting `button_color` (default #252122, the Dopetrope dark
+// button). The CSS custom property --shindo-button is written to the
+// <html> element by _shindo_html_build_style_declarations() in
+// shindo.theme.
+//
+// Kept separate from --shindo-primary (bead doesdesign-c98) so
+// typography accent colour and primary button colour can be configured
+// independently via the theme settings form.
+
+#page-wrapper button,
+#page-wrapper input[type="submit"],
+#page-wrapper input[type="reset"],
+#page-wrapper input[type="button"],
+#page-wrapper .button {
+  background-color: var(--shindo-button, #252122);
+}

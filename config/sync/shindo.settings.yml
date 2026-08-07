@@ -3,12 +3,19 @@ _core:
 favicon:
   use_default: true
 features:
+  comment_user_picture: true
+  comment_user_verification: true
   favicon: true
+  node_user_picture: true
 logo:
+  path: themes/custom/denbei/logo.png
   use_default: false
-body_font: source-sans-pro
-primary_color: '#252122'
+body_font: lora
+primary_color: '#1609ce'
+button_color: '#252122'
 footer_heading_color: '#ffffff'
+background_pattern: bg
+background_color: '#252122'
 color_primary: '#d52349'
 color_secondary: '#252122'
 color_accent: '#43bff0'

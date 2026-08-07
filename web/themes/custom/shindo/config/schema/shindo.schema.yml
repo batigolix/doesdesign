@@ -16,6 +16,9 @@ shindo.settings:
     primary_color:
       type: color_hex
       label: 'Hoofdkleur'
+    button_color:
+      type: color_hex
+      label: 'Button color'
     footer_heading_color:
       type: color_hex
       label: 'Footer heading color'

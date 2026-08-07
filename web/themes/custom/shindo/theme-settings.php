@@ -40,6 +40,12 @@ function shindo_form_system_theme_settings_alter(array &$form, FormStateInterfac
     '#description' => t('Kleur voor titels (h1-h6), donkere knoppen en accents.'),
     '#config_target' => 'shindo.settings:primary_color',
   ];
+  $form['shindo_colors']['button_color'] = [
+    '#type' => 'color',
+    '#title' => t('Button-kleur'),
+    '#description' => t('Achtergrondkleur voor primaire buttons.'),
+    '#config_target' => 'shindo.settings:button_color',
+  ];
   $form['shindo_colors']['footer_heading_color'] = [
     '#type' => 'color',
     '#title' => t('Footer kop-kleur'),
