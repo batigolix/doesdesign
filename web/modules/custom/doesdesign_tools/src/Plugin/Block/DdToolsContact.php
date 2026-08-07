@@ -72,14 +72,14 @@ final class DdToolsContact extends BlockBase implements ContainerFactoryPluginIn
       [
         'name' => 'Linkedin',
         'img' => 'linkedin-logo.png',
-        'cta' => $this->t('Visit Birigit at Linkedin'),
+        'cta' => $this->t('Visit Birgit at Linkedin'),
         'url' => 'http://nl.linkedin.com/in/birgitdoesborg',
         'class' => 'linkedin',
       ],
       [
         'name' => 'Twitter',
         'img' => 'twitter-logo.png',
-        'cta' => $this->t('Tweet Birigit'),
+        'cta' => $this->t('Tweet Birgit'),
         'url' => 'http://twitter.com/#!/Doesdesign_nl',
         'class' => 'twitter',
       ],

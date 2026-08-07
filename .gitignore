@@ -58,3 +58,4 @@ tests/backstop/backstop_data
 *.db
 .beads-credential-key
 pswp-*.png
+/node_modules/

@@ -15,7 +15,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * An example could be the location of the D7 files folder, which can
  * vary per environment. It can be stored in state.
  * Example using drush to set a state value:
- *   drush @self state:set aventus_import.d7_files_folder '/home/example-d7'
+ *   drush @self state:set doesdesign_import.d7_files_folder '/home/example-d7'
  *
  * @MigrateProcessPlugin(
  *   id = "get_state_value"
@@ -25,7 +25,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @code
  * source_base_path:
  *   plugin: get_state_value
- *   state_name: aventus_import.d7_files_folder
+ *   state_name: doesdesign_import.d7_files_folder
  * @endcode
  */
 final class GetStateValue extends ProcessPluginBase implements ContainerFactoryPluginInterface {

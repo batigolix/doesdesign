@@ -44,7 +44,7 @@ jobs:
               npm install --no-save stylelint stylelint-config-standard-scss
               ;;
             cspell)
-              npm install --no-save cspell
+              npm install --no-save cspell @cspell/dict-nl-nl
               ;;
           esac
 

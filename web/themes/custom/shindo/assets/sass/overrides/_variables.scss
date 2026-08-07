@@ -6,11 +6,10 @@
 // --shindo-primary from shindo-colors.css.
 
 $shindo-primary: #252122;
-
-$status-green:  #3ecf5f;
+$status-green: #3ecf5f;
 $status-orange: #f0ad4e;
-$status-red:    #e04836;
-$accent-pink:   #d52349;
+$status-red: #e04836;
+$accent-pink: #d52349;
 
 // Dopetrope row-gutter per breakpoint (matches .row margin sizes).
 $gutter-xl: 50px;
@@ -19,7 +18,7 @@ $gutter-md: 40px;
 $gutter-sm: 20px;
 
 // Breakpoints — mirror Dopetrope's main.css.
-$bp-xl:      1280px;
-$bp-lg:       980px;
-$bp-md:       736px;
-$bp-wide:    1200px;
+$bp-xl: 1280px;
+$bp-lg: 980px;
+$bp-md: 736px;
+$bp-wide: 1200px;

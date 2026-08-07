@@ -2,15 +2,17 @@
   "extends": ["stylelint-config-standard-scss"],
   "rules": {
     "at-rule-no-unknown": null,
-    "selector-class-pattern": null
+    "selector-class-pattern": null,
+    "scss/comment-no-empty": null,
+    "no-descending-specificity": null
   },
   "ignoreFiles": [
     "**/vendor/**",
     "**/node_modules/**",
-    "web/themes/custom/denbei/**",
-    "web/themes/custom/shindo/assets/css/main.css",
-    "web/themes/custom/shindo/assets/sass/libs/**",
-    "web/themes/custom/shindo/assets/sass/main.scss",
-    "web/themes/custom/shindo/assets/dopetrope/**"
+    "**/themes/custom/denbei/**",
+    "**/themes/custom/shindo/assets/css/**",
+    "**/themes/custom/shindo/assets/sass/libs/**",
+    "**/themes/custom/shindo/assets/sass/main.scss",
+    "**/themes/custom/shindo/assets/dopetrope/**"
   ]
 }

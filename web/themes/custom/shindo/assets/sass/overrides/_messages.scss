@@ -15,11 +15,11 @@
 
 #page-wrapper {
   [data-drupal-messages] {
-    margin: 0 0 2em 0;
+    margin: 0 0 2em;
   }
 
   .messages-list {
-    margin: 0 0 2em 0;
+    margin: 0 0 2em;
     padding: 0;
     list-style: none;
   }
@@ -28,7 +28,7 @@
   .messages,
   .messages-list__item,
   .messages__item {
-    margin: 0 0 5em 0;
+    margin: 0 0 5em;
     padding: 1em 1.25em;
     border-left: 4px solid $status-green;
     background: rgba($status-green, 0.08);

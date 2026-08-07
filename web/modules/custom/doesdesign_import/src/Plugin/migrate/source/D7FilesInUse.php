@@ -94,8 +94,8 @@ class D7FilesInUse extends SourcePluginBase {
         $query->condition('n.status', 1);
       }
 
-      // @todo fabriquate query for files that have other parent entity types
-      // such as paragrpahs.
+      // @todo fabricate query for files that have other parent entity types
+      // such as paragraphs.
       $query->fields('fm');
       $results = $query->execute();
       foreach ($results as $record) {
