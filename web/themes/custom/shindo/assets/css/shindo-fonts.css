@@ -2,13 +2,16 @@
  * Body-font options exposed via /admin/appearance/settings/shindo.
  * The body class 'shindo-font-<key>' is set by shindo_preprocess_html
  * based on the 'body_font' theme setting (bead doesdesign-3mx).
- * Non-default fonts are loaded here on demand via @import.
+ *
+ * Font loading (bead doesdesign-ig9):
+ * Google Fonts are no longer imported here via blocking @import. All
+ * families are loaded as a single non-blocking external stylesheet
+ * declared in shindo.libraries.yml, with preconnect hints emitted from
+ * shindo_page_attachments_alter(). Follow-up: full migration to the
+ * fontyourface module (see doesdesign-hebo).
+ *
+ * Default Source Sans Pro remains loaded via Dopetrope's main.css.
  */
-
-/* Import fonts (default Source Sans Pro is loaded via Dopetrope's main.css). */
-@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Playfair+Display:wght@400;700&family=Nunito:wght@400;700&family=Open+Sans:wght@400;700&family=Montserrat:wght@400;700&family=Poppins:wght@400;700&display=swap");
 
 /* Override Dopetrope's body font-family with the chosen font.
    #page-wrapper selectors bump specificity so they win over

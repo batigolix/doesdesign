@@ -2,6 +2,11 @@ global-styling:
   version: 1.x
   css:
     theme:
+      # External Google Fonts stylesheet (bead doesdesign-ig9). Consolidated
+      # from previous @import statements in shindo-fonts.css into a single
+      # non-blocking request. Preconnect hints are attached via
+      # shindo_page_attachments() in shindo.theme.
+      'https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Roboto:wght@300;400;700&family=Merriweather:wght@400;700&family=Playfair+Display:wght@400;700&family=Nunito:wght@400;700&family=Open+Sans:wght@400;700&family=Montserrat:wght@400;700&family=Poppins:wght@400;700&display=swap': { type: external, minified: true }
       assets/css/main.css: {}
       assets/css/shindo-fonts.css: {}
       assets/css/shindo-overrides.css: {}
