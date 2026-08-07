@@ -3,15 +3,6 @@ custom:
   css:
     theme:
       custom.css: { weight: 2000 }
-flickr:
-  version: 1.x
-  js:
-    js/flickr.js: {}
-  dependencies:
-    - core/jquery
-    - core/once
-    - core/drupal
-    - core/drupalSettings
 object:
   version: 1.x
   js:
@@ -21,16 +12,6 @@ object:
     - core/once
     - core/drupal
     - core/drupalSettings
-gtranslate:
-  version: 1.x
-  js:
-    js/gtranslate.js: {}
-gtranslate_external:
-  version: 1.x
-  js:
-    //translate.google.com/translate_a/element.js?cb=googleTranslateElementInit: { type: external }
-  dependencies:
-    - doesdesign_tools/gtranslate
 splide:
   css:
     component:
