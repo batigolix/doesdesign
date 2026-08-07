@@ -4,6 +4,13 @@
     "**/vendor/**",
     "**/node_modules/**",
     "web/themes/custom/denbei/**",
-    "**/*.min.js"
+    "**/*.min.js",
+    "web/themes/custom/shindo/assets/dopetrope/**",
+    "web/themes/custom/shindo/assets/js/main.js",
+    "web/themes/custom/shindo/assets/js/util.js",
+    "web/themes/custom/shindo/assets/js/breakpoints.min.js",
+    "web/themes/custom/shindo/assets/js/browser.min.js",
+    "web/themes/custom/shindo/assets/js/jquery.min.js",
+    "web/themes/custom/shindo/assets/js/jquery.dropotron.min.js"
   ]
 }

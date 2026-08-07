@@ -8,6 +8,9 @@
     "**/vendor/**",
     "**/node_modules/**",
     "web/themes/custom/denbei/**",
-    "web/themes/custom/shindo/assets/css/main.css"
+    "web/themes/custom/shindo/assets/css/main.css",
+    "web/themes/custom/shindo/assets/sass/libs/**",
+    "web/themes/custom/shindo/assets/sass/main.scss",
+    "web/themes/custom/shindo/assets/dopetrope/**"
   ]
 }

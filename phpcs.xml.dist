@@ -16,6 +16,8 @@
     <exclude-pattern>*/css/*</exclude-pattern>
     <exclude-pattern>*/.playwright-cli/*</exclude-pattern>
     <exclude-pattern>web/themes/custom/denbei/*</exclude-pattern>
+    <exclude-pattern>web/themes/custom/shindo/assets/*</exclude-pattern>
+    <exclude-pattern>web/themes/custom/shindo/assets/dopetrope/*</exclude-pattern>
 
     <rule ref="Drupal"/>
     <rule ref="DrupalPractice"/>
