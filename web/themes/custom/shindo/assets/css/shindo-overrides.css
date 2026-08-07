@@ -439,6 +439,7 @@
   background-size: 16px 16px;
 }
 
+/* Less padding for P and other elements. */
 #page-wrapper p,
 #page-wrapper ul,
 #page-wrapper ol,
