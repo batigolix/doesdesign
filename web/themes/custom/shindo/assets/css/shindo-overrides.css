@@ -161,6 +161,7 @@
 
 .node__gallery > * {
   padding-left: 0;
+  padding-top: 0;
 }
 
 @media screen and (max-width: 1280px) {
@@ -436,4 +437,12 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 16px 16px;
+}
+
+#page-wrapper p,
+#page-wrapper ul,
+#page-wrapper ol,
+#page-wrapper dl,
+#page-wrapper table {
+  margin-bottom: 1em;
 }
