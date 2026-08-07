@@ -16,6 +16,48 @@ use Drupal\node\NodeInterface;
 use Drupal\taxonomy\TermInterface;
 
 /**
+ * Implements hook_page_attachments_alter().
+ *
+ * Emits preconnect hints for the Google Fonts CDN so the external
+ * stylesheet declared in shindo.libraries.yml (bead doesdesign-ig9)
+ * can start its TCP + TLS handshake in parallel with HTML parsing.
+ * The stylesheet itself replaces the previous blocking @import calls
+ * in assets/css/shindo-fonts.css.
+ *
+ * Themes cannot implement hook_page_attachments() — Drupal core only
+ * invokes it for modules (see HtmlRenderer::invokePageAttachmentHooks) —
+ * so this runs from the *_alter variant.
+ *
+ * AI generated.
+ *
+ * @param array<string, mixed> $attachments
+ *   The page attachments render array, altered by reference.
+ */
+function shindo_page_attachments_alter(array &$attachments): void {
+  $attachments['#attached']['html_head'][] = [
+    [
+      '#tag' => 'link',
+      '#attributes' => [
+        'rel' => 'preconnect',
+        'href' => 'https://fonts.googleapis.com',
+      ],
+    ],
+    'shindo_preconnect_gfonts',
+  ];
+  $attachments['#attached']['html_head'][] = [
+    [
+      '#tag' => 'link',
+      '#attributes' => [
+        'rel' => 'preconnect',
+        'href' => 'https://fonts.gstatic.com',
+        'crossorigin' => TRUE,
+      ],
+    ],
+    'shindo_preconnect_gstatic',
+  ];
+}
+
+/**
  * Implements hook_theme_suggestions_HOOK_alter() for page.
  *
  * Adds a page--taxonomy-term--{bundle} suggestion (e.g.
@@ -130,6 +172,24 @@ function _shindo_html_build_style_declarations(ThemeSettingsProvider $settings):
     'color_text' => '#333333',
   ];
 
+  // Shindo CSS custom properties (bead doesdesign-mix7) — data-driven map
+  // keyed by theme setting name → [css var name, hex fallback]. Each entry
+  // overrides a Dopetrope hardcoded colour via var(--shindo-*) in the
+  // shindo-*.css files. Kept separate variables so typography / button /
+  // accent / background can vary independently. See individual beads:
+  // - primary_color         (c98)  → --shindo-primary        (shindo-colors.css)
+  // - button_color          (92zi) → --shindo-button         (shindo-overrides.css)
+  // - footer_heading_color  (b2u)  → --shindo-footer-heading (shindo-colors.css)
+  // - accent_color          (0cpz) → --shindo-accent         (shindo-overrides.css)
+  // - background_color      (6kj)  → --shindo-bg-color       (shindo-bg.css)
+  $shindo_vars = [
+    'primary_color'        => ['--shindo-primary',        '#252122'],
+    'button_color'         => ['--shindo-button',         '#252122'],
+    'footer_heading_color' => ['--shindo-footer-heading', '#ffffff'],
+    'accent_color'         => ['--shindo-accent',         '#d52349'],
+    'background_color'     => ['--shindo-bg-color',       '#252122'],
+  ];
+
   $styles = [];
   foreach ($brand_defaults as $key => $default) {
     $hex = $settings->getSetting($key) ?: $default;
@@ -144,29 +204,9 @@ function _shindo_html_build_style_declarations(ThemeSettingsProvider $settings):
     $prefix = '--' . str_replace('_', '-', $key);
     $styles[] = "$prefix:$hex";
   }
-
-  // Shindo primary color (bead doesdesign-c98) — overrides Dopetrope's
-  // hardcoded #252122 via var(--shindo-primary) in shindo-colors.css.
-  $styles[] = '--shindo-primary:' . ($settings->getSetting('primary_color') ?: '#252122');
-  // Shindo button color (bead doesdesign-92zi) — overrides Dopetrope's
-  // hardcoded #252122 button background via var(--shindo-button) in
-  // shindo-overrides.css. Kept separate from --shindo-primary so
-  // typography colour and button colour can vary independently.
-  $styles[] = '--shindo-button:' . ($settings->getSetting('button_color') ?: '#252122');
-  // Shindo footer heading color (bead doesdesign-b2u) — scoped to
-  // #footer h1-h6 via var(--shindo-footer-heading) in shindo-colors.css.
-  $styles[] = '--shindo-footer-heading:' . ($settings->getSetting('footer_heading_color') ?: '#ffffff');
-  // Shindo accent color (bead doesdesign-0cpz) — overrides Dopetrope's
-  // hardcoded #d52349 (pink) on link color, dates block bg, post accent
-  // borders, .icon.featured bg, current nav item bg, and banner subtitle
-  // color via var(--shindo-accent) in shindo-overrides.css. Kept separate
-  // from --shindo-button (bead 92zi) so button colour stays configurable
-  // independently.
-  $styles[] = '--shindo-accent:' . ($settings->getSetting('accent_color') ?: '#d52349');
-  // Shindo background color (bead doesdesign-6kj) — overrides
-  // Dopetrope's hardcoded #252122 via var(--shindo-bg-color) in
-  // shindo-bg.css.
-  $styles[] = '--shindo-bg-color:' . ($settings->getSetting('background_color') ?: '#252122');
+  foreach ($shindo_vars as $key => [$var, $default]) {
+    $styles[] = $var . ':' . ($settings->getSetting($key) ?: $default);
+  }
 
   return $styles;
 }
