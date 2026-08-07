@@ -28,5 +28,5 @@ jobs:
             ln -sfn ../../../../files web/sites/default/files
             chmod a-w web/sites/default
             chmod a-w web/sites/default/settings.php
-            bin/drush --uri=https://doesdesign.nl deploy
-            bin/drush --uri=https://doesdesign.nl st
+            LANGUAGE=en bin/drush --uri=https://doesdesign.nl deploy
+            LANGUAGE=en bin/drush --uri=https://doesdesign.nl st

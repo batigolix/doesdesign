@@ -64,5 +64,5 @@ jobs:
             ${{ secrets.COMPOSER }} install --prefer-dist --no-progress --no-suggest --quiet --ignore-platform-reqs
             chmod a-w web/sites/default
             chmod a-w web/sites/default/settings.php
-            bin/drush deploy
-            bin/drush st
+            LANGUAGE=en bin/drush deploy
+            LANGUAGE=en bin/drush st
