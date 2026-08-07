@@ -50,7 +50,7 @@ jobs:
 
       - name: Run eslint
         if: matrix.tool == 'eslint'
-        run: npx eslint 'web/modules/custom/**/*.js' 'web/themes/custom/shindo/**/*.js' --no-error-on-unmatched-pattern
+        run: npx eslint --no-eslintrc -c .eslintrc.json 'web/modules/custom/**/*.js' 'web/themes/custom/shindo/**/*.js' --no-error-on-unmatched-pattern
 
       - name: Run stylelint
         if: matrix.tool == 'stylelint'

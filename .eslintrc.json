@@ -1,5 +1,24 @@
 {
-  "extends": ["./web/core/.eslintrc.json"],
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jquery": true
+  },
+  "extends": ["eslint:recommended"],
+  "globals": {
+    "Drupal": "readonly",
+    "drupalSettings": "readonly",
+    "jQuery": "readonly",
+    "once": "readonly",
+    "Splide": "readonly"
+  },
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "script"
+  },
+  "rules": {
+    "no-unused-vars": "warn"
+  },
   "ignorePatterns": [
     "**/vendor/**",
     "**/node_modules/**",
