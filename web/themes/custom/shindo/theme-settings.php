@@ -37,6 +37,26 @@ function shindo_form_system_theme_settings_alter(array &$form, FormStateInterfac
     ],
     '#config_target' => 'shindo.settings:body_font',
   ];
+  $form['shindo_typography']['body_font_size'] = [
+    '#type' => 'number',
+    '#title' => t('Body font size (%)'),
+    '#description' => t('Schaal voor lopende tekst (100% = Dopetrope standaard).'),
+    '#min' => 50,
+    '#max' => 200,
+    '#step' => 5,
+    '#field_suffix' => '%',
+    '#config_target' => 'shindo.settings:body_font_size',
+  ];
+  $form['shindo_typography']['heading_font_size'] = [
+    '#type' => 'number',
+    '#title' => t('Heading font size (%)'),
+    '#description' => t('Schaal voor h1-h6 koppen (100% = Dopetrope standaard).'),
+    '#min' => 50,
+    '#max' => 200,
+    '#step' => 5,
+    '#field_suffix' => '%',
+    '#config_target' => 'shindo.settings:heading_font_size',
+  ];
 
   $form['shindo_colors'] = [
     '#type' => 'fieldset',

@@ -20,3 +20,5 @@ color_secondary: '#252122'
 color_accent: '#d52349'
 color_background: '#252122'
 color_text: '#252122'
+body_font_size: 100
+heading_font_size: 100
