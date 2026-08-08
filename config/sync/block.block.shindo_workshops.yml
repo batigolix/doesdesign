@@ -1,0 +1,23 @@
+uuid: 2a27820e-d2ef-4770-ba0c-3679c3fbc2b2
+langcode: nl
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:8696ce98-0b9f-46a8-93d6-15389e97ac1d'
+  module:
+    - block_content
+  theme:
+    - shindo
+id: shindo_workshops
+theme: shindo
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'block_content:8696ce98-0b9f-46a8-93d6-15389e97ac1d'
+settings:
+  id: 'block_content:8696ce98-0b9f-46a8-93d6-15389e97ac1d'
+  label: Workshops
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility: {  }
