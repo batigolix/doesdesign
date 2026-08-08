@@ -4,6 +4,7 @@ description: Shindo theme
 package: Custom
 libraries:
   - shindo/font-awesome
+  - shindo/fontawesome
   - shindo/global-styling
   - shindo/responsive-menu
 stylesheets-remove:

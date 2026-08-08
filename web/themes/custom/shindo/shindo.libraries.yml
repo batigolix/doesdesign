@@ -19,6 +19,17 @@ font-awesome:
     theme:
       assets/css/fontawesome-all.min.css: { minified: true }
 
+# Font Awesome 6 free brands via jsDelivr CDN (bead doesdesign-mtgw).
+# Loaded in <head> so brand-coloured social icons render without FOUC.
+# Preconnect hint for cdn.jsdelivr.net is emitted from
+# shindo_page_attachments_alter() in shindo.theme.
+fontawesome:
+  version: 6.5.1
+  header: true
+  css:
+    theme:
+      'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css': { type: external, minified: true }
+
 responsive-menu:
   version: 1.x
   js:
