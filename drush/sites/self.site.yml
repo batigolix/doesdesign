@@ -4,7 +4,8 @@ ddev:
   root: /var/www/html/web
   uri: http://doesdesign.ddev.site
   paths:
-    config-sync: '/var/www/html/config/sync'
+    - config-sync: '/var/www/html/config/sync'
+    - files: '/var/www/html/web/sites/default/files'
   db:
     driver: mysql
     database: db
@@ -32,7 +33,8 @@ live:
   root: ${env.REMOTE_PROJECT_DIR}/production/web
   uri: ${env.LIVE_URI}
   paths:
-    drush-script: ${env.REMOTE_PROJECT_DIR}/production/bin/drush
+    - drush-script: ${env.REMOTE_PROJECT_DIR}/production/bin/drush
+    - files: ${env.REMOTE_PROJECT_DIR}/production/web/sites/default/files
 
 stage:
   host: ${env.REMOTE_HOST}
@@ -42,5 +44,6 @@ stage:
   root: ${env.REMOTE_PROJECT_DIR}/stage/web
   uri: ${env.STAGE_URI}
   paths:
-    drush-script: ${env.REMOTE_PROJECT_DIR}/stage/bin/drush
+    - drush-script: ${env.REMOTE_PROJECT_DIR}/stage/bin/drush
+    - files: ${env.REMOTE_PROJECT_DIR}/stage/web/sites/default/files
 
