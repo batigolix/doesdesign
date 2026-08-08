@@ -1,10 +1,11 @@
 {#
 /**
  * @file
- * Theme override for a block placed in the footer_col_4 region.
+ * Theme override for a block placed in the footer_row2_col3 region.
  *
- * AI generated (bead doesdesign-g7v). Same pattern as footer_col_3:
- * <section><header><h2>{title}</h2></header>{body}</section>.
+ * AI generated (bead doesdesign-g7v). Wraps each block as
+ * <section><header><h2>{title}</h2></header>{body}</section>. Column
+ * typically holds multiple sub-sections (contact, social, address).
  */
 #}
 {% set display_title = content.field_title|render|striptags|trim ?: label %}

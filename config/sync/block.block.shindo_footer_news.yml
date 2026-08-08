@@ -10,7 +10,7 @@ dependencies:
     - shindo
 id: shindo_footer_news
 theme: shindo
-region: footer_col_1
+region: footer_row1_col1
 weight: -10
 provider: null
 plugin: 'views_block:news-block_footer_dates'
