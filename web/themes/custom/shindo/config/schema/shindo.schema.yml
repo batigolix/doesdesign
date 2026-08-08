@@ -74,3 +74,13 @@ shindo.settings:
     show_hero:
       type: boolean
       label: 'Show hero'
+    body_font_size:
+      type: integer
+      label: 'Body font size (%)'
+      constraints:
+        Range: { min: 50, max: 200 }
+    heading_font_size:
+      type: integer
+      label: 'Heading font size (%)'
+      constraints:
+        Range: { min: 50, max: 200 }

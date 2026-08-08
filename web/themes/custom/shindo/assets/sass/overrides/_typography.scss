@@ -1,5 +1,14 @@
 // AI generated
-// Less padding for P and other block elements.
+// Typography overrides for Dopetrope.
+//
+// - Less padding for P and other block elements.
+// - Configurable body + heading font-size via theme settings (bead
+//   doesdesign-eiig). CSS custom properties --shindo-body-font-size and
+//   --shindo-heading-font-size hold an integer percentage (default 100)
+//   emitted on <html> by shindo_preprocess_html(). We multiply the
+//   Dopetrope base sizes via calc() so the original heading scale
+//   (h2: 1.5em, h3: 1.35em, ...) is preserved when the user tweaks
+//   the factor.
 
 #page-wrapper {
   p,
@@ -8,5 +17,34 @@
   dl,
   table {
     margin-bottom: 1em;
+  }
+
+  // Body font-size scaling. Applied on #page-wrapper (not <html>) so
+  // Gin admin chrome and Dopetrope's html { font-size: 100% } stay
+  // untouched — the same scoping strategy Dopetrope uses for headings.
+  font-size: calc(var(--shindo-body-font-size, 100) * 1%);
+
+  // Heading font-size scaling. Multiply each Dopetrope base em by the
+  // heading factor. h1 falls back to browser default (2em) since
+  // Dopetrope does not set an explicit #page-wrapper h1 size; h2/h3
+  // sizes mirror main.css lines 147-153; h4-h6 keep their browser
+  // defaults (1em / 0.83em / 0.67em) scaled by the same factor.
+  h1 {
+    font-size: calc(2em * var(--shindo-heading-font-size, 100) / 100);
+  }
+  h2 {
+    font-size: calc(1.5em * var(--shindo-heading-font-size, 100) / 100);
+  }
+  h3 {
+    font-size: calc(1.35em * var(--shindo-heading-font-size, 100) / 100);
+  }
+  h4 {
+    font-size: calc(1em * var(--shindo-heading-font-size, 100) / 100);
+  }
+  h5 {
+    font-size: calc(0.83em * var(--shindo-heading-font-size, 100) / 100);
+  }
+  h6 {
+    font-size: calc(0.67em * var(--shindo-heading-font-size, 100) / 100);
   }
 }

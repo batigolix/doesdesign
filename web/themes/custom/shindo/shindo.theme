@@ -24,6 +24,10 @@ use Drupal\taxonomy\TermInterface;
  * The stylesheet itself replaces the previous blocking @import calls
  * in assets/css/shindo-fonts.css.
  *
+ * Also emits a preconnect hint for cdn.jsdelivr.net which hosts the
+ * Font Awesome 6 brands stylesheet loaded by the shindo/fontawesome
+ * library (bead doesdesign-mtgw).
+ *
  * Themes cannot implement hook_page_attachments() — Drupal core only
  * invokes it for modules (see HtmlRenderer::invokePageAttachmentHooks) —
  * so this runs from the *_alter variant.
@@ -53,6 +57,16 @@ function shindo_page_attachments_alter(array &$attachments): void {
       ],
     ],
     'shindo_preconnect_gstatic',
+  ];
+  $attachments['#attached']['html_head'][] = [
+    [
+      '#tag' => 'link',
+      '#attributes' => [
+        'rel' => 'preconnect',
+        'href' => 'https://cdn.jsdelivr.net',
+      ],
+    ],
+    'shindo_preconnect_jsdelivr',
   ];
 }
 
@@ -199,6 +213,18 @@ function _shindo_html_build_style_declarations(ThemeSettingsProvider $settings):
   }
   foreach ($shindo_vars as $key => [$var, $default]) {
     $styles[] = $var . ':' . ($settings->getSetting($key) ?: $default);
+  }
+
+  // Font-size scaling (bead doesdesign-eiig). Values are integer
+  // percentages (50-200, default 100). Emitted as raw integers so SCSS
+  // can multiply them via calc() without re-parsing a "%" suffix.
+  $body_size = $settings->getSetting('body_font_size');
+  if ($body_size !== NULL && $body_size !== '') {
+    $styles[] = '--shindo-body-font-size:' . (int) $body_size;
+  }
+  $heading_size = $settings->getSetting('heading_font_size');
+  if ($heading_size !== NULL && $heading_size !== '') {
+    $styles[] = '--shindo-heading-font-size:' . (int) $heading_size;
   }
 
   return $styles;
