@@ -9,7 +9,7 @@ dependencies:
 id: shindo_messages
 theme: shindo
 region: content
-weight: -10
+weight: -12
 provider: null
 plugin: system_messages_block
 settings:

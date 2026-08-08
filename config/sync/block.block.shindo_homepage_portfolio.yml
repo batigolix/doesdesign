@@ -12,7 +12,7 @@ dependencies:
 id: shindo_homepage_portfolio
 theme: shindo
 region: content
-weight: 10
+weight: -10
 provider: null
 plugin: 'views_block:portfolio-block_homepage'
 settings:

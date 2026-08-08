@@ -15,28 +15,9 @@ template: false
 archive: false
 id: contact
 title: 'Contact opnemen met Birgit Doesborg'
-description: 'Contactformulier voor Doesdesign.nl'
+description: '<p>Contactformulier voor Doesdesign.nl</p>'
 categories: {  }
 elements: |-
-  contact_info:
-    '#type': webform_markup
-    '#markup': |
-      <p>Zou u een bezoek willen brengen aan het atelier van Doesdesign, maak dan eerst een afspraak via email of telefonisch.</p>
-      <p>Graag per email contact opnemen.</p>
-      <ul>
-        <li>Birgit Doesborg</li>
-        <li><a href="tel:(+31)06-38343719">06-38343719</a></li>
-        <li><a href="mailto:birgit@doesdesign.nl">birgit@doesdesign.nl</a></li>
-      </ul>
-      <h2>Op het web</h2>
-      <ul>
-        <li><a href="https://www.facebook.com/Doesdesign.nl">Facebook</a></li>
-        <li><a href="http://nl.linkedin.com/in/birgitdoesborg">Linkedin</a></li>
-        <li><a href="http://youtube.com/@metalartcreations">Youtube</a></li>
-        <li><a href="http://www.pinterest.com/sieradenmokume/">Pinterest</a></li>
-        <li><a href="https://www.instagram.com/doesdesign_nl/">Instagram</a></li>
-      </ul>
-      <h2>Contactformulier</h2>
   name:
     '#title': 'Naam / name'
     '#type': textfield
@@ -64,8 +45,8 @@ settings:
   ajax_progress_type: ''
   ajax_effect: ''
   ajax_speed: null
-  page: true
-  page_submit_path: /contact
+  page: false
+  page_submit_path: ''
   page_confirm_path: ''
   page_theme_name: ''
   form_title: source_entity_webform
@@ -97,6 +78,7 @@ settings:
   form_access_denied_message: ''
   form_access_denied_attributes: {  }
   form_file_limit: ''
+  form_file_limit_message: ''
   form_attributes: {  }
   form_method: ''
   form_action: ''
