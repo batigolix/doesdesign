@@ -1,0 +1,39 @@
+// AI generated (bead doesdesign-59x6, doesdesign-yrqx)
+// Basic block_content bundles in Dopetrope footer-column layout.
+//
+// The Twig template block--block-content--type--basic.html.twig renders
+// each basic block as a plain <section> (no .box class) matching the
+// Dopetrope right-sidebar.html demo footer "What's this all about?" box:
+// transparent background, header/image/body/footer flat, .button (solid)
+// wrapped in ul.actions.
+//
+// These rules only cover the field-markup wrappers Drupal adds (media
+// entity view <article>, entity_reference field wrapper) that the
+// upstream Dopetrope stylesheet doesn't know about.
+
+@use "variables" as *;
+
+#page-wrapper .block-content-basic {
+  .image.featured {
+    display: block;
+    outline: 0;
+    width: 100%;
+
+    // The media entity view wraps the image in <article>; strip its
+    // block-level defaults so the anchor lays out cleanly.
+    article,
+    .field--name-field-media-image {
+      margin: 0;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  > p:last-of-type {
+    margin-bottom: 1em;
+  }
+}
