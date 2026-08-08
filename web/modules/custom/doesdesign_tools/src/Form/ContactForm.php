@@ -1,9 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\doesdesign_tools\Form;
 
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Core\Logger\LoggerChannelFactoryInterface;
+use Drupal\Core\Mail\MailManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -12,43 +18,53 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class ContactForm extends FormBase {
 
   /**
-   * Drupal\Core\Mail\MailManagerInterface definition.
+   * The mail manager.
    *
    * @var \Drupal\Core\Mail\MailManagerInterface
    */
-  protected $pluginManagerMail;
+  protected MailManagerInterface $mailManager;
 
   /**
-   * Drupal\Core\Logger\LoggerChannelFactoryInterface definition.
+   * The language manager.
    *
-   * @var \Drupal\Core\Logger\LoggerChannelFactoryInterface
+   * @var \Drupal\Core\Language\LanguageManagerInterface
    */
-  protected $loggerFactory;
+  protected LanguageManagerInterface $languageManager;
 
   /**
-   * Drupal\Core\Logger\LoggerChannelInterface definition.
+   * Constructs a new ContactForm.
    *
-   * @var \Drupal\Core\Logger\LoggerChannelInterface
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The config factory.
+   * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $logger_factory
+   *   The logger channel factory.
+   * @param \Drupal\Core\Mail\MailManagerInterface $mail_manager
+   *   The mail manager.
+   * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
+   *   The language manager.
    */
-  protected $loggerChannelDefault;
-
-  /**
-   * The current user.
-   *
-   * @var \Drupal\Core\Session\AccountProxyInterface
-   */
-  protected $currentUser;
+  final public function __construct(
+    ConfigFactoryInterface $config_factory,
+    LoggerChannelFactoryInterface $logger_factory,
+    MailManagerInterface $mail_manager,
+    LanguageManagerInterface $language_manager,
+  ) {
+    $this->configFactory = $config_factory;
+    $this->loggerFactory = $logger_factory;
+    $this->mailManager = $mail_manager;
+    $this->languageManager = $language_manager;
+  }
 
   /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
-    $instance = parent::create($container);
-    $instance->pluginManagerMail = $container->get('plugin.manager.mail');
-    $instance->loggerFactory = $container->get('logger.factory');
-    $instance->loggerChannelDefault = $container->get('logger.channel.default');
-    $instance->currentUser = $container->get('current_user');
-    return $instance;
+    return new static(
+      $container->get('config.factory'),
+      $container->get('logger.factory'),
+      $container->get('plugin.manager.mail'),
+      $container->get('language_manager'),
+    );
   }
 
   /**
@@ -156,13 +172,13 @@ class ContactForm extends FormBase {
     $subject = $form_state->getValue('subject');
     $module = 'doesdesign_tools';
     $key = 'doesdesign_tools_mail';
-    $to = "coxdoes@gmail.com";
+    $to = $this->configFactory->get('system.site')->get('mail') ?: 'coxdoes@gmail.com';
     $params = [];
     $params['message'] = "Onderwerp: $subject \n\nNaam: $name \n\nTelefoon: $telephone\n\nBericht: $message";
     $params['subject'] = $subject;
-    $langcode = $this->currentUser->getPreferredLangcode();
+    $langcode = $this->languageManager->getCurrentLanguage()->getId();
     $send = TRUE;
-    $result = $this->pluginManagerMail->mail($module, $key, $to, $langcode, $params, NULL, $send);
+    $result = $this->mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
     if ($result['result'] !== TRUE) {
       $this->messenger()->addError($this->t('There was a problem sending your message and it was not sent.'));
     }
