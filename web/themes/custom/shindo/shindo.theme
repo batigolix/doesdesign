@@ -525,4 +525,8 @@ function shindo_preprocess_views_view_fields(array &$variables): void {
   $variables['fields']['name']->content = [
     '#markup' => (string) $variables['fields']['name']->content . ' (' . $count . ')',
   ];
+
+  // Cache-invalidate this block when any object node changes status so the
+  // per-term counts stay in sync with published-object changes.
+  $variables['#cache']['tags'][] = 'node_list:object';
 }
