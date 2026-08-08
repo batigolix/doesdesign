@@ -1,0 +1,23 @@
+uuid: ee3aca85-75ee-49b6-814d-3ca69ec5ef0b
+langcode: nl
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:60dfc6e1-4e69-41b6-a0fb-efcbd089a85f'
+  module:
+    - block_content
+  theme:
+    - shindo
+id: shindo_socials
+theme: shindo
+region: footer_row1_col2
+weight: 0
+provider: null
+plugin: 'block_content:60dfc6e1-4e69-41b6-a0fb-efcbd089a85f'
+settings:
+  id: 'block_content:60dfc6e1-4e69-41b6-a0fb-efcbd089a85f'
+  label: Socials
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility: {  }
