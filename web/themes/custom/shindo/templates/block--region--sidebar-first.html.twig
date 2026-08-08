@@ -44,7 +44,11 @@
   {% if content.field_button|render|trim %}
     <footer>
       {% for item in content.field_button['#items'] %}
-        <a href="{{ item.getUrl() }}" class="button alt">{{ item.title }}</a>
+        {# bead doesdesign-zhg2 — item.title is a plain string on the LinkItem
+           field item, not a render array, so Twig autoescape does not treat
+           it as safe markup. Apply |escape explicitly so a stored link title
+           containing HTML/JS is rendered as text. #}
+        <a href="{{ item.getUrl() }}" class="button alt">{{ item.title|escape }}</a>
       {% endfor %}
     </footer>
   {% endif %}

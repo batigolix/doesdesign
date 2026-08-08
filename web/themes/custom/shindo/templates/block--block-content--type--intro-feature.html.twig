@@ -11,12 +11,14 @@
  */
 #}
 {# Read raw field values so we get the machine key (e.g. "fa-cog") for the
-   icon class instead of the human-readable label ("Tandwiel (fa-cog)"). #}
-{% set icon = content.field_icon['#object'].field_icon.value|default('')|trim %}
+   icon class instead of the human-readable label ("Tandwiel (fa-cog)").
+   `icon_class` is set by shindo_preprocess_block__block_content__type__intro_feature()
+   (bead doesdesign-9mxw) after validating the raw field value against an
+   allowlist regex — do not swap it back to `content.field_icon['#object']…` #}
 {% set heading = content.field_heading['#object'].field_heading.value|default('')|trim %}
 <section>
-  {% if icon %}
-    <i class="icon solid featured {{ icon }}"></i>
+  {% if icon_class %}
+    <i class="icon solid featured {{ icon_class }}"></i>
   {% endif %}
   {{ title_prefix }}
   <header>
