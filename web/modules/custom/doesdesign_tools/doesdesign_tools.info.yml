@@ -1,6 +1,6 @@
 name: 'Doesdesign tools'
 type: module
-description: 'My Awesome Module'
+description: 'Site-specifieke tools voor doesdesign.nl: contactformulier, slideshow-blok, homepage-controller en deploy hooks.'
 package: 'Custom'
 dependencies:
   - drupal:node
