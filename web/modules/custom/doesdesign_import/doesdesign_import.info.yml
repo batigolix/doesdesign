@@ -2,7 +2,7 @@ name: doesdesign_import
 type: module
 description: Migrates content from doesdesign D7 to D11.
 package: Custom
-core_version_requirement: ^8 || ^9 || ^10 || ^11
+core_version_requirement: ^11
 dependencies:
   - drupal:migrate
   - migrate_plus:migrate_plus

@@ -36,13 +36,35 @@ function doesdesign_local_tasks_preprocess_page(array &$variables): void {
 }
 
 /**
- * Implements hook_theme_registry_alter().
+ * Implements hook_theme().
  *
- * @phpstan-param array<string, mixed> $theme_registry
+ * Registers a theme suggestion template for front-end local tasks.
+ *
+ * @phpstan-param array<string, mixed> $existing
+ * @phpstan-return array<string, mixed>
  */
-function doesdesign_local_tasks_theme_registry_alter(array &$theme_registry): void {
+function doesdesign_local_tasks_theme(array $existing, string $type, string $theme, string $path): array {
+  return [
+    'menu_local_tasks__frontend' => [
+      'variables' => [
+        'primary' => [],
+        'secondary' => [],
+      ],
+      'base hook' => 'menu_local_tasks',
+      'path' => \Drupal::service('extension.list.module')->getPath('doesdesign_local_tasks') . '/templates',
+      'template' => 'menu-local-tasks--frontend',
+    ],
+  ];
+}
 
-  if (!Drupal::service('router.admin_context')->isAdminRoute()) {
-    $theme_registry['menu_local_tasks']['path'] = \Drupal::service('extension.list.module')->getPath('doesdesign_local_tasks') . '/templates';
+/**
+ * Implements hook_theme_suggestions_menu_local_tasks_alter().
+ *
+ * @phpstan-param array<int, string> $suggestions
+ * @phpstan-param array<string, mixed> $variables
+ */
+function doesdesign_local_tasks_theme_suggestions_menu_local_tasks_alter(array &$suggestions, array $variables): void {
+  if (!\Drupal::service('router.admin_context')->isAdminRoute()) {
+    $suggestions[] = 'menu_local_tasks__frontend';
   }
 }

@@ -12,3 +12,11 @@ footer_heading_color: '#ffffff'
 accent_color: '#d52349'
 background_pattern: bg
 background_color: '#252122'
+container_width: default
+sidebar_position: right
+show_hero: true
+color_primary: '#252122'
+color_secondary: '#252122'
+color_accent: '#d52349'
+color_background: '#252122'
+color_text: '#252122'
