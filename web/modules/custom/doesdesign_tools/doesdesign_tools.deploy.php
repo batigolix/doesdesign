@@ -57,3 +57,45 @@ function doesdesign_tools_deploy_drop_orphan_inline_block_usage(): void {
     $db_schema->dropTable('inline_block_usage');
   }
 }
+
+/**
+ * Migrate orphan basic_html / restricted_html content (m2gh, 9y64).
+ *
+ * The formats filter.format.basic_html and filter.format.restricted_html have
+ * been removed from config (see beads g9f0/b6eo). On environments where the
+ * config removal is imported for the first time (stage, live), existing text
+ * field values still reference the removed formats. Drupal falls back to
+ * plain_text rendering for orphan format references — visually broken markup.
+ *
+ * This hook scans every *_format column in the DB and rewrites orphan
+ * references to 'full_html'. Idempotent: safe to run repeatedly (updates 0
+ * rows once migration is complete).
+ */
+function doesdesign_tools_deploy_migrate_orphan_text_formats(): void {
+  $connection = \Drupal::database();
+  $schema = $connection->schema();
+  $orphan_formats = ['basic_html', 'restricted_html'];
+
+  $tables = $connection->query(
+    "SELECT TABLE_NAME, COLUMN_NAME FROM information_schema.COLUMNS
+     WHERE TABLE_SCHEMA = DATABASE() AND COLUMN_NAME LIKE :suffix",
+    [':suffix' => '%\_format']
+  )->fetchAll();
+
+  $total = 0;
+  foreach ($tables as $row) {
+    if (!$schema->tableExists($row->TABLE_NAME)) {
+      continue;
+    }
+    $affected = $connection->update($row->TABLE_NAME)
+      ->fields([$row->COLUMN_NAME => 'full_html'])
+      ->condition($row->COLUMN_NAME, $orphan_formats, 'IN')
+      ->execute();
+    $total += (int) $affected;
+  }
+
+  \Drupal::logger('doesdesign_tools')->info(
+    'Migrated @count orphan text-format references (basic_html/restricted_html) to full_html.',
+    ['@count' => $total]
+  );
+}
