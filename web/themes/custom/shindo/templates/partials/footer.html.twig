@@ -5,7 +5,8 @@
  * page--front.html.twig, and page--taxonomy-term--type.html.twig.
  *
  * Renders the Dopetrope-style footer with five column regions
- * (footer_col_1..5) plus a full-width post_footer / copyright row.
+ * (footer_row1_col1..col2, footer_row2_col1..col3) plus a full-width
+ * post_footer / copyright row.
  *
  * AI generated (bead doesdesign-5xv).
  */
@@ -19,34 +20,34 @@
           <header>
             <h2>Recent nieuws</h2>
           </header>
-          {# Drupal footer_col_1 region — renders the "news" view
+          {# Drupal footer_row1_col1 region — renders the "news" view
              block_footer_dates display as <ul class="dates"> with the
              five most recent article nodes. #}
-          {{ page.footer_col_1 }}
+          {{ page.footer_row1_col1 }}
         </section>
       </div>
       <div class="col-4 col-12-medium">
 
-        {# Drupal footer_col_2 region — each block renders as <section class="box">
-           via templates/block--region--footer-col-2.html.twig, matching the
+        {# Drupal footer_row1_col2 region — each block renders as <section class="box">
+           via templates/block--region--footer-row1-col2.html.twig, matching the
            Dopetrope featured-image + header + body + button pattern. #}
-        {{ page.footer_col_2 }}
+        {{ page.footer_row1_col2 }}
 
       </div>
       <div class="col-4 col-6-medium col-12-small">
-        {# Drupal footer_col_3 region — bewerkbaar link-lijst blok. #}
-        {{ page.footer_col_3 }}
+        {# Drupal footer_row2_col1 region — bewerkbaar link-lijst blok. #}
+        {{ page.footer_row2_col1 }}
       </div>
       <div class="col-4 col-6-medium col-12-small">
-        {# Drupal footer_col_4 region — bewerkbaar link-lijst blok. #}
-        {{ page.footer_col_4 }}
+        {# Drupal footer_row2_col2 region — bewerkbaar link-lijst blok. #}
+        {{ page.footer_row2_col2 }}
       </div>
       <div class="col-4 col-12-medium">
 
-        {# Drupal footer_col_5 region — social/contact blocks (social icons,
+        {# Drupal footer_row2_col3 region — social/contact blocks (social icons,
            contact info) placed via block config. Replaces the Dopetrope
            hardcoded "Vitae tempor lorem" column. #}
-        {{ page.footer_col_5 }}
+        {{ page.footer_row2_col3 }}
 
       </div>
       <div class="col-12">

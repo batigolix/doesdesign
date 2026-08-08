@@ -99,3 +99,36 @@ function doesdesign_tools_deploy_migrate_orphan_text_formats(): void {
     ['@count' => $total]
   );
 }
+
+/**
+ * Rename footer_col_N region to footer_rowX_colY on block config (00lg).
+ *
+ * Safety net voor stage/live: als block config alleen in DB staat (via
+ * placement in UI, niet in config/sync), zorgt deze hook dat block
+ * entities verwezen naar footer_col_N automatisch worden bijgewerkt
+ * naar footer_rowX_colY.
+ * Idempotent: skip als new region al gezet, log het aantal migrated.
+ */
+function doesdesign_tools_deploy_rename_footer_regions(): void {
+  $map = [
+    'footer_col_1' => 'footer_row1_col1',
+    'footer_col_2' => 'footer_row1_col2',
+    'footer_col_3' => 'footer_row2_col1',
+    'footer_col_4' => 'footer_row2_col2',
+    'footer_col_5' => 'footer_row2_col3',
+  ];
+  $storage = \Drupal::entityTypeManager()->getStorage('block');
+  $migrated = 0;
+  foreach ($storage->loadMultiple() as $block) {
+    $current = $block->getRegion();
+    if (isset($map[$current])) {
+      $block->setRegion($map[$current]);
+      $block->save();
+      $migrated++;
+    }
+  }
+  \Drupal::logger('doesdesign_tools')->info(
+    'Renamed @count block placements from footer_col_N to footer_rowX_colY.',
+    ['@count' => $migrated]
+  );
+}
