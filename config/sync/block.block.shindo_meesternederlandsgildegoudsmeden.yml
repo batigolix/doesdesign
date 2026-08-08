@@ -1,0 +1,23 @@
+uuid: 39af835d-0df2-41ea-8a3b-743570072d98
+langcode: nl
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:9e8068f6-a099-4868-8142-9e3f80dcb9a3'
+  module:
+    - block_content
+  theme:
+    - shindo
+id: shindo_meesternederlandsgildegoudsmeden
+theme: shindo
+region: footer_row2_col1
+weight: 0
+provider: null
+plugin: 'block_content:9e8068f6-a099-4868-8142-9e3f80dcb9a3'
+settings:
+  id: 'block_content:9e8068f6-a099-4868-8142-9e3f80dcb9a3'
+  label: 'Meester Nederlan​ds gilde goudsmeden '
+  label_display: visible
+  provider: block_content
+  view_mode: full
+visibility: {  }
