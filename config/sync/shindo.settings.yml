@@ -10,7 +10,7 @@ features:
 logo:
   path: themes/custom/denbei/logo.png
   use_default: false
-body_font: source-sans-pro
+body_font: nunito
 primary_color: '#252122'
 button_color: '#252122'
 footer_heading_color: '#ffffff'
