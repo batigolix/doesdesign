@@ -24,4 +24,4 @@ regions:
   footer_row2_col3: 'Footer rij 2 kolom 3'
   post_footer: Colofon
 core_version_requirement: ^8.8.0 || ^9.0 || ^10 || ^11
-base theme: stable
+base theme: stable9
