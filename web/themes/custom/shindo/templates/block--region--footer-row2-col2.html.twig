@@ -1,18 +1,54 @@
 {#
 /**
  * @file
- * Theme override for a block placed in the footer_row2_col2 region.
+ * Theme override for a block placed in the footer_col2 region.
  *
- * AI generated (bead doesdesign-g7v). Same pattern as footer_row2_col1:
- * <section><header><h2>{title}</h2></header>{body}</section>.
+ * AI generated. Wraps in <section class="box"> so Dopetrope's .box CSS
+ * applies to Drupal-rendered footer column 2 blocks. Renders the
+ * featured image above the header (Dopetrope "About this site"
+ * pattern), field_title as the visible <h2>, body content, and
+ * field_button links as .button in a <footer>.
  */
 #}
 {% set display_title = content.field_title|render|striptags|trim ?: label %}
-<section{{ attributes }}>
+{% set button_url = '' %}
+{% if content.field_button|render|trim %}
+  {% for item in content.field_button['#items'] %}
+    {% set button_url = item.getUrl()|render %}
+  {% endfor %}
+{% endif %}
+<section{{ attributes.addClass('') }}>
   {{ title_prefix }}
   {% if display_title %}
     <header><h2>{{ display_title }}</h2></header>
   {% endif %}
   {{ title_suffix }}
-  {{ content|without('field_title', 'field_media_image', 'field_button') }}
+  {% if content.field_media_image[0] %}
+    {% set media = content.field_media_image['#items'].entity %}
+    {% if media %}
+      {% set file_item = media.field_media_image.0 %}
+      {% set file = file_item.entity %}
+      {% if file %}
+        <a href="{{ button_url ?: '#' }}" class="image featured">
+          {{ {
+            '#theme': 'image_style',
+            '#style_name': 'footer_box',
+            '#uri': file.fileUri,
+            '#alt': file_item.alt,
+            '#attributes': {'loading': 'lazy'}
+          } }}
+        </a>
+      {% endif %}
+    {% endif %}
+  {% endif %}
+  {{ content|without('field_media_image', 'field_image', 'field_title', 'field_button') }}
+  {% if content.field_button|render|trim %}
+    <footer>
+      <ul class="actions">
+        {% for item in content.field_button['#items'] %}
+          <li><a href="{{ item.getUrl() }}" class="button">{{ item.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </footer>
+  {% endif %}
 </section>

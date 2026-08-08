@@ -1,0 +1,58 @@
+{#
+/**
+ * @file
+ * Custom template for basic block_content bundles (fallback / non-footer contexts).
+ *
+ * AI generated (bead doesdesign-59x6, doesdesign-yrqx).
+ *
+ * NOTE: Blocks placed in footer_row1_col2 use the region-based template
+ * block--region--footer-row1-col2.html.twig, which handles the clean
+ * Dopetrope <img> render via the image_style theme function. This
+ * bundle-based template is a fallback for basic blocks placed in other
+ * regions (sidebar, etc.).
+ *
+ * Renders:
+ *   <section>
+ *     <header><h2>title</h2></header>
+ *     <a class="image featured">{{ field_media_image }}</a>
+ *     <p>body</p>
+ *     <footer>
+ *       <ul class="actions">
+ *         <li><a class="button">{{ field_button.title }}</a></li>
+ *       </ul>
+ *     </footer>
+ *   </section>
+ *
+ * The block wrapper's default <h2> title (from block.html.twig) is
+ * suppressed — field_title is the CTA heading.
+ */
+#}
+{%
+  set classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+    'block-content-basic',
+  ]
+%}
+{% set title_value = content.field_title['#object'].field_title.value|default('')|trim %}
+<section{{ attributes.addClass(classes) }}>
+  {% if title_value %}
+    <header>
+      <h2>{{ title_value }}</h2>
+    </header>
+  {% endif %}
+  {% if content.field_media_image|render|trim %}
+    <a class="image featured">{{ content.field_media_image }}</a>
+  {% endif %}
+  {{ content.body }}
+  {% if content.field_button|render|trim %}
+    <footer>
+      <ul class="actions">
+        {% for item in content.field_button['#items'] %}
+          <li><a href="{{ item.getUrl().toString() }}" class="button">{{ item.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </footer>
+  {% endif %}
+</section>
