@@ -17,8 +17,13 @@
  */
 #}
 {% set title_str = node.getTitle() %}
+{# bead doesdesign-dlan — `banner_bg_url` is inserted inside a CSS `url()`
+   string context. Twig's default autoescape only handles the HTML attribute
+   context, not the nested CSS one, so a URL with special characters could
+   break out of the string. `|escape('css')` percent-encodes anything unsafe
+   for that context. #}
 <a href="{{ url }}" class="banner-link" rel="bookmark" aria-label="{{ title_str }}"
-   {%- if banner_bg_url %} style="background-image: url('{{ banner_bg_url }}');"{% endif %}>
+   {%- if banner_bg_url %} style="background-image: url('{{ banner_bg_url|escape('css') }}');"{% endif %}>
   <header>
     <h2>{{ label }}</h2>
     {% set subtitle = content.field_subtitle|render|striptags|trim %}

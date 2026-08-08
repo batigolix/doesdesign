@@ -451,6 +451,33 @@ function _shindo_node_add_banner_bg(array &$variables, NodeInterface $node): voi
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for the intro_feature block.
+ *
+ * Bead doesdesign-9mxw — the intro-feature template used to read
+ * `content.field_icon['#object'].field_icon.value` directly and interpolate
+ * it inside `class="icon solid featured {{ icon }}"`. Twig autoescape only
+ * HTML-encodes, which does not prevent an editor (or an imported value)
+ * from injecting extra HTML attribute tokens via a crafted icon string
+ * (e.g. `x" style="background:url(evil)`). Defense-in-depth: validate the
+ * raw value against an allowlist regex here and pass a safe `icon_class`
+ * variable to the template.
+ *
+ * AI generated.
+ *
+ * @phpstan-param array<string, mixed> $variables
+ */
+function shindo_preprocess_block__block_content__type__intro_feature(array &$variables): void {
+  $icon_raw = '';
+  if (isset($variables['content']['field_icon']['#object'])) {
+    $entity = $variables['content']['field_icon']['#object'];
+    if ($entity->hasField('field_icon') && !$entity->get('field_icon')->isEmpty()) {
+      $icon_raw = (string) $entity->get('field_icon')->value;
+    }
+  }
+  $variables['icon_class'] = preg_match('/^[a-z0-9_-]+$/', $icon_raw) ? $icon_raw : '';
+}
+
+/**
  * Implements hook_preprocess_HOOK() for views_view_fields.
  *
  * Appends the number of published object nodes per material term to the
