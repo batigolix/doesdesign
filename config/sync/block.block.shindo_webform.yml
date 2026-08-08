@@ -1,0 +1,31 @@
+uuid: 7f06b5d1-1b83-4457-ba7e-641f4123f848
+langcode: nl
+status: true
+dependencies:
+  config:
+    - webform.webform.contact
+  module:
+    - system
+    - webform
+  theme:
+    - shindo
+id: shindo_webform
+theme: shindo
+region: content
+weight: -9
+provider: null
+plugin: webform_block
+settings:
+  id: webform_block
+  label: Contactformulier
+  label_display: visible
+  provider: webform
+  webform_id: contact
+  default_data: ''
+  redirect: false
+  lazy: false
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /contact
