@@ -250,4 +250,16 @@ final class SlideShowBlock extends BlockBase implements ContainerFactoryPluginIn
     ]);
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * @return array<int, string>
+   *   The cache contexts for this block.
+   */
+  public function getCacheContexts(): array {
+    // No user-specific content; only the URL context matters
+    // (per-page vs global block placement).
+    return Cache::mergeContexts(parent::getCacheContexts(), ['url.path']);
+  }
+
 }
