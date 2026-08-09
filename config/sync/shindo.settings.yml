@@ -26,3 +26,5 @@ color_text: '#5d5d5d'
 container_width: default
 sidebar_position: right
 show_hero: true
+body_font_size: 110
+heading_font_size: 100
