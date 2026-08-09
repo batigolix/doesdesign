@@ -1,80 +1,14 @@
-/* Styles for Drupal 8 */
-/*----------------------------------------------------------------------------*/
+/* AI generated (bead doesdesign-bio7)
+ * Local task tabs styling for doesdesign_local_tasks module.
+ * Renders sticky front-end tabs; loaded via doesdesign_local_tasks.libraries.yml.
+ */
 
-.ief-form.ief-form-row.js-form-wrapper.form-wrapper {
-  border: 1px solid #999;
-  padding: 20px;
-  background-color: #ccf;
-}
-
-/* multilevel menu */
-.toolbar-tray-horizontal ul li.menu-item--expanded:hover ul {
-  width: 350px !important;
-}
-
-.toolbar-tray-horizontal ul li.menu-item--expanded .menu-item:hover ul {
-  margin: -40px 0 0 348px !important;
-}
-
-/* adding a node */
-fieldset[data-drupal-selector="edit-field-manageable-blocks-form"] {
-  background-color: #eee !important;
-  margin-left: 40px !important;
-}
-
-div[data-drupal-selector*="edit-field-manageable-blocks-entities"] {
-  background-color: #f7fcff !important;
-}
-@media screen and (min-width: 1200px) {
-  div[data-drupal-selector*="edit-field-manageable-blocks-entities"] {
-    min-width: 190px;
-  }
-}
-
-/*# sourceMappingURL=style.css.map */
-
-div[data-drupal-selector*="edit-field-manageable-blocks-entities"] .button {
-  margin: 0.25em !important;
-}
-
-/** Drupal Admin navigation fix */
-@media (min-width: 768px) and (max-width: 975px) {
-  #toolbar-administration + .header-spacer + header {
-    top: 40px;
-    left: 15rem;
-  }
-}
-
-@media (min-width: 976px) {
-  #toolbar-administration + .header-spacer + header {
-    top: 40px;
-  }
-
-  .toolbar-horizontal #toolbar-administration + .header-spacer + .header.header--transparent:after,
-  .toolbar-horizontal #toolbar-administration + .header-spacer + header {
-    top: 80px;
-  }
-}
-
-@media only screen and (min-width: 760px) {
-  .header + div + .visually-hidden + .nav-page-edit + .hero {
-    margin-top: -121px;
-  }
-
-  .toolbar-horizontal .header__bottom {
-    top: 118px;
-  }
-}
-
-.toolbar-lining ul {
-  margin-bottom: 0;
-}
-
-
+/* Make room for the fixed local-tasks bar when the admin toolbar is active. */
 .toolbar-fixed > footer {
   margin-bottom: 45px;
 }
 
+/* Sticky local-tasks bar (rendered by templates/menu-local-tasks--frontend.html.twig). */
 .nav-page-edit {
   position: fixed;
   bottom: 0;
@@ -113,6 +47,7 @@ div[data-drupal-selector*="edit-field-manageable-blocks-entities"] .button {
   margin-right: 0;
 }
 
+/* Lift Drupal status messages above the sticky local-tasks bar. */
 div[aria-label="Status message"] {
   position: fixed;
   bottom: 50px;
@@ -126,6 +61,7 @@ div[aria-label="Status message"] {
   z-index: 1000;
 }
 
+/* Keep the admin toolbar above the sticky local-tasks bar. */
 #toolbar-administration {
   z-index: 2000;
 }
