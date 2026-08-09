@@ -236,7 +236,7 @@ display:
         options:
           type: ul
           wrapper_class: item-list
-          class: ''
+          class: divided
       row:
         type: fields
         options:
