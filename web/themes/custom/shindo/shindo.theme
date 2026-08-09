@@ -186,12 +186,14 @@ function _shindo_html_build_style_declarations(ThemeSettingsProvider $settings):
   // accent / background can vary independently. See individual beads:
   // - primary_color         (c98)  → --shindo-primary.
   // - button_color          (92zi) → --shindo-button.
+  // - footer_button_color   (lgcw) → --shindo-footer-button.
   // - footer_heading_color  (b2u)  → --shindo-footer-heading.
   // - accent_color          (0cpz) → --shindo-accent.
   // - background_color      (6kj)  → --shindo-bg-color.
   $shindo_vars = [
     'primary_color'        => ['--shindo-primary', '#252122'],
     'button_color'         => ['--shindo-button', '#252122'],
+    'footer_button_color'  => ['--shindo-footer-button', '#d52349'],
     'footer_heading_color' => ['--shindo-footer-heading', '#ffffff'],
     'accent_color'         => ['--shindo-accent', '#d52349'],
     'background_color'     => ['--shindo-bg-color', '#252122'],

@@ -13,6 +13,7 @@ logo:
 body_font: nunito
 primary_color: '#252122'
 button_color: '#252122'
+footer_button_color: '#d52349'
 footer_heading_color: '#fdff94'
 accent_color: '#d52349'
 background_pattern: grid
