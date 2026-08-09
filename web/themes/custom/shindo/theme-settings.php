@@ -74,6 +74,12 @@ function shindo_form_system_theme_settings_alter(array &$form, FormStateInterfac
     '#description' => t('Achtergrondkleur voor primaire buttons.'),
     '#config_target' => 'shindo.settings:button_color',
   ];
+  $form['shindo_colors']['footer_button_color'] = [
+    '#type' => 'color',
+    '#title' => t('Footer button kleur'),
+    '#description' => t('Kleur voor buttons in het footer (bijv. Maatwerk CTA knop). Kan afwijken van de main button kleur. Dopetrope default: #d52349.'),
+    '#config_target' => 'shindo.settings:footer_button_color',
+  ];
   $form['shindo_colors']['footer_heading_color'] = [
     '#type' => 'color',
     '#title' => t('Footer kop-kleur'),

@@ -1,0 +1,21 @@
+// AI generated
+// Configurable footer button color — bead doesdesign-lgcw.
+//
+// Overrides the button background color specifically for buttons rendered
+// inside the #footer region. Uses the theme setting `footer_button_color`
+// (default #d52349, the Dopetrope pink) so the footer CTA (bijv. Maatwerk
+// knop) can differ visually from the main button colour (bead
+// doesdesign-92zi, default #252122 dark). The CSS custom property
+// --shindo-footer-button is written to the <html> element by
+// _shindo_html_build_style_declarations() in shindo.theme.
+//
+// Scoped to #page-wrapper #footer so main buttons elsewhere on the page
+// remain governed by --shindo-button.
+
+#page-wrapper #footer button,
+#page-wrapper #footer input[type="submit"],
+#page-wrapper #footer input[type="reset"],
+#page-wrapper #footer input[type="button"],
+#page-wrapper #footer .button {
+  background-color: var(--shindo-footer-button, #d52349);
+}
