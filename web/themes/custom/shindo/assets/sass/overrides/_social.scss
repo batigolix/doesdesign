@@ -20,14 +20,17 @@
 @use "variables" as *;
 
 #page-wrapper .social {
-  .icon{
+  .icon {
     &.brands {
       &.fa-facebook-f { background-color: #1877f2; }
-      &.fa-youtube { background-color: #ff0000; }
+
+      &.fa-youtube { background-color: #f00; }
+
       &.fa-linkedin-in { background-color: #0a66c2; }
+
       &.fa-instagram { background-color: #e4405f; }
+
       &.fa-pinterest { background-color: #bd081c; }
     }
   }
-
 }
