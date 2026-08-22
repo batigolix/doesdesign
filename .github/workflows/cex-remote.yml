@@ -66,7 +66,12 @@ jobs:
           echo "$SSH_KEY" > ~/.ssh/id_deploy
           chmod 600 ~/.ssh/id_deploy
           ssh-keyscan -p 7822 -H "$SSH_HOST" >> ~/.ssh/known_hosts
-          rsync -avz --delete -e 'ssh -p 7822 -i ~/.ssh/id_deploy' \
+          # Exclude Drupal-generated protection files (.htaccess, README.txt).
+          # They are auto-created per environment and their diffs are noise.
+          rsync -avz --delete \
+            --exclude='.htaccess' \
+            --exclude='README.txt' \
+            -e 'ssh -p 7822 -i ~/.ssh/id_deploy' \
             "$SSH_USER@$SSH_HOST:/tmp/cex-remote-export/" \
             config/sync/
 
