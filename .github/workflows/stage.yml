@@ -59,6 +59,10 @@ jobs:
             chmod a+w web/sites/default
             chmod a+w web/sites/default/settings.php
             git reset --hard
+            # Drop any per-env artefacts (e.g. patches.lock.json from an
+            # older composer install) so git checkout does not abort on
+            # "untracked working tree files would be overwritten".
+            git clean -fd
             git fetch origin
             git checkout -B develop origin/develop
             ${{ secrets.COMPOSER }} install --prefer-dist --no-progress --no-suggest --quiet --ignore-platform-reqs
