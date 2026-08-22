@@ -1,0 +1,99 @@
+# AI generated (bead doesdesign-wefm)
+# Export active config from stage or production and open a PR against develop.
+# Trigger manually via the "Run workflow" button in the GitHub Actions UI.
+name: Export remote config to PR
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Source environment to export config from'
+        required: true
+        default: 'stage'
+        type: choice
+        options:
+          - stage
+          - production
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout develop
+        uses: actions/checkout@v7
+        with:
+          ref: develop
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Resolve environment paths
+        id: env
+        run: |
+          if [ "${{ inputs.environment }}" = "production" ]; then
+            echo "remote_dir=${{ secrets.PRODUCTION_DIR }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "remote_dir=${{ secrets.STAGE_DIR }}" >> "$GITHUB_OUTPUT"
+          fi
+          echo "timestamp=$(date -u +%Y%m%d-%H%M)" >> "$GITHUB_OUTPUT"
+          echo "branch=cex/${{ inputs.environment }}-$(date -u +%Y%m%d-%H%M)" >> "$GITHUB_OUTPUT"
+
+      - name: Export config on remote
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: 7822
+          script: |
+            set -e
+            cd ${{ steps.env.outputs.remote_dir }}
+            rm -rf /tmp/cex-remote-export
+            mkdir -p /tmp/cex-remote-export
+            LANGUAGE=en bin/drush cex --destination=/tmp/cex-remote-export -y
+
+      - name: Pull exported config to runner
+        env:
+          SSH_KEY: ${{ secrets.PRIVATE_KEY }}
+          SSH_HOST: ${{ secrets.HOST }}
+          SSH_USER: ${{ secrets.USERNAME }}
+        run: |
+          set -e
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          ssh-keyscan -p 7822 -H "$SSH_HOST" >> ~/.ssh/known_hosts
+          rsync -avz --delete -e 'ssh -p 7822 -i ~/.ssh/id_deploy' \
+            "$SSH_USER@$SSH_HOST:/tmp/cex-remote-export/" \
+            config/sync/
+
+      - name: Create branch and commit if diff exists
+        id: commit
+        run: |
+          set -e
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          if git diff --quiet config/sync/; then
+            echo "No config differences from ${{ inputs.environment }} — skipping."
+            echo "has_diff=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git checkout -b "${{ steps.env.outputs.branch }}"
+          git add config/sync/
+          git commit -m "Export config from ${{ inputs.environment }} (${{ steps.env.outputs.timestamp }})"
+          git push origin "${{ steps.env.outputs.branch }}"
+          echo "has_diff=true" >> "$GITHUB_OUTPUT"
+
+      - name: Open pull request
+        if: steps.commit.outputs.has_diff == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create \
+            --base develop \
+            --head "${{ steps.env.outputs.branch }}" \
+            --title "Config export from ${{ inputs.environment }} (${{ steps.env.outputs.timestamp }})" \
+            --body "Automated export from **${{ inputs.environment }}** via the *Export remote config to PR* workflow. Review the diff before merging."
