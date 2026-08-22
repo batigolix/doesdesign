@@ -1,8 +1,0 @@
-uuid: b5400833-8f3a-49ab-82c5-319c53f9dd0e
-langcode: nl
-status: true
-dependencies: {  }
-id: site_branding
-label: 'Site Branding'
-revision: false
-description: 'Site logo + name + slogan block (replaces core system.branding_block). Bead doesdesign-xh7d.'
