@@ -32,18 +32,23 @@
   h1 {
     font-size: calc(2em * var(--shindo-heading-font-size, 100) / 100);
   }
+
   h2 {
     font-size: calc(1.5em * var(--shindo-heading-font-size, 100) / 100);
   }
+
   h3 {
     font-size: calc(1.35em * var(--shindo-heading-font-size, 100) / 100);
   }
+
   h4 {
     font-size: calc(1em * var(--shindo-heading-font-size, 100) / 100);
   }
+
   h5 {
     font-size: calc(0.83em * var(--shindo-heading-font-size, 100) / 100);
   }
+
   h6 {
     font-size: calc(0.67em * var(--shindo-heading-font-size, 100) / 100);
   }

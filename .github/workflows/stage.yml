@@ -64,5 +64,15 @@ jobs:
             ${{ secrets.COMPOSER }} install --prefer-dist --no-progress --no-suggest --quiet --ignore-platform-reqs
             chmod a-w web/sites/default
             chmod a-w web/sites/default/settings.php
+            # Guard: refuse to deploy when the remote active config has drift
+            # not present in git config/sync/. cim would silently overwrite
+            # those changes. Run the cex-remote workflow to snapshot them
+            # into a PR first, then merge and redeploy (bead doesdesign-wefm).
+            DRIFT=$(LANGUAGE=en bin/drush config:status --state='different,only in db' --format=list 2>/dev/null | grep -c . || true)
+            if [ "$DRIFT" -gt 0 ]; then
+              echo "::error::Remote stage config has $DRIFT item(s) differing from git config/sync/. Run 'gh workflow run cex-remote.yml -f environment=stage' to snapshot the drift, then merge that PR before redeploying."
+              LANGUAGE=en bin/drush config:status --state='different,only in db' || true
+              exit 1
+            fi
             LANGUAGE=en bin/drush deploy
             LANGUAGE=en bin/drush st
