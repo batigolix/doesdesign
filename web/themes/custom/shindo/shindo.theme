@@ -179,24 +179,29 @@ function _shindo_html_build_style_declarations(ThemeSettingsProvider $settings):
     'color_text' => '#333333',
   ];
 
-  // Shindo CSS custom properties (bead doesdesign-mix7) — data-driven map
-  // keyed by theme setting name → [css var name, hex fallback]. Each entry
-  // overrides a Dopetrope hardcoded colour via var(--shindo-*) in the
-  // shindo-*.css files. Kept separate variables so typography / button /
-  // accent / background can vary independently. See individual beads:
+  // Shindo CSS custom properties — data-driven map keyed by theme setting
+  // name → [css var name, fallback value, optional suffix]. Each entry
+  // overrides a Dopetrope hardcoded value via var(--shindo-*) in the
+  // shindo-*.css files. See individual beads:
   // - primary_color         (c98)  → --shindo-primary.
   // - button_color          (92zi) → --shindo-button.
   // - footer_button_color   (lgcw) → --shindo-footer-button.
   // - footer_heading_color  (b2u)  → --shindo-footer-heading.
   // - accent_color          (0cpz) → --shindo-accent.
   // - background_color      (6kj)  → --shindo-bg-color.
+  // - body_font_size        (eiig) → --shindo-body-font-size.
+  // - heading_font_size     (eiig) → --shindo-heading-font-size.
+  // Loop stays cyclomatic-simple (bead mix7, t1ud): every setting shares
+  // the same read + emit path — adding a new one is one array entry.
   $shindo_vars = [
-    'primary_color'        => ['--shindo-primary', '#252122'],
-    'button_color'         => ['--shindo-button', '#252122'],
-    'footer_button_color'  => ['--shindo-footer-button', '#d52349'],
-    'footer_heading_color' => ['--shindo-footer-heading', '#ffffff'],
-    'accent_color'         => ['--shindo-accent', '#d52349'],
-    'background_color'     => ['--shindo-bg-color', '#252122'],
+    'primary_color'        => ['--shindo-primary', '#252122', ''],
+    'button_color'         => ['--shindo-button', '#252122', ''],
+    'footer_button_color'  => ['--shindo-footer-button', '#d52349', ''],
+    'footer_heading_color' => ['--shindo-footer-heading', '#ffffff', ''],
+    'accent_color'         => ['--shindo-accent', '#d52349', ''],
+    'background_color'     => ['--shindo-bg-color', '#252122', ''],
+    'body_font_size'       => ['--shindo-body-font-size', '100', ''],
+    'heading_font_size'    => ['--shindo-heading-font-size', '100', ''],
   ];
 
   $styles = [];
@@ -213,20 +218,8 @@ function _shindo_html_build_style_declarations(ThemeSettingsProvider $settings):
     $prefix = '--' . str_replace('_', '-', $key);
     $styles[] = "$prefix:$hex";
   }
-  foreach ($shindo_vars as $key => [$var, $default]) {
-    $styles[] = $var . ':' . ($settings->getSetting($key) ?: $default);
-  }
-
-  // Font-size scaling (bead doesdesign-eiig). Values are integer
-  // percentages (50-200, default 100). Emitted as raw integers so SCSS
-  // can multiply them via calc() without re-parsing a "%" suffix.
-  $body_size = $settings->getSetting('body_font_size');
-  if ($body_size !== NULL && $body_size !== '') {
-    $styles[] = '--shindo-body-font-size:' . (int) $body_size;
-  }
-  $heading_size = $settings->getSetting('heading_font_size');
-  if ($heading_size !== NULL && $heading_size !== '') {
-    $styles[] = '--shindo-heading-font-size:' . (int) $heading_size;
+  foreach ($shindo_vars as $key => [$var, $default, $suffix]) {
+    $styles[] = $var . ':' . ($settings->getSetting($key) ?: $default) . $suffix;
   }
 
   return $styles;
