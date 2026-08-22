@@ -11,7 +11,7 @@ logo:
   path: themes/custom/denbei/logo.png
   use_default: false
 body_font: nunito
-primary_color: '#252122'
+primary_color: '#babd0a'
 button_color: '#252122'
 footer_button_color: '#d52349'
 footer_heading_color: '#fdff94'
@@ -27,4 +27,4 @@ container_width: default
 sidebar_position: right
 show_hero: true
 body_font_size: 110
-heading_font_size: 100
+heading_font_size: 150
