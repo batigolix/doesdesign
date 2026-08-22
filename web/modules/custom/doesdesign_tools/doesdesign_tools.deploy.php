@@ -9,6 +9,7 @@
 
 declare(strict_types=1);
 
+use Drupal\node\NodeInterface;
 use Drupal\taxonomy\Entity\Vocabulary;
 
 /**
@@ -129,6 +130,56 @@ function doesdesign_tools_deploy_rename_footer_regions(): void {
   }
   \Drupal::logger('doesdesign_tools')->info(
     'Renamed @count block placements from footer_col_N to footer_rowX_colY.',
+    ['@count' => $migrated]
+  );
+}
+
+/**
+ * Migrate promote=1 to field_show_in_banner=1 on object nodes (kcc7).
+ *
+ * The homepage banner (bead xgx) originally selected objects via
+ * node.promote. Bead kcc7 replaces that with a dedicated boolean field
+ * field_show_in_banner so the semantics no longer overload core promote.
+ *
+ * This hook copies promote=1 to field_show_in_banner=1 for every object
+ * node that has the flag set. Idempotent: subsequent runs will only touch
+ * nodes still missing the new value.
+ */
+function doesdesign_tools_deploy_migrate_promote_to_banner_flag(): void {
+  $connection = \Drupal::database();
+  if (!$connection->schema()->tableExists('node__field_show_in_banner')) {
+    return;
+  }
+
+  $nids = $connection->select('node_field_data', 'n')
+    ->fields('n', ['nid'])
+    ->condition('type', 'object')
+    ->condition('promote', 1)
+    ->execute()
+    ->fetchCol();
+
+  if (!$nids) {
+    return;
+  }
+
+  $storage = \Drupal::entityTypeManager()->getStorage('node');
+  $migrated = 0;
+  foreach ($nids as $nid) {
+    $node = $storage->load($nid);
+    if (!$node instanceof NodeInterface || !$node->hasField('field_show_in_banner')) {
+      continue;
+    }
+    if ((bool) $node->get('field_show_in_banner')->value === TRUE) {
+      continue;
+    }
+    $node->set('field_show_in_banner', TRUE);
+    $node->setNewRevision(FALSE);
+    $node->save();
+    $migrated++;
+  }
+
+  \Drupal::logger('doesdesign_tools')->info(
+    'Migrated @count object nodes from promote=1 to field_show_in_banner=1.',
     ['@count' => $migrated]
   );
 }

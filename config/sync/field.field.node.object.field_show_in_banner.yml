@@ -1,0 +1,23 @@
+uuid: 9afe0aa6-f779-4d68-bcf4-eba1e8725ac7
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_show_in_banner
+    - node.type.object
+id: node.object.field_show_in_banner
+field_name: field_show_in_banner
+entity_type: node
+bundle: object
+label: 'Tonen in homepage banner'
+description: 'Wanneer aangevinkt kan dit object verschijnen als hero-afbeelding op de homepage. De banner-view (homepage_banner) kiest willekeurig één aangevinkt object per pagina-load.'
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Ja
+  off_label: Nee
+field_type: boolean
