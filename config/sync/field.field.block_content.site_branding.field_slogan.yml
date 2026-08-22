@@ -1,0 +1,19 @@
+uuid: 8331e423-5e4e-43c7-8743-a7222a3fa923
+langcode: nl
+status: true
+dependencies:
+  config:
+    - block_content.type.site_branding
+    - field.storage.block_content.field_slogan
+id: block_content.site_branding.field_slogan
+field_name: field_slogan
+entity_type: block_content
+bundle: site_branding
+label: Slogan
+description: 'Getoond onder de site naam.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
