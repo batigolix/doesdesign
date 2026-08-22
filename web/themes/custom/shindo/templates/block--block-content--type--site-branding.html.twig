@@ -1,0 +1,34 @@
+{#
+/**
+ * @file
+ * Theme override for the custom 'site_branding' block_content bundle.
+ *
+ * AI generated. Mirrors block--system-branding-block.html.twig markup
+ * exactly (bead doesdesign-xh7d). Renders values from the block_content
+ * entity fields (field_logo, field_name, field_slogan) instead of core's
+ * system.branding_block plugin.
+ */
+#}
+{% extends "block.html.twig" %}
+
+{% block content %}
+  {% set logo_file = content.field_logo['#items'].entity ?? null %}
+  {% set logo_uri = logo_file ? logo_file.getFileUri() : '' %}
+  {% if logo_uri %}
+    <div class="site-logo">
+      <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">
+        <img src="{{ file_url(logo_uri) }}" alt="{{ 'Home'|t }}" />
+      </a>
+    </div>
+  {% endif %}
+  {% set name = content.field_name['#items'].0.value|default('')|trim %}
+  {% if name %}
+    <h1>
+      <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">{{ name }}</a>
+    </h1>
+  {% endif %}
+  {% set slogan = content.field_slogan['#items'].0.value|default('')|trim %}
+  {% if slogan %}
+    <p class="site-slogan">{{ slogan }}</p>
+  {% endif %}
+{% endblock %}

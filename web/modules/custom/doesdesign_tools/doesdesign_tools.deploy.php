@@ -9,6 +9,7 @@
 
 declare(strict_types=1);
 
+use Drupal\block_content\Entity\BlockContent;
 use Drupal\node\NodeInterface;
 use Drupal\taxonomy\Entity\Vocabulary;
 
@@ -181,5 +182,49 @@ function doesdesign_tools_deploy_migrate_promote_to_banner_flag(): void {
   \Drupal::logger('doesdesign_tools')->info(
     'Migrated @count object nodes from promote=1 to field_show_in_banner=1.',
     ['@count' => $migrated]
+  );
+}
+
+/**
+ * Create site_branding block_content entity + wire block placement (xh7d).
+ *
+ * Replaces core system.branding_block with a custom block_content bundle
+ * 'site_branding' so the site-owner can edit logo/naam/slogan via the block
+ * UI instead of /admin/config/system/site-information. The bundle, fields,
+ * form/view displays and the disabled shindo_branding placement live in
+ * config/sync. The custom shindo_site_branding_custom block placement
+ * references the entity by UUID, so on fresh environments (stage/live) the
+ * entity must be created and the placement re-pointed to the local UUID.
+ *
+ * Idempotent: if an entity of type site_branding already exists (or if the
+ * placement already points to a valid entity), it does nothing.
+ */
+function doesdesign_tools_deploy_create_site_branding_entity(): void {
+  $storage = \Drupal::entityTypeManager()->getStorage('block_content');
+  $existing = $storage->loadByProperties(['type' => 'site_branding']);
+  if ($existing) {
+    return;
+  }
+  $entity = BlockContent::create([
+    'type' => 'site_branding',
+    'info' => 'Site branding',
+    'field_name' => \Drupal::config('system.site')->get('name'),
+    'field_slogan' => \Drupal::config('system.site')->get('slogan'),
+  ]);
+  $entity->save();
+
+  $block = \Drupal::entityTypeManager()->getStorage('block')
+    ->load('shindo_site_branding_custom');
+  if ($block) {
+    $block->set('plugin', 'block_content:' . $entity->uuid());
+    $settings = $block->get('settings');
+    $settings['id'] = 'block_content:' . $entity->uuid();
+    $block->set('settings', $settings);
+    $block->save();
+  }
+
+  \Drupal::logger('doesdesign_tools')->info(
+    'Created site_branding block_content entity @uuid and wired block placement.',
+    ['@uuid' => $entity->uuid()]
   );
 }

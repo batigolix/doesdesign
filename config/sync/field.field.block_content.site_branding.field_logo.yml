@@ -1,0 +1,38 @@
+uuid: 93fe7d28-c4ae-463a-aafc-4a7e81993be6
+langcode: nl
+status: true
+dependencies:
+  config:
+    - block_content.type.site_branding
+    - field.storage.block_content.field_logo
+  module:
+    - image
+id: block_content.site_branding.field_logo
+field_name: field_logo
+entity_type: block_content
+bundle: site_branding
+label: Logo
+description: 'Optioneel logo voor de site branding.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: 'site-branding/[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg webp svg'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: false
+  alt_field_required: false
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+field_type: image
