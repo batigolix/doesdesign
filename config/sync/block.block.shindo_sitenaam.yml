@@ -1,0 +1,23 @@
+uuid: c91af934-b7b4-4a43-9a7e-2a52c2dedbbb
+langcode: nl
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:c98c869e-b335-4b3b-9800-0f91af472663'
+  module:
+    - block_content
+  theme:
+    - shindo
+id: shindo_sitenaam
+theme: shindo
+region: header
+weight: 0
+provider: null
+plugin: 'block_content:c98c869e-b335-4b3b-9800-0f91af472663'
+settings:
+  id: 'block_content:c98c869e-b335-4b3b-9800-0f91af472663'
+  label: 'Site naam'
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility: {  }
