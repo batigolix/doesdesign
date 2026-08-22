@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.banner_hero
     - field.storage.node.field_media_image
+    - field.storage.node.field_show_in_banner
     - node.type.object
   module:
     - node
@@ -127,14 +128,15 @@ display:
           expose:
             operator_limit_selection: false
             operator_list: {  }
-        promote:
-          id: promote
-          table: node_field_data
-          field: promote
+        field_show_in_banner_value:
+          id: field_show_in_banner_value
+          table: node__field_show_in_banner
+          field: field_show_in_banner_value
           entity_type: node
-          entity_field: promote
+          entity_field: field_show_in_banner
           plugin_id: boolean
           value: '1'
+          group: 1
       style:
         type: default
         options:

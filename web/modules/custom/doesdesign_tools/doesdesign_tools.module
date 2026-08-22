@@ -70,20 +70,6 @@ function doesdesign_tools_form_search_form_alter(array &$form, FormStateInterfac
 }
 
 /**
- * Implements hook_form_BASE_FORM_ID_alter().
- *
- * Renames the "Promoted to front page" checkbox on object nodes to
- * "Tonen op voorpagina" to better reflect its role in the homepage banner.
- *
- * @phpstan-param array<string, mixed> $form
- */
-function doesdesign_tools_form_node_object_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
-  if (isset($form['promote']['widget']['value']['#title'])) {
-    $form['promote']['widget']['value']['#title'] = t('Tonen op voorpagina');
-  }
-}
-
-/**
  * Preprocesses node.
  *
  * @param array<string, mixed> $variables
