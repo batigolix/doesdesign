@@ -228,3 +228,40 @@ function doesdesign_tools_deploy_create_site_branding_entity(): void {
     ['@uuid' => $entity->uuid()]
   );
 }
+
+/**
+ * Install missing fontyourface entity schemas (9hp4).
+ *
+ * The fontyourface module was enabled at schema 8005 without its two
+ * content-entity tables (font, font_display) actually being created —
+ * likely because the enable happened during a partial D7->D11 migration
+ * where entity install hooks did not fire. The Drupal status report
+ * flags this as "font entity type is not installed".
+ *
+ * This hook checks whether the entity types are registered in
+ * entity.definitions.installed and installs them via the entity
+ * definition update manager if not. Idempotent: safe to re-run.
+ */
+function doesdesign_tools_deploy_install_fontyourface_entities(): void {
+  $module_handler = \Drupal::service('module_handler');
+  if (!$module_handler->moduleExists('fontyourface')) {
+    return;
+  }
+  $definition_update = \Drupal::entityDefinitionUpdateManager();
+  $type_manager = \Drupal::entityTypeManager();
+  $installed = 0;
+  foreach (['font', 'font_display'] as $type_id) {
+    if ($definition_update->getEntityType($type_id)) {
+      continue;
+    }
+    if (!$type_manager->hasDefinition($type_id)) {
+      continue;
+    }
+    $definition_update->installEntityType($type_manager->getDefinition($type_id));
+    $installed++;
+  }
+  \Drupal::logger('doesdesign_tools')->info(
+    'Installed @count missing fontyourface entity type(s) (font / font_display).',
+    ['@count' => $installed]
+  );
+}
