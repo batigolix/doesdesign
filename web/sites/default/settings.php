@@ -773,6 +773,15 @@ if (strpos(DRUPAL_ROOT, 'stage')) {
 
 $settings['config_sync_directory'] = '../config/sync';
 
+/**
+ * Enable HTML5 form validation.
+ *
+ * Explicit for Drupal 12 forward-compatibility: 12.x flips the default
+ * to FALSE. Keeping HTML5 validation on preserves the current UX; flip
+ * to FALSE in a test env to validate D12 behaviour before upgrading.
+ */
+$settings['enable_html5_validation'] = TRUE;
+
 // Automatically generated include for settings managed by ddev.
 $ddev_settings = dirname(__FILE__) . '/settings.ddev.php';
 if (getenv('IS_DDEV_PROJECT') == 'true' && is_readable($ddev_settings)) {
