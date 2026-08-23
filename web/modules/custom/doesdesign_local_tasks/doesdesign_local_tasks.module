@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\block\Entity\Block;
 
 /**
  * Implements hook_help().
@@ -27,12 +28,61 @@ function doesdesign_local_tasks_help(string $route_name, RouteMatchInterface $ro
 /**
  * Implements hook_preprocess_page().
  *
+ * Attaches the frontend local tasks library. Also restores rendering of the
+ * local_tasks_block placements on the front-end (bead doesdesign-b2j2).
+ *
+ * Drupal core's Navigation module unconditionally sets
+ * `$build['#access'] = FALSE` on every local_tasks_block plugin when the
+ * current user has the 'access navigation' permission and the top bar has a
+ * `page_actions` item (see
+ * \Drupal\navigation\NavigationRenderer::removeLocalTasks() and
+ * \Drupal\navigation\Hook\NavigationHooks::blockBuildLocalTasksBlockAlter()).
+ * That prevents duplication with the admin top bar — but it also removes
+ * the frontend local tasks block, because the hook does not check the
+ * active theme. On uid=1 (or any user with 'access navigation') this hides
+ * the tabs on every canonical entity page.
+ *
+ * The block-build alter runs too early to override reliably (module
+ * weights and attribute-based hooks make ordering fragile), so we
+ * intercept at preprocess_page (which runs after the whole page render
+ * tree is assembled but before regions render) and unset `#access` on any
+ * local_tasks_block placement in the current page. On admin routes the
+ * navigation top bar continues to render local tasks as usual.
+ *
  * @phpstan-param array<string, mixed> $variables
  */
 function doesdesign_local_tasks_preprocess_page(array &$variables): void {
-  if ($variables['logged_in'] && !\Drupal::service('router.admin_context')->isAdminRoute()) {
+  $is_admin_route = \Drupal::service('router.admin_context')->isAdminRoute();
+  if ($variables['logged_in'] && !$is_admin_route) {
     $variables['#attached']['library'][] = 'doesdesign_local_tasks/doesdesign-local-tasks';
   }
+  if ($is_admin_route) {
+    return;
+  }
+  // Undo navigation module's `#access = FALSE` marker on local_tasks_block
+  // placements across all regions so the front-end tabs render again.
+  foreach ($variables['page'] as $region_key => &$region) {
+    if (!is_array($region) || str_starts_with((string) $region_key, '#')) {
+      continue;
+    }
+    foreach ($region as $child_key => &$child) {
+      if (str_starts_with((string) $child_key, '#') || !is_array($child)) {
+        continue;
+      }
+      if (!isset($child['#lazy_builder'][1][0])) {
+        continue;
+      }
+      if (($child['#access'] ?? NULL) !== FALSE) {
+        continue;
+      }
+      $block = Block::load($child['#lazy_builder'][1][0]);
+      if ($block && $block->getPluginId() === 'local_tasks_block') {
+        unset($child['#access']);
+      }
+    }
+    unset($child);
+  }
+  unset($region);
 }
 
 /**
