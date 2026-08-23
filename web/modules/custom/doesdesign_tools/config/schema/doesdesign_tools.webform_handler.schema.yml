@@ -1,0 +1,19 @@
+# Schema for the SiteNameLettersValidator webform handler (bead doesdesign-tk7f).
+# AI generated.
+
+webform.handler.sitename_letters_validator:
+  type: mapping
+  label: 'Site-name letters spam check handler'
+  mapping:
+    field_name:
+      type: string
+      label: 'Target field key'
+    reference_string:
+      type: string
+      label: 'Reference string'
+    required_letters:
+      type: integer
+      label: 'Required matching letters'
+    error_message:
+      type: text
+      label: 'Error message'
