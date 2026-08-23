@@ -2,6 +2,8 @@ uuid: 487a8e6e-70c0-495d-b45a-db2fd155c4a6
 langcode: nl
 status: open
 dependencies:
+  module:
+    - doesdesign_tools
   enforced:
     module:
       - webform
@@ -33,6 +35,11 @@ elements: |-
     '#title': Subject
     '#type': hidden
     '#default_value': ''
+  tools:
+    '#title': 'Anti-spam: 3 letters uit "doesdesign.nl"'
+    '#type': textfield
+    '#required': true
+    '#description': 'Voer minimaal 3 letters in uit de naam van de site.'
   actions:
     '#type': webform_actions
     '#title': 'Submit button(s)'
@@ -260,4 +267,30 @@ handlers:
       langcode: ''
       parameters: {  }
       debug: false
+  site_name_letters_spam_check:
+    id: sitename_letters_validator
+    handler_id: site_name_letters_spam_check
+    label: 'Site-name letters spam check'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 2
+    settings:
+      field_name: tools
+      reference_string: doesdesign.nl
+      required_letters: 3
+      error_message: 'Het antwoord is niet juist. Om te controleren of u geen spamrobot bent, vraag ik om 3 letters uit de naam van de site in te voeren.'
+  sitename_letters_check:
+    id: sitename_letters_validator
+    handler_id: sitename_letters_check
+    label: 'Site-name letters spam check'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      field_name: tools
+      reference_string: doesdesign.nl
+      required_letters: 3
+      error_message: 'Het antwoord is niet juist. Voer 3 letters uit "doesdesign.nl" in.'
 variants: {  }
