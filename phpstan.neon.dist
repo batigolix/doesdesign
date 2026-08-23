@@ -27,4 +27,4 @@ parameters:
             identifier: parameterByRef.type
             paths:
                 - web/modules/custom/doesdesign_tools/doesdesign_tools.module
-                - web/modules/custom/doesdesign_tools/src/Form/ContactForm.php
+                - web/modules/custom/doesdesign_tools/src/Plugin/WebformHandler/SiteNameLettersValidator.php
