@@ -10,21 +10,6 @@ use Drupal\Core\Url;
 use Drupal\Core\Link;
 
 /**
- * Implements hook_theme().
- *
- * @phpstan-return array<string, array<string, mixed>>
- */
-function doesdesign_tools_theme(): array {
-  return [
-    'slideshow_block' => [
-      'variables' => [
-        'slides' => [],
-      ],
-    ],
-  ];
-}
-
-/**
  * Implements hook_form_FORM_ID_alter().
  *
  * @phpstan-param array<string, mixed> $form

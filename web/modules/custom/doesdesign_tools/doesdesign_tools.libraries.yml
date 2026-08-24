@@ -3,17 +3,3 @@ custom:
   css:
     theme:
       custom.css: { weight: 2000 }
-splide:
-  css:
-    component:
-      /libraries/splide/dist/css/splide.min.css: { minified: true }
-  js:
-    /libraries/splide/dist/js/splide.min.js: { minified: true }
-slideshow:
-  version: 1.x
-  js:
-    js/slideshow.js: {}
-  dependencies:
-    - doesdesign_tools/splide
-    - core/drupal
-    - core/once
