@@ -9,6 +9,48 @@ use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\block\Entity\Block;
 
 /**
+ * Restore local_tasks_block visibility across all render children in a region.
+ *
+ * @param array<string, mixed> $region
+ *   A single page region render array, by reference.
+ */
+function _doesdesign_local_tasks_restore_region(array &$region): void {
+  foreach ($region as $child_key => &$child) {
+    if (is_array($child) && !str_starts_with((string) $child_key, '#')) {
+      _doesdesign_local_tasks_unset_access($child);
+    }
+  }
+}
+
+/**
+ * Unset `#access` on a render child if it targets a local_tasks_block.
+ *
+ * Helper for doesdesign_local_tasks_preprocess_page() to keep the main
+ * hook below phpmd's cyclomatic/NPath thresholds. Uses early returns so
+ * each guard adds only one path.
+ *
+ * @param array<string, mixed> $child
+ *   A single render array child from a page region, by reference.
+ */
+function _doesdesign_local_tasks_unset_access(array &$child): void {
+  if (!isset($child['#lazy_builder'][1][0])) {
+    return;
+  }
+  if (($child['#access'] ?? NULL) !== FALSE) {
+    return;
+  }
+  $block_id = $child['#lazy_builder'][1][0];
+  if (!is_string($block_id)) {
+    return;
+  }
+  $block = Block::load($block_id);
+  if (!$block || $block->getPluginId() !== 'local_tasks_block') {
+    return;
+  }
+  unset($child['#access']);
+}
+
+/**
  * Implements hook_help().
  */
 function doesdesign_local_tasks_help(string $route_name, RouteMatchInterface $route_match): string {
@@ -62,25 +104,9 @@ function doesdesign_local_tasks_preprocess_page(array &$variables): void {
   // Undo navigation module's `#access = FALSE` marker on local_tasks_block
   // placements across all regions so the front-end tabs render again.
   foreach ($variables['page'] as $region_key => &$region) {
-    if (!is_array($region) || str_starts_with((string) $region_key, '#')) {
-      continue;
+    if (is_array($region) && !str_starts_with((string) $region_key, '#')) {
+      _doesdesign_local_tasks_restore_region($region);
     }
-    foreach ($region as $child_key => &$child) {
-      if (str_starts_with((string) $child_key, '#') || !is_array($child)) {
-        continue;
-      }
-      if (!isset($child['#lazy_builder'][1][0])) {
-        continue;
-      }
-      if (($child['#access'] ?? NULL) !== FALSE) {
-        continue;
-      }
-      $block = Block::load($child['#lazy_builder'][1][0]);
-      if ($block && $block->getPluginId() === 'local_tasks_block') {
-        unset($child['#access']);
-      }
-    }
-    unset($child);
   }
   unset($region);
 }
