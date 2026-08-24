@@ -1,6 +1,6 @@
 uuid: 7f06b5d1-1b83-4457-ba7e-641f4123f848
 langcode: nl
-status: true
+status: false
 dependencies:
   config:
     - webform.webform.contact
