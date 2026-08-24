@@ -1,0 +1,17 @@
+uuid: 0bb6a6c8-5ba5-4b24-94c6-21fada581db0
+langcode: nl
+status: true
+dependencies:
+  module:
+    - focal_point
+name: social_share
+label: 'Social share (1200x630)'
+effects:
+  e46bcfeb-2ae0-416f-b886-82f7be3a2b12:
+    uuid: e46bcfeb-2ae0-416f-b886-82f7be3a2b12
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 1200
+      height: 630
+      crop_type: focal_point
