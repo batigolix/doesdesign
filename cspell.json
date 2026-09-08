@@ -103,7 +103,11 @@
     "colours",
     "behaviour",
     "organisation",
-    "summarising"
+    "summarising",
+    "phpmd",
+    "sitename",
+    "webform",
+    "Webform"
   ],
   "ignorePaths": [
     "vendor/**",
