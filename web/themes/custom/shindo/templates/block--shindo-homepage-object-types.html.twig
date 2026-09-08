@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Theme override for the homepage sieraden-terms block (bead doesdesign-jhc9).
+ *
+ * Mirrors block--shindo-homepage-portfolio.html.twig so the block title is
+ * wrapped in Dopetrope's <header class="major"> banner — matching the visual
+ * treatment of the sibling portfolio block on the homepage.
+ *
+ * AI generated.
+ */
+#}
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {% if label %}
+    <header class="major">
+      <h2{{ title_attributes }}>{{ label }}</h2>
+    </header>
+  {% endif %}
+  {{ title_suffix }}
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+</div>

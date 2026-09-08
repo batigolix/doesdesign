@@ -1,0 +1,30 @@
+uuid: a7b8c9d0-1e2f-4a3b-8c5d-6e7f8a9b0c1d
+langcode: nl
+status: true
+dependencies:
+  config:
+    - views.view.object_types
+  module:
+    - system
+    - views
+  theme:
+    - shindo
+id: shindo_homepage_object_types
+theme: shindo
+region: content
+weight: -11
+provider: null
+plugin: 'views_block:object_types-block_homepage'
+settings:
+  id: 'views_block:object_types-block_homepage'
+  label: Sieraden
+  label_display: visible
+  provider: views
+  views_label: ''
+  items_per_page: null
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: '<front>'

@@ -4,9 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.taxonomy_term.type.field_media_image
+    - field.field.taxonomy_term.type.field_show_on_homepage
     - taxonomy.vocabulary.type
   module:
     - media_library
+    - media_library_edit
     - path
     - text
 id: taxonomy_term.type.default
@@ -28,6 +30,16 @@ content:
     region: content
     settings:
       media_types: {  }
+    third_party_settings:
+      media_library_edit:
+        show_edit: true
+        edit_form_mode: media_library
+  field_show_on_homepage:
+    type: boolean_checkbox
+    weight: 6
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   langcode:
     type: language_select
@@ -47,6 +59,11 @@ content:
   path:
     type: path
     weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  simple_sitemap:
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }

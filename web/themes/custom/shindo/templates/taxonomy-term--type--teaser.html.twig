@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Portfolio-style teaser template for terms in the 'type' vocabulary (bead
+ * doesdesign-jhc9). Mirrors node--object--portfolio-teaser: a <section class=
+ * "box"> tile with featured image, title, trimmed description, and a "Bekijk
+ * sieraden" action link to the term page.
+ *
+ * View-mode-specific suggestion is added via
+ * shindo_theme_suggestions_taxonomy_term_alter() in shindo.theme (Drupal core
+ * does not ship view-mode suggestions for taxonomy terms).
+ *
+ * AI generated.
+ */
+#}
+{% set desc_text = content.description|render|striptags|trim %}
+<section{{ attributes.addClass('box') }}>
+  <a href="{{ url }}" class="image featured">
+    {{ content.field_media_image.0 }}
+  </a>
+  <header>
+    <h3><a href="{{ url }}" rel="bookmark">{{ name }}</a></h3>
+  </header>
+  {% if desc_text %}
+    <p>{{ desc_text }}</p>
+  {% endif %}
+  <footer>
+    <ul class="actions">
+      <li><a href="{{ url }}" class="button alt">{% trans %}Bekijk sieraden{% endtrans %}</a></li>
+    </ul>
+  </footer>
+</section>

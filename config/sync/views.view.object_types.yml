@@ -3,6 +3,8 @@ langcode: nl
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.taxonomy_term.teaser
+    - field.storage.taxonomy_term.field_show_on_homepage
     - taxonomy.vocabulary.type
   module:
     - taxonomy
@@ -94,6 +96,21 @@ display:
         options: {  }
       empty: {  }
       sorts:
+        weight:
+          id: weight
+          table: taxonomy_term_field_data
+          field: weight
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: taxonomy_term
+          entity_field: weight
+          plugin_id: standard
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: weight
+          exposed: false
         name:
           id: name
           table: taxonomy_term_field_data
@@ -173,6 +190,92 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - user.permissions
+      tags: {  }
+  block_homepage:
+    id: block_homepage
+    display_title: 'Homepage block'
+    display_plugin: block
+    position: 2
+    display_options:
+      title: ''
+      fields: {  }
+      pager:
+        type: none
+        options:
+          offset: 0
+      filters:
+        status:
+          id: status
+          table: taxonomy_term_field_data
+          field: status
+          entity_type: taxonomy_term
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        vid:
+          id: vid
+          table: taxonomy_term_field_data
+          field: vid
+          entity_type: taxonomy_term
+          entity_field: vid
+          plugin_id: bundle
+          value:
+            type: type
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+        field_show_on_homepage_value:
+          id: field_show_on_homepage_value
+          table: taxonomy_term__field_show_on_homepage
+          field: field_show_on_homepage_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: taxonomy_term
+          plugin_id: boolean
+          operator: '='
+          value: '1'
+          group: 1
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      style:
+        type: html_list
+        options:
+          grouping: {  }
+          row_class: 'col-4 col-6-medium col-12-small'
+          default_row_class: true
+          uses_fields: false
+          type: ul
+          wrapper_class: ''
+          class: 'row portfolio-list'
+      row:
+        type: 'entity:taxonomy_term'
+        options:
+          relationship: none
+          view_mode: teaser
+      defaults:
+        title: false
+        pager: false
+        style: false
+        row: false
+        fields: false
+        filters: false
+        filter_groups: false
+      display_extenders: {  }
+      block_description: 'Sieraden: taxonomy terms (homepage)'
     cache_metadata:
       max-age: -1
       contexts:
