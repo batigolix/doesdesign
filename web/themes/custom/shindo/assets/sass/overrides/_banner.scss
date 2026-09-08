@@ -12,10 +12,11 @@
   padding: 0;
 
   .banner-link {
-    display: block;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
     background: #CCE8F4 center center / auto 100% no-repeat;
-    text-align: center;
-    padding: 8em 0;
+    padding: 8em 4em 3em;
     color: inherit;
     text-decoration: none;
     border: 0;
@@ -29,7 +30,7 @@
       h2 {
         color: #fff;
         font-weight: 700;
-        font-size: 2.5em;
+        font-size: 1.8em;
         margin: 0 0 0.65em;
       }
 
@@ -52,7 +53,7 @@
     margin: 3em 0 0;
 
     .banner-link {
-      padding: 6em 0;
+      padding: 6em 3em 2.5em;
     }
   }
 }
@@ -63,6 +64,9 @@
     margin: 2em 0 0;
 
     .banner-link {
+      // On mobile: revert to block/centered layout so the header stretches
+      // full-width and the title remains readable.
+      display: block;
       padding: 6em 0;
 
       header {
@@ -71,7 +75,7 @@
         border-radius: 0;
 
         h2 {
-          font-size: 1.5em;
+          font-size: 1.2em;
           line-height: 1.5em;
           margin: 0 0 0.25em;
         }
