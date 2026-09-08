@@ -1,0 +1,23 @@
+uuid: 3dc4d002-1f49-4997-a0df-f8adafa36ebb
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_show_in_portfolio
+    - node.type.object
+id: node.object.field_show_in_portfolio
+field_name: field_show_in_portfolio
+entity_type: node
+bundle: object
+label: 'Toon in portfolio'
+description: 'Wanneer aangevinkt verschijnt dit object in het portfolio-overzicht.'
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Ja
+  off_label: Nee
+field_type: boolean
