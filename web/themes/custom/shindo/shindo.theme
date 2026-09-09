@@ -493,6 +493,34 @@ function _shindo_node_add_banner_bg(array &$variables, NodeInterface $node): voi
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for the shindo_sitenaam branding block.
+ *
+ * Injects a `logo_url` variable so block--shindo-sitenaam.html.twig can
+ * render the site logo without relying on a managed file or media entity.
+ * The logo path is read from theme settings (shindo.settings.yml → logo.path);
+ * when the path resolves to an existing file it is converted to an absolute
+ * URL by the file_url_generator service.
+ *
+ * @phpstan-param array<string, mixed> $variables
+ */
+function shindo_preprocess_block__shindo_sitenaam(array &$variables): void {
+  /** @var \Drupal\Core\Extension\ThemeSettingsProvider $settings */
+  $settings = \Drupal::service(ThemeSettingsProvider::class);
+  $logo_path = (string) ($settings->getSetting('logo.path') ?? '');
+  if ($logo_path === '') {
+    $variables['logo_url'] = '';
+    return;
+  }
+  $absolute_path = DRUPAL_ROOT . '/' . ltrim($logo_path, '/');
+  if (!file_exists($absolute_path)) {
+    $variables['logo_url'] = '';
+    return;
+  }
+  $variables['logo_url'] = \Drupal::service('file_url_generator')
+    ->generateAbsoluteString($logo_path);
+}
+
+/**
  * Implements hook_preprocess_HOOK() for the intro_feature block.
  *
  * Bead doesdesign-9mxw — the intro-feature template used to read

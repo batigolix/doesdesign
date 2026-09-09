@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Template for the site branding block placed in the header region.
+ *
+ * Renders the site logo (from theme settings, via the logo_url variable
+ * injected by shindo_preprocess_block__shindo_sitenaam in shindo.theme),
+ * the site name from field_title, and the site slogan from the body field.
+ *
+ * Variables:
+ * - logo_url: Absolute URL to the site logo file, or empty string when
+ *   no logo is configured or the file does not exist.
+ * - content.field_title: Site name field.
+ * - content.body: Site slogan field.
+ */
+#}
+{% set title_value = content.field_title['#object'].field_title.value|default('')|trim %}
+<div id="block-shindo-sitenaam" class="block block-block-content block-content-site-branding">
+  {% if logo_url %}
+    <div class="site-logo">
+      <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">
+        <img src="{{ logo_url }}" alt="{{ title_value ?: 'Home'|t }}" />
+      </a>
+    </div>
+  {% endif %}
+  {% if title_value %}
+    <h1 class="site-name">
+      <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">{{ title_value }}</a>
+    </h1>
+  {% endif %}
+  {{ content.body }}
+</div>
