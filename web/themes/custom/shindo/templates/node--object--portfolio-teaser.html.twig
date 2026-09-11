@@ -18,7 +18,7 @@
     <h3><a href="{{ url }}" rel="bookmark">{{ label }}</a></h3>
   </header>
   {% if body_text %}
-    <p>{{ body_text }}</p>
+    <p>{{ body_text|raw }}</p>
   {% endif %}
   <footer>
     <ul class="actions">
