@@ -312,7 +312,7 @@ display:
         filters: false
         filter_groups: false
       display_extenders: {  }
-      path: sieraden
+      path: soort-sieraden
       menu:
         type: none
         title: ''

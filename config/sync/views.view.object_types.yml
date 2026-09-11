@@ -402,6 +402,18 @@ display:
           inline: {  }
           separator: ''
           hide_empty: false
+      header:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          content: '<ul class="sieraden-filter sieraden-filter--alle"><li><a href="/soort-sieraden">Alle</a></li></ul>'
+          plugin_id: text_custom
       defaults:
         title: false
         pager: false
@@ -410,6 +422,7 @@ display:
         fields: false
         filters: false
         filter_groups: false
+        header: false
       display_extenders: {  }
       block_description: 'Sieraden filter (inline link row)'
     cache_metadata:

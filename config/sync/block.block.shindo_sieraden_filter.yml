@@ -28,5 +28,5 @@ visibility:
     negate: false
     context_mapping: {  }
     pages: |-
-      /sieraden
+      /soort-sieraden
       /soort-sieraden/*
