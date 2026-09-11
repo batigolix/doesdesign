@@ -5,7 +5,11 @@
  * Contains doesdesign_tools.module.
  */
 
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Access\AccessResultInterface;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Link;
 
@@ -56,4 +60,71 @@ function doesdesign_tools_theme_suggestions_taxonomy_term_alter(array &$suggesti
   $term = $vars['elements']['#taxonomy_term'];
   $suggestions[] = 'taxonomy_term__' . $term->bundle() . '__' . $vars['elements']['#view_mode'];
   $suggestions[] = 'taxonomy_term__' . $vars['elements']['#view_mode'];
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_access() for taxonomy_vocabulary.
+ *
+ * Hides the five fontyourface-managed vocabularies from the taxonomy overview
+ * for accounts that do not have the 'administer font entities' permission.
+ * User 1 and accounts with that permission retain full access.
+ *
+ * Note: Drupal's taxonomy overview (VocabularyListBuilder) loads entities
+ * without per-row access checks, so this hook does not filter the list page.
+ * The hook_form_alter() below handles the overview list; this hook covers
+ * any other programmatic 'view' access checks.
+ */
+function doesdesign_tools_taxonomy_vocabulary_access(EntityInterface $entity, string $operation, AccountInterface $account): AccessResultInterface {
+  /** @var string[] */
+  $fontyourface_vocabs = [
+    'font_classification',
+    'font_designer',
+    'font_foundry',
+    'font_tags',
+    'languages_supported',
+  ];
+
+  if ($operation !== 'view' || !in_array($entity->id(), $fontyourface_vocabs, TRUE)) {
+    return AccessResult::neutral();
+  }
+
+  if ($account->hasPermission('administer font entities')) {
+    return AccessResult::neutral()->cachePerPermissions();
+  }
+
+  return AccessResult::forbidden('Fontyourface vocabularies are hidden for non-font-admins.')
+    ->cachePerPermissions();
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for taxonomy_overview_vocabularies.
+ *
+ * Removes the five fontyourface-managed vocabulary rows from the taxonomy
+ * overview list for accounts without 'administer font entities' permission.
+ * The overview's VocabularyListBuilder loads all vocabularies without
+ * per-row access checks, so form-level filtering is required.
+ *
+ * @phpstan-param array<string, mixed> $form
+ */
+function doesdesign_tools_form_taxonomy_overview_vocabularies_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
+  $current_user = \Drupal::currentUser();
+
+  if ($current_user->hasPermission('administer font entities')) {
+    return;
+  }
+
+  /** @var string[] */
+  $fontyourface_vocabs = [
+    'font_classification',
+    'font_designer',
+    'font_foundry',
+    'font_tags',
+    'languages_supported',
+  ];
+
+  foreach ($fontyourface_vocabs as $vocab_id) {
+    if (isset($form['vocabularies'][$vocab_id])) {
+      unset($form['vocabularies'][$vocab_id]);
+    }
+  }
 }
