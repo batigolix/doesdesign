@@ -1,0 +1,30 @@
+uuid: b1c2d3e4-5f60-7182-93a4-b5c6d7e8f900
+langcode: nl
+status: true
+dependencies:
+  config:
+    - views.view.object_types
+  module:
+    - system
+    - views
+  theme:
+    - shindo
+id: shindo_sieraden_filter
+theme: shindo
+region: content
+weight: -12
+provider: null
+plugin: 'views_block:object_types-block_inline_filter'
+settings:
+  id: 'views_block:object_types-block_inline_filter'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: null
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: "/sieraden\n/soort-sieraden/*"
