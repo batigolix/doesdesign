@@ -15,14 +15,32 @@
 }
 
 // Horizontal Sieraden filter row (bead doesdesign-c5wr follow-up) — plain
-// text-link facet above the /sieraden and /soort-sieraden/* portfolio grids.
-#page-wrapper ul.sieraden-filter {
+// text-link facet above the /soort-sieraden and /soort-sieraden/* portfolio
+// grids. The block emits two sibling <ul>s (Alle + term terms) wrapped in
+// Views's own view-element-container / view-header / view-content / views-row
+// divs. Flatten every wrapper with `display: contents` so the <li> elements
+// become direct flex children of the block container.
+#page-wrapper #block-shindo-sieraden-filter {
   display: flex;
   flex-wrap: wrap;
+  align-items: baseline;
   gap: .5em 1.25em;
-  list-style: none;
-  padding: 0;
   margin: 0 0 2em;
+
+  .views-element-container,
+  > .contextual + div,
+  .view,
+  .view-header,
+  .view-content,
+  .views-row,
+  .views-field,
+  .field-content,
+  ul.sieraden-filter {
+    display: contents;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
 
   li {
     padding: 0;
