@@ -333,3 +333,5 @@
 {"id":"int-42a937f6","kind":"field_change","created_at":"2026-09-11T16:55:30.342525Z","actor":"Boris Doesborg","issue_id":"doesdesign-pug2","extra":{"field":"status","new_value":"closed","old_value":"in_progress","reason":"Closed"}}
 {"id":"int-433e3749","kind":"field_change","created_at":"2026-09-11T17:35:06.368952Z","actor":"Boris Doesborg","issue_id":"doesdesign-9rej","extra":{"field":"status","new_value":"closed","old_value":"in_progress"}}
 {"id":"int-a42cd2a7","kind":"field_change","created_at":"2026-09-11T17:38:35.722803Z","actor":"Boris Doesborg","issue_id":"doesdesign-86f6","extra":{"field":"status","new_value":"closed","old_value":"in_progress","reason":"Closed"}}
+{"id":"int-8d9c79be","kind":"field_change","created_at":"2026-09-11T17:58:22.476092Z","actor":"Boris Doesborg","issue_id":"doesdesign-6x9j","extra":{"field":"status","new_value":"closed","old_value":"in_progress","reason":"Closed"}}
+{"id":"int-6c915c8a","kind":"field_change","created_at":"2026-09-11T19:10:55.215732Z","actor":"Boris Doesborg","issue_id":"doesdesign-c5wr","extra":{"field":"status","new_value":"closed","old_value":"in_progress","reason":"Closed"}}
