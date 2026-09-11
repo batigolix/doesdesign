@@ -16,7 +16,7 @@ provider: null
 plugin: 'system_menu_block:main'
 settings:
   id: 'system_menu_block:main'
-  label: Hoofdnavigatie
+  label: Menu
   label_display: visible
   provider: system
   level: 1
