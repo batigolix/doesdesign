@@ -1,0 +1,23 @@
+uuid: eba5922a-f024-4b04-a0cf-90bd10966f59
+langcode: nl
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:8696ce98-0b9f-46a8-93d6-15389e97ac1d'
+  module:
+    - block_content
+  theme:
+    - shindo
+id: shindo_cursussenenworkshops
+theme: shindo
+region: footer_row2_col2
+weight: 0
+provider: null
+plugin: 'block_content:8696ce98-0b9f-46a8-93d6-15389e97ac1d'
+settings:
+  id: 'block_content:8696ce98-0b9f-46a8-93d6-15389e97ac1d'
+  label: 'Cursussen en workshops'
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility: {  }
