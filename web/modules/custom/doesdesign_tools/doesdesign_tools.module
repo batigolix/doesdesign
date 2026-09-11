@@ -5,6 +5,8 @@
  * Contains doesdesign_tools.module.
  */
 
+use Drupal\doesdesign_tools\MenuListBuilder;
+use Drupal\views\ViewExecutable;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Access\AccessResultInterface;
 use Drupal\Core\Entity\EntityInterface;
@@ -28,7 +30,7 @@ function doesdesign_tools_form_search_form_alter(array &$form, FormStateInterfac
  * Attaches the admin_objects CSS library (small square thumbnail) when the
  * admin_objects view renders — bead doesdesign-c5wr.
  */
-function doesdesign_tools_views_pre_render(\Drupal\views\ViewExecutable $view): void {
+function doesdesign_tools_views_pre_render(ViewExecutable $view): void {
   if ($view->id() === 'admin_objects') {
     $view->element['#attached']['library'][] = 'doesdesign_tools/admin_objects';
   }
@@ -72,6 +74,52 @@ function doesdesign_tools_theme_suggestions_taxonomy_term_alter(array &$suggesti
   $term = $vars['elements']['#taxonomy_term'];
   $suggestions[] = 'taxonomy_term__' . $term->bundle() . '__' . $vars['elements']['#view_mode'];
   $suggestions[] = 'taxonomy_term__' . $vars['elements']['#view_mode'];
+}
+
+/**
+ * Implements hook_entity_type_alter().
+ *
+ * Replaces the core MenuListBuilder with a custom subclass that skips rows
+ * when the current user does not have 'view' access to a menu entity.
+ * Core's config entity query ignores entity access, so without this override
+ * all menus appear for every user that reaches /admin/structure/menu —
+ * including the webmaster role, which must only see the 'main' menu.
+ *
+ * @phpstan-param array<string, \Drupal\Core\Entity\EntityTypeInterface> $entity_types
+ */
+function doesdesign_tools_entity_type_alter(array &$entity_types): void {
+  if (isset($entity_types['menu'])) {
+    $entity_types['menu']->setListBuilderClass(MenuListBuilder::class);
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_access() for menu.
+ *
+ * Hides every menu except 'main' from accounts that lack the
+ * 'administer permissions' permission. That permission is granted only to
+ * administrators (uid 1 or is_admin role), never to the webmaster role, making
+ * it a clean proxy for "real admin". Because the webmaster role already holds
+ * 'administer menu', we cannot use that as the gate.
+ *
+ * The 'view' operation result is consumed by MenuListBuilder (row filtering)
+ * and by any other programmatic access check on menu entities. Operations other
+ * than 'view' (update, delete) return neutral so core's own permission check
+ * continues to apply unchanged for webmasters.
+ *
+ * @phpstan-return \Drupal\Core\Access\AccessResultInterface
+ */
+function doesdesign_tools_menu_access(EntityInterface $entity, string $operation, AccountInterface $account): AccessResultInterface {
+  if ($operation !== 'view' || $entity->id() === 'main') {
+    return AccessResult::neutral();
+  }
+
+  if ($account->hasPermission('administer permissions')) {
+    return AccessResult::neutral()->cachePerPermissions();
+  }
+
+  return AccessResult::forbidden('Non-main menus are hidden for accounts without full admin access.')
+    ->cachePerPermissions();
 }
 
 /**
