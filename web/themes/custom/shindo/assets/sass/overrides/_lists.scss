@@ -27,15 +27,11 @@
   gap: .5em 1.25em;
   margin: 0 0 2em;
 
-  .views-element-container,
-  > .contextual + div,
-  .view,
-  .view-header,
-  .view-content,
-  .views-row,
-  .views-field,
-  .field-content,
-  ul.sieraden-filter {
+  // Flatten every Views wrapper (div/header/footer/ul with no useful role
+  // here) so the actual <li>s become direct flex children of the block.
+  // Excluded: .contextual (admin overlay) + its descendants, li, and a.
+  > *:not(.contextual),
+  > *:not(.contextual) *:not(li):not(a) {
     display: contents;
     list-style: none;
     padding: 0;
