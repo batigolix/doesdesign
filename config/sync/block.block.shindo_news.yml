@@ -1,6 +1,6 @@
 uuid: 56df343a-f3b0-4efe-94ee-4b1a3ffdac8b
 langcode: nl
-status: true
+status: false
 dependencies:
   config:
     - views.view.news
