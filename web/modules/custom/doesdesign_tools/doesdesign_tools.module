@@ -23,6 +23,18 @@ function doesdesign_tools_form_search_form_alter(array &$form, FormStateInterfac
 }
 
 /**
+ * Implements hook_views_pre_render().
+ *
+ * Attaches the admin_objects CSS library (small square thumbnail) when the
+ * admin_objects view renders — bead doesdesign-c5wr.
+ */
+function doesdesign_tools_views_pre_render(\Drupal\views\ViewExecutable $view): void {
+  if ($view->id() === 'admin_objects') {
+    $view->element['#attached']['library'][] = 'doesdesign_tools/admin_objects';
+  }
+}
+
+/**
  * Preprocesses node.
  *
  * @param array<string, mixed> $variables

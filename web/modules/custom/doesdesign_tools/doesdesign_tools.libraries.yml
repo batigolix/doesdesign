@@ -3,3 +3,9 @@ custom:
   css:
     theme:
       custom.css: { weight: 2000 }
+
+admin_objects:
+  version: 0.0.0.1
+  css:
+    theme:
+      css/admin-objects.css: {  }

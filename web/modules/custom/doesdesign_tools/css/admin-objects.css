@@ -1,0 +1,21 @@
+/**
+ * @file
+ * Small square thumbnail column on the /admin/content/objects view
+ * (bead doesdesign-c5wr). Constrains the media image render (Gin admin
+ * theme) to a 60x60 square via object-fit so the table row stays compact.
+ *
+ * AI generated.
+ */
+.view-admin-objects table .views-field-field-media-image img {
+  display: block;
+  width: 60px !important;
+  height: 60px !important;
+  max-width: none !important;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.view-admin-objects table .views-field-field-media-image {
+  width: 68px;
+  padding-right: 8px;
+}
