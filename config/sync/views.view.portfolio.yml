@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.portfolio_teaser
-    - field.storage.node.field_show_in_portfolio
     - node.type.object
   module:
     - node
@@ -122,14 +121,10 @@ display:
           group: 1
           expose:
             operator: ''
-        field_show_in_portfolio_value:
-          id: field_show_in_portfolio_value
-          table: node__field_show_in_portfolio
-          field: field_show_in_portfolio_value
-          entity_type: node
-          plugin_id: boolean
-          value: '1'
-          group: 1
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
       style:
         type: html_list
         options:
