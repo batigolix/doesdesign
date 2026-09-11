@@ -22,7 +22,7 @@
     <h3><a href="{{ url }}" rel="bookmark">{{ name }}</a></h3>
   </header>
   {% if desc_text %}
-    <p>{{ desc_text }}</p>
+    <p>{{ desc_text|raw }}</p>
   {% endif %}
   <footer>
     <ul class="actions">
