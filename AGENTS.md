@@ -97,6 +97,54 @@ bd close <id>         # Complete work
 - If push fails, resolve and retry until it succeeds
 <!-- END BEADS INTEGRATION -->
 
+## Quality Gates
+
+### Pre-commit QA
+
+Run ALL of the following before `git commit`. These mirror CI exactly.
+
+**Frontend lint** (from `.github/workflows/lint-frontend.yml`):
+```bash
+npx eslint --no-eslintrc -c .eslintrc.json 'web/modules/custom/**/*.js' 'web/themes/custom/shindo/**/*.js' --no-error-on-unmatched-pattern
+npx stylelint 'web/themes/custom/shindo/**/*.{css,scss}' --allow-empty-input
+```
+
+**Static analysis** (from `.github/workflows/static-analysis.yml`):
+```bash
+bin/phpcs --standard=phpcs.xml.dist
+bin/phpstan analyse --configuration=phpstan.neon.dist --memory-limit=1G --no-progress
+bin/phpmd web/modules/custom,web/themes/custom github phpmd.xml.dist \
+  --suffixes php,module,install,theme,inc,profile \
+  --exclude '*/node_modules/*,*/vendor/*'
+```
+
+**SCSS build** — required after any `.scss` change:
+```bash
+cd web/themes/custom/shindo && npm run build:overrides
+```
+
+**Config sync** — required after any Drupal admin UI change:
+```bash
+ddev drush cex -y --diff
+```
+
+### Post-push Verification
+
+Don't consider a push "done" until CI is green.
+
+```bash
+# Check latest runs for the current branch
+gh run list --limit 5 --branch <current-branch>
+
+# Block until a run finishes (exits non-zero if it fails)
+gh run watch <run-id> --exit-status
+
+# Inspect a failed run
+gh run view <run-id> --log-failed | tail -30
+```
+
+**Rule:** if CI fails, diagnose + fix + re-push (or notify the user with the concrete failure output). Never hand off with a red build.
+
 ## Build & Test
 
 _Add your build and test commands here_
