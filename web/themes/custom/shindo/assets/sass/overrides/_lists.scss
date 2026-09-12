@@ -1,4 +1,6 @@
 // AI generated
+@use "variables" as *;
+
 // Reset bullets on Drupal-generated lists — bead doesdesign-098.
 //
 // Defensive fix: only strip list-style, do NOT change padding/margin.
@@ -31,7 +33,7 @@
   // here) so the actual <li>s become direct flex children of the block.
   // Excluded: .contextual (admin overlay) + its descendants, li, and a.
   > *:not(.contextual),
-  > *:not(.contextual) *:not(li):not(a) {
+  > *:not(.contextual) *:not(li, a) {
     display: contents;
     list-style: none;
     padding: 0;
@@ -59,7 +61,7 @@
     }
   }
 
-  @media screen and (max-width: 736px) {
+  @media screen and (max-width: $bp-md) {
     gap: .25em .75em;
     font-size: .95em;
   }

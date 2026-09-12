@@ -1,0 +1,16 @@
+// AI generated
+// Airy h2 styling for headings inside node body content (WYSIWYG output) —
+// scoped to .field--name-body so it does not touch block/section titles.
+// Bead doesdesign-c507ba1 (follow-up: h2 body typography).
+
+#page-wrapper .field--name-body {
+  h2 {
+    line-height: 1.4;
+    margin: 1em 0 .5em 0;
+    padding: 0;
+  }
+
+  h2:first-child {
+    margin-top: 1em;
+  }
+}
