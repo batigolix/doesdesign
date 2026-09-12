@@ -1,0 +1,66 @@
+{#
+/**
+ * @file
+ * Full-width page template for the /contact page (entity.webform.canonical).
+ *
+ * Renders the page title inside a Dopetrope <header class="major"> banner,
+ * consistent with the /soort-sieraden/* taxonomy-term pages. The
+ * page_title_block is hidden on /contact via block visibility so it does not
+ * duplicate the title. page_title is set in shindo_preprocess_page__contact()
+ * in shindo.theme.
+ *
+ * Template suggestion is added via shindo_theme_suggestions_page_alter()
+ * for the entity.webform.canonical route.
+ *
+ * AI generated (bead doesdesign-o7e3).
+ */
+#}
+
+<div id="page-wrapper">
+
+  <!-- Header -->
+  <section id="header">
+
+    {# Site branding block (see block--system-branding-block.html.twig). #}
+    {{ page.header }}
+
+    {# Primary menu block wrapper is <nav id="nav"> (see
+       block--system-menu-block--main.html.twig). #}
+    {{ page.primary_menu }}
+
+  </section>
+
+  {# Pre-main region — page-level content above the main section, such as
+     local tasks tabs, status messages or hero teasers. #}
+  {{ page.pre_main }}
+
+  <!-- Main -->
+  <section id="main">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+
+          <section>
+            {# Dopetrope banner-style page title (bead doesdesign-o7e3).
+               page_title is set in shindo_preprocess_page__contact()
+               because the page_title_block is hidden on /contact via
+               block visibility in block.block.shindo_page_title.yml. #}
+            {% if page_title %}
+              <header class="major">
+                <h2>{{ page_title }}</h2>
+              </header>
+            {% endif %}
+
+            {{ page.content }}
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {# Shared footer partial — see templates/partials/footer.html.twig. #}
+  {% include '@shindo/partials/footer.html.twig' %}
+
+</div>
