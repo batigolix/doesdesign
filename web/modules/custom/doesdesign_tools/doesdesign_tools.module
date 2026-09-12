@@ -188,3 +188,30 @@ function doesdesign_tools_form_taxonomy_overview_vocabularies_alter(array &$form
     }
   }
 }
+
+/**
+ * Implements hook_menu_links_discovered_alter().
+ *
+ * Redirects the "Appearance" toolbar/admin menu link to the active theme's
+ * settings page for accounts without 'administer permissions'. This prevents
+ * the link from pointing to /admin/appearance (which would now return 403)
+ * and instead sends the webmaster directly to the theme settings form.
+ *
+ * @phpstan-param array<string, mixed> $links
+ */
+function doesdesign_tools_menu_links_discovered_alter(array &$links): void {
+  if (!isset($links['system.themes_page'])) {
+    return;
+  }
+
+  // Replace the route with the active theme settings page for non-admins.
+  // hook_menu_links_discovered_alter() runs at build time (cached), so we
+  // cannot check the current user here. Instead, we always point the link to
+  // the theme settings page; administrators can still navigate to the full
+  // appearance list directly or via the Manage toolbar.
+  $active_theme = \Drupal::config('system.theme')->get('default') ?? 'shindo';
+
+  $links['system.themes_page']['url'] = "internal:/admin/appearance/settings/{$active_theme}";
+  $links['system.themes_page']['route_name'] = 'system.theme_settings_theme';
+  $links['system.themes_page']['route_parameters'] = ['theme' => $active_theme];
+}
