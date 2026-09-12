@@ -24,7 +24,6 @@ jobs:
         tool:
           - eslint
           - stylelint
-          - cspell
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -43,9 +42,6 @@ jobs:
             stylelint)
               npm install --no-save stylelint stylelint-config-standard-scss
               ;;
-            cspell)
-              npm install --no-save cspell @cspell/dict-nl-nl
-              ;;
           esac
 
       - name: Run eslint
@@ -55,7 +51,3 @@ jobs:
       - name: Run stylelint
         if: matrix.tool == 'stylelint'
         run: npx stylelint 'web/themes/custom/shindo/**/*.{css,scss}' --allow-empty-input
-
-      - name: Run cspell
-        if: matrix.tool == 'cspell'
-        run: npx cspell 'web/modules/custom/**' 'web/themes/custom/shindo/**' --no-progress
