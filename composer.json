@@ -51,7 +51,7 @@
         "drupal/core-composer-scaffold": "^11",
         "drupal/core-project-message": "^11",
         "drupal/core-recommended": "^11",
-        "drupal/entity_usage": "^2.0@beta",
+        "drupal/entity_usage": "^5.0.0@beta",
         "drupal/environment_indicator": "^4.0",
         "drupal/focal_point": "^2.1",
         "drupal/fontyourface": "^4.2",
