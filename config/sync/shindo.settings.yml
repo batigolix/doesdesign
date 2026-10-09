@@ -11,11 +11,11 @@ logo:
   path: themes/custom/shindo/logo.png
   use_default: false
 body_font: nunito
-primary_color: '#babd0a'
-button_color: '#252122'
-footer_button_color: '#d52349'
+primary_color: '#a2a509'
+button_color: '#968d8f'
+footer_button_color: '#d78c23'
 footer_heading_color: '#fdff94'
-accent_color: '#d52349'
+accent_color: '#746dab'
 background_pattern: grid
 background_color: '#252122'
 color_primary: '#d52349'

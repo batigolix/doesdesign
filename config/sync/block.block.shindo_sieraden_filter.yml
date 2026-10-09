@@ -17,16 +17,14 @@ provider: null
 plugin: 'views_block:object_types-block_inline_filter'
 settings:
   id: 'views_block:object_types-block_inline_filter'
-  label: ''
+  label: 'Collectie sieraden en objecten'
   label_display: '0'
   provider: views
-  views_label: ''
+  views_label: 'Collectie sieraden en objecten'
   items_per_page: null
 visibility:
   request_path:
     id: request_path
     negate: false
     context_mapping: {  }
-    pages: |-
-      /soort-sieraden
-      /soort-sieraden/*
+    pages: "/soort-sieraden\r\n/soort-sieraden/*"
