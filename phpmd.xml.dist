@@ -30,10 +30,13 @@
     </rule>
 
     <rule ref="rulesets/controversial.xml">
-        <!-- Camel-case rule conflicts with Drupal's snake_case hook names. -->
+        <!-- Camel-case rules conflict with Drupal's snake_case convention,
+             which also propagates into PHP namespaces built from module
+             machine names (e.g. Drupal\doesdesign_tools\Controller). -->
         <exclude name="CamelCaseMethodName"/>
         <exclude name="CamelCaseParameterName"/>
         <exclude name="CamelCaseVariableName"/>
+        <exclude name="CamelCaseNamespace"/>
     </rule>
 
     <rule ref="rulesets/design.xml"/>
@@ -42,6 +45,9 @@
         <!-- Short variable names are fine in short scopes. -->
         <exclude name="ShortVariable"/>
         <exclude name="LongVariable"/>
+        <!-- Drupal hook names (MODULE_hook_name_suffix) and post_update
+             functions routinely exceed PHPMD's default 40-char limit. -->
+        <exclude name="LongMethodName"/>
     </rule>
 
     <rule ref="rulesets/unusedcode.xml">
