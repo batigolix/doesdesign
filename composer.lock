@@ -1595,16 +1595,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "11.4.9",
+            "version": "11.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "cb07269d7829379f0960d469d7a0e6c045facd22"
+                "reference": "7dc54b5a0281efaf995a579f02a9b473424a9d09"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/cb07269d7829379f0960d469d7a0e6c045facd22",
-                "reference": "cb07269d7829379f0960d469d7a0e6c045facd22",
+                "url": "https://api.github.com/repos/drupal/core/zipball/7dc54b5a0281efaf995a579f02a9b473424a9d09",
+                "reference": "7dc54b5a0281efaf995a579f02a9b473424a9d09",
                 "shasum": ""
             },
             "require": {
@@ -1777,7 +1777,7 @@
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
             "support": {
-                "source": "https://github.com/drupal/core/tree/11.4.9"
+                "source": "https://github.com/drupal/core/tree/11.4.10"
             },
             "funding": [
                 {
@@ -1785,11 +1785,11 @@
                     "type": "other"
                 }
             ],
-            "time": "2026-10-09T17:44:27+00:00"
+            "time": "2026-10-14T10:58:06+00:00"
         },
         {
             "name": "drupal/core-composer-scaffold",
-            "version": "11.4.9",
+            "version": "11.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-composer-scaffold.git",
@@ -1833,13 +1833,13 @@
                 "drupal"
             ],
             "support": {
-                "source": "https://github.com/drupal/core-composer-scaffold/tree/11.4.9"
+                "source": "https://github.com/drupal/core-composer-scaffold/tree/11.4.10"
             },
             "time": "2026-07-09T23:23:24+00:00"
         },
         {
             "name": "drupal/core-project-message",
-            "version": "11.4.9",
+            "version": "11.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-project-message.git",
@@ -1877,29 +1877,29 @@
                 "drupal"
             ],
             "support": {
-                "source": "https://github.com/drupal/core-project-message/tree/11.4.9"
+                "source": "https://github.com/drupal/core-project-message/tree/11.4.10"
             },
             "time": "2026-01-07T19:00:53+00:00"
         },
         {
             "name": "drupal/core-recommended",
-            "version": "11.4.9",
+            "version": "11.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-recommended.git",
-                "reference": "d9a6466e0ed74b87b58761493bf31da75b1bc0f0"
+                "reference": "79668dc2db00f10a4d22e80b9005fc8f5042bdfe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core-recommended/zipball/d9a6466e0ed74b87b58761493bf31da75b1bc0f0",
-                "reference": "d9a6466e0ed74b87b58761493bf31da75b1bc0f0",
+                "url": "https://api.github.com/repos/drupal/core-recommended/zipball/79668dc2db00f10a4d22e80b9005fc8f5042bdfe",
+                "reference": "79668dc2db00f10a4d22e80b9005fc8f5042bdfe",
                 "shasum": ""
             },
             "require": {
                 "asm89/stack-cors": "~v2.4.0",
                 "composer/semver": "~3.4.4",
                 "doctrine/lexer": "~3.0.1",
-                "drupal/core": "11.4.9",
+                "drupal/core": "11.4.10",
                 "egulias/email-validator": "~4.0.4",
                 "justinrainbow/json-schema": "~6.8.2",
                 "marc-mabe/php-enum": "~v4.7.2",
@@ -1957,9 +1957,9 @@
             ],
             "description": "Core and its dependencies with known-compatible minor versions. Require this project INSTEAD OF drupal/core.",
             "support": {
-                "source": "https://github.com/drupal/core-recommended/tree/11.4.9"
+                "source": "https://github.com/drupal/core-recommended/tree/11.4.10"
             },
-            "time": "2026-10-09T17:44:27+00:00"
+            "time": "2026-10-14T10:58:06+00:00"
         },
         {
             "name": "drupal/crop",
@@ -2439,26 +2439,26 @@
         },
         {
             "name": "drupal/fontyourface",
-            "version": "4.3.0",
+            "version": "4.3.1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/fontyourface.git",
-                "reference": "4.3.0"
+                "reference": "4.3.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/fontyourface-4.3.0.zip",
-                "reference": "4.3.0",
-                "shasum": "e87ae4f1a9125e261c20de3062439934180a412d"
+                "url": "https://ftp.drupal.org/files/projects/fontyourface-4.3.1.zip",
+                "reference": "4.3.1",
+                "shasum": "a92620fca2fdd9dfaae9055e3a7776b026415590"
             },
             "require": {
-                "drupal/core": "^10.2 || ^11.0"
+                "drupal/core": "^10.3 || ^11.2 || ^12"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "4.3.0",
-                    "datestamp": "1791540827",
+                    "version": "4.3.1",
+                    "datestamp": "1792057840",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2516,17 +2516,17 @@
         },
         {
             "name": "drupal/gin",
-            "version": "5.0.15",
+            "version": "5.0.16",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/gin.git",
-                "reference": "5.0.15"
+                "reference": "5.0.16"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/gin-5.0.15.zip",
-                "reference": "5.0.15",
-                "shasum": "b02b1d890cade5e096c1c99a4a18ce7e23a186cd"
+                "url": "https://ftp.drupal.org/files/projects/gin-5.0.16.zip",
+                "reference": "5.0.16",
+                "shasum": "e6f6d582ccab1f3a5012afcd0a673a1ddaa67312"
             },
             "require": {
                 "drupal/core": "^11.2",
@@ -2535,8 +2535,8 @@
             "type": "drupal-theme",
             "extra": {
                 "drupal": {
-                    "version": "5.0.15",
-                    "datestamp": "1780500810",
+                    "version": "5.0.16",
+                    "datestamp": "1791998634",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3312,24 +3312,25 @@
         },
         {
             "name": "drupal/photoswipe",
-            "version": "5.0.11",
+            "version": "5.0.12",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/photoswipe.git",
-                "reference": "5.0.11"
+                "reference": "5.0.12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/photoswipe-5.0.11.zip",
-                "reference": "5.0.11",
-                "shasum": "b76d3c9b37aed9e8105737c8aeaaa7119374aa30"
+                "url": "https://ftp.drupal.org/files/projects/photoswipe-5.0.12.zip",
+                "reference": "5.0.12",
+                "shasum": "e8919c5555bb70829d4f2fd9f9469b57ab185a76"
             },
             "require": {
-                "drupal/core": "^9.3 || ^10 || ^11"
+                "drupal/core": "^10.3 || ^11"
             },
             "require-dev": {
                 "drupal/svg_image": "^3.0",
                 "drupal/svg_image_field": "^2.0",
+                "drupal/token": "^1",
                 "enshrined/svg-sanitize": "^0.22"
             },
             "suggest": {
@@ -3340,8 +3341,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "5.0.11",
-                    "datestamp": "1791458589",
+                    "version": "5.0.12",
+                    "datestamp": "1791998152",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -7095,16 +7096,16 @@
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v7.4.17",
+            "version": "v7.4.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "2ebe78c083501dfb9509b31a7aedcae4d60a391f"
+                "reference": "58c89144c7a36dd89c3d01917e9fa3a72d8aaf31"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/2ebe78c083501dfb9509b31a7aedcae4d60a391f",
-                "reference": "2ebe78c083501dfb9509b31a7aedcae4d60a391f",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/58c89144c7a36dd89c3d01917e9fa3a72d8aaf31",
+                "reference": "58c89144c7a36dd89c3d01917e9fa3a72d8aaf31",
                 "shasum": ""
             },
             "require": {
@@ -7153,7 +7154,7 @@
             "description": "Defines an object-oriented layer for the HTTP specification",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/http-foundation/tree/v7.4.17"
+                "source": "https://github.com/symfony/http-foundation/tree/v7.4.21"
             },
             "funding": [
                 {
@@ -7173,7 +7174,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-08-20T09:55:18+00:00"
+            "time": "2026-10-08T16:56:12+00:00"
         },
         {
             "name": "symfony/http-kernel",
@@ -9418,16 +9419,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v7.4.17",
+            "version": "v7.4.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "0b040d7b66ceb10b7bb24c8e6656257932693a12"
+                "reference": "044907929c7999814378be22da34722c7a86bad4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/0b040d7b66ceb10b7bb24c8e6656257932693a12",
-                "reference": "0b040d7b66ceb10b7bb24c8e6656257932693a12",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/044907929c7999814378be22da34722c7a86bad4",
+                "reference": "044907929c7999814378be22da34722c7a86bad4",
                 "shasum": ""
             },
             "require": {
@@ -9470,7 +9471,7 @@
             "description": "Loads and dumps YAML files",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/yaml/tree/v7.4.17"
+                "source": "https://github.com/symfony/yaml/tree/v7.4.21"
             },
             "funding": [
                 {
@@ -9490,7 +9491,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-08-21T12:09:28+00:00"
+            "time": "2026-10-12T12:34:30+00:00"
         },
         {
             "name": "twig/html-extra",
