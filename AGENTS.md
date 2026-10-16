@@ -123,6 +123,17 @@ bin/phpmd web/modules/custom,web/themes/custom github phpmd.xml.dist \
 cd web/themes/custom/shindo && npm run build:overrides
 ```
 
+For an iterative dev loop, use watch mode (rebuilds `main.css` and
+`shindo-overrides.css` on save):
+```bash
+cd web/themes/custom/shindo && npm run watch
+```
+
+> **Watch writes uncompressed CSS.** `npm run watch` omits
+> `--style=compressed`, while `npm run build:overrides` applies it.
+> Always run `npm run build:overrides` once after a watch session so
+> the committed `shindo-overrides.css` matches what CI produces.
+
 **Config sync** — required after any Drupal admin UI change:
 ```bash
 ddev drush cex -y --diff
