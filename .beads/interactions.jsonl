@@ -352,3 +352,4 @@
 {"id":"int-8a4e4f7c","kind":"field_change","created_at":"2026-10-16T15:48:21.445983Z","actor":"Boris Doesborg","issue_id":"doesdesign-tn8n","extra":{"field":"status","new_value":"open","old_value":"in_progress"}}
 {"id":"int-63e02c2d","kind":"field_change","created_at":"2026-10-16T16:31:42.006772Z","actor":"Boris Doesborg","issue_id":"doesdesign-3t0y","extra":{"field":"status","new_value":"closed","old_value":"in_progress","reason":"Closed"}}
 {"id":"int-56aaadd2","kind":"field_change","created_at":"2026-10-16T19:36:16.953354Z","actor":"Boris Doesborg","issue_id":"doesdesign-ozh1","extra":{"field":"status","new_value":"closed","old_value":"in_progress","reason":"Closed"}}
+{"id":"int-77129097","kind":"field_change","created_at":"2026-10-16T20:23:17.281432Z","actor":"Boris Doesborg","issue_id":"doesdesign-4ub4","extra":{"field":"status","new_value":"closed","old_value":"in_progress","reason":"Closed"}}
