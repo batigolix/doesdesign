@@ -1,0 +1,11 @@
+uuid: 2d4e6f8a-0b2c-4e6f-8a0b-2c4e6f8a0b2c
+langcode: nl
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.jaar
+id: taxonomy_term.jaar
+target_entity_type_id: taxonomy_term
+target_bundle: jaar
+default_langcode: site_default
+language_alterable: false

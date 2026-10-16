@@ -11,7 +11,71 @@ declare(strict_types=1);
 
 use Drupal\block_content\Entity\BlockContent;
 use Drupal\node\NodeInterface;
+use Drupal\taxonomy\Entity\Term;
 use Drupal\taxonomy\Entity\Vocabulary;
+
+/**
+ * Create 'jaar' taxonomy terms from unique node__field_year values (ozhi).
+ *
+ * Reads every DISTINCT value from node__field_year and creates one term in the
+ * 'jaar' vocabulary per unique year string. Idempotent: if a term with the
+ * same name already exists in 'jaar' it is skipped.
+ *
+ * Weight strategy: weight = -(year as integer), so that a default
+ * ascending-weight sort presents years newest-first (2026 weight -2026,
+ * 1990 weight -1990). This matches the portfolio chronology convention.
+ */
+function doesdesign_tools_post_update_create_jaar_terms(): void {
+  // AI generated.
+  $connection = \Drupal::database();
+
+  if (!$connection->schema()->tableExists('node__field_year')) {
+    return;
+  }
+
+  $years = $connection->select('node__field_year', 'y')
+    ->distinct()
+    ->fields('y', ['field_year_value'])
+    ->orderBy('field_year_value', 'ASC')
+    ->execute()
+    ->fetchCol();
+
+  if (empty($years)) {
+    return;
+  }
+
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  $created = 0;
+
+  foreach ($years as $year) {
+    // Skip if a term with this name already exists in the 'jaar' vocabulary.
+    $existing = $term_storage->loadByProperties([
+      'vid' => 'jaar',
+      'name' => $year,
+    ]);
+    if ($existing) {
+      continue;
+    }
+
+    $term = Term::create([
+      'vid' => 'jaar',
+      'name' => $year,
+      // Negative weight so ascending-weight sort = newest year first.
+      'weight' => -(int) $year,
+      'langcode' => 'nl',
+    ]);
+    $term->save();
+    $created++;
+  }
+
+  \Drupal::logger('doesdesign_tools')->info(
+    'Created @count jaar taxonomy terms from unique field_year values (@skipped already existed).',
+    [
+      '@count' => $created,
+      '@skipped' => count($years) - $created,
+    ]
+  );
+}
 
 /**
  * Skip fontyourface_update_8002 if vocabs already exist (bead u6mj).
