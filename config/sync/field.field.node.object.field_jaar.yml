@@ -1,0 +1,28 @@
+uuid: fcc8f812-0e8a-4859-82f6-8d18ee3bc250
+langcode: nl
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_jaar
+    - node.type.object
+    - taxonomy.vocabulary.jaar
+id: node.object.field_jaar
+field_name: field_jaar
+entity_type: node
+bundle: object
+label: Jaar
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      jaar: jaar
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

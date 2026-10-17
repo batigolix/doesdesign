@@ -1,0 +1,22 @@
+uuid: e5749c05-1546-4532-8bbd-dbcc3666ea8c
+langcode: nl
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - default_admin
+_core:
+  default_config_hash: '-8PL5mB7TwwrfyG9iaRNdXu5NdHT6M2jsbl4DFI3J0w'
+id: default_admin_messages
+theme: default_admin
+region: highlighted
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: Statusberichten
+  label_display: '0'
+  provider: system
+visibility: {  }
