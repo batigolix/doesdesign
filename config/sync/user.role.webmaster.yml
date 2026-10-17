@@ -59,6 +59,7 @@ permissions:
   - 'administer menu'
   - 'administer node published status'
   - 'administer nodes'
+  - 'administer redirects'
   - 'administer themes'
   - 'administer webform'
   - 'administer webform element access'
