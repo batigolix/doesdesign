@@ -10,7 +10,6 @@ parameters:
         - web/themes/custom/*/node_modules/*
         - web/themes/custom/*/vendor/*
         - web/modules/custom/*/vendor/*
-        - web/themes/custom/denbei/*
     reportUnmatchedIgnoredErrors: false
     ignoreErrors:
         # Procedural preprocess/theme hooks legitimately call \Drupal::.

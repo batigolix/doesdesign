@@ -9,7 +9,6 @@
   "ignoreFiles": [
     "**/vendor/**",
     "**/node_modules/**",
-    "**/themes/custom/denbei/**",
     "**/themes/custom/shindo/assets/css/**",
     "**/themes/custom/shindo/assets/sass/libs/**",
     "**/themes/custom/shindo/assets/sass/main.scss",
