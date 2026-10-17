@@ -5,14 +5,15 @@ dependencies:
   config:
     - core.entity_view_mode.node.alt_teaser
     - field.field.node.object.body
+    - field.field.node.object.field_jaar
     - field.field.node.object.field_material
     - field.field.node.object.field_media_image
     - field.field.node.object.field_price
     - field.field.node.object.field_show_in_banner
+    - field.field.node.object.field_show_in_portfolio
     - field.field.node.object.field_subtitle
     - field.field.node.object.field_type
     - field.field.node.object.field_weight
-    - field.field.node.object.field_year
     - node.type.object
   module:
     - text
@@ -29,6 +30,14 @@ content:
       trim_length: 160
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_jaar:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 7
     region: content
   field_material:
     type: entity_reference_label
@@ -77,15 +86,6 @@ content:
     third_party_settings: {  }
     weight: 4
     region: content
-  field_year:
-    type: number_integer
-    label: above
-    settings:
-      thousand_separator: ''
-      prefix_suffix: true
-    third_party_settings: {  }
-    weight: 7
-    region: content
   links:
     settings: {  }
     third_party_settings: {  }
@@ -93,5 +93,7 @@ content:
     region: content
 hidden:
   field_show_in_banner: true
+  field_show_in_portfolio: true
   field_subtitle: true
+  field_year: true
   langcode: true
