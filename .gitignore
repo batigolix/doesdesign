@@ -45,6 +45,9 @@ tests/backstop/backstop_data
 /web/themes/custom/massively/node_modules/
 /web/themes/custom/denbei/node_modules/
 /web/themes/custom/shindo/node_modules/
+/node_modules/
+/pswp-*.png
+/web/autoload_runtime.php
 /.ai/
 /.claude/
 /.playwright-cli/
@@ -57,5 +60,3 @@ tests/backstop/backstop_data
 .dolt/
 *.db
 .beads-credential-key
-pswp-*.png
-/node_modules/
