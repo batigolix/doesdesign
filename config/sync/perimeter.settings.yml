@@ -4,16 +4,16 @@ not_found_exception_patterns:
   - '/.*\.aspx/'
   - '/.*\.asp/'
   - '/.*\.jsp/'
-  - '/\/blog_edit\.php/'
-  - '/\/blogs\.php/'
+  - /\/blog_edit\.php/
+  - /\/blogs\.php/
   - '/\/wp-admin.*/'
   - '/\/wp-login.*/'
   - '/\/wp-includes.*/'
   - '/\/wp-content.*/'
   - '/\/wp-json.*/'
   - '/\/wordpress.*/'
-  - '/\/xmlrpc\.php/'
-  - '/\/my_blogs/'
+  - /\/xmlrpc\.php/
+  - /\/my_blogs/
   - '/\/system\/.*\.php/'
   - '/.*systopice.*/'
   - '/.*login\.json/'
@@ -23,7 +23,7 @@ not_found_exception_patterns:
   - '/.*phpversion.*/'
   - '/\/server-status.*/'
   - '/\/server-info.*/'
-  - '/\/_environment/'
+  - /\/_environment/
   - '/\/_profiler.*/'
   - '/\/\.env.*/'
   - '/\/\.git\/.*/'
@@ -31,13 +31,13 @@ not_found_exception_patterns:
   - '/\/adminer.*/'
   - '/\/firebase[-_].*\.json/'
   - '/\/firebase-adminsdk.*/'
-  - '/\/google-(key|credentials)\.json/'
+  - /\/google-(key|credentials)\.json/
   - '/\/gcp-.*\.json/'
-  - '/\/credentials\.json/'
-  - '/\/key\.json/'
-  - '/\/keyfile\.json/'
-  - '/\/sa\.json/'
-  - '/\/application_default_credentials\.json/'
+  - /\/credentials\.json/
+  - /\/key\.json/
+  - /\/keyfile\.json/
+  - /\/sa\.json/
+  - /\/application_default_credentials\.json/
 whitelisted_ips: {  }
 flood_threshold: 0
 flood_window: 3600
