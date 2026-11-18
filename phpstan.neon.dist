@@ -27,3 +27,15 @@ parameters:
             paths:
                 - web/modules/custom/doesdesign_tools/doesdesign_tools.module
                 - web/modules/custom/doesdesign_tools/src/Plugin/WebformHandler/SiteNameLettersValidator.php
+        # One-shot backfill script: $mapping has int-literal values and
+        # $term_cache is runtime-populated from loaded terms. phpstan cannot
+        # prove the string-cast keys exist, which cascades into false
+        # "deadCode.unreachable" and "identical.alwaysTrue" reports.
+        -
+            identifiers:
+                - nullCoalesce.offset
+                - isset.offset
+                - identical.alwaysTrue
+                - deadCode.unreachable
+            paths:
+                - web/modules/custom/doesdesign_tools/doesdesign_tools.post_update.php
