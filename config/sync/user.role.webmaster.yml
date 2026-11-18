@@ -27,6 +27,7 @@ dependencies:
     - navigation
     - node
     - path
+    - redirect
     - shortcut
     - system
     - taxonomy
@@ -168,6 +169,7 @@ permissions:
   - 'view any video media revisions'
   - 'view any webform submission'
   - 'view article revisions'
+  - 'view environment indicator current release'
   - 'view media'
   - 'view object revisions'
   - 'view own unpublished content'
