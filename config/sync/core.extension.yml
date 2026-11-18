@@ -23,6 +23,7 @@ module:
   editor: 0
   entity_usage: 0
   environment_indicator: 0
+  environment_indicator_navigation: 0
   field: 0
   field_ui: 0
   file: 0

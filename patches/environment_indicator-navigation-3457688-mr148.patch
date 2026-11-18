@@ -1,0 +1,1587 @@
+diff --git a/.cspell-project-words.txt b/.cspell-project-words.txt
+index d81c5d5a40953312a6fc176f70dd848695df0923..c6e1c25325036315a425a23cb7ee3a49ea5dd696 100644
+--- a/.cspell-project-words.txt
++++ b/.cspell-project-words.txt
+@@ -9,5 +9,8 @@ isholgueras
+ trackleft2
+ hanoii
+ 
++# drupal.org maintainance organisations
++Lullabot
++
+ # word used by tinycon library
+ colour
+diff --git a/.tugboat/config.yml b/.tugboat/config.yml
+index 424176f5459fd366e359f1ead54c7b2d45716aa0..7f0c67d14b94ec5023ec31d92ba756c772c95fbb 100644
+--- a/.tugboat/config.yml
++++ b/.tugboat/config.yml
+@@ -45,7 +45,8 @@ services:
+         vendor/bin/drush --yes pm:enable environment_indicator environment_indicator_ui
+         vendor/bin/drush --yes pm:enable environment_indicator gin_toolbar
+         vendor/bin/drush --yes pm:enable environment_indicator admin_toolbar
+-        vendor/bin/drush --yes pm:enable environment_indicator environment_indicator_toolbar
++        vendor/bin/drush --yes pm:enable environment_indicator environment_indicator_navigation
++        # Create environment switchers.
+         vendor/bin/drush --yes config:set environment_indicator.indicator bg_color '#31758e'
+         vendor/bin/drush --yes config:set environment_indicator.indicator fg_color '#d4e5eb'
+         vendor/bin/drush --yes config:set environment_indicator.indicator name "${TUGBOAT_PREVIEW_NAME}"
+@@ -77,6 +78,9 @@ services:
+         vendor/bin/drush --yes config:set environment_indicator.switcher.prod weight 2
+         vendor/bin/drush --yes config:set environment_indicator.switcher.prod langcode 'en'
+         vendor/bin/drush --yes config:set environment_indicator.switcher.prod status true
++        vendor/bin/drush --yes config:set environment_indicator.settings toolbar_integration []
++        vendor/bin/drush --yes config:set environment_indicator.settings version_identifier drupal_version
++        vendor/bin/drush --yes config:set environment_indicator.settings version_identifier_fallback environment_indicator_current_release
+       build: |
+         set -eux
+         # Delete and re-check out this branch in case this is built from a Base Preview.
+diff --git a/environment_indicator.install b/environment_indicator.install
+index dfbb1242c2d2a3d09a1273e19e06c94da793ef99..08181d2b4f9124f3e1ca3c5723079bf5cf636d1e 100644
+--- a/environment_indicator.install
++++ b/environment_indicator.install
+@@ -7,6 +7,36 @@
+ 
+ use Drupal\user\Entity\Role;
+ 
++/**
++ * Implements hook_install().
++ */
++function environment_indicator_install() {
++  _environment_indicator_enable_navigation_submodule_if_required();
++}
++
++/**
++ * Enables the environment_indicator_navigation submodule if required.
++ *
++ * If the 'navigation' module is enabled and the 'toolbar' module is not,
++ * the 'environment_indicator_navigation' submodule is installed so sites
++ * using the core Navigation module get the integration without a manual
++ * step. When both 'toolbar' and 'navigation' are enabled, no change is made
++ * so an existing toolbar integration is left as-is.
++ *
++ * Used on install for new sites, and from
++ * environment_indicator_update_8104() for existing sites where 'navigation'
++ * is already enabled.
++ */
++function _environment_indicator_enable_navigation_submodule_if_required() {
++  $module_handler = \Drupal::service('module_handler');
++  if (!$module_handler->moduleExists('navigation') || $module_handler->moduleExists('toolbar')) {
++    return;
++  }
++  if (!$module_handler->moduleExists('environment_indicator_navigation')) {
++    \Drupal::service('module_installer')->install(['environment_indicator_navigation']);
++  }
++}
++
+ /**
+  * Initialize the version_identifier and version_identifier_fallback settings.
+  */
+@@ -81,3 +111,23 @@ function environment_indicator_update_8103() {
+     $settings->save();
+   }
+ }
++
++/**
++ * Enable the environment_indicator_navigation submodule if required.
++ *
++ * Also removes the toolbar_integration setting if it is still present.
++ * environment_indicator_update_8103() only cleared it when the 'toolbar'
++ * module was enabled at the time it ran, so sites that ran that update
++ * without 'toolbar' enabled were left with this obsolete, no-longer
++ * schema-defined key.
++ *
++ * @see _environment_indicator_enable_navigation_submodule_if_required()
++ */
++function environment_indicator_update_8104() {
++  _environment_indicator_enable_navigation_submodule_if_required();
++
++  $settings = \Drupal::configFactory()->getEditable('environment_indicator.settings');
++  if ($settings->get('toolbar_integration') !== NULL) {
++    $settings->clear('toolbar_integration')->save();
++  }
++}
+diff --git a/environment_indicator.module b/environment_indicator.module
+index aef32974d67a440d56eaac6b3a5b2b0893c336ec..e6b631438e6a1bfb4a49d6a47a5df9f9ff05a96d 100644
+--- a/environment_indicator.module
++++ b/environment_indicator.module
+@@ -129,11 +129,15 @@ function environment_indicator_page_top(array &$page_top) {
+   if (!$account->hasPermission('access environment indicator')) {
+     return [];
+   }
+-  // Check if environment_indicator_toolbar is enabled.
+-  $toolbar_integration_module_enabled = \Drupal::moduleHandler()->moduleExists('environment_indicator_toolbar') ?? FALSE;
+-  // Let the toolbar render the indicator only when the user can see the
+-  // toolbar; otherwise fall through so the banner still shows.
+-  if ($toolbar_integration_module_enabled && $account->hasPermission('access toolbar')) {
++  // Check if environment_indicator_toolbar or environment_indicator_navigation
++  // is enabled.
++  $module_handler = \Drupal::moduleHandler();
++  $toolbar_integration_module_enabled = $module_handler->moduleExists('environment_indicator_toolbar') ?? FALSE;
++  $navigation_integration_module_enabled = $module_handler->moduleExists('environment_indicator_navigation') ?? FALSE;
++  // Let the toolbar or navigation render the indicator only when the user
++  // can see it there; otherwise fall through so the banner still shows.
++  if (($toolbar_integration_module_enabled && $account->hasPermission('access toolbar'))
++    || ($navigation_integration_module_enabled && $account->hasPermission('access navigation'))) {
+     return;
+   }
+   $environment_indicator = \Drupal::service('environment_indicator.indicator');
+diff --git a/modules/environment_indicator_navigation/assets/icons/server.svg b/modules/environment_indicator_navigation/assets/icons/server.svg
+new file mode 100644
+index 0000000000000000000000000000000000000000..9432c7501f05583656c901f91573eb0f488d015a
+--- /dev/null
++++ b/modules/environment_indicator_navigation/assets/icons/server.svg
+@@ -0,0 +1,8 @@
++<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
++  <g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
++    <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
++    <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
++    <path d="M6 6h.01" />
++    <path d="M6 18h.01" />
++  </g>
++</svg>
+diff --git a/modules/environment_indicator_navigation/css/navigation.css b/modules/environment_indicator_navigation/css/navigation.css
+new file mode 100644
+index 0000000000000000000000000000000000000000..5ae2a43a19fe6ea0097284d866193d408e40e62c
+--- /dev/null
++++ b/modules/environment_indicator_navigation/css/navigation.css
+@@ -0,0 +1,16 @@
++:is(#extra-specificity-hack, .environment-indicator [data-drupal-admin-styles]).admin-toolbar .toolbar-button.toolbar-button--environment-indicator,
++:is(#extra-specificity-hack, .environment-indicator [data-drupal-admin-styles]).admin-toolbar .toolbar-button.current.is-active.toolbar-button--environment-indicator,
++:is(#extra-specificity-hack, .environment-indicator [data-drupal-admin-styles]).admin-toolbar .toolbar-button.toolbar-button--environment-indicator:hover,
++:is(#extra-specificity-hack, .environment-indicator [data-drupal-admin-styles]).admin-toolbar .toolbar-button.toolbar-button--environment-indicator-label,
++:is(#extra-specificity-hack, .environment-indicator [data-drupal-admin-styles]).admin-toolbar .toolbar-button.toolbar-button--environment-indicator-label:hover {
++  color: var(--env-indicator-fg-color);
++  background-color: var(--env-indicator-bg-color);
++}
++
++:is(#extra-specificity-hack, [data-admin-toolbar="expanded"]) .toolbar-button.toolbar-button--environment-indicator {
++  padding-inline-start: var(--admin-toolbar-space-16);
++}
++
++:is(#extra-specificity-hack, [data-admin-toolbar="expanded"]) .toolbar-button.toolbar-button--environment-indicator::before {
++  display: none;
++}
+diff --git a/modules/environment_indicator_navigation/environment_indicator_navigation.icons.yml b/modules/environment_indicator_navigation/environment_indicator_navigation.icons.yml
+new file mode 100644
+index 0000000000000000000000000000000000000000..056ed5cd12e2d668022b8eb2d9368007513c8cf8
+--- /dev/null
++++ b/modules/environment_indicator_navigation/environment_indicator_navigation.icons.yml
+@@ -0,0 +1,36 @@
++environment_indicator_navigation:
++  enabled: true
++  label: "Environment Indicator"
++  description: "Icons for Environment Indicator Navigation module."
++  version: 11.x
++  license:
++    name: GPL2-or-later
++    url: https://api.drupal.org/api/drupal/core%21LICENSE.txt/11.x
++    gpl-compatible: true
++  extractor: svg
++  config:
++    sources:
++      - assets/icons/*.svg
++  settings:
++    size:
++      title: "Size"
++      description: "Set a size for this icon."
++      type: "integer"
++      default: 20
++    class:
++      title: "Class"
++      description: "Set a class for this icon."
++      type: "string"
++      default: ""
++  template: >
++    <svg
++      {{ attributes
++          .setAttribute('viewBox', attributes.viewBox|default('0 0 24 24'))
++          .setAttribute('class', class)
++          .setAttribute('width', size|default('20'))
++          .setAttribute('height', size|default('20'))
++          .setAttribute('aria-hidden', 'true')
++      }}
++    >
++      {{ content }}
++    </svg>
+diff --git a/modules/environment_indicator_navigation/environment_indicator_navigation.info.yml b/modules/environment_indicator_navigation/environment_indicator_navigation.info.yml
+new file mode 100644
+index 0000000000000000000000000000000000000000..88a3923b3df1300693e067fa1d48179a42a67c21
+--- /dev/null
++++ b/modules/environment_indicator_navigation/environment_indicator_navigation.info.yml
+@@ -0,0 +1,10 @@
++name: 'Environment Indicator Navigation'
++type: module
++description: 'Provides an environment indicator block for use with the Navigation module.'
++package: Development
++core_version_requirement: '^10.5 || >=11.1.2'
++lifecycle: experimental
++lifecycle_link: https://www.drupal.org/project/environment_indicator/issues/3457688
++dependencies:
++  - environment_indicator:environment_indicator
++  - drupal:navigation
+diff --git a/modules/environment_indicator_navigation/environment_indicator_navigation.libraries.yml b/modules/environment_indicator_navigation/environment_indicator_navigation.libraries.yml
+new file mode 100644
+index 0000000000000000000000000000000000000000..cdb2d039696989281905d4b2a9b0c67ad28163ab
+--- /dev/null
++++ b/modules/environment_indicator_navigation/environment_indicator_navigation.libraries.yml
+@@ -0,0 +1,4 @@
++navigation:
++  css:
++    component:
++      css/navigation.css: {}
+diff --git a/modules/environment_indicator_navigation/environment_indicator_navigation.module b/modules/environment_indicator_navigation/environment_indicator_navigation.module
+new file mode 100644
+index 0000000000000000000000000000000000000000..a66f98041d3061a497df14a89bc1b937bae90666
+--- /dev/null
++++ b/modules/environment_indicator_navigation/environment_indicator_navigation.module
+@@ -0,0 +1,116 @@
++<?php
++
++/**
++ * @file
++ * Provides integration for the Environment Indicator with Navigation.
++ */
++
++use Drupal\Core\Access\AccessResult;
++use Drupal\Core\Cache\Cache;
++
++/**
++ * Implements hook_navigation_content_top().
++ */
++function environment_indicator_navigation_navigation_content_top(): array {
++  if (!\Drupal::currentUser()->hasPermission('access environment indicator')) {
++    return [];
++  }
++  $environment_indicator = \Drupal::service('environment_indicator.indicator');
++  $active_environment = $environment_indicator->getActiveEnvironment();
++  $account = \Drupal::currentUser();
++  $access = AccessResult::allowedIfHasPermission($account, 'access environment indicator')
++    ->andIf(AccessResult::allowedIf(!empty($active_environment->get('name'))));
++
++  return [
++    'environment_indicator_wrapper' => [
++      '#access' => $access,
++      'environment_indicator' => [
++        '#lazy_builder' => ['environment_indicator_navigation.lazy_builder:getSwitcherLinks', []],
++        '#create_placeholder' => TRUE,
++        '#cache' => [
++          'keys' => ['environment_indicator_navigation_links'],
++          'contexts' => ['user.permissions', 'route'],
++          'tags' => Cache::mergeTags([
++            'config:environment_indicator.settings',
++            'config:environment_indicator.indicator',
++          ], $environment_indicator->getCacheTags()),
++        ],
++        '#lazy_builder_preview' => [
++          '#theme' => 'navigation_menu__environment_indicator_navigation',
++          '#menu_name' => 'environment_indicator_navigation',
++          '#items' => [
++            'environment_indicator' => [
++              'title' => $environment_indicator->getTitle(),
++              'switchers' => [],
++              'class' => $active_environment->get('name'),
++            ],
++          ],
++        ],
++      ],
++    ],
++  ];
++}
++
++/**
++ * Implements hook_page_attachments_alter().
++ */
++function environment_indicator_navigation_page_attachments_alter(array &$attachments) {
++  if (!\Drupal::currentUser()->hasPermission('access environment indicator')) {
++    return;
++  }
++
++  $environment_indicator = \Drupal::service('environment_indicator.indicator');
++  $active_environment = $environment_indicator->getActiveEnvironment();
++  $name = $active_environment->get('name');
++  if (empty($name)) {
++    return;
++  }
++
++  // Attach CSS variables for the active environment.
++  $fg_color = $active_environment->get('fg_color');
++  $bg_color = $active_environment->get('bg_color');
++
++  // Get all switcher link styles for proper environment colors.
++  $switcher_styles = $environment_indicator->getAllSwitcherLinkStyles(':is(#extra-specificity-hack, [data-drupal-admin-styles]) .toolbar-popover__menu');
++
++  // Ensure html_head array exists before merging.
++  if (!isset($attachments['#attached']['html_head'])) {
++    $attachments['#attached']['html_head'] = [];
++  }
++
++  // Add the CSS variables.
++  $attachments['#attached']['html_head'][] = [
++    [
++      '#tag' => 'style',
++      '#value' => ":root { --env-indicator-fg-color: $fg_color; --env-indicator-bg-color: $bg_color; }",
++    ],
++    'environment_indicator_navigation_vars',
++  ];
++
++  // Add the switcher link styles.
++  foreach ($switcher_styles as $style) {
++    $attachments['#attached']['html_head'][] = $style;
++  }
++
++  // Add the navigation library.
++  if (!isset($attachments['#attached']['library'])) {
++    $attachments['#attached']['library'] = [];
++  }
++  $attachments['#attached']['library'][] = 'environment_indicator_navigation/navigation';
++}
++
++/**
++ * Implements hook_theme().
++ */
++function environment_indicator_navigation_theme($existing, $type, $theme, $path): array {
++  return [
++    'navigation_menu__environment_indicator_navigation' => [
++      'variables' => [
++        'menu_name' => NULL,
++        'items' => [],
++        'attributes' => [],
++      ],
++      'base hook' => 'navigation_menu',
++    ],
++  ];
++}
+diff --git a/modules/environment_indicator_navigation/environment_indicator_navigation.services.yml b/modules/environment_indicator_navigation/environment_indicator_navigation.services.yml
+new file mode 100644
+index 0000000000000000000000000000000000000000..0541aad8dbb724a8a3bc3606baf8625a8e53da6e
+--- /dev/null
++++ b/modules/environment_indicator_navigation/environment_indicator_navigation.services.yml
+@@ -0,0 +1,10 @@
++services:
++  environment_indicator_navigation.lazy_builder:
++    class: Drupal\environment_indicator_navigation\Service\LazyBuilder
++    arguments:
++      - '@renderer'
++      - '@entity_type.manager'
++      - '@current_user'
++      - '@config.factory'
++      - '@environment_indicator.indicator'
++  Drupal\environment_indicator_navigation\Service\LazyBuilder: '@environment_indicator_navigation.lazy_builder'
+diff --git a/modules/environment_indicator_navigation/src/Service/LazyBuilder.php b/modules/environment_indicator_navigation/src/Service/LazyBuilder.php
+new file mode 100644
+index 0000000000000000000000000000000000000000..dce0d5cbac8c013341dac1c0113073f362c3789d
+--- /dev/null
++++ b/modules/environment_indicator_navigation/src/Service/LazyBuilder.php
+@@ -0,0 +1,90 @@
++<?php
++
++declare(strict_types=1);
++
++namespace Drupal\environment_indicator_navigation\Service;
++
++use Drupal\Core\Cache\Cache;
++use Drupal\Core\Config\ConfigFactoryInterface;
++use Drupal\Core\Entity\EntityTypeManagerInterface;
++use Drupal\Core\Render\RendererInterface;
++use Drupal\Core\Security\Attribute\TrustedCallback;
++use Drupal\Core\Session\AccountInterface;
++use Drupal\Core\StringTranslation\StringTranslationTrait;
++use Drupal\environment_indicator\Service\EnvironmentIndicator;
++
++/**
++ * Lazy builders for the environment indicator navigation module.
++ *
++ * Provides lazy-loaded content for the environment indicator within
++ * Drupal's navigation system, including switcher links and environment
++ * information display.
++ */
++class LazyBuilder {
++
++  use StringTranslationTrait;
++
++  /**
++   * The environment indicator service.
++   *
++   * @var \Drupal\environment_indicator\Service\EnvironmentIndicator
++   */
++  protected EnvironmentIndicator $environmentIndicator;
++
++  /**
++   * Constructs a new LazyBuilder object.
++   *
++   * @param \Drupal\Core\Render\RendererInterface $renderer
++   *   The renderer service.
++   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
++   *   The entity type manager.
++   * @param \Drupal\Core\Session\AccountInterface $current_user
++   *   The current user.
++   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
++   *   The config factory.
++   * @param \Drupal\environment_indicator\Service\EnvironmentIndicator $environment_indicator
++   *   The environment indicator service.
++   */
++  public function __construct(
++    protected RendererInterface $renderer,
++    protected EntityTypeManagerInterface $entity_type_manager,
++    protected AccountInterface $current_user,
++    protected ConfigFactoryInterface $config_factory,
++    EnvironmentIndicator $environment_indicator,
++  ) {
++    $this->environmentIndicator = $environment_indicator;
++  }
++
++  /**
++   * Get the switcher links for the environment indicator.
++   *
++   * #lazy_builder callback; builds environment switcher links.
++   *
++   * @return array
++   *   A renderable array of environment indicator links.
++   */
++  #[TrustedCallback]
++  public function getSwitcherLinks() {
++    $items = [
++      'environment_indicator' => [
++        'title' => $this->environmentIndicator->getTitle(),
++        'switchers' => $this->environmentIndicator->getLinks(),
++        'class' => $this->environmentIndicator->getActiveEnvironment()->get('name'),
++        'can_configure' => $this->current_user->hasPermission('administer environment indicator settings'),
++      ],
++    ];
++    return [
++      '#theme' => 'navigation_menu__environment_indicator_navigation',
++      '#menu_name' => 'environment_indicator_navigation',
++      '#items' => $items,
++      '#cache' => [
++        'tags' => Cache::mergeTags([
++          'config:environment_indicator.settings',
++          'config:environment_indicator.indicator',
++        ], $this->environmentIndicator->getCacheTags()),
++        'contexts' => ['route', 'user.permissions'],
++      ],
++    ];
++  }
++
++}
+diff --git a/modules/environment_indicator_navigation/templates/navigation-menu--environment-indicator-navigation.html.twig b/modules/environment_indicator_navigation/templates/navigation-menu--environment-indicator-navigation.html.twig
+new file mode 100644
+index 0000000000000000000000000000000000000000..c1a8d16e20ab31f89842437cfcee6884ca616d84
+--- /dev/null
++++ b/modules/environment_indicator_navigation/templates/navigation-menu--environment-indicator-navigation.html.twig
+@@ -0,0 +1,107 @@
++{#
++/**
++ * @file
++ * Twig template for the environment indicator navigation in the admin toolbar.
++ *
++ * Attaches the 'environment_indicator/drupal.environment_indicator_navigation'
++ * library. Generates a structured navigation menu item within the Drupal admin
++ * toolbar.
++ *
++ * This template is rendered by the environment_indicator_navigation_content_top
++ * hook.
++ *
++ * Available variables:
++ * - menu_name: The name of the menu being rendered.
++ * - title: The title of the menu block.
++ * - items: An array of menu items to be rendered.
++ *
++ * Logic:
++ * - Sets unique IDs for accessibility and identification purposes.
++ * - Checks if the menu item has children (`switchers`), and renders appropriate
++ *   HTML structure.
++ * - Includes the '@navigation/toolbar-button.html.twig' template for rendering
++ *   individual toolbar buttons.
++ *
++ * Attributes and Classes:
++ * - Assigns various attributes and classes to HTML elements for styling and
++ *   functionality.
++ *
++ * @see environment_indicator_navigation_content_top()
++ */
++#}
++
++{{ attach_library('environment_indicator_navigation/navigation') }}
++{% import _self as menus %}
++{% set menu_heading_id = 'menu--' ~ menu_name|clean_unique_id %}
++{% set item = items|first %}
++{% set item_id = 'navigation-link--environment-indicator'|clean_unique_id %}
++<div class="admin-toolbar__item admin-toolbar__item--environment-indicator">
++  <h4 id="{{ menu_heading_id }}" class="toolbar-block__title visually-hidden focusable">{{ title }}</h4>
++  <ul class="toolbar-block__list" aria-labelledby="{{ menu_heading_id }}">
++    {% if item.switchers is empty %}
++      <li id="{{ item_id }}" class="toolbar-block__list-item">
++        {% include '@navigation/toolbar-button.html.twig' ignore missing with {
++          attributes: create_attribute({ 'href': item.url|render, 'data-drupal-tooltip': item.title, 'data-drupal-tooltip-class': 'admin-toolbar__tooltip' }),
++          icon: { pack_id: 'environment_indicator_navigation', icon_id: 'server' },
++          html_tag: 'a',
++          text: item.title,
++          extra_classes: 'toolbar-button--collapsible toolbar-button--environment-indicator',
++        } only %}
++        {% include 'navigation:toolbar-button' ignore missing with {
++          attributes: create_attribute({ 'href': item.url|render, 'data-drupal-tooltip': item.title, 'data-drupal-tooltip-class': 'admin-toolbar__tooltip' }),
++          icon: { pack_id: 'environment_indicator_navigation', icon_id: 'server' },
++          html_tag: 'a',
++          text: item.title,
++          modifiers: ['collapsible'],
++          extra_classes: ['toolbar-button--environment-indicator'],
++        } only %}
++      </li>
++    {% else %}
++      <li id="{{ item_id }}" class="toolbar-block__list-item toolbar-popover" data-toolbar-popover>
++        {% include '@navigation/toolbar-button.html.twig' ignore missing with {
++          action: true,
++          attributes: create_attribute({'aria-expanded': 'false', 'aria-controls': item_id, 'data-toolbar-popover-control': true, 'style': item.attributes.style}),
++          icon: { pack_id: 'environment_indicator_navigation', icon_id: 'server' },
++          text: item.title,
++          extra_classes: 'toolbar-button--expand--side toolbar-button--collapsible toolbar-popover__control toolbar-button--environment-indicator',
++          has_safe_triangle: TRUE,
++        } only %}
++        {% include 'navigation:toolbar-button' ignore missing with {
++          action: 'Extend'|t,
++          attributes: create_attribute({'aria-expanded': 'false', 'aria-controls': item_id, 'data-toolbar-popover-control': true, 'style': item.attributes.style}),
++          icon: { pack_id: 'environment_indicator_navigation', icon_id: 'server' },
++          text: item.title,
++          modifiers: [
++            'collapsible',
++            'expand--side',
++          ],
++          extra_classes: [
++            'toolbar-popover__control',
++            'toolbar-button--environment-indicator',
++          ],
++          has_safe_triangle: TRUE,
++        } only %}
++        <div class="toolbar-popover__wrapper" data-toolbar-popover-wrapper inert>
++          <span class="toolbar-button toolbar-button--dark toolbar-button--non-interactive toolbar-button--environment-indicator-label">{{ item.title }}</span>
++          <ul class="toolbar-menu toolbar-popover__menu environment-switcher-container">
++            {% for item in  item.switchers %}
++              <li class="toolbar-block__list-item">
++                <a
++                  href="{{ item.url }}"
++                  class="toolbar-button {{ item.attributes.class|join(' ') }}"
++                  {{ create_attribute(item.attributes|without('class')) }}
++                  data-index-text="{{ item.title|first|lower }}"
++                >{{ item.title }}</a>
++              </li>
++            {% endfor %}
++          </ul>
++          {% if item.can_configure %}
++            <a href="{{ path('environment_indicator.settings') }}" class="toolbar-popover__header toolbar-button toolbar-button--dark">
++              {{ 'Configure'|t }}
++            </a>
++          {% endif %}
++        </div>
++      </li>
++    {% endif %}
++  </ul>
++</div>
+diff --git a/modules/environment_indicator_navigation/tests/src/Functional/ModuleCompatibilityTest.php b/modules/environment_indicator_navigation/tests/src/Functional/ModuleCompatibilityTest.php
+new file mode 100644
+index 0000000000000000000000000000000000000000..f807cea561c4627b62161aae95ae78d296682977
+--- /dev/null
++++ b/modules/environment_indicator_navigation/tests/src/Functional/ModuleCompatibilityTest.php
+@@ -0,0 +1,190 @@
++<?php
++
++declare(strict_types=1);
++
++namespace Drupal\Tests\environment_indicator_navigation\Functional;
++
++use Drupal\Tests\BrowserTestBase;
++
++/**
++ * Tests for module compatibility and collision prevention.
++ *
++ * @group environment_indicator_navigation
++ */
++class ModuleCompatibilityTest extends BrowserTestBase {
++
++  /**
++   * {@inheritdoc}
++   */
++  protected $defaultTheme = 'stark';
++
++  /**
++   * {@inheritdoc}
++   */
++  protected static $modules = [
++    'environment_indicator',
++    'environment_indicator_navigation',
++    'environment_indicator_toolbar',
++    'navigation',
++    'toolbar',
++  ];
++
++  /**
++   * A user with all necessary permissions.
++   *
++   * @var \Drupal\user\UserInterface
++   */
++  protected $adminUser;
++
++  /**
++   * {@inheritdoc}
++   */
++  protected function setUp(): void {
++    parent::setUp();
++
++    $this->adminUser = $this->drupalCreateUser([
++      'access environment indicator',
++      'access navigation',
++      'access toolbar',
++      'access administration pages',
++      'administer environment indicator settings',
++    ]);
++
++    // Configure an environment indicator.
++    $environment_config = $this->config('environment_indicator.indicator');
++    $environment_config->set('name', 'Test Environment');
++    $environment_config->set('bg_color', '#00ff00');
++    $environment_config->set('fg_color', '#000000');
++    $environment_config->save();
++  }
++
++  /**
++   * Tests that navigation and toolbar modules can coexist.
++   */
++  public function testNavigationAndToolbarCoexistence(): void {
++    $this->drupalLogin($this->adminUser);
++    $this->drupalGet('<front>');
++
++    // Test that modules are enabled and don't conflict.
++    $moduleHandler = \Drupal::moduleHandler();
++    $this->assertTrue($moduleHandler->moduleExists('navigation'));
++    $this->assertTrue($moduleHandler->moduleExists('toolbar'));
++    $this->assertTrue($moduleHandler->moduleExists('environment_indicator'));
++    $this->assertTrue($moduleHandler->moduleExists('environment_indicator_navigation'));
++    $this->assertTrue($moduleHandler->moduleExists('environment_indicator_toolbar'));
++    // Test that page loads without errors.
++    $this->assertSession()->statusCodeEquals(200);
++  }
++
++  /**
++   * Tests that services don't conflict between modules.
++   */
++  public function testServiceCompatibility(): void {
++    $container = \Drupal::getContainer();
++
++    // Ensure the environment indicator service is available.
++    $this->assertTrue($container->has('environment_indicator.indicator'));
++    $environmentIndicator = $container->get('environment_indicator.indicator');
++    $this->assertInstanceOf(
++      'Drupal\environment_indicator\Service\EnvironmentIndicator',
++      $environmentIndicator
++    );
++
++    // Ensure the navigation lazy builder service is available.
++    $this->assertTrue($container->has('environment_indicator_navigation.lazy_builder'));
++    $lazyBuilder = $container->get('environment_indicator_navigation.lazy_builder');
++    $this->assertInstanceOf(
++      'Drupal\environment_indicator_navigation\Service\LazyBuilder',
++      $lazyBuilder
++    );
++  }
++
++  /**
++   * Tests that CSS doesn't conflict between modules.
++   */
++  public function testCssCompatibility(): void {
++    $this->drupalLogin($this->adminUser);
++    $this->drupalGet('<front>');
++
++    // Test that page loads successfully without CSS conflicts.
++    $this->assertSession()->statusCodeEquals(200);
++
++    // Test that CSS libraries are properly registered.
++    $library_discovery = \Drupal::service('library.discovery');
++    $navigation_library = $library_discovery->getLibraryByName('environment_indicator_navigation', 'navigation');
++    $this->assertNotEmpty($navigation_library);
++  }
++
++  /**
++   * Tests that hooks don't interfere with each other.
++   */
++  public function testHookCompatibility(): void {
++    $this->drupalLogin($this->adminUser);
++
++    // Test that toolbar hook still works.
++    $toolbar_items = \Drupal::moduleHandler()->invokeAll('toolbar');
++    $this->assertArrayHasKey('environment_indicator', $toolbar_items);
++
++    // Test that navigation hook works.
++    $navigation_content = \Drupal::moduleHandler()->invoke(
++      'environment_indicator_navigation',
++      'navigation_content_top'
++    );
++    $this->assertIsArray($navigation_content);
++    $this->assertArrayHasKey('environment_indicator_wrapper', $navigation_content);
++  }
++
++  /**
++   * Tests that theme functions don't conflict.
++   */
++  public function testThemeCompatibility(): void {
++    $theme_registry = \Drupal::service('theme.registry')->get();
++
++    // Ensure navigation theme is registered.
++    $this->assertArrayHasKey(
++      'navigation_menu__environment_indicator_navigation',
++      $theme_registry
++    );
++
++    // Ensure it has the correct base hook.
++    $this->assertEquals(
++      'navigation_menu',
++      $theme_registry['navigation_menu__environment_indicator_navigation']['base hook']
++    );
++  }
++
++  /**
++   * Tests that permissions work correctly across modules.
++   */
++  public function testPermissionCompatibility(): void {
++    // Test that permissions are properly defined.
++    $permission_handler = \Drupal::service('user.permissions');
++    $permissions = $permission_handler->getPermissions();
++
++    $this->assertArrayHasKey('access environment indicator', $permissions);
++    $this->assertArrayHasKey('access navigation', $permissions);
++    $this->assertArrayHasKey('administer environment indicator settings', $permissions);
++  }
++
++  /**
++   * Tests that caching works properly with multiple modules.
++   */
++  public function testCacheCompatibility(): void {
++    $this->drupalLogin($this->adminUser);
++
++    // First request - builds cache.
++    $this->drupalGet('<front>');
++    $this->assertSession()->statusCodeEquals(200);
++
++    // Change environment settings.
++    $environment_config = $this->config('environment_indicator.indicator');
++    $environment_config->set('name', 'Updated Environment');
++    $environment_config->save();
++
++    // Second request - should reflect changes (cache should be invalidated).
++    $this->drupalGet('<front>');
++    $this->assertSession()->pageTextContains('Updated Environment');
++    $this->assertSession()->pageTextNotContains('Test Environment');
++  }
++
++}
+diff --git a/modules/environment_indicator_navigation/tests/src/Functional/NavigationIntegrationTest.php b/modules/environment_indicator_navigation/tests/src/Functional/NavigationIntegrationTest.php
+new file mode 100644
+index 0000000000000000000000000000000000000000..4fb3eecc8bfb174d5cea541cc59eccd0b3a129e2
+--- /dev/null
++++ b/modules/environment_indicator_navigation/tests/src/Functional/NavigationIntegrationTest.php
+@@ -0,0 +1,204 @@
++<?php
++
++declare(strict_types=1);
++
++namespace Drupal\Tests\environment_indicator_navigation\Functional;
++
++use Drupal\Core\Url;
++use Drupal\Tests\BrowserTestBase;
++
++/**
++ * Tests the navigation integration functionality.
++ *
++ * @group environment_indicator_navigation
++ */
++class NavigationIntegrationTest extends BrowserTestBase {
++
++  /**
++   * {@inheritdoc}
++   */
++  protected $defaultTheme = 'stark';
++
++  /**
++   * {@inheritdoc}
++   */
++  protected static $modules = [
++    'environment_indicator',
++    'environment_indicator_navigation',
++    'navigation',
++  ];
++
++  /**
++   * A user with permissions to access the environment indicator.
++   *
++   * @var \Drupal\user\UserInterface
++   */
++  protected $privilegedUser;
++
++  /**
++   * A user without permissions to access the environment indicator.
++   *
++   * @var \Drupal\user\UserInterface
++   */
++  protected $unprivilegedUser;
++
++  /**
++   * {@inheritdoc}
++   */
++  protected function setUp(): void {
++    parent::setUp();
++
++    // Create a privileged user with access to environment indicator.
++    $this->privilegedUser = $this->drupalCreateUser([
++      'access environment indicator',
++      'access navigation',
++      'access administration pages',
++    ]);
++
++    // Create an unprivileged user without access to environment indicator.
++    $this->unprivilegedUser = $this->drupalCreateUser([
++      'access navigation',
++    ]);
++
++    // Configure an environment indicator.
++    $environment_config = $this->config('environment_indicator.indicator');
++    $environment_config->set('name', 'Test Environment');
++    $environment_config->set('bg_color', '#ff0000');
++    $environment_config->set('fg_color', '#ffffff');
++    $environment_config->save();
++  }
++
++  /**
++   * Tests that navigation content is added for privileged users.
++   */
++  public function testNavigationContentForPrivilegedUser(): void {
++    $this->drupalLogin($this->privilegedUser);
++    $this->drupalGet('<front>');
++
++    // Check that the navigation is present and contains environment indicator.
++    $this->assertSession()->elementExists('css', '.admin-toolbar__item--environment-indicator');
++    $this->assertSession()->pageTextContains('Test Environment');
++  }
++
++  /**
++   * Tests that the configure link respects its route permission.
++   */
++  public function testConfigureLinkAccess(): void {
++    $switcher = \Drupal::entityTypeManager()
++      ->getStorage('environment_indicator')
++      ->create([
++        'machine' => 'staging',
++        'name' => 'Staging',
++        'url' => 'https://staging.example.com',
++        'weight' => 0,
++        'fg_color' => '#000000',
++        'bg_color' => '#ffff00',
++      ]);
++    $switcher->save();
++
++    $configure_url = Url::fromRoute('environment_indicator.settings')->toString();
++    $selector = '.admin-toolbar__item--environment-indicator a[href="' . $configure_url . '"]';
++
++    $this->drupalLogin($this->privilegedUser);
++    $this->drupalGet('<front>');
++    $this->assertSession()->elementNotExists('css', $selector);
++
++    $admin_user = $this->drupalCreateUser([
++      'access environment indicator',
++      'access navigation',
++      'access administration pages',
++      'administer environment indicator settings',
++    ]);
++    $this->drupalLogin($admin_user);
++    $this->drupalGet('<front>');
++    $this->assertSession()->elementExists('css', $selector);
++  }
++
++  /**
++   * Tests that navigation content is not added for unprivileged users.
++   */
++  public function testNavigationContentForUnprivilegedUser(): void {
++    $this->drupalLogin($this->unprivilegedUser);
++    $this->drupalGet('<front>');
++
++    // Check that the environment indicator is not present.
++    $this->assertSession()->elementNotExists('css', '.admin-toolbar__item--environment-indicator');
++    $this->assertSession()->pageTextNotContains('Test Environment');
++  }
++
++  /**
++   * Tests that anonymous users don't see the environment indicator.
++   */
++  public function testNavigationContentForAnonymousUser(): void {
++    $this->drupalGet('<front>');
++
++    // Check that the environment indicator is not present for anonymous users.
++    $this->assertSession()->elementNotExists('css', '.admin-toolbar__item--environment-indicator');
++    $this->assertSession()->pageTextNotContains('Test Environment');
++  }
++
++  /**
++   * Tests the CSS custom properties are correctly applied.
++   */
++  public function testCssCustomProperties(): void {
++    $this->drupalLogin($this->privilegedUser);
++    $this->drupalGet('<front>');
++
++    // Test that our module's hook returns the expected structure.
++    $navigation_content = \Drupal::moduleHandler()->invoke(
++      'environment_indicator_navigation',
++      'navigation_content_top'
++    );
++
++    $this->assertIsArray($navigation_content);
++    $this->assertArrayHasKey('environment_indicator_wrapper', $navigation_content);
++
++    // Test that the lazy builder service works.
++    $lazy_builder = \Drupal::service('environment_indicator_navigation.lazy_builder');
++    $switcher_links = $lazy_builder->getSwitcherLinks();
++
++    $this->assertIsArray($switcher_links);
++    $this->assertArrayHasKey('#theme', $switcher_links);
++    $this->assertEquals('navigation_menu__environment_indicator_navigation', $switcher_links['#theme']);
++
++    // Test that our environment name appears somewhere in the page.
++    $this->assertSession()->pageTextContains('Test Environment');
++
++    // Test that our module adds the CSS custom properties style tag.
++    $this->assertSession()->elementExists('css', 'style[data-environment-indicator-styles]');
++
++    // Test that the CSS custom properties are present in the style tag.
++    $response = $this->getSession()->getPage()->getContent();
++    $this->assertStringContainsString('--environment-indicator-color: #ffffff', $response);
++    $this->assertStringContainsString('--environment-indicator-background-color: #ff0000', $response);
++  }
++
++  /**
++   * Tests that the environment indicator navigation works without name.
++   */
++  public function testNavigationWithoutEnvironmentName(): void {
++    // Clear the environment name.
++    $environment_config = $this->config('environment_indicator.indicator');
++    $environment_config->set('name', '');
++    $environment_config->save();
++
++    $this->drupalLogin($this->privilegedUser);
++    $this->drupalGet('<front>');
++
++    // Test that our hook still returns structure but with access denied.
++    $navigation_content = \Drupal::moduleHandler()->invoke(
++      'environment_indicator_navigation',
++      'navigation_content_top'
++    );
++
++    // Should still return array structure but access should be false.
++    $this->assertIsArray($navigation_content);
++    $this->assertArrayHasKey('environment_indicator_wrapper', $navigation_content);
++
++    // The access should be denied when no environment name is set.
++    $access = $navigation_content['environment_indicator_wrapper']['#access'];
++    $this->assertFalse($access->isAllowed());
++    $this->assertSession()->pageTextNotContains('Test Environment');
++  }
++
++}
+diff --git a/modules/environment_indicator_navigation/tests/src/FunctionalJavascript/JavaScriptInteractionTest.php b/modules/environment_indicator_navigation/tests/src/FunctionalJavascript/JavaScriptInteractionTest.php
+new file mode 100644
+index 0000000000000000000000000000000000000000..c5e02416aa11dc2a94ced5686fa1ef2a6e6f74d5
+--- /dev/null
++++ b/modules/environment_indicator_navigation/tests/src/FunctionalJavascript/JavaScriptInteractionTest.php
+@@ -0,0 +1,220 @@
++<?php
++
++declare(strict_types=1);
++
++namespace Drupal\Tests\environment_indicator_navigation\FunctionalJavascript;
++
++use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
++
++/**
++ * Tests JavaScript functionality and interactions.
++ *
++ * @group environment_indicator_navigation
++ * @group environment_indicator_navigation_js
++ */
++class JavaScriptInteractionTest extends WebDriverTestBase {
++
++  /**
++   * {@inheritdoc}
++   */
++  protected $defaultTheme = 'stark';
++
++  /**
++   * {@inheritdoc}
++   */
++  protected static $modules = [
++    'environment_indicator',
++    'environment_indicator_navigation',
++    'navigation',
++  ];
++
++  /**
++   * A user with permissions to access the environment indicator.
++   *
++   * @var \Drupal\user\UserInterface
++   */
++  protected $adminUser;
++
++  /**
++   * {@inheritdoc}
++   */
++  protected function setUp(): void {
++    parent::setUp();
++
++    $this->adminUser = $this->drupalCreateUser([
++      'access environment indicator',
++      'access navigation',
++      'access administration pages',
++    ]);
++
++    // Configure an environment indicator with switchers.
++    $environment_config = $this->config('environment_indicator.indicator');
++    $environment_config->set('name', 'Development');
++    $environment_config->set('bg_color', '#ff0000');
++    $environment_config->set('fg_color', '#ffffff');
++    $environment_config->save();
++
++    // Create some environment indicator entities for switcher functionality.
++    $storage = \Drupal::entityTypeManager()->getStorage('environment_indicator');
++
++    $staging = $storage->create([
++      'machine' => 'staging',
++      'name' => 'Staging',
++      'bg_color' => '#ffff00',
++      'fg_color' => '#000000',
++      'url' => 'https://staging.example.com',
++    ]);
++    $staging->save();
++
++    $production = $storage->create([
++      'machine' => 'production',
++      'name' => 'Production',
++      'bg_color' => '#00ff00',
++      'fg_color' => '#000000',
++      'url' => 'https://production.example.com',
++    ]);
++    $production->save();
++  }
++
++  /**
++   * Tests that navigation popover functionality works.
++   */
++  public function testNavigationPopoverInteraction(): void {
++    $this->drupalLogin($this->adminUser);
++    $this->drupalGet('<front>');
++
++    $page = $this->getSession()->getPage();
++
++    // Check if the environment indicator button exists.
++    $env_button = $page->find('css', '.toolbar-button--environment-indicator');
++    $this->assertNotNull($env_button, 'Environment indicator button should be present');
++
++    // If the button has switchers, it should be clickable to show popover.
++    if ($page->find('css', '[data-toolbar-popover-control]')) {
++      $popover_control = $page->find('css', '[data-toolbar-popover-control]');
++      $this->assertNotNull($popover_control, 'Popover control should exist');
++
++      // Click to open the popover.
++      $popover_control->click();
++
++      // Wait for popover to appear.
++      $this->assertSession()->waitForElement('css', '.toolbar-popover__menu');
++
++      // Check that switcher links are present.
++      $this->assertSession()->elementExists('css', '.toolbar-popover__menu');
++      $switcher_links = $page->findAll('css', '.toolbar-popover__menu a');
++      $this->assertGreaterThan(0, count($switcher_links), 'Switcher links should be present');
++    }
++  }
++
++  /**
++   * Tests that navigation JavaScript doesn't conflict with other modules.
++   */
++  public function testJavaScriptCompatibility(): void {
++    $this->drupalLogin($this->adminUser);
++    $this->drupalGet('<front>');
++
++    $page = $this->getSession()->getPage();
++
++    // Ensure that JavaScript errors don't occur.
++    $logs = $this->getSession()->getDriver()->getWebDriverSession()->log('browser');
++    $js_errors = array_filter($logs, function ($log) {
++      return $log['level'] === 'SEVERE' && strpos($log['message'], 'javascript') !== FALSE;
++    });
++
++    $this->assertEmpty($js_errors, 'No JavaScript errors should occur');
++
++    // Test that environment indicator navigation functionality works.
++    // Check for the environment indicator navigation block.
++    $env_nav_block = $page->find('css', '.admin-toolbar__item--environment-indicator');
++    $this->assertNotNull($env_nav_block, 'Environment indicator navigation block should be present');
++
++    // Check for the specific navigation link with proper ID.
++    $nav_link = $page->find('css', '#navigation-link-environment-indicator');
++    $this->assertNotNull($nav_link, 'Environment indicator navigation link should be present');
++
++    // Test that our JavaScript-enhanced features are working.
++    $env_button = $page->find('css', '.toolbar-button--environment-indicator');
++    if ($env_button) {
++      // Test that the button is interactive and has proper attributes.
++      $this->assertTrue($env_button->isVisible(), 'Environment indicator button should be visible');
++    }
++  }
++
++  /**
++   * Tests accessibility of the navigation component.
++   */
++  public function testAccessibility(): void {
++    $this->drupalLogin($this->adminUser);
++    $this->drupalGet('<front>');
++
++    $page = $this->getSession()->getPage();
++
++    // Check ARIA attributes.
++    $env_button = $page->find('css', '.toolbar-button--environment-indicator');
++    if ($env_button) {
++      // If it's a popover control, it should have proper ARIA attributes.
++      if ($env_button->hasAttribute('data-toolbar-popover-control')) {
++        $this->assertTrue($env_button->hasAttribute('aria-expanded'));
++        $this->assertTrue($env_button->hasAttribute('aria-controls'));
++      }
++    }
++
++    // Check that tooltips are accessible.
++    $tooltip_elements = $page->findAll('css', '[data-drupal-tooltip]');
++    foreach ($tooltip_elements as $element) {
++      $this->assertTrue(
++        $element->hasAttribute('data-drupal-tooltip'),
++        'Tooltip elements should have proper data attributes'
++      );
++    }
++  }
++
++  /**
++   * Tests responsive behavior of the navigation.
++   */
++  public function testResponsiveBehavior(): void {
++    $this->drupalLogin($this->adminUser);
++    $this->drupalGet('<front>');
++
++    // Test desktop view.
++    $this->getSession()->resizeWindow(1200, 800);
++    $this->assertSession()->elementExists('css', '.admin-toolbar__item--environment-indicator');
++
++    // Test tablet view.
++    $this->getSession()->resizeWindow(768, 1024);
++    $this->assertSession()->elementExists('css', '.admin-toolbar__item--environment-indicator');
++
++    // Test mobile view.
++    $this->getSession()->resizeWindow(375, 667);
++
++    // Environment indicator should still be present but might be styled
++    // differently.
++    $page = $this->getSession()->getPage();
++    $env_indicator = $page->find('css', '.admin-toolbar__item--environment-indicator');
++    $this->assertNotNull($env_indicator, 'Environment indicator should be present on mobile');
++  }
++
++  /**
++   * Tests that lazy loading works correctly.
++   */
++  public function testLazyLoading(): void {
++    $this->drupalLogin($this->adminUser);
++    $this->drupalGet('<front>');
++
++    // The lazy builder should have generated content.
++    $this->assertSession()->elementExists('css', '.admin-toolbar__item--environment-indicator');
++
++    // Check that the lazy-loaded content contains expected elements.
++    $page = $this->getSession()->getPage();
++    $env_indicator = $page->find('css', '.admin-toolbar__item--environment-indicator');
++
++    // Should contain the environment name.
++    $this->assertStringContainsString(
++      'Development',
++      $env_indicator->getText(),
++      'Lazy-loaded content should contain environment name'
++    );
++  }
++
++}
+diff --git a/modules/environment_indicator_navigation/tests/src/Unit/LazyBuilderTest.php b/modules/environment_indicator_navigation/tests/src/Unit/LazyBuilderTest.php
+new file mode 100644
+index 0000000000000000000000000000000000000000..dd020a4706ca904ba9bfc2582b5967757c5da24b
+--- /dev/null
++++ b/modules/environment_indicator_navigation/tests/src/Unit/LazyBuilderTest.php
+@@ -0,0 +1,239 @@
++<?php
++
++declare(strict_types=1);
++
++namespace Drupal\Tests\environment_indicator_navigation\Unit;
++
++use Drupal\Core\Cache\Cache;
++use Drupal\Core\Config\ConfigFactoryInterface;
++use Drupal\Core\Config\ImmutableConfig;
++use Drupal\Core\Entity\EntityTypeManagerInterface;
++use Drupal\Core\Render\RendererInterface;
++use Drupal\Core\Session\AccountInterface;
++use Drupal\environment_indicator\Service\EnvironmentIndicator;
++use Drupal\environment_indicator_navigation\Service\LazyBuilder;
++use Drupal\Tests\UnitTestCase;
++
++/**
++ * Tests the LazyBuilder service.
++ *
++ * @covers \Drupal\environment_indicator_navigation\Service\LazyBuilder
++ * @group environment_indicator_navigation
++ */
++class LazyBuilderTest extends UnitTestCase {
++
++  /**
++   * The lazy builder service under test.
++   *
++   * @var \Drupal\environment_indicator_navigation\Service\LazyBuilder
++   */
++  protected LazyBuilder $lazyBuilder;
++
++  /**
++   * Mock renderer service.
++   *
++   * @var \Drupal\Core\Render\RendererInterface|\PHPUnit\Framework\MockObject\MockObject
++   */
++  protected $renderer;
++
++  /**
++   * Mock entity type manager.
++   *
++   * @var \Drupal\Core\Entity\EntityTypeManagerInterface|\PHPUnit\Framework\MockObject\MockObject
++   */
++  protected $entityTypeManager;
++
++  /**
++   * Mock current user.
++   *
++   * @var \Drupal\Core\Session\AccountInterface|\PHPUnit\Framework\MockObject\MockObject
++   */
++  protected $currentUser;
++
++  /**
++   * Mock config factory.
++   *
++   * @var \Drupal\Core\Config\ConfigFactoryInterface|\PHPUnit\Framework\MockObject\MockObject
++   */
++  protected $configFactory;
++
++  /**
++   * Mock environment indicator service.
++   *
++   * @var \Drupal\environment_indicator\Service\EnvironmentIndicator|\PHPUnit\Framework\MockObject\MockObject
++   */
++  protected $environmentIndicator;
++
++  /**
++   * Mock environment indicator config.
++   *
++   * @var \Drupal\Core\Config\ImmutableConfig|\PHPUnit\Framework\MockObject\MockObject
++   */
++  protected $environmentIndicatorConfig;
++
++  /**
++   * {@inheritdoc}
++   */
++  protected function setUp(): void {
++    parent::setUp();
++
++    $this->renderer = $this->createMock(RendererInterface::class);
++    $this->entityTypeManager = $this->createMock(EntityTypeManagerInterface::class);
++    $this->currentUser = $this->createMock(AccountInterface::class);
++    $this->configFactory = $this->createMock(ConfigFactoryInterface::class);
++    $this->environmentIndicator = $this->createMock(EnvironmentIndicator::class);
++    $this->environmentIndicatorConfig = $this->createMock(ImmutableConfig::class);
++
++    $this->lazyBuilder = new LazyBuilder(
++      $this->renderer,
++      $this->entityTypeManager,
++      $this->currentUser,
++      $this->configFactory,
++      $this->environmentIndicator
++    );
++  }
++
++  /**
++   * Tests getSwitcherLinks method with empty switchers.
++   */
++  public function testGetSwitcherLinksEmpty(): void {
++    $this->environmentIndicator
++      ->expects($this->once())
++      ->method('getTitle')
++      ->willReturn('Test Environment');
++
++    $this->environmentIndicator
++      ->expects($this->once())
++      ->method('getLinks')
++      ->willReturn([]);
++
++    $this->environmentIndicatorConfig
++      ->expects($this->once())
++      ->method('get')
++      ->with('name')
++      ->willReturn('test');
++
++    $this->environmentIndicator
++      ->expects($this->once())
++      ->method('getActiveEnvironment')
++      ->willReturn($this->environmentIndicatorConfig);
++
++    $this->environmentIndicator
++      ->expects($this->once())
++      ->method('getCacheTags')
++      ->willReturn(['environment_indicator:test']);
++
++    $result = $this->lazyBuilder->getSwitcherLinks();
++
++    $this->assertIsArray($result);
++    $this->assertEquals('navigation_menu__environment_indicator_navigation', $result['#theme']);
++    $this->assertEquals('environment_indicator_navigation', $result['#menu_name']);
++    $this->assertArrayHasKey('#items', $result);
++    $this->assertArrayHasKey('environment_indicator', $result['#items']);
++    $this->assertEquals('Test Environment', $result['#items']['environment_indicator']['title']);
++    $this->assertEquals([], $result['#items']['environment_indicator']['switchers']);
++    $this->assertEquals('test', $result['#items']['environment_indicator']['class']);
++  }
++
++  /**
++   * Tests getSwitcherLinks method with switcher links.
++   */
++  public function testGetSwitcherLinksWithSwitchers(): void {
++    $switchers = [
++      [
++        'title' => 'Development',
++        'url' => 'https://dev.example.com',
++        'attributes' => ['class' => ['dev-link']],
++      ],
++      [
++        'title' => 'Staging',
++        'url' => 'https://staging.example.com',
++        'attributes' => ['class' => ['staging-link']],
++      ],
++    ];
++
++    $this->environmentIndicator
++      ->expects($this->once())
++      ->method('getTitle')
++      ->willReturn('Production Environment');
++
++    $this->environmentIndicator
++      ->expects($this->once())
++      ->method('getLinks')
++      ->willReturn($switchers);
++
++    $this->environmentIndicatorConfig
++      ->expects($this->once())
++      ->method('get')
++      ->with('name')
++      ->willReturn('production');
++
++    $this->environmentIndicator
++      ->expects($this->once())
++      ->method('getActiveEnvironment')
++      ->willReturn($this->environmentIndicatorConfig);
++
++    $this->environmentIndicator
++      ->expects($this->once())
++      ->method('getCacheTags')
++      ->willReturn(['environment_indicator:production']);
++
++    $result = $this->lazyBuilder->getSwitcherLinks();
++
++    $this->assertIsArray($result);
++    $this->assertEquals('navigation_menu__environment_indicator_navigation', $result['#theme']);
++    $this->assertEquals('environment_indicator_navigation', $result['#menu_name']);
++    $this->assertArrayHasKey('#items', $result);
++    $this->assertArrayHasKey('environment_indicator', $result['#items']);
++    $this->assertEquals('Production Environment', $result['#items']['environment_indicator']['title']);
++    $this->assertEquals($switchers, $result['#items']['environment_indicator']['switchers']);
++    $this->assertEquals('production', $result['#items']['environment_indicator']['class']);
++  }
++
++  /**
++   * Tests that proper cache tags and contexts are set.
++   */
++  public function testCacheTagsAndContexts(): void {
++    $this->environmentIndicator
++      ->expects($this->once())
++      ->method('getTitle')
++      ->willReturn('Test Environment');
++
++    $this->environmentIndicator
++      ->expects($this->once())
++      ->method('getLinks')
++      ->willReturn([]);
++
++    $this->environmentIndicatorConfig
++      ->expects($this->once())
++      ->method('get')
++      ->with('name')
++      ->willReturn('test');
++
++    $this->environmentIndicator
++      ->expects($this->once())
++      ->method('getActiveEnvironment')
++      ->willReturn($this->environmentIndicatorConfig);
++
++    $customCacheTags = ['environment_indicator:test', 'config:custom'];
++    $this->environmentIndicator
++      ->expects($this->once())
++      ->method('getCacheTags')
++      ->willReturn($customCacheTags);
++
++    $result = $this->lazyBuilder->getSwitcherLinks();
++
++    $this->assertArrayHasKey('#cache', $result);
++    $this->assertArrayHasKey('tags', $result['#cache']);
++    $this->assertArrayHasKey('contexts', $result['#cache']);
++
++    $expectedTags = Cache::mergeTags([
++      'config:environment_indicator.settings',
++      'config:environment_indicator.indicator',
++    ], $customCacheTags);
++
++    $this->assertEquals($expectedTags, $result['#cache']['tags']);
++    $this->assertEquals(['route', 'user.permissions'], $result['#cache']['contexts']);
++  }
++
++}
+diff --git a/src/Form/EnvironmentIndicatorSettingsForm.php b/src/Form/EnvironmentIndicatorSettingsForm.php
+index e38f27f97b596ed204dd772531b8b06259982b58..7b68e8203672e849e349f2905b8dde2d8a8b0f9e 100644
+--- a/src/Form/EnvironmentIndicatorSettingsForm.php
++++ b/src/Form/EnvironmentIndicatorSettingsForm.php
+@@ -66,16 +66,39 @@ public function getFormId() {
+    */
+   public function buildForm(array $form, FormStateInterface $form_state) {
+     $config = $this->config('environment_indicator.settings');
+-    $toolbar_integration_module_enabled = $this->moduleHandler->moduleExists('environment_indicator_toolbar') ?? FALSE;
++    $toolbar_module_enabled = $this->moduleHandler->moduleExists('toolbar');
++    $navigation_module_enabled = $this->moduleHandler->moduleExists('navigation');
++    $toolbar_integration_module_enabled = $this->moduleHandler->moduleExists('environment_indicator_toolbar');
++    $navigation_integration_module_enabled = $this->moduleHandler->moduleExists('environment_indicator_navigation');
+     $form = parent::buildForm($form, $form_state);
+-    // If the toolbar integration module is not enabled, we add a message to
+-    // inform the user.
+-    if (!$toolbar_integration_module_enabled) {
++
++    if ($navigation_module_enabled && !$navigation_integration_module_enabled) {
++
++      // If the navigation module is enabled but its integration is not, we
++      // add a message to inform the user.
++      $form['navigation_integration_message'] = [
++        '#type' => 'item',
++        '#markup' => $this->t('The <strong>Environment Indicator - Navigation Integration</strong> (<code>environment_indicator_navigation</code>) module is not enabled. Please enable it to enable navigation integration.'),
++      ];
++    }
++    elseif ($toolbar_module_enabled && !$toolbar_integration_module_enabled && !$navigation_module_enabled) {
++
++      // Only show the toolbar message if navigation is not enabled because
++      // the navigation takes precedence.
+       $form['toolbar_integration_message'] = [
+         '#type' => 'item',
+         '#markup' => $this->t('The <strong>Environment Indicator - Toolbar Integration</strong> (<code>environment_indicator_toolbar</code>) module is not enabled. Please enable it to enable toolbar integration.'),
+       ];
+     }
++    elseif (!$navigation_module_enabled && !$toolbar_integration_module_enabled) {
++
++      // Neither core admin UI is enabled, so the indicator can only appear
++      // as a page banner.
++      $form['no_admin_ui_message'] = [
++        '#type' => 'item',
++        '#markup' => $this->t('Neither the core <strong>Toolbar</strong> nor <strong>Navigation</strong> module is enabled. The environment indicator will only be shown as a page banner.'),
++      ];
++    }
+     $form['favicon'] = [
+       '#type' => 'checkbox',
+       '#title' => $this->t('Show favicon'),
+diff --git a/tests/src/Kernel/EnvironmentIndicatorInstallTest.php b/tests/src/Kernel/EnvironmentIndicatorInstallTest.php
+new file mode 100644
+index 0000000000000000000000000000000000000000..1651012b296348c80a2778c8f7ff92d33ee5ef36
+--- /dev/null
++++ b/tests/src/Kernel/EnvironmentIndicatorInstallTest.php
+@@ -0,0 +1,78 @@
++<?php
++
++declare(strict_types=1);
++
++namespace Drupal\Tests\environment_indicator\Kernel;
++
++use Drupal\KernelTests\KernelTestBase;
++
++/**
++ * Tests automatic enabling of the navigation submodule on install.
++ *
++ * @group environment_indicator
++ */
++class EnvironmentIndicatorInstallTest extends KernelTestBase {
++
++  /**
++   * {@inheritdoc}
++   */
++  protected static $modules = [
++    'system',
++    'user',
++  ];
++
++  /**
++   * Tests that the navigation submodule is enabled when navigation is on.
++   */
++  public function testNavigationSubmoduleEnabledWhenNavigationEnabled(): void {
++    \Drupal::service('module_installer')->install(['navigation']);
++    \Drupal::service('module_installer')->install(['environment_indicator']);
++
++    $module_handler = \Drupal::service('module_handler');
++    $this->assertTrue($module_handler->moduleExists('environment_indicator_navigation'));
++  }
++
++  /**
++   * Tests that nothing changes when both toolbar and navigation are on.
++   */
++  public function testNoChangeWhenToolbarAndNavigationEnabled(): void {
++    \Drupal::service('module_installer')->install(['toolbar', 'navigation']);
++    \Drupal::service('module_installer')->install(['environment_indicator']);
++
++    $module_handler = \Drupal::service('module_handler');
++    $this->assertFalse($module_handler->moduleExists('environment_indicator_navigation'));
++  }
++
++  /**
++   * Tests that nothing is enabled when neither toolbar nor navigation is on.
++   */
++  public function testNoSubmoduleEnabledWithoutNavigation(): void {
++    \Drupal::service('module_installer')->install(['environment_indicator']);
++
++    $module_handler = \Drupal::service('module_handler');
++    $this->assertFalse($module_handler->moduleExists('environment_indicator_navigation'));
++    $this->assertFalse($module_handler->moduleExists('environment_indicator_toolbar'));
++  }
++
++  /**
++   * Tests that update 8104 removes a leftover toolbar_integration setting.
++   */
++  public function testUpdate8104RemovesStaleToolbarIntegrationSetting(): void {
++    \Drupal::service('module_installer')->install(['environment_indicator']);
++
++    // Write the obsolete key directly to storage, bypassing the config
++    // schema checker, since it no longer exists in the schema.
++    $storage = \Drupal::service('config.storage');
++    $data = $storage->read('environment_indicator.settings');
++    $data['toolbar_integration'] = ['toolbar'];
++    $storage->write('environment_indicator.settings', $data);
++    \Drupal::configFactory()->reset('environment_indicator.settings');
++
++    \Drupal::moduleHandler()->loadInclude('environment_indicator', 'install');
++    environment_indicator_update_8104();
++
++    $settings = \Drupal::configFactory()->get('environment_indicator.settings');
++    $this->assertNull($settings->get('toolbar_integration'));
++  }
++
++}
