@@ -10,7 +10,6 @@
 
     <exclude-pattern>*/node_modules/*</exclude-pattern>
     <exclude-pattern>*/vendor/*</exclude-pattern>
-    <exclude-pattern>*/denbei/*</exclude-pattern>
 
     <rule ref="rulesets/cleancode.xml">
         <!-- Drupal has legitimate uses of `else` in preprocess/hook code. -->

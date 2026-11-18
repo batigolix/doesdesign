@@ -5,14 +5,15 @@ dependencies:
   config:
     - core.entity_view_mode.node.portfolio_teaser
     - field.field.node.object.body
+    - field.field.node.object.field_jaar
     - field.field.node.object.field_material
     - field.field.node.object.field_media_image
     - field.field.node.object.field_price
     - field.field.node.object.field_show_in_banner
+    - field.field.node.object.field_show_in_portfolio
     - field.field.node.object.field_subtitle
     - field.field.node.object.field_type
     - field.field.node.object.field_weight
-    - field.field.node.object.field_year
     - node.type.object
   module:
     - text
@@ -41,9 +42,11 @@ content:
     region: content
 hidden:
   field_dimensions: true
+  field_jaar: true
   field_material: true
   field_price: true
   field_show_in_banner: true
+  field_show_in_portfolio: true
   field_subtitle: true
   field_type: true
   field_weight: true

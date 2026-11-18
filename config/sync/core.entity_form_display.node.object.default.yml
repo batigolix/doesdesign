@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.object.body
+    - field.field.node.object.field_jaar
     - field.field.node.object.field_material
     - field.field.node.object.field_media_image
     - field.field.node.object.field_price
@@ -12,7 +13,6 @@ dependencies:
     - field.field.node.object.field_subtitle
     - field.field.node.object.field_type
     - field.field.node.object.field_weight
-    - field.field.node.object.field_year
     - node.type.object
   module:
     - media_library
@@ -38,6 +38,12 @@ content:
   created:
     type: datetime_timestamp
     weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_jaar:
+    type: options_select
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -109,13 +115,6 @@ content:
     settings:
       placeholder: ''
     third_party_settings: {  }
-  field_year:
-    type: number
-    weight: 7
-    region: content
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
   langcode:
     type: language_select
     weight: 8
@@ -172,4 +171,5 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_year: true
   promote: true

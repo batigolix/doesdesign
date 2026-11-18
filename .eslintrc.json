@@ -22,7 +22,6 @@
   "ignorePatterns": [
     "**/vendor/**",
     "**/node_modules/**",
-    "web/themes/custom/denbei/**",
     "**/*.min.js",
     "web/themes/custom/shindo/assets/dopetrope/**",
     "web/themes/custom/shindo/assets/js/main.js",

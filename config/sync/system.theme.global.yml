@@ -11,6 +11,6 @@ features:
   favicon: true
   node_user_picture: true
 logo:
-  path: themes/custom/denbei/logo.png
+  path: themes/custom/shindo/logo.svg
   url: null
   use_default: false
