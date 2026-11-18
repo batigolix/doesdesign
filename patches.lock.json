@@ -1,4 +1,17 @@
 {
-    "_hash": "6142bfcb78f54dfbf5247ae5e463f25bdb8fff1890806e2e45aa81a59c211653",
-    "patches": []
+    "_hash": "809f33cc01925951e9cacee72d676ef11f60b8c1c796afa4858255adb880137b",
+    "patches": {
+        "drupal/environment_indicator": [
+            {
+                "package": "drupal/environment_indicator",
+                "description": "#3457688: Support for core hook based submodule (Navigation integration)",
+                "url": "patches/environment_indicator-navigation-3457688-mr148.patch",
+                "sha256": "8c63a21a1be6849a0af75ef071df3ef79f51a1867459f04934f6d6c2bd1bdab5",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ]
+    }
 }
